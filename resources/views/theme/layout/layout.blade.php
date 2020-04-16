@@ -25,6 +25,7 @@
     </script>
     <script src="{!! url('public/js/apps.js') !!}"></script>
     <script src="{!! url('public/js/swiper.min.js') !!}"></script>
+    <script src="{!! url('public/js/main.js') !!}"></script>
 	@yield('script')
 </body>
 </html>

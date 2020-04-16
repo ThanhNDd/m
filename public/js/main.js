@@ -1,4 +1,12 @@
-var swiper = new Swiper('.swiper1', {
+new Swiper('.swiper-flash-sale',{
+    cssMode: true,
+    mousewheel: true,
+    keyboard: true,
+});
+new Swiper('.swiper1', {
+    cssMode: true,
+    mousewheel: true,
+    keyboard: true,
     pagination: {
         el: '.swiper-pagination1',
         dynamicBullets: true,
@@ -8,20 +16,19 @@ var swiper = new Swiper('.swiper1', {
         delay: 5000,
     },
 });
-
-// new Swiper('.swiper-flash-sale',{
-//     slidesPerView: 2,
-// });
-
-// var swiper5 = new Swiper('.swiper-recommended-product',{
-//     slidesPerView: 2,
-//     autoplay: {
-//         delay: 5000,
-//     },
-// });
-// var swiper6 = new Swiper('.swiper6',{
-//     slidesPerView: 3
-// });
+new Swiper('.swiper-category', {
+    cssMode: true,
+    mousewheel: true,
+    keyboard: true,
+    pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        paginationClickable: true
+    },
+    autoplay: {
+        delay: 5000,
+    },
+});
 
 $(document).ready(function () {
     $('a[href="#tab-home"]').click(function(){

@@ -36,10 +36,10 @@ class ProductController extends Controller
         $cat_uri = '';
         if($type == 0) {
             $cat_title = 'Thời trang bé trai';
-            $cat_uri = '/categories/boys';
+            $cat_uri = url('').'/categories/boys';
         } else if($type == 1) {
             $cat_title = 'Thời trang bé gái';
-            $cat_uri = '/categories/girls';
+            $cat_uri = url('').'/categories/girls';
         }
         return view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product'));
     }

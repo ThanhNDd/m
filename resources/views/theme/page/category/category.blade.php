@@ -12,8 +12,7 @@
                     <!-- slider brand -->
                     <div class="slider-brand segments-bottom">
                         <div class="container">
-                            <div class="swiper-container swiper-init swiper-container-horizontal">
-                                <div class="swiper-pagination"></div>
+                            <div class="swiper-container swiper-category">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="content">
@@ -34,6 +33,7 @@
                                         </div>
                                     </div>
                                 </div>
+{{--                                <div class="swiper-pagination"></div>--}}
                             </div>
                         </div>
                     </div>

@@ -123,10 +123,6 @@
 @endsection
 @section('script')
     <script>
-        new Swiper('.swiper-flash-sale',{
-            cssMode: true,
-            mousewheel: true,
-            keyboard: true,
-        });
+
     </script>
 @endsection

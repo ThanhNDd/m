@@ -26,11 +26,11 @@
                                     <li class="rating-total">{{$rating_avg}}<span> ({{ count($reviews) }})</span></li>
                                 </ul>
                             </div>
-                            <div class="write-rating">
-                                <span class="see-all-link btn btn-sm btn-warning" style="color: #333;width:auto;" id="ratingbtn">
-                                    <i class="fas fa-pen-nib"></i> Viết nhận xét
-                                </span>
-                            </div>
+{{--                            <div class="write-rating">--}}
+{{--                                <span class="see-all-link btn btn-sm btn-warning ratingbtn" style="color: #333;width:auto;" @click="openPopupReview">--}}
+{{--                                    <i class="fas fa-pen-nib"></i> Viết nhận xét--}}
+{{--                                </span>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

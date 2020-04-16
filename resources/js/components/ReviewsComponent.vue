@@ -1,13 +1,5 @@
 <template>
     <div class="product-review segments">
-        <div class="row section-title">
-            <h3 style="width: 100%;">Đánh giá sản phẩm
-                <span class="see-all-link btn btn-sm btn-warning"
-                   style="color: #333;width:auto;" id="ratingbtn">
-                    <i class="fas fa-pen-nib"></i> Viết nhận xét
-                </span>
-            </h3>
-        </div>
         <div class="row col-sm-12" style="margin: 0;display: inline-block;width: 100%;padding:0px 0px 20px 0px;">
             <div class="rating-block float-left" style="padding: 20px 5px;width: 49%;text-align: center;">
                 <h2 class="bold padding-bottom-7" style="padding-bottom: 5px;font-size: 40px;">{{ratingAvg}}</h2>
@@ -124,8 +116,8 @@
         </div>
         <!-- end divider -->
         <!-- view all reviews -->
-        <div class="view-all-review" v-if="reviews > 3">
-            <a v-bind:href="url + '/all-reviews/'+this.product_id">Xem thêm</a>
+        <div class="view-all-review" v-if="total_rating > 3">
+            <a v-bind:href="url + '/all-reviews/'+this.product_id">Xem tất cả</a>
         </div>
         <!-- end view all reviews -->
     </div>
@@ -148,7 +140,8 @@
                 number_2_star:0,
                 percent_1_star:0,
                 number_1_star:0,
-                url: ''
+                url: '',
+                total_rating: 0
             }
         },
         props: ['product_id'],
@@ -167,18 +160,23 @@
                         for(let i=0; i<this.ratingDetail.length; i++) {
                             let obj = this.ratingDetail[i];
                             if(obj.rating == 1) {
+                                this.total_rating += obj.number;
                                 this.number_1_star = obj.number;
                                 this.percent_1_star = obj.percent;
                             } else if(obj.rating == 2) {
+                                this.total_rating += obj.number;
                                 this.number_2_star = obj.number;
                                 this.percent_2_star = obj.percent;
                             } else if(obj.rating == 3) {
+                                this.total_rating += obj.number;
                                 this.number_3_star = obj.number;
                                 this.percent_3_star = obj.percent;
                             } else if(obj.rating == 4) {
+                                this.total_rating += obj.number;
                                 this.number_4_star = obj.number;
                                 this.percent_4_star = obj.percent;
                             } else if(obj.rating == 5) {
+                                this.total_rating += obj.number;
                                 this.number_5_star = obj.number;
                                 this.percent_5_star = obj.percent;
                             }
@@ -200,7 +198,7 @@
                         console.log(response.data);
                         this.reviews = response.data;
                     });
-            }
+            },
         },
     }
 

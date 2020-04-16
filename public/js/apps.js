@@ -3179,14 +3179,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3203,7 +3195,8 @@ __webpack_require__.r(__webpack_exports__);
       number_2_star: 0,
       percent_1_star: 0,
       number_1_star: 0,
-      url: ''
+      url: '',
+      total_rating: 0
     };
   },
   props: ['product_id'],
@@ -3225,18 +3218,23 @@ __webpack_require__.r(__webpack_exports__);
           var obj = _this.ratingDetail[i];
 
           if (obj.rating == 1) {
+            _this.total_rating += obj.number;
             _this.number_1_star = obj.number;
             _this.percent_1_star = obj.percent;
           } else if (obj.rating == 2) {
+            _this.total_rating += obj.number;
             _this.number_2_star = obj.number;
             _this.percent_2_star = obj.percent;
           } else if (obj.rating == 3) {
+            _this.total_rating += obj.number;
             _this.number_3_star = obj.number;
             _this.percent_3_star = obj.percent;
           } else if (obj.rating == 4) {
+            _this.total_rating += obj.number;
             _this.number_4_star = obj.number;
             _this.percent_4_star = obj.percent;
           } else if (obj.rating == 5) {
+            _this.total_rating += obj.number;
             _this.number_5_star = obj.number;
             _this.percent_5_star = obj.percent;
           }
@@ -75224,8 +75222,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "product-review segments" }, [
-    _vm._m(0),
-    _vm._v(" "),
     _c(
       "div",
       {
@@ -75369,7 +75365,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "float-left" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "div",
@@ -75416,7 +75412,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "float-left" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "div",
@@ -75463,7 +75459,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "float-left" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -75510,7 +75506,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "float-left" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "div",
@@ -75557,7 +75553,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "float-left" }, [
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c(
                 "div",
@@ -75685,40 +75681,18 @@ var render = function() {
           ])
         ]),
     _vm._v(" "),
-    _vm.reviews > 3
+    _vm.total_rating > 3
       ? _c("div", { staticClass: "view-all-review" }, [
           _c(
             "a",
             { attrs: { href: _vm.url + "/all-reviews/" + this.product_id } },
-            [_vm._v("Xem thêm")]
+            [_vm._v("Xem tất cả")]
           )
         ])
       : _vm._e()
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row section-title" }, [
-      _c("h3", { staticStyle: { width: "100%" } }, [
-        _vm._v("Đánh giá sản phẩm\n            "),
-        _c(
-          "span",
-          {
-            staticClass: "see-all-link btn btn-sm btn-warning",
-            staticStyle: { color: "#333", width: "auto" },
-            attrs: { id: "ratingbtn" }
-          },
-          [
-            _c("i", { staticClass: "fas fa-pen-nib" }),
-            _vm._v(" Viết nhận xét\n            ")
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

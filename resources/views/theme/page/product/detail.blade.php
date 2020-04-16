@@ -48,7 +48,15 @@
                             </div>
                             <!-- product review -->
                             <div>
-                                <reviews-component :product_id="{{ $product->id }}"></reviews-component>
+                                <div class="row section-title">
+                                    <h3 style="width: 100%;">Đánh giá sản phẩm
+                                        <span class="see-all-link btn btn-sm btn-warning ratingbtn"
+                                              style="color: #333;width:auto;" @click="openPopupReview">
+                                            <i class="fas fa-pen-nib"></i> Viết nhận xét
+                                        </span>
+                                    </h3>
+                                </div>
+                                <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
                             </div>
                             <!-- end product review -->
                             <!-- divider -->
@@ -240,7 +248,8 @@
                     email: '',
                     content: '',
                     email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-                    phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/
+                    phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
+                    reload: 0
                 }
             },
             methods: {
@@ -318,6 +327,7 @@
                         if(response.data === 201) {
                             $("#form-review").addClass('hidden');
                             $("#form-review-success").removeClass('hidden');
+                            this.reload++;
                         } else {
                             swal({
                                 title: "Đã xảy ra lỗi!",
@@ -360,10 +370,22 @@
                         this.$toast.top('Bạn chưa chọn số sao');
                         return false;
                     }
+                },
+                openPopupReview: function () {
+                    $(".rating-sheet").addClass("modal-in");
+                    $("html").addClass("with-modal-sheet");
+                    $(".sheet-close").click(function() {
+                        $(".rating-sheet").removeClass("modal-in");
+                        $("html").removeClass("with-modal-sheet");
+
+                    });
                 }
             }
         });
         new Swiper('.swiper-detail-product', {
+            cssMode: true,
+            mousewheel: true,
+            keyboard: true,
             pagination: {
                 el: '.swiper-pagination-detail-product',
                 dynamicBullets: true,
@@ -372,18 +394,6 @@
             autoplay: {
                 delay: 5000,
             },
-        });
-
-        $(function(){
-            $('#ratingbtn').click(function () {
-                $(".rating-sheet").addClass("modal-in");
-                $("html").addClass("with-modal-sheet");
-                $(".sheet-close").click(function() {
-                    $(".rating-sheet").removeClass("modal-in");
-                    $("html").removeClass("with-modal-sheet");
-
-                });
-            });
         });
     </script>
 @endsection

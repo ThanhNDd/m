@@ -21,7 +21,6 @@
             @if (isset($isDetail) && $isDetail)
                 <a href="{{ url('/cart') }}">
                     <i class="fas fa-shopping-cart"></i>
-{{--                    <span class="badge badge-danger" id="cart_number"></span>--}}
                     <div class="cart_detail">
                         <cart-number-component/>
                     </div>
@@ -29,8 +28,6 @@
             @else
                 <a href="{{ url('/notifications') }}">
                     <i class="fas fa-bell"></i>
-{{--                    <span></span>--}}
-{{--                    <span class="badge badge-danger" id=""></span>--}}
                 </a>
             @endif
         </div>
