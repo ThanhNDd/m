@@ -3330,24 +3330,25 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var i = 0; i < _this.ratingDetail.length; i++) {
           var obj = _this.ratingDetail[i];
+          var objRating = parseInt(obj.rating);
 
-          if (obj.rating == 1) {
+          if (objRating == 1) {
             _this.total_rating += obj.number;
             _this.number_1_star = obj.number;
             _this.percent_1_star = obj.percent;
-          } else if (obj.rating == 2) {
+          } else if (objRating == 2) {
             _this.total_rating += obj.number;
             _this.number_2_star = obj.number;
             _this.percent_2_star = obj.percent;
-          } else if (obj.rating == 3) {
+          } else if (objRating == 3) {
             _this.total_rating += obj.number;
             _this.number_3_star = obj.number;
             _this.percent_3_star = obj.percent;
-          } else if (obj.rating == 4) {
+          } else if (objRating == 4) {
             _this.total_rating += obj.number;
             _this.number_4_star = obj.number;
             _this.percent_4_star = obj.percent;
-          } else if (obj.rating == 5) {
+          } else if (objRating == 5) {
             _this.total_rating += obj.number;
             _this.number_5_star = obj.number;
             _this.percent_5_star = obj.percent;

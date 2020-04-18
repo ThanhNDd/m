@@ -25,6 +25,7 @@ Route::Resource('/attributes', 'AttributesController', ['parameters' => [
 ]]);
 Route::Resource('/relate.category.type', 'RelateProductController');
 Route::Resource('/recommend.category.type', 'RecommendController');
+Route::Resource('/cart', 'CartController');
 Route::get('/carts', 'CartController@get_all_items');
 Route::group(['prefix' => 'cart'], function(){
     Route::get('/', 'CartController@count');

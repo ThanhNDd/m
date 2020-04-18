@@ -25,7 +25,7 @@ return array(
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Controllers\\RecommendController' => $baseDir . '/app/Http/Controllers/RecommendController.php',
     'App\\Http\\Controllers\\RelateProductController' => $baseDir . '/app/Http/Controllers/RelateProductController.php',
-    'App\\Http\\Controllers\\ReviewsController' => $baseDir . '/app/Http/Controllers/ReviewsController.php',
+    'App\\Http\\Controllers\\href="#"' => $baseDir . '/app/Http/Controllers/ReviewsController.php',
     'App\\Http\\Controllers\\SaleController' => $baseDir . '/app/Http/Controllers/SaleController.php',
     'App\\Http\\Controllers\\ZoneController' => $baseDir . '/app/Http/Controllers/ZoneController.php',
     'App\\Http\\Controllers\\cities\\Zone' => $baseDir . '/app/Http/Controllers/cities/Zone.php',
