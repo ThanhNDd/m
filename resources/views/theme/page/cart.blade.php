@@ -7,7 +7,7 @@
             <div class="navbar navbar-page">
                 <div class="navbar-inner">
                     <div class="left">
-                        <a href="#" class="panel-open">
+                        <a href="javascript:void(0);" class="panel-open">
                             <i class="fas fa-align-left"></i>
                         </a>
                     </div>

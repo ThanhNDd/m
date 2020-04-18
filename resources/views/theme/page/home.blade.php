@@ -22,7 +22,7 @@
                                 <div class="swiper-slide">
                                     <div class="content">
                                         <div class="mask"></div>
-                                        <img src="{{ url('public/images/banner1.png') }}" alt="">
+                                        <img src="{{ url('public/images/banner-m1.png') }}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -50,7 +50,7 @@
                     <div class="latest-product segments no-pd-b">
                         <div class="container">
                             <div class="section-title">
-                                <h3>Best Seller</h3>
+                                <h3>Bán chạy nhất</h3>
                             </div>
                             <best-seller-component></best-seller-component>
                         </div>
@@ -60,7 +60,7 @@
                     <div class="flash-sale segments no-pd-b">
                         <div class="container">
                             <div class="section-title">
-                                <h3>Flash Sale
+                                <h3>Khuyến mãi
                                     <a href="{{ url("/sales") }}" class="see-all-link">Xem thêm &raquo;</a>
                                 </h3>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="popular-product product segments-bottom">
                             <div class="container">
                                 <div class="section-title">
-                                    <h3>New Arrivals</h3>
+                                    <h3>Hàng mới</h3>
                                 </div>
                                 <latest-product-component></latest-product-component>
                             </div>

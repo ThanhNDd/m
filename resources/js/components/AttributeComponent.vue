@@ -2,7 +2,7 @@
     <div class="list">
         <ul>
             <li>
-                <a href="#" class="item-link item-content sheet-open">
+                <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
                             <div class="item-cell ">Màu sắc</div>
@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="item-link item-content sheet-open">
+                <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
                             <div class="item-cell ">Size</div>
@@ -38,15 +38,49 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="item-link item-content sheet-open">
+                <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
-                            <div class="item-cell ">Cách chọn size</div>
-                            <div class="item-cell detail">Chi tiết</div>
+                            <div class="item-cell ">Cân nặng</div>
+                            <div class="item-cell">18kg - 32kg</div>
                         </div>
                     </div>
                 </a>
             </li>
+            <li>
+                <a href="javascript:void(0);" class="item-link item-content">
+                    <div class="item-inner item-cell">
+                        <div class="item-row">
+                            <div class="item-cell ">Chất liệu</div>
+                            <div class="item-cell">
+                                <span>{{attributes.material | format_material}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="item-link item-content">
+                    <div class="item-inner item-cell">
+                        <div class="item-row">
+                            <div class="item-cell ">Xuất xứ</div>
+                            <div class="item-cell">
+                                <span>{{attributes.origin | format_origin}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+<!--            <li>-->
+<!--                <a href="#" class="item-link item-content sheet-open">-->
+<!--                    <div class="item-inner item-cell">-->
+<!--                        <div class="item-row">-->
+<!--                            <div class="item-cell ">Cách chọn size</div>-->
+<!--                            <div class="item-cell detail">Chi tiết</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </li>-->
             <li v-if="description.length > 0">
                 <div style="position: relative;margin-bottom: 40px;overflow: hidden;" v-bind:style="{'height':height}">
                     <p style="font-size: 13px;color: #333;margin-top: 10px;margin-bottom: 10px;">Mô tả</p>
@@ -54,7 +88,7 @@
                     </div>
                     <div style="font-size: 13px;text-align: center;height: 50px;display: table;width: 100%;bottom: 0;" v-bind:style="{'position':position}">
                         <div style="display: table-cell;background: linear-gradient(rgba(255, 255, 255, 0.7) 10%, rgb(255, 255, 255));vertical-align: middle;">
-                            <a href="#" class="btn btn-info" style="color: #fff;font-size: 13px;background: var(--main-color);" @click="viewMore()">{{text}} <i class="fas" v-bind:class="icon"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-info" style="color: #fff;font-size: 13px;background: var(--main-color);" @click="viewMore()">{{text}} <i class="fas" v-bind:class="icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -85,6 +119,33 @@
                     this.attributes = response.data
                 });
         },
+        filters: {
+            format_material: function (value) {
+                let data = "";
+                if(value != null) {
+                    select_material.forEach(function(item) {
+                        if(value == item.id) {
+                            data = item.text;
+                            return false;
+                        }
+                    });
+                }
+                return data;
+            },
+            format_origin: function (value) {
+
+                let data = "";
+                if(value != null) {
+                    select_origin.forEach(function(item) {
+                        if(value == item.id) {
+                            data = item.text;
+                            return false;
+                        }
+                    });
+                }
+                return data;
+            }
+        },
         methods: {
             viewMore: function () {
                 if(this.isMore) {
@@ -102,5 +163,74 @@
                 }
             }
         }
-    }
+    };
+    let select_origin = [
+        {
+            id: '-1',
+            text: ''
+        },
+        {
+            id: '1',
+            text: 'Việt Nam'
+        },
+        {
+            id: '2',
+            text: 'Trung Quốc'
+        }
+    ];
+
+    let select_material = [
+        {
+            id: '-1',
+            text: ''
+        },
+        {
+            id: '1',
+            text: 'Cotton'
+        },
+        {
+            id: '2',
+            text: 'Kaki'
+        },
+        {
+            id: '3',
+            text: 'Jeans'
+        },
+        {
+            id: '4',
+            text: 'Thô'
+        },
+        {
+            id: '5',
+            text: 'Voan'
+        },
+        {
+            id: '6',
+            text: 'Lanh'
+        },
+        {
+            id: '7',
+            text: 'đũi'
+        },
+        {
+            id: '8',
+            text: 'Ren'
+        },
+        {
+            id: '9',
+            text: 'PE'
+        },
+        {
+            id: '10',
+            text: 'nylon'
+        },
+        {
+            id: '11',
+            text: 'Nỉ'
+        },
+        {
+            id: '12',
+            text: 'Len'
+        }
+    ];
 </script>

@@ -137,6 +137,32 @@ Vue.filter('format_color', function (value) {
     }
     return color_code;
 });
+// Vue.filter('format_material', function (value) {
+//     let data = "";
+//     if(value != null) {
+//         select_material.forEach(function(item) {
+//             if(value === item.id) {
+//                 data = item.text;
+//                 return false;
+//             }
+//         });
+//     }
+//     return data;
+// });
+// Vue.filter('format_origin', function (value) {
+//     let data = "";
+//     if(value != null) {
+//         select_origin.forEach(function(item) {
+//             if(value === item.id) {
+//                 data = item.text;
+//                 return false;
+//             }
+//         });
+//     }
+//     return data;
+// });
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -20,7 +20,7 @@ class ProductController extends Controller
     }
 
     public function find_all() {
-        $products = DB::table('smi_products')->where('status', 0)
+        $products = DB::table('smi_products')->where([['status', "=", 0],["social_publish->website", "=", 1]])
             ->orderBy('id', 'desc')
             ->take(10)
             ->get();
@@ -28,18 +28,21 @@ class ProductController extends Controller
     }
 
     public function getProduct($id) {
-        $product = DB::table('smi_products')->where('id', $id)->first();
-        $isDetail = "isDetail";
-        $prod_title = $product->name;
-        $type = $product->type;
-        $cat_title = '';
-        $cat_uri = '';
-        if($type == 0) {
-            $cat_title = 'Thời trang bé trai';
-            $cat_uri = url('').'/categories/boys';
-        } else if($type == 1) {
-            $cat_title = 'Thời trang bé gái';
-            $cat_uri = url('').'/categories/girls';
+        $product = DB::table('smi_products')->where([['id', "=", $id],["social_publish->website", "=", 1]])->first();
+        $prod_title = '';
+        if(!empty($product)) {
+            $isDetail = "isDetail";
+            $prod_title = $product->name;
+            $type = $product->type;
+            $cat_title = '';
+            $cat_uri = '';
+            if($type == 0) {
+                $cat_title = 'Thời trang bé trai';
+                $cat_uri = url('').'/categories/boys';
+            } else if($type == 1) {
+                $cat_title = 'Thời trang bé gái';
+                $cat_uri = url('').'/categories/girls';
+            }
         }
         return view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product'));
     }
