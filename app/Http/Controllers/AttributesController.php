@@ -24,9 +24,16 @@ class AttributesController extends Controller
             ->distinct()
             ->where('product_id', $id)
             ->get()->jsonSerialize();
+
+        $attr = DB::table('smi_products')
+            ->select('origin', 'material')
+            ->where('id', $id)
+            ->first();
         $attributes = array();
         $attributes['colors'] = $colors;
         $attributes['size'] = $sizes;
+        $attributes['origin'] = $attr->origin;
+        $attributes['material'] = $attr->material;
         return response($attributes, Response::HTTP_OK);
     }
 

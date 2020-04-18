@@ -25,6 +25,7 @@ Route::Resource('/attributes', 'AttributesController', ['parameters' => [
 ]]);
 Route::Resource('/relate.category.type', 'RelateProductController');
 Route::Resource('/recommend.category.type', 'RecommendController');
+Route::Resource('/cart', 'CartController');
 Route::get('/carts', 'CartController@get_all_items');
 Route::group(['prefix' => 'cart'], function(){
     Route::get('/', 'CartController@count');
@@ -47,5 +48,5 @@ Route::post('/submit-reviews', 'ReviewsController@store');
 Route::Resource('/reviews', 'ReviewsController');
 Route::get('/rating-avg/{id}', 'ReviewsController@countRating');
 Route::get('/rating-number-detail/{id}', 'ReviewsController@ratingNumberDetail');
-
+Route::get('/viewed-product', 'ProductController@viewedProduct');
 

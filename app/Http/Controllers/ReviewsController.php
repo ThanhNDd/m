@@ -40,12 +40,11 @@ class ReviewsController extends Controller
 
     public function ratingNumberDetail($product_id) {
         $ratings = DB::table("smi_reviews")
-            ->selectRaw('rating, count(rating) as number, cast(count(rating) * 100 / (select count(rating) from smi_reviews where product_id = 527) as decimal(10,0)) as percent')
+            ->selectRaw('rating, count(rating) as number, cast(count(rating) * 100 / (select count(rating) from smi_reviews where product_id = ?) as decimal(10,0)) as percent', [$product_id])
             ->where('product_id', $product_id)
             ->groupBy('rating')
             ->orderBy('rating','asc')
-            ->get()
-            ->jsonSerialize();
+            ->get();
         return response($ratings, Response::HTTP_OK);
     }
 

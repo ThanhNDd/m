@@ -155,30 +155,30 @@
             getRatingNumberDetail: function() {
                 axios.get(url + '/api/rating-number-detail/'+this.product_id)
                     .then(response => {
-                        console.log(response.data);
                         this.ratingDetail = response.data;
                         for(let i=0; i<this.ratingDetail.length; i++) {
                             let obj = this.ratingDetail[i];
-                            if(obj.rating == 1) {
-                                this.total_rating += obj.number;
-                                this.number_1_star = obj.number;
-                                this.percent_1_star = obj.percent;
-                            } else if(obj.rating == 2) {
-                                this.total_rating += obj.number;
-                                this.number_2_star = obj.number;
-                                this.percent_2_star = obj.percent;
-                            } else if(obj.rating == 3) {
-                                this.total_rating += obj.number;
-                                this.number_3_star = obj.number;
-                                this.percent_3_star = obj.percent;
-                            } else if(obj.rating == 4) {
-                                this.total_rating += obj.number;
-                                this.number_4_star = obj.number;
-                                this.percent_4_star = obj.percent;
-                            } else if(obj.rating == 5) {
-                                this.total_rating += obj.number;
-                                this.number_5_star = obj.number;
-                                this.percent_5_star = obj.percent;
+                            let objRating = Number(obj.rating);
+                            if(objRating === 1) {
+                                this.total_rating += Number(obj.number);
+                                this.number_1_star = Number(obj.number);
+                                this.percent_5_star = Number(obj.percent);
+                            } else if(objRating === 2) {
+                                this.total_rating += Number(obj.number);
+                                this.number_1_star = Number(obj.number);
+                                this.percent_5_star = Number(obj.percent);
+                            } else if(objRating === 3) {
+                                this.total_rating += Number(obj.number);
+                                this.number_1_star = Number(obj.number);
+                                this.percent_5_star = Number(obj.percent);
+                            } else if(objRating === 4) {
+                                this.total_rating += Number(obj.number);
+                                this.number_1_star = Number(obj.number);
+                                this.percent_5_star = Number(obj.percent);
+                            } else if(objRating === 5) {
+                                this.total_rating += Number(obj.number);
+                                this.number_1_star = Number(obj.number);
+                                this.percent_5_star = Number(obj.percent);
                             }
                         }
                     });
@@ -186,7 +186,6 @@
             getRatingAvg: function() {
                 axios.get(url + '/api/rating-avg/'+this.product_id)
                     .then(response => {
-                        console.log(response.data);
                         if(response.data !== '' && response.data > 0) {
                             this.ratingAvg = response.data;
                         }
@@ -195,7 +194,6 @@
             getAllReviews: function () {
                 axios.get(url + '/api/reviews/'+this.product_id)
                     .then(response => {
-                        console.log(response.data);
                         this.reviews = response.data;
                     });
             },

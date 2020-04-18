@@ -3,7 +3,7 @@
         <div class="cart segments">
             <h5 class="center">Không tồn tại sản phẩm để thanh toán</h5>
             <div class="divider-space-content"></div>
-            <a href="/" class="button primary-button">
+            <a v-bind:href="url" class="button primary-button">
                 <i class="fas fa-arrow-alt-circle-left"></i> Quay về trang chủ
             </a>
         </div>
@@ -36,7 +36,7 @@
             <div class="cart segments">
                 <h5>Thông tin người nhận</h5>
                 <div class="divider-space-content"></div>
-                <div style="height: 200px;overflow: auto;margin-bottom: 20px;">
+                <div style="margin-bottom: 20px;">
                     <div class="form-group">
                         <input type="text" placeholder="Họ tên" class="form-control" v-model="name" ref="name">
                     </div>
@@ -94,8 +94,9 @@
             </div>
             <!-- end wrap total cart -->
             <div class="cart segments">
-                <button type="submit" class="button primary-button">
-                    <i class="fas fa-shopping-bag"></i>Thanh toán
+                <button type="submit" class="button primary-button" v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
+                    <span class="fas fa-shopping-bag" v-bind:class="submit ? 'hidden' : ''"></span>
+                    <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Thanh toán
                 </button>
             </div>
         </form>
@@ -123,10 +124,13 @@
                 total_amount:0,
                 shipping: 0,
                 email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-                phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/
+                phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
+                submit: false,
+                url: ''
             }
         },
         created() {
+            this.url = url;
             axios.get(url + '/api/carts')
                 .then(response => {
                     this.carts = response.data;
@@ -183,6 +187,7 @@
             checkForm: function (e) {
                 e.preventDefault();
                 if (this.name && this.phone && this.address && this.city && this.district && this.village && this.address) {
+                    this.submit = true;
                     this.checkout();
                     return true;
                 }
@@ -270,6 +275,7 @@
                     body: orders
                 }).then(response => {
                     console.log(response.data);
+                    this.submit = false;
                     if(response.data === 201) {
                         window.location.href =  url + "/finish";
                     } else {

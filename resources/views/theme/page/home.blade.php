@@ -22,7 +22,7 @@
                                 <div class="swiper-slide">
                                     <div class="content">
                                         <div class="mask"></div>
-                                        <img src="{{ url('public/images/banner1.png') }}" alt="">
+                                        <img src="{{ url('public/images/banner-m1.png') }}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -50,9 +50,9 @@
                     <div class="latest-product segments no-pd-b">
                         <div class="container">
                             <div class="section-title">
-                                <h3>Best Seller</h3>
+                                <h3>Bán chạy nhất</h3>
                             </div>
-                            <best-seller-component></best-seller-component>
+                            <best-seller-component/>
                         </div>
                     </div>
                     <!-- end latest product -->
@@ -60,56 +60,66 @@
                     <div class="flash-sale segments no-pd-b">
                         <div class="container">
                             <div class="section-title">
-                                <h3>Flash Sale
+                                <h3>Khuyến mãi
                                     <a href="{{ url("/sales") }}" class="see-all-link">Xem thêm &raquo;</a>
                                 </h3>
                             </div>
-                            <flash-sale-component></flash-sale-component>
+                            <flash-sale-component/>
                         </div>
-                        <!-- end flash sale -->
-                        <!-- popular product -->
-                        <div class="popular-product product segments-bottom">
-                            <div class="container">
-                                <div class="section-title">
-                                    <h3>New Arrivals</h3>
-                                </div>
-                                <latest-product-component></latest-product-component>
+                    </div>
+                    <!-- end flash sale -->
+                    <!-- popular product -->
+                    <div class="popular-product product segments no-pd-b">
+                        <div class="container">
+                            <div class="section-title">
+                                <h3>Hàng mới</h3>
                             </div>
+                            <latest-product-component/>
                         </div>
+                    </div>
                         <!-- end popular product -->
-                        <div class="blog segments-bottom">
-                            <div class="container">
-                                <div class="section-title">
-                                    <h3>Blog
-                                        <a href="https://blog.shopmein.vn" class="see-all-link" target="_blank">Xem thêm &raquo;</a>
-                                    </h3>
-                                </div>
-                                <div class="row">
-                                    <div class="col-50">
-                                        <div class="content content-shadow-product">
-                                            <a href="https://blog.shopmein.vn/easy-crafts-to-make-this-easter/" target="_blank">
-                                                <div class="image">
-                                                    <img src="https://blog.shopmein.vn/wp-content/uploads/2020/04/6-696x418.jpg" alt="">
-                                                </div>
-                                                <div class="text">
-                                                    <p class="title-product title-product-center">Elegant Blue
-                                                        t-Shirt</p>
-                                                </div>
-                                            </a>
-                                        </div>
+                    @if(session()->has('viewed'))
+                    <div class="flash-sale segments no-pd-b">
+                        <div class="container" style="padding: 0 !important;">
+                            <div class="section-title">
+                                <h3>Sản phẩm bạn đã xem</h3>
+                            </div>
+                            <viewed-product-component/>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="blog segments-bottom segments no-pd-b">
+                        <div class="container">
+                            <div class="section-title">
+                                <h3>Blog
+                                    <a href="https://blog.shopmein.vn" class="see-all-link" target="_blank">Xem thêm &raquo;</a>
+                                </h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-50">
+                                    <div class="content content-shadow-product">
+                                        <a href="https://blog.shopmein.vn/easy-crafts-to-make-this-easter/" target="_blank">
+                                            <div class="image">
+                                                <img src="https://blog.shopmein.vn/wp-content/uploads/2020/04/6-696x418.jpg" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <p class="title-product title-product-center">Elegant Blue
+                                                    t-Shirt</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="col-50">
-                                        <div class="content content-shadow-product">
-                                            <a href="https://blog.shopmein.vn/genius-decorating-ideas-for-every-room-in-your-house/" target="_blank">
-                                                <div class="image">
-                                                    <img src="http://localhost/blog/wp-content/uploads/2020/04/2.jpg" alt="">
-                                                </div>
-                                                <div class="text">
-                                                    <p class="title-product title-product-center">Elegant Blue
-                                                        t-Shirt</p>
-                                                </div>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="col-50">
+                                    <div class="content content-shadow-product">
+                                        <a href="https://blog.shopmein.vn/genius-decorating-ideas-for-every-room-in-your-house/" target="_blank">
+                                            <div class="image">
+                                                <img src="http://localhost/blog/wp-content/uploads/2020/04/2.jpg" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <p class="title-product title-product-center">Elegant Blue
+                                                    t-Shirt</p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

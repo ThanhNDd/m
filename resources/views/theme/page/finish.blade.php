@@ -33,14 +33,14 @@
                     <div class="swal-text" style="text-align: center">Cám ơn bạn đã đặt hàng. Đơn hàng của bạn đang được xử lý!</div>
                     <div class="swal-footer" style="text-align: center">
                         <div class="swal-button-container">
-                            <a href="/" class="button primary-button">
+                            <a href="{{url('')}}" class="button primary-button">
                                 <i class="fas fa-arrow-alt-circle-left"></i> Về trang chủ
                             </a>
                         </div>
                     </div>
                 @else
                     <div class="cart segments">
-                        <a href="/" class="button primary-button">
+                        <a href="{{url('')}}" class="button primary-button">
                             <i class="fas fa-arrow-alt-circle-left"></i> Quay về trang chủ
                         </a>
                     </div>
