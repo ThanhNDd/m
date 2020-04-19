@@ -19,14 +19,14 @@
         </div>
         <div class="right">
             @if (isset($isDetail) && $isDetail)
-                <a href="{{ url('/cart') }}">
+                <a href="{{ url('/gio-hang.html') }}">
                     <i class="fas fa-shopping-cart"></i>
                     <div class="cart_detail">
                         <cart-number-component/>
                     </div>
                 </a>
             @else
-                <a href="{{ url('/notifications') }}">
+                <a href="{{ url('/thong-bao.html') }}">
                     <i class="fas fa-bell"></i>
                 </a>
             @endif

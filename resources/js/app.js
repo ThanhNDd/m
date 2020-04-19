@@ -138,38 +138,39 @@ Vue.filter('format_color', function (value) {
     }
     return color_code;
 });
-// Vue.filter('format_material', function (value) {
-//     let data = "";
-//     if(value != null) {
-//         select_material.forEach(function(item) {
-//             if(value === item.id) {
-//                 data = item.text;
-//                 return false;
-//             }
-//         });
-//     }
-//     return data;
-// });
-// Vue.filter('format_origin', function (value) {
-//     let data = "";
-//     if(value != null) {
-//         select_origin.forEach(function(item) {
-//             if(value === item.id) {
-//                 data = item.text;
-//                 return false;
-//             }
-//         });
-//     }
-//     return data;
-// });
 
+Vue.filter('change_to_slug', function (title) {
+    let slug = title.toLowerCase();
+    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+    slug = slug.replace(/đ/gi, 'd');
+    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+    slug = slug.replace(/ /gi, "-");
+    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-/gi, '-');
+    slug = '@' + slug + '@';
+    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+    return slug;
+});
 
+Vue.filter('url_product', function (slug, id) {
+    return url + '/san-pham/' + slug + '-' + id + '.html';
+});
+Vue.filter('url_reviews', function (slug, id) {
+    return url + '/danh-gia/' + slug + '-' + id + '.html';
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const app = new Vue({
+new Vue({
     el: '#app',
 });

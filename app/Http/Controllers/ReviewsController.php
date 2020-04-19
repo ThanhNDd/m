@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class ReviewsController extends Controller
 {
 
-    public function getAllReviews($product_id) {
+    public function getAllReviews($slug, $product_id) {
         $product = DB::table('smi_products')->where('id', $product_id)->first();
         $reviews = $this->all($product_id);
         $rating_avg = $this->getRatingAvg($product_id);
@@ -49,7 +49,10 @@ class ReviewsController extends Controller
     }
 
     public function show($product_id) {
-        $reviews = DB::table('smi_reviews')->where([['product_id', $product_id]])
+        $reviews = DB::table('smi_reviews')
+            ->join('smi_products', 'smi_reviews.product_id', '=', 'smi_products.id')
+            ->select('smi_reviews.*', 'smi_products.name as product_name')
+            ->where([['product_id', $product_id]])
             ->orderBy('created_date', 'desc')
             ->take(3)
             ->get()->jsonSerialize();

@@ -61,6 +61,16 @@
                                         <h4>{{ $product->name }}</h4>
                                         <p class="price">{{ number_format($product->retail).' đ' }}</p>
                                     </div>
+                                    <div class="fb-like" style="float: left; margin-right: 3px;" data-href="{{Request::url()}}"
+                                         data-width="" data-layout="button" data-action="like" data-size="small"
+                                         data-share="true">
+                                    </div>
+                                    <div class="fb-messengermessageus"
+                                         messenger_app_id="2629504663951964"
+                                         page_id="256417228645832"
+                                         color="blue"
+                                         size="standard">
+                                    </div>
                                     <div class="wrap-info">
                                         <attributes-component :description="'{{ $product->description }}'"/>
                                     </div>
@@ -108,7 +118,7 @@
                                     </div>
                                     <div>
                                         <div class="content-message">
-                                            <a href="javascript:void(0);"><i class="fas fa-comment"></i></a>
+                                            <a href="https://m.me/shopmein.net" target="_blank"><i class="fas fa-comment"></i></a>
                                         </div>
                                     </div>
                                     @foreach (json_decode($product->image) as $image)
@@ -318,7 +328,7 @@
                         this.$toast.top('Đã thêm vào giỏ hàng');
                         document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger">' + response.data.length + '</span>';
                         if(this.type === "buyNow") {
-                            window.location.href =  url +  "/checkout";
+                            window.location.href =  url +  "/thanh-toan.html";
                         }
                     })
                 },

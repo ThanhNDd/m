@@ -1870,12 +1870,13 @@ ul li {
     height: 30px;
     line-height: 30px;
     background: #fff;
-    border-radius: 0px;
+    border-radius: 3px;
     font-size: 14px;
-    /*color: #ff3643;*/
-    color: var(--main-color);
+    /* color: #ff3643; */
+    color: #fff;
     vertical-align: top;
-    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.15); */
+    background: var(--main-color);
 }
 
 /*related products*/
@@ -3081,6 +3082,9 @@ textarea#content {
 }
 .product-details .list .item-link .item-inner:before {
     color: #fff;
+}
+.fb-messengermessageus {
+    display: inline !important;
 }
 
 /**

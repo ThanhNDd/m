@@ -15,7 +15,7 @@
                         Danh mục
                     </div>
                     <div class="right">
-                        <a href="{{url('/notifications/')}}">
+                        <a href="{{url('/thong-bao/')}}">
                             <i class="fas fa-bell"></i>
                         </a>
                     </div>
@@ -26,22 +26,22 @@
                 <div class="all-categories">
                     <div class="container">
                         <div class="content">
-                            <a href="{{ url("/categories/boys") }}">
+                            <a href="{{ url("/danh-muc/be-trai.html") }}">
                                 <img src="{{ url('public/images/brand1.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
-                            <a href="{{ url("/categories/girls") }}">
+                            <a href="{{ url("/danh-muc/be-gai.html") }}">
                                 <img src="{{ url('public/images/brand2.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
-                            <a href="{{ url("/categories/shoes") }}">
+                            <a href="{{ url("/danh-muc/giay-dep.html") }}">
                                 <img src="{{ url('public/images/brand3.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
-                            <a href="{{ url("/categories/accessories") }}">
+                            <a href="{{ url("/danh-muc/phu-kien.html") }}">
                                 <img src="{{ url('public/images/brand1.png') }}" alt="">
                             </a>
                         </div>

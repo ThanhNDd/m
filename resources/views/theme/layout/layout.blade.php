@@ -12,14 +12,30 @@
 	<title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{!! url('public/css/all.css') !!}">
+	{{--	@if(!empty($product))--}}
+	<meta property="og:url" content="{{Request::url()}}"/>
+	<meta property="og:type"          content="website" />
+	<meta property="og:title" content="{{!empty($product) ? $product->name.' | Shop Mẹ Ỉn - Thời trang trẻ em' : 'Shop Mẹ Ỉn - Thời trang trẻ em' }}"/>
+	<meta property="og:description"
+		  content="{{!empty($product) && !empty($product->short_description) ? $product->short_description : 'Shop Mẹ Ỉn chuyên cung cấp hàng trẻ em thời trang cao cấp.' }}"/>
+	@if(!empty($product))
+		@foreach (json_decode($product->image) as $image)
+			@if ($loop->first)
+				<meta property="og:image" content="{{$image->src}}"/>
+			@endif
+		@endforeach
+	@else
+		<meta property="og:image" content="{{url('public/images/icon.png') }}"/>
+	@endif
 </head>
 <body>
+	@include('theme.layout.fbsdk')
 	<div class="framework7-root">
-		<div class="panel-backdrop"></div>
-	    @include('theme.layout.sidebar')
-        @yield('content')
+			<div class="panel-backdrop"></div>
+			@include('theme.layout.sidebar')
+			@yield('content')
+		</div>
 	</div>
-</div>
     <script>
         const url = "{{url('')}}";
     </script>

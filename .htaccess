@@ -18,6 +18,12 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-	
-	
+
+
 </IfModule>
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^m\.shopmein\.vn$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.m\.shopmein\.vn$
+RewriteRule ^/?$ "https\:\/\/m\.shopmein\.vn\/" [R=301,L]
+

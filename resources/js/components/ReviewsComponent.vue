@@ -39,7 +39,7 @@
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar bg-success" v-bind:style="{'width':percent_4_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
+                            <div class="progress-bar bg-primary" v-bind:style="{'width':percent_4_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar bg-success" v-bind:style="{'width':percent_3_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
+                            <div class="progress-bar bg-info" v-bind:style="{'width':percent_3_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar bg-success" v-bind:style="{'width':percent_2_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
+                            <div class="progress-bar bg-warning" v-bind:style="{'width':percent_2_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar bg-success" v-bind:style="{'width':percent_1_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
+                            <div class="progress-bar bg-danger" v-bind:style="{'width':percent_1_star+ '%'}" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
         <!-- end divider -->
         <!-- view all reviews -->
         <div class="view-all-review" v-if="total_rating > 3">
-            <a v-bind:href="url + '/all-reviews/'+this.product_id">Xem tất cả</a>
+            <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>
         </div>
         <!-- end view all reviews -->
     </div>
@@ -141,7 +141,8 @@
                 percent_1_star:0,
                 number_1_star:0,
                 url: '',
-                total_rating: 0
+                total_rating: 0,
+                product_name: ''
             }
         },
         props: ['product_id'],
@@ -159,25 +160,25 @@
                         for(let i=0; i<this.ratingDetail.length; i++) {
                             let obj = this.ratingDetail[i];
                             let objRating = Number(obj.rating);
-                            if(objRating === 1) {
+                            if(objRating == 1) {
                                 this.total_rating += Number(obj.number);
                                 this.number_1_star = Number(obj.number);
-                                this.percent_5_star = Number(obj.percent);
-                            } else if(objRating === 2) {
+                                this.percent_1_star = Number(obj.percent);
+                            } else if(objRating == 2) {
                                 this.total_rating += Number(obj.number);
-                                this.number_1_star = Number(obj.number);
-                                this.percent_5_star = Number(obj.percent);
-                            } else if(objRating === 3) {
+                                this.number_2_star = Number(obj.number);
+                                this.percent_2_star = Number(obj.percent);
+                            } else if(objRating == 3) {
                                 this.total_rating += Number(obj.number);
-                                this.number_1_star = Number(obj.number);
-                                this.percent_5_star = Number(obj.percent);
-                            } else if(objRating === 4) {
+                                this.number_3_star = Number(obj.number);
+                                this.percent_3_star = Number(obj.percent);
+                            } else if(objRating == 4) {
                                 this.total_rating += Number(obj.number);
-                                this.number_1_star = Number(obj.number);
-                                this.percent_5_star = Number(obj.percent);
-                            } else if(objRating === 5) {
+                                this.number_4_star = Number(obj.number);
+                                this.percent_4_star = Number(obj.percent);
+                            } else if(objRating == 5) {
                                 this.total_rating += Number(obj.number);
-                                this.number_1_star = Number(obj.number);
+                                this.number_5_star = Number(obj.number);
                                 this.percent_5_star = Number(obj.percent);
                             }
                         }
@@ -195,6 +196,9 @@
                 axios.get(url + '/api/reviews/'+this.product_id)
                     .then(response => {
                         this.reviews = response.data;
+                        if(response.data.length > 0) {
+                            this.product_name = response.data[0].product_name;
+                        }
                     });
             },
         },
