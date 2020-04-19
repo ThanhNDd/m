@@ -61,6 +61,9 @@
                                         <h4>{{ $product->name }}</h4>
                                         <p class="price">{{ number_format($product->retail).' đ' }}</p>
                                     </div>
+                                    <div class="fb-like" data-href="{{Request::url()}}"
+                                         data-width="" data-layout="button" data-action="like" data-size="small"
+                                         data-share="true"></div>
                                     <div class="wrap-info">
                                         <attributes-component :description="'{{ $product->description }}'"/>
                                     </div>

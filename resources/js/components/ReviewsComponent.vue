@@ -197,7 +197,7 @@
                     .then(response => {
                         this.reviews = response.data;
                         if(response.data.length > 0) {
-                            this.product_name = response.data[0].name;
+                            this.product_name = response.data[0].product_name;
                         }
                     });
             },

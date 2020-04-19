@@ -51,7 +51,7 @@ class ReviewsController extends Controller
     public function show($product_id) {
         $reviews = DB::table('smi_reviews')
             ->join('smi_products', 'smi_reviews.product_id', '=', 'smi_products.id')
-            ->select('smi_reviews.*', 'smi_products.name')
+            ->select('smi_reviews.*', 'smi_products.name as product_name')
             ->where([['product_id', $product_id]])
             ->orderBy('created_date', 'desc')
             ->take(3)

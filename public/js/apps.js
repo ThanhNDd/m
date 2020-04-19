@@ -3436,7 +3436,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.reviews = response.data;
 
         if (response.data.length > 0) {
-          _this3.product_name = response.data[0].name;
+          _this3.product_name = response.data[0].product_name;
         }
       });
     }
