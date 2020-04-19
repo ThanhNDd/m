@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-50" v-for="product in products">
                 <div class="content content-shadow-product">
-                    <a v-bind:href="url + '/product-details/' + product.id">
+                    <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
                         <div class="image">
                             <img v-bind:src="product.image | format_image" v-bind:alt="product.name">
                         </div>
@@ -44,7 +44,7 @@
                 let pathname = window.location.pathname;
                 pathname = pathname.split('/');
                 pathname = pathname[pathname.length-1];
-                axios.post(url + '/api/category/'+pathname, {
+                axios.post(url + '/api/danh-muc/'+pathname, {
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {

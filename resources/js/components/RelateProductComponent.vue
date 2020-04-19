@@ -7,7 +7,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide" style="margin-right: 15px;" v-for="product in products">
                     <div class="content content-shadow-product">
-                        <a v-bind:href="url + '/product-details/' + product.id">
+                        <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
                             <div class="image">
                                 <img v-bind:src="product.image | format_image" v-bind:alt="product.name">
                             </div>

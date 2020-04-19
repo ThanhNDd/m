@@ -12,26 +12,31 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/trang-chu.html', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/product-details/{id}', 'ProductController@getProduct');
+Route::get('/san-pham/{slug}-{id}.html', 'ProductController@getProduct')
+    ->where('slug', '[a-zA-Z0-9-_]+')
+    ->where('id', '[0-9]+');
 
-Route::get('/all-reviews/{id}','ReviewsController@getAllReviews');
+Route::get('/danh-gia/{slug}-{id}.html','ReviewsController@getAllReviews')
+    ->where('slug', '[a-zA-Z0-9-_]+')
+    ->where('id', '[0-9]+');
 
-Route::group(['prefix' => '/categories'], function () {
-    Route::get('/', 'CategoriesController@categories');
-    Route::get('/boys', 'CategoriesController@getBoys');
-    Route::get('/girls', 'CategoriesController@getGirls');
-    Route::get('/shoes', 'CategoriesController@getShoes');
-    Route::get('/accessories', 'CategoriesController@getAccessories');
+Route::get('/danh-muc.html', 'CategoriesController@categories');
+Route::group(['prefix' => '/danh-muc'], function () {
+    Route::get('/be-trai.html', 'CategoriesController@getBoys');
+    Route::get('/be-gai.html', 'CategoriesController@getGirls');
+    Route::get('/giay-dep.html', 'CategoriesController@getShoes');
+    Route::get('/phu-kien.html', 'CategoriesController@getAccessories');
 });
 
-Route::get('/sales', 'SaleController@get_all_products');
-Route::get('/cart', 'CartController@show');
-Route::get('/checkout', 'CartController@checkout');
-Route::get('/info', 'InfoController@show');
-Route::get('/notifications', function () {
+Route::get('/khuyen-mai.html', 'SaleController@get_all_products');
+Route::get('/gio-hang.html', 'CartController@show');
+Route::get('/thanh-toan.html', 'CartController@checkout');
+Route::get('/gioi-thieu.html', 'InfoController@show');
+Route::get('/thong-bao.html', function () {
     return view('theme.page.notifications');
 });
-Route::get('/finish', 'CheckoutController@finish');
+Route::get('/hoan-thanh-thanh-toan.html', 'CheckoutController@finish');
 

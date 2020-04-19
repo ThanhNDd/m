@@ -318,7 +318,7 @@
                         this.$toast.top('Đã thêm vào giỏ hàng');
                         document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger">' + response.data.length + '</span>';
                         if(this.type === "buyNow") {
-                            window.location.href =  url +  "/checkout";
+                            window.location.href =  url +  "/thanh-toan.html";
                         }
                     })
                 },

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-25">
                 <div class="content">
-                    <a href="{{ url("/categories/girls") }}">
+                    <a href="{{ url("/danh-muc/be-gai.html") }}">
                         <div class="icon">
                             <i class="fas fa-tshirt"></i>
                         </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="col-25">
                 <div class="content">
-                    <a href="{{ url("/categories/boys") }}">
+                    <a href="{{ url("/danh-muc/be-trai.html") }}">
                         <div class="icon">
                             <i class="fas fa-tshirt"></i>
                         </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-25">
                 <div class="content">
-                    <a href="{{ url("/categories/shoes") }}">
+                    <a href="{{ url("/danh-muc/giay-dep.html") }}">
                         <div class="icon">
                             <i class="fas fa-shoe-prints"></i>
                         </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-25">
                 <div class="content">
-                    <a href="{{ url("/categories/accessories") }}">
+                    <a href="{{ url("/danh-muc/phu-kien.html") }}">
                         <div class="icon">
                             <i class="fas fa-hat-cowboy-side"></i>
                         </div>

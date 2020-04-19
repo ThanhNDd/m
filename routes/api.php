@@ -37,12 +37,12 @@ Route::group(['prefix' => 'zone'], function(){
     Route::get('/district/{id}', 'ZoneController@district');
     Route::get('/village/{id}', 'ZoneController@village');
 });
-Route::post('/process-checkout', 'CheckoutController@store');
-Route::group(['prefix' => 'category'], function(){
-    Route::post('/girls', 'CategoriesController@girls');
-    Route::post('/boys', 'CategoriesController@boys');
-    Route::post('/accessories', 'CategoriesController@accessories');
-    Route::post('/shoes', 'CategoriesController@shoes');
+Route::post('/thuc-hien-thanh-toan', 'CheckoutController@store');
+Route::group(['prefix' => 'danh-muc'], function(){
+    Route::post('/be-gai.html', 'CategoriesController@girls');
+    Route::post('/be-trai.html', 'CategoriesController@boys');
+    Route::post('/phu-kien.html', 'CategoriesController@accessories');
+    Route::post('/giay-dep.html', 'CategoriesController@shoes');
 });
 Route::post('/submit-reviews', 'ReviewsController@store');
 Route::Resource('/reviews', 'ReviewsController');

@@ -15,7 +15,7 @@
                         Xác nhận thanh toán
                     </div>
                     <div class="right">
-                        <a href="{{ url('/notifications') }}">
+                        <a href="{{ url('/thong-bao.html') }}">
                             <i class="fas fa-bell"></i>
                         </a>
                     </div>

@@ -87,7 +87,6 @@ class CheckoutController extends Controller
                                     'quantity' => $qty
                                 ]
                             );
-//                            print_r('detailId: ' . $detailId);
                             if (empty($detailId)) {
                                 throw new Exception ('Cannot insert Order Detail !!!');
                             }
@@ -103,34 +102,21 @@ class CheckoutController extends Controller
                 // clear session
                 $request->session()->forget("cart");
                 $request->session()->put("finish", true);
-
-                Mail::to('thanhit228@gmail.com')->send(new SendEmail());
+                try {
+                    Mail::to('thanhit228@gmail.com')->send(new SendEmail());
+                } catch (\Exception $ex) {
+                }
 
                 DB::commit();
                 return response()->json(201);
             } else {
                 throw new Exception ("Invalid input data");
             }
-        } catch (Exception $e) {
-//            var_dump($e);
+        } catch (\Exception $e) {
             DB::rollback();
-            return response()->json($e);
+            return response()->json("".$e->getMessage());
         }
     }
-
-//    public function sendMail($total_amount, $content, $orderId) {
-//        $to_name = 'ThanhIT';
-//        $to_email = 'thanhit228@gmail.com';
-//        $data = array('total_amount'=>$total_amount,'content'=>$content, 'orderId'=>$orderId);
-//
-////        Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email, $orderId) {
-////            $message->to($to_email, $to_name)
-////                ->subject('[Shop Mẹ Ỉn] Đơn hàng mới #'.$orderId);
-////            $message->from('thanhit228@gmail.com','Shop Mẹ Ỉn');
-////        });
-//
-//        Mail::to($to_email)->send(new SendEmail());
-//    }
 
     public function finish() {
         return view('theme.page.finish');

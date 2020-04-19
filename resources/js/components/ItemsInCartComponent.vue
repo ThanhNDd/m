@@ -59,7 +59,7 @@
                     </ul>
                 </div>
                 <div class="content-button">
-                    <a v-bind:href="url + '/checkout/'" class="button primary-button"><i
+                    <a v-bind:href="url + '/thanh-toan.html'" class="button primary-button"><i
                         class="fas fa-shopping-bag"></i>Xác nhận thanh toán</a>
                 </div>
             </div>

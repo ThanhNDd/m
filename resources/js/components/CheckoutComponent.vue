@@ -134,7 +134,6 @@
             axios.get(url + '/api/carts')
                 .then(response => {
                     this.carts = response.data;
-                    console.log(this.carts.length);
                 });
             axios.get(url + '/api/zone/city')
                 .then(response => {
@@ -238,7 +237,6 @@
                 this.city_id = val;
                 axios.get(url + '/api/zone/district/'+val)
                     .then(response => {
-                        console.log(response.data);
                         this.district = JSON.parse(response.data).results;
                         this.district_id = null;
                         this.village_id = null;
@@ -248,7 +246,6 @@
                 this.district_id = val;
                 axios.get(url + '/api/zone/village/'+val)
                     .then(response => {
-                        console.log(response.data);
                         this.village = JSON.parse(response.data).results;
                         this.village_id = null;
                     });
@@ -271,17 +268,16 @@
                     "total_checkout" : this.total_checkout
                 });
                 console.log(JSON.stringify(orders));
-                axios.post(url + "/api/process-checkout", {
+                axios.post(url + "/api/thuc-hien-thanh-toan", {
                     body: orders
                 }).then(response => {
-                    console.log(response.data);
                     this.submit = false;
                     if(response.data === 201) {
-                        window.location.href =  url + "/finish";
+                        window.location.href =  url + "/hoan-thanh-thanh-toan";
                     } else {
                         swal({
                             title: "Đã xảy ra lỗi!",
-                            text: "Xin vui lòng thử lại sau!",
+                            text: response.data,
                             icon: "error",
                             button: "Đồng ý",
                         });

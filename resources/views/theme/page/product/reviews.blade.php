@@ -1,12 +1,14 @@
 @extends('theme.layout.layout')
 @section('title', 'Đánh giá cho sản phẩm '.$product->name)
 @section('content')
-    <div id="app" class="view view-reviews ios-edges">
+    <div id="app"></div>
+    <div id="reviews" class="view view-reviews ios-edges" xmlns:v-bind="http://www.w3.org/1999/xhtml">
         <div class="page">
+            @include('theme.layout.tabbar')
             <div class="navbar navbar-page">
                 <div class="navbar-inner sliding">
                     <div class="left">
-                        <a href="{{ url("/product-details/".$product->id) }}" class="link back">
+                        <a v-bind:href="product_name | change_to_slug | url_product(product_id)" class="link back">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -26,11 +28,6 @@
                                     <li class="rating-total">{{$rating_avg}}<span> ({{ count($reviews) }})</span></li>
                                 </ul>
                             </div>
-{{--                            <div class="write-rating">--}}
-{{--                                <span class="see-all-link btn btn-sm btn-warning ratingbtn" style="color: #333;width:auto;" @click="openPopupReview">--}}
-{{--                                    <i class="fas fa-pen-nib"></i> Viết nhận xét--}}
-{{--                                </span>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -54,7 +51,6 @@
                                 <p class="date">
                                     <all-reviews-component :created_date="'{{$value->created_date}}'"/>
                                 </p>
-{{--                                <i class="fas fa-thumbs-up like-button"></i>--}}
                                 <p>{{ $value->content }}</p>
                             </div>
                         </div>
@@ -68,4 +64,23 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        new Vue({
+            el: '#reviews',
+            data() {
+                return {
+                    url: '',
+                    product_name: '',
+                    product_id: ''
+                }
+            },
+            created: function() {
+                this.url = url;
+                this.product_name = '{{$product->name}}';
+                this.product_id = '{{$product->id}}';
+            },
+        });
+    </script>
 @endsection

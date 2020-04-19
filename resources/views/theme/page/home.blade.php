@@ -61,7 +61,7 @@
                         <div class="container">
                             <div class="section-title">
                                 <h3>Khuyến mãi
-                                    <a href="{{ url("/sales") }}" class="see-all-link">Xem thêm &raquo;</a>
+                                    <a href="{{ url("/khuyen-mai.html") }}" class="see-all-link">Xem thêm &raquo;</a>
                                 </h3>
                             </div>
                             <flash-sale-component/>

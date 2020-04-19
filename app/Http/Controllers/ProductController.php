@@ -27,7 +27,7 @@ class ProductController extends Controller
         return view('theme.page.product.home', compact('products'));
     }
 
-    public function getProduct(Request $request, $id) {
+    public function getProduct(Request $request, $slug, $id) {
         $product = DB::table('smi_products')->where([['id', "=", $id],["social_publish->website", "=", 1]])->first();
         $prod_title = '';
         if(!empty($product)) {

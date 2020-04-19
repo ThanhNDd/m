@@ -12,6 +12,13 @@
 	<title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{!! url('public/css/all.css') !!}">
+	@if(!empty($product))
+	<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Your Website Title" />
+	<meta property="og:description"   content="Your description" />
+	<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+	@endif
 </head>
 <body>
 	<div class="framework7-root">
