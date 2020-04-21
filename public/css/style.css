@@ -1641,6 +1641,9 @@ ul li {
     font-weight: 400;
 }
 
+.product-details .wrapper-content .freeship {
+    margin-top: 5px;
+}
 .product-details .wrapper-content .freeship p {
     color: #333;
     background: #ffd405;
@@ -1654,7 +1657,7 @@ ul li {
 }
 
 .product-details .wrapper-content .wrap-info {
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .product-details .wrapper-content .wrap-info .list .item-content {

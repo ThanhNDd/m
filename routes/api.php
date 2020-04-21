@@ -48,5 +48,6 @@ Route::post('/submit-reviews', 'ReviewsController@store');
 Route::Resource('/reviews', 'ReviewsController');
 Route::get('/rating-avg/{id}', 'ReviewsController@countRating');
 Route::get('/rating-number-detail/{id}', 'ReviewsController@ratingNumberDetail');
+Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');
 Route::get('/viewed-product', 'ProductController@viewedProduct');
 

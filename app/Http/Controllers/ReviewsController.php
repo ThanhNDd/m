@@ -21,7 +21,10 @@ class ReviewsController extends Controller
     }
 
     public function getRatingAvg($product_id) {
-        $avg = DB::table("smi_reviews")->selectRaw('CAST(AVG(rating) AS DECIMAL(10,1)) as rating_avg')->where('product_id', $product_id)->get();
+        $avg = DB::table("smi_reviews")
+            ->selectRaw('CAST(AVG(rating) AS DECIMAL(10,1)) as rating_avg')
+            ->where('product_id', $product_id)
+            ->get();
         $rating_avg = $avg[0]->rating_avg;
         return $rating_avg;
     }
@@ -45,6 +48,13 @@ class ReviewsController extends Controller
             ->groupBy('rating')
             ->orderBy('rating','asc')
             ->get();
+        return response($ratings, Response::HTTP_OK);
+    }
+
+    public function getTotalReviews($product_id) {
+        $ratings = DB::table("smi_reviews")
+            ->where('product_id', $product_id)
+            ->count();
         return response($ratings, Response::HTTP_OK);
     }
 

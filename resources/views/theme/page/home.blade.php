@@ -58,7 +58,7 @@
                     <!-- end latest product -->
                     <!-- flash sale -->
                     <div class="flash-sale segments no-pd-b">
-                        <div class="container">
+                        <div class="container" style="padding: 0 !important;">
                             <div class="section-title">
                                 <h3>Khuyến mãi
                                     <a href="{{ url("/khuyen-mai.html") }}" class="see-all-link">Xem thêm &raquo;</a>

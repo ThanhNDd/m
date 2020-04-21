@@ -9,7 +9,8 @@
                         </div>
                         <div class="text">
                             <p class="title-product title-product-center" v-text="product.name"></p>
-                            <p class="price"> {{ product.retail | formatPrice }}</p>
+                            <rating-component :product_id="product.id" :product_name="'product.name'"/>
+                            <h4 style="color: var(--main-color)">{{product.retail | formatPrice}}</h4>
                         </div>
                     </a>
                 </div>

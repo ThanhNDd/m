@@ -12,9 +12,9 @@ new Swiper('.swiper1', {
         dynamicBullets: true,
         paginationClickable: true
     },
-    autoplay: {
-        delay: 5000,
-    },
+    // autoplay: {
+    //     delay: 5000,
+    // },
 });
 new Swiper('.swiper-category', {
     cssMode: true,

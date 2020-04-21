@@ -59,7 +59,10 @@
                                     </div>
                                     <div class="wrap-title-product wrap-c-margin">
                                         <h4>{{ $product->name }}</h4>
-                                        <p class="price">{{ number_format($product->retail).' đ' }}</p>
+                                        <div>
+                                            <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'" :key="reload"/>
+                                        </div>
+                                        <h3 style="color: var(--main-color)">{{ number_format($product->retail).' đ' }}</h3>
                                     </div>
                                     <div class="fb-like" style="float: left; margin-right: 3px;" data-href="{{Request::url()}}"
                                          data-width="" data-layout="button" data-action="like" data-size="small"
@@ -70,6 +73,9 @@
                                          page_id="256417228645832"
                                          color="blue"
                                          size="standard">
+                                    </div>
+                                    <div class="freeship">
+                                        <p class=""><i class="fas fa-truck"></i> {{ $product->retail > 250000 ? 'Miễn phí vận chuyển' : 'Miễn phí vận chuyển cho đơn tư 250k' }}</p>
                                     </div>
                                     <div class="wrap-info">
                                         <attributes-component :description="'{{ $product->description }}'"/>
@@ -98,7 +104,7 @@
                                     <div class="related-products flash-sale segments no-pd-b" style="padding: 0;">
                                         <div class="container" style="padding: 0 !important;">
                                             <div class="section-title">
-                                                <h3>Sản phẩm bạn đã xem</h3>
+                                                <h3>Sản phẩm đã xem</h3>
                                             </div>
                                             <viewed-product-component/>
                                         </div>

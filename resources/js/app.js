@@ -61,6 +61,7 @@ Vue.component('category-component', require('./components/CategoryComponent.vue'
 Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('all-reviews-component', require('./components/AllReviewsComponent.vue').default);
 Vue.component('viewed-product-component', require('./components/ViewedProductComponent.vue').default);
+Vue.component('rating-component', require('./components/RatingComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');
