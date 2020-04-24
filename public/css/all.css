@@ -3090,6 +3090,32 @@ textarea#content {
     display: inline !important;
 }
 
+.custom-qty {
+    display: inline-flex;
+}
+.increase.items, .reduced.items {
+    background: transparent;
+    border: 1px solid #e1e1e1;
+    color: #888;
+    padding: 10px 11px 9px;
+    float: left;
+    height: 40px;
+    width: 40px;
+}
+.input-text.qty {
+    border: 1px solid #e1e1e1;
+    max-width: 40px;
+    height: 40px !important;
+    width: 40px !important;
+    float: left;
+    text-align: center;
+    margin: 0 5px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+}
+
 /**
  * Swiper 5.3.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions

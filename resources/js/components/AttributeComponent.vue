@@ -51,6 +51,36 @@
                 <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
+                            <div class="item-cell ">Chiều cao</div>
+                            <div class="item-cell">{{height}}</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="item-link item-content">
+                    <div class="item-inner item-cell">
+                        <div class="item-row">
+                            <div class="item-cell ">Số lượng</div>
+                            <div class="item-cell">
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-9">
+                                    <div class="custom-qty">
+                                        <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 ) &amp;&amp; qty1 > 1 ) result.value--;return false;" class="reduced items" type="button"> <i class="fa fa-minus"></i>
+                                        </button>
+                                        <input type="text" class="input-text qty" title="Qty" value="1" maxlength="8" id="qty1" name="qty">
+                                        <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 )) result.value++;return false;" class="increase items" type="button"> <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="item-link item-content">
+                    <div class="item-inner item-cell">
+                        <div class="item-row">
                             <div class="item-cell ">Chất liệu</div>
                             <div class="item-cell">
                                 <span>{{attributes.material | format_material}}</span>
@@ -109,7 +139,8 @@
                 icon: 'fa-chevron-circle-down',
                 isMore: true,
                 text: 'Xem thêm',
-                weight: ''
+                weight: '',
+                qty: 0
             }
         },
         props: ['description'],

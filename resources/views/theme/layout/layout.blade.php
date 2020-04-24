@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="ios device-pixel-ratio-1 device-desktop device-windows">
 <head>
+    @desktop
+        {{ session()->put('desktop','true')}}
+    @elsedesktop
+        {{ session()->put('desktop','false')}}
+    @enddesktop
+    <meta name="desktop" content="{{ session()->get('desktop')}}">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">

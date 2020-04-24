@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
 
-    public function index() {
+    public function index(Request $request) {
+        $desktop = 'false';
+        if($request->session()->has('desktop')) {
+            $desktop = $request->session()->get('desktop');
+        }
         $products = DB::table('smi_products')->where('status', 0)
             ->orderBy('id', 'desc')
             ->take(1)
             ->get();
-//        return new ProductCollection($products);
         $is_active = 'home';
-        return view('theme.page.home', compact('is_active', 'products'));
+
+        if($desktop == 'true') {
+            return view('web.page.home', compact('is_active', 'products'));
+        } else {
+            return view('theme.page.home', compact('is_active', 'products'));
+        }
     }
 }
