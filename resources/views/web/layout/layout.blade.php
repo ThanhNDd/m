@@ -9,7 +9,7 @@
     <meta name="robots" content="all">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <link rel="icon" href="{{ url('public/images/icon.png') }}">
+    <link rel="icon" href="{{ url('public/web/images/icon.png') }}">
     <title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{!! url('public/web/css/webapp.css') !!}">
@@ -25,7 +25,7 @@
             @endif
         @endforeach
     @else
-        <meta property="og:image" content="{{url('public/images/icon.png') }}"/>
+        <meta property="og:image" content="{{url('public/web/images/icon.png') }}"/>
     @endif
     <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
@@ -42,20 +42,21 @@
 
 <!-- ============================================================= FOOTER : END============================================================= -->
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-    <script src="{{url('public/web/js/webapp.js') }}"></script>
-{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery-1.11.1.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/owl.carousel.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/echo.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery.easing-1.3.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-slider.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery.rateit.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/lightbox.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-select.min.js') }}"></script>--}}
-{{--    <script src="{{url('resources/views/web/assets/js/libs/wow.min.js') }}"></script>--}}
+
+    <script src="{{url('resources/views/web/assets/js/libs/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/bootstrap.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/owl.carousel.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/echo.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/jquery.easing-1.3.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-slider.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/jquery.rateit.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/lightbox.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-select.min.js') }}"></script>
+    <script src="{{url('resources/views/web/assets/js/libs/wow.min.js') }}"></script>
 {{--    <script src="{{url('resources/views/web/assets/js/libs/scripts.js') }}"></script>--}}
-    {{--<script src="{{url('resources/views/web/assets/js/webapp.js') }}"></script>--}}
+{{--    <script src="{!! url('resources/views/web/assets/js/app.js') !!}"></script>--}}
+    <script src="{{url('public/web/js/webapp.js') }}"></script>
     @yield('script')
 </body>
 

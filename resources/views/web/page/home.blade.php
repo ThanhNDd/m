@@ -48,7 +48,7 @@
                     <!-- /.owl-carousel -->
                 </div>
 
-                <best-seller-component/>
+{{--                <best-seller-component/>--}}
                 <!-- ========================================= SECTION – HERO : END ========================================= -->
                 <!-- ============================================== WIDE PRODUCTS ============================================== -->
                 <div class="wide-banners outer-bottom-xs">

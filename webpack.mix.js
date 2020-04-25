@@ -25,6 +25,34 @@ mix.js([
     'public/mobile/css/swiper.min.css',
   ], 'public/mobile/css/all.css');
 
+    mix.js(['resources/views/web/assets/js/app.js',
+      // 'resources/views/web/assets/js/libs/bootstrap.min.js',
+      // 'resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js',
+      // 'resources/views/web/assets/js/libs/owl.carousel.min.js',
+      // 'resources/views/web/assets/js/libs/echo.min.js',
+      // 'resources/views/web/assets/js/libs/jquery.easing-1.3.min.js',
+      // 'resources/views/web/assets/js/libs/bootstrap-slider.min.js',
+      // 'resources/views/web/assets/js/libs/jquery.rateit.min.js',
+      // 'resources/views/web/assets/js/libs/lightbox.min.js',
+      // 'resources/views/web/assets/js/libs/bootstrap-select.min.js',
+      // 'resources/views/web/assets/js/libs/wow.min.js',
+      // 'resources/views/web/assets/js/libs/scripts.js',
+    ], 'public/web/js/webapp.js');
+    mix.styles([
+      'resources/views/web/assets/css/bootstrap.min.css',
+      'resources/views/web/assets/css/main.css',
+      'resources/views/web/assets/css/blue.css',
+      'resources/views/web/assets/css/owl.carousel.css',
+      'resources/views/web/assets/css/owl.transitions.css',
+      'resources/views/web/assets/css/animate.min.css',
+      'resources/views/web/assets/css/rateit.css',
+      'resources/views/web/assets/css/bootstrap-select.min.css',
+      'resources/views/web/assets/css/font-awesome.css',
+    ], 'public/web/css/webapp.css');
+mix.copyDirectory('resources/views/web/assets/css/images', 'public/web/css/images');
+mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');
+mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
+
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.
