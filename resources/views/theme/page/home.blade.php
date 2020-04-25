@@ -22,19 +22,19 @@
                                 <div class="swiper-slide">
                                     <div class="content">
                                         <div class="mask"></div>
-                                        <img src="{{ url('public/images/banner-m1.png') }}" alt="">
+                                        <img src="{{ url('public/mobile/images/banner-m1.png') }}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="content">
                                         <div class="mask"></div>
-                                        <img src="{{ url('public/images/banner3.png') }}" alt="">
+                                        <img src="{{ url('public/mobile/images/banner3.png') }}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="content">
                                         <div class="mask"></div>
-                                        <img src="{{ url('public/images/banner2.png') }}" alt="">
+                                        <img src="{{ url('public/mobile/images/banner2.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -47,35 +47,34 @@
                     @include('theme.page.category.category-wiget')
                     <!-- end cateogries -->
                     <!-- latest product -->
-                    <div class="latest-product segments no-pd-b">
-                        <div class="container">
-                            <div class="section-title">
-                                <h3>Bán chạy nhất</h3>
-                            </div>
-                            <best-seller-component/>
-                        </div>
-                    </div>
+{{--                    <div class="latest-product segments no-pd-b">--}}
+{{--                        <div class="container">--}}
+{{--                            <div class="section-title">--}}
+{{--                                <h3>Bán chạy nhất</h3>--}}
+{{--                            </div>--}}
+{{--                            <best-seller-component/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                      <div>
+                        <best-seller-component/>
+                      </div>
                     <!-- end latest product -->
                     <!-- flash sale -->
-                    <div class="flash-sale segments no-pd-b">
-                        <div class="container" style="padding: 0 !important;">
-                            <div class="section-title">
-                                <h3>Khuyến mãi
-                                    <a href="{{ url("/khuyen-mai.html") }}" class="see-all-link">Xem thêm &raquo;</a>
-                                </h3>
-                            </div>
-                            <flash-sale-component/>
-                        </div>
-                    </div>
+                      <div>
+                        <flash-sale-component/>
+                      </div>
                     <!-- end flash sale -->
                     <!-- popular product -->
-                    <div class="popular-product product segments no-pd-b">
-                        <div class="container">
-                            <div class="section-title">
-                                <h3>Hàng mới</h3>
-                            </div>
-                            <latest-product-component/>
-                        </div>
+{{--                    <div class="popular-product product segments no-pd-b">--}}
+{{--                        <div class="container">--}}
+{{--                            <div class="section-title">--}}
+{{--                                <h3>Hàng mới</h3>--}}
+{{--                            </div>--}}
+{{--                            <latest-product-component/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                    <div>
+                      <latest-product-component/>
                     </div>
                         <!-- end popular product -->
                     @if(session()->has('viewed'))

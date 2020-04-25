@@ -1,6 +1,6 @@
 <div class="panel panel-left panel-cover sidebar" id="sidebar">
     <div class="user-view">
-        <img src="{{ url('public/images/icon.png') }}" alt="">
+        <img src="{{ url('public/mobile/images/icon.png') }}" alt="">
         <div class="title-name">
             <h2>Shop Mẹ Ỉn</h2>
             <p class="center">Thời trang trẻ em</p>

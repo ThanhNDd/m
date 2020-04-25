@@ -1,6 +1,4 @@
 {
-    "/js/apps.js": "/js/apps.js",
-    "/resources/js/webapp.js": "/resources/js/webapp.js",
-    "/css/all.css": "/css/all.css",
-    "/resources/views/web/assets/css/webapp.css": "/resources/views/web/assets/css/webapp.css"
+    "/mobile/js/apps.js": "/mobile/js/apps.js",
+    "/mobile/css/all.css": "/mobile/css/all.css"
 }

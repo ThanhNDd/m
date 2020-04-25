@@ -3,38 +3,24 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
-// import $ from 'jquery'
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
-import VueLazyload from 'vue-lazyload';
-import Toast from 'vue2-toast';
-import vSelect from "vue-select";
-import Vuelidate from 'vuelidate'
+import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
-
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-
-import swal from 'sweetalert';
+import vSelect from "../../node_modules/vue-select";
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
+window.Swal = require('sweetalert2');
 
-// Vue.use(Swal);
-Vue.use(BootstrapVue);
 Vue.use(Toast, {
     type: 'center',
     duration: 3000,
     wordWrap: true,
     width: '90%'
 });
-Vue.use(Vuelidate);
-Vue.use(VueLazyload);
 Vue.use(require('vue-moment'));
-
-Vue.component("v-select", vSelect);
-Vue.component('star-rating', StarRating);
 
 /**
  * The following block of code may be used to automatically register your
@@ -46,7 +32,8 @@ Vue.component('star-rating', StarRating);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+Vue.component("v-select", vSelect);
+Vue.component('star-rating', StarRating);
 Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
 Vue.component('flash-sale-component', require('./components/FlashSaleProductComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);

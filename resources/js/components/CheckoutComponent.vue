@@ -273,7 +273,7 @@
                 }).then(response => {
                     this.submit = false;
                     if(response.data === 201) {
-                        window.location.href =  url + "/hoan-thanh-thanh-toan";
+                        window.location.href =  url + "/cam-on.html";
                     } else {
                         swal({
                             title: "Đã xảy ra lỗi!",

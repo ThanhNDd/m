@@ -90,7 +90,7 @@
         <div  v-if="ratingAvg > 0">
             <div v-for="review in reviews">
                 <div class="content">
-                    <img v-bind:src="url + '/public/images/user-buyer2.png'" alt="">
+                    <img v-bind:src="url + '/public/mobile/images/user-buyer2.png'" alt="">
                     <div class="text">
                         <h6>{{ review.name }}</h6>
                         <ul class="rate-product">

@@ -1,7 +1,7 @@
 @extends('theme.layout.layout')
 @section('title', 'Thông báo')
 @section('content')
-    <div class="view view-reviews ios-edges">
+    <div id="app" class="view view-reviews ios-edges">
         @include('theme.layout.tabbar')
         <div class="page">
             <div class="navbar navbar-page">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="content">
-                            <img src="{{ url('public/images/discount.png') }}" alt="notification-image">
+                            <img src="{{ url('public/mobile/images/discount.png') }}" alt="notification-image">
                             <div class="text">
                                 <h6>Discount up to 80% for all product</h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cum voluptates iste!</p>
@@ -40,7 +40,7 @@
                         <!-- end divider -->
 
                         <div class="content">
-                            <img src="{{ url('public/images/user-seller1.png') }}" alt="notification-image">
+                            <img src="{{ url('public/mobile/images/user-seller1.png') }}" alt="notification-image">
                             <div class="text">
                                 <h6>John Store <span>Following you</span></h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cum voluptates iste!</p>
@@ -52,7 +52,7 @@
                         <!-- end divider -->
 
                         <div class="content">
-                            <img src="{{ url('public/images/promo.png') }}" alt="notification-image">
+                            <img src="{{ url('public/mobile/images/promo.png') }}" alt="notification-image">
                             <div class="text">
                                 <h6>Promo Code <a href="#"><span>P99DAY19</span></a></h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cum voluptates iste!</p>
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="content">
-                            <img src="{{ url('public/images/50-off.png') }}" alt="notification-image">
+                            <img src="{{ url('public/mobile/images/50-off.png') }}" alt="notification-image">
                             <div class="text">
                                 <h6>50% Off</h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cum voluptates iste!</p>
@@ -80,7 +80,7 @@
                         <!-- end divider -->
 
                         <div class="content">
-                            <img src="{{ url('public/images/90-off.png') }}" alt="notification-image">
+                            <img src="{{ url('public/mobile/images/90-off.png') }}" alt="notification-image">
                             <div class="text">
                                 <h6>Special for you <a href="#"><span>90% Off</span></a></h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cum voluptates iste!</p>

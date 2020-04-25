@@ -27,22 +27,22 @@
                     <div class="container">
                         <div class="content">
                             <a href="{{ url("/danh-muc/be-trai.html") }}">
-                                <img src="{{ url('public/images/brand1.png') }}" alt="">
+                                <img src="{{ url('public/mobile/images/brand1.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
                             <a href="{{ url("/danh-muc/be-gai.html") }}">
-                                <img src="{{ url('public/images/brand2.png') }}" alt="">
+                                <img src="{{ url('public/mobile/images/brand2.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
                             <a href="{{ url("/danh-muc/giay-dep.html") }}">
-                                <img src="{{ url('public/images/brand3.png') }}" alt="">
+                                <img src="{{ url('public/mobile/images/brand3.png') }}" alt="">
                             </a>
                         </div>
                         <div class="content">
                             <a href="{{ url("/danh-muc/phu-kien.html") }}">
-                                <img src="{{ url('public/images/brand1.png') }}" alt="">
+                                <img src="{{ url('public/mobile/images/brand1.png') }}" alt="">
                             </a>
                         </div>
                     </div>
