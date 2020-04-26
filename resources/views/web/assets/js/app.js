@@ -7,8 +7,8 @@ require('./bootstrap');
 import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
-// import vSelect from "../../node_modules/vue-select";
 import 'sweetalert2/dist/sweetalert2.min.css';
+import jQuery from 'jquery';
 
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
@@ -32,7 +32,13 @@ Vue.use(require('vue-moment'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
+Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
+Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
+Vue.component('rating-component', require('./components/RatingComponent.vue').default);
+Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
+Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
+Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
+Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

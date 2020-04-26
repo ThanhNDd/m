@@ -26,7 +26,7 @@ class AttributesController extends Controller
             ->get()->jsonSerialize();
 
         $attr = DB::table('smi_products')
-            ->select('origin', 'material')
+            ->select('origin', 'material','short_description')
             ->where('id', $id)
             ->first();
         $attributes = array();
@@ -34,6 +34,7 @@ class AttributesController extends Controller
         $attributes['size'] = $sizes;
         $attributes['origin'] = $attr->origin;
         $attributes['material'] = $attr->material;
+        $attributes['short_description'] = $attr->short_description;
         return response($attributes, Response::HTTP_OK);
     }
 

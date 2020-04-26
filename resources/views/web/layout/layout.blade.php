@@ -33,6 +33,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="cnt-home">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=2629504663951964&autoLogAppEvents=1"></script>
     @include('web.layout.header')
     @yield('content')
     @include('web.layout.footer')
@@ -54,10 +56,11 @@
     <script src="{{url('resources/views/web/assets/js/libs/lightbox.min.js') }}"></script>
     <script src="{{url('resources/views/web/assets/js/libs/bootstrap-select.min.js') }}"></script>
     <script src="{{url('resources/views/web/assets/js/libs/wow.min.js') }}"></script>
-{{--    <script src="{{url('resources/views/web/assets/js/libs/scripts.js') }}"></script>--}}
+
 {{--    <script src="{!! url('resources/views/web/assets/js/app.js') !!}"></script>--}}
     <script src="{{url('public/web/js/webapp.js') }}"></script>
     @yield('script')
+{{--    <script src="{{url('resources/views/web/assets/js/libs/scripts.js') }}"></script>--}}
 </body>
 
 </html>

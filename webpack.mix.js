@@ -47,11 +47,15 @@ mix.js([
       'resources/views/web/assets/css/animate.min.css',
       'resources/views/web/assets/css/rateit.css',
       'resources/views/web/assets/css/bootstrap-select.min.css',
-      'resources/views/web/assets/css/font-awesome.css',
+      // 'resources/views/web/assets/css/font-awesome.css',
+      'public/mobile/css/font-awesome.min.css',
+      'resources/views/web/assets/css/style.css',
     ], 'public/web/css/webapp.css');
 mix.copyDirectory('resources/views/web/assets/css/images', 'public/web/css/images');
 mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');
 mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
+
+mix.autoload({ jQuery: 'jquery', $: 'jquery', jquery: 'jquery' });
 
 // Full API
 // mix.js(src, output);

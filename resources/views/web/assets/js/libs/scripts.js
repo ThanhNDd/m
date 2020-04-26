@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
 /*===================================================================================*/
 /*	OWL CAROUSEL
 /*===================================================================================*/
+  jQuery.noConflict();
 jQuery(function () {
     var dragging = true;
     var owlElementID = "#owl-main";
@@ -142,9 +143,6 @@ jQuery(owlElementID + ".owl-one-item").owlCarousel({
     navigation: false,
     pagination: false
 });
-
-
-
 
 jQuery('.home-owl-carousel').each(function(){
 

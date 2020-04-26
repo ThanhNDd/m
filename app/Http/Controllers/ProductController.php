@@ -46,7 +46,12 @@ class ProductController extends Controller
             // store in cookie
             $this->storeInSession($request, $product);
         }
-        return view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product'));
+        if($this->is_mobile()) {
+          return view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product'));
+        } else {
+          return view('web.page.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product'));
+        }
+
     }
 
     function storeInSession(Request $request, $product) {

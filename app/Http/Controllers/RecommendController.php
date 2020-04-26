@@ -50,7 +50,7 @@ class RecommendController extends Controller
     {
         $products = DB::table('smi_products')->where([['category_id', '<>', $cat_id],['id','<>',$id],['status','=','0'],['type','=',$type],["social_publish->website", "=", 1]])
             ->orderBy('id', 'desc')
-            ->take(6)
+            ->take(5)
             ->get()->jsonSerialize();
         return response($products, Response::HTTP_OK);
     }
