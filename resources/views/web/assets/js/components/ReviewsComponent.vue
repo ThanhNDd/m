@@ -1,7 +1,7 @@
 <template>
-    <div class="product-review segments">
-        <div class="row col-sm-12" style="margin: 0;display: inline-block;width: 100%;padding:0px 0px 20px 0px;">
-            <div class="rating-block float-left" style="padding: 20px 5px;width: 49%;text-align: center;">
+    <div class="product-review segments" style="display: inline-block;">
+        <div class="row col-md-6" style="margin: 0;display: inline-block;width: 100%;padding:0px 0px 20px 0px;">
+            <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;width: 49%;text-align: center;">
                 <h2 class="bold padding-bottom-7" style="padding-bottom: 5px;font-size: 40px;">{{ratingAvg}}</h2>
                 <button type="button" class="btn btn-sm" v-bind:class="ratingAvg >= 1 ? 'btn-warning ' : 'btn-default btn-grey'" aria-label="Left Align">
                     <i v-bind:class="ratingAvg >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt'" style="color:#fff;"></i>
@@ -19,7 +19,7 @@
                     <i v-bind:class="ratingAvg > 4 ? (ratingAvg >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#fff;"></i>
                 </button>
             </div>
-            <div class="rating-breakdown float-right" style="width: 50%;padding: 0 5px;">
+            <div class="rating-breakdown col-md-6 float-right" style="width: 50%;padding: 0 5px;">
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
                         <div style="height:9px; margin:5px 0;">5 <i class="far fa-star"></i></div>

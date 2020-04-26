@@ -17,7 +17,8 @@ Text Domain:  Marazzo
 6.   Top Banner Section
 8.   Home Tabs
 9.   Products Grid
-10.  Products List
+10.  Products List@media (min-width: 1300px)
+
 11.  Latest-Blog
 12.  Sidebar
 13.  Product View
@@ -6359,7 +6360,7 @@ header {
 
 .shopping-cart .shopping-cart-table table tbody tr .romove-item a:hover,
 .shopping-cart .shopping-cart-table table tbody tr .romove-item a:focus {
-  color: #ff000 !important;
+  color: #ff0000 !important;
 }
 
 .shopping-cart .shopping-cart-table table tbody tr .cart-image .entry-thumbnail {
@@ -9019,15 +9020,19 @@ header {
     padding: 0 60px;
     width: auto
   }
-
+  .item.item-carousel {
+    width: 174px;
+  }
 }
 
 @media (min-width: 1600px) {
   .container {
     padding: 0 120px;
-    width: auto
+    width: 1600px;
   }
-
+  .item.item-carousel {
+    width: 209px;
+  }
 }
 
 /*===================================================================================*/

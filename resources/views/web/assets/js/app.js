@@ -39,6 +39,7 @@ Vue.component('attributes-component', require('./components/AttributeComponent.v
 Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
 Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
+Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

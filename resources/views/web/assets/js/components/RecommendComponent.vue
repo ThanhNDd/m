@@ -73,7 +73,6 @@
             return {
                 products: [],
                 url: '',
-                swiper: null
             }
         },
         created() {
@@ -88,12 +87,5 @@
         },
         methods: {
         },
-        mounted:function () {
-            this.swiper = new window.Swiper('.swiper-container', {
-                cssMode: true,
-                mousewheel: true,
-                keyboard: true,
-            })
-        }
     }
 </script>

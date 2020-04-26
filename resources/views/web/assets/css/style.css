@@ -2,7 +2,7 @@
   --main-color: #005bbd;
 }
 .item.item-carousel {
-  width: 200px;
+  /*width: 200px;*/
   display: inline-block;
   vertical-align: top;
 }
@@ -142,4 +142,8 @@
 }
 .single-product .product-info .quantity-container .cart-quantity .quant-input .arrows .arrow .ir i.icon.fas.fa-sort-up {
   top: 8px;
+}
+
+.float-left {
+  float: left !important;
 }
