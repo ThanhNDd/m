@@ -125,7 +125,7 @@ img[src="assets/images/blank.gif"] {
   -ms-transition: all 0.2s linear 0s;
   -o-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
-  padding: 8px 14px;
+  padding: 5px 11px;
 }
 
 .btn-primary {
@@ -4841,7 +4841,7 @@ header {
 
 .single-product .product-info .stock-container .stock-box .value {
   font-size: 13px;
-  color: #ff7878;
+  color: green;
   margin-left: 10px
 }
 
@@ -9021,7 +9021,7 @@ header {
     width: auto
   }
   .item.item-carousel {
-    width: 174px;
+    width: 200px;
   }
 }
 

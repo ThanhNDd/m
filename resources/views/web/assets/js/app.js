@@ -32,6 +32,7 @@ Vue.use(require('vue-moment'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('star-rating', StarRating);
 Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
 Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
 Vue.component('rating-component', require('./components/RatingComponent.vue').default);
@@ -40,6 +41,7 @@ Vue.component('relate-product-component', require('./components/RelateProductCom
 Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
 Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
+Vue.component('cart-number-component', require('./components/CartComponent').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

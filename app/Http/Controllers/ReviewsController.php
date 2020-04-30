@@ -81,7 +81,7 @@ class ReviewsController extends Controller
                 !empty($data['rating']) &&
                 !empty($data['product_id'])) {
 
-                DB::table('smi_reviews')->insert(
+                $id = DB::table('smi_reviews')->insertGetId(
                     [
                         'name' => $data['name'],
                         'phone' => $data['phone'],
@@ -91,7 +91,9 @@ class ReviewsController extends Controller
                         'product_id' => (integer)$data['product_id']
                     ]
                 );
-
+                if(empty($id)) {
+                  throw new Exception('Cannot insert reviews');
+                }
 //                Mail::to('thanhit228@gmail.com')->send(new SendEmailReviews());
 
                 DB::commit();

@@ -147,3 +147,9 @@
 .float-left {
   float: left !important;
 }
+i.fa-star.fas {
+  color: #f0ad4e;
+}
+i.fa-star.far {
+  color: #f0ad4e;
+}

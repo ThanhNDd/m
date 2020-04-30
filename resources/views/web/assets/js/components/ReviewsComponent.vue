@@ -1,8 +1,14 @@
 <template>
+  <section class="section related-product" style="background: rgb(255, 255, 255);border-radius: 0 6px 6px 0;">
+    <div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
+      <div class="more-info-tab clearfix ">
+        <h3 class="new-product-title pull-left">Nhận xét và đánh giá</h3>
+      </div>
+    </div>
     <div class="product-review segments" style="display: inline-block;">
-        <div class="row col-md-6" style="margin: 0;display: inline-block;width: 100%;padding:0px 0px 20px 0px;">
-            <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;width: 49%;text-align: center;">
-                <h2 class="bold padding-bottom-7" style="padding-bottom: 5px;font-size: 40px;">{{ratingAvg}}</h2>
+        <div class="row col-md-6" style="margin: 0;display: inline-block;padding:45px 0px 20px 0px;">
+            <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;text-align: center;display: inline-block;">
+                <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}</h1>
                 <button type="button" class="btn btn-sm" v-bind:class="ratingAvg >= 1 ? 'btn-warning ' : 'btn-default btn-grey'" aria-label="Left Align">
                     <i v-bind:class="ratingAvg >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt'" style="color:#fff;"></i>
                 </button>
@@ -19,10 +25,10 @@
                     <i v-bind:class="ratingAvg > 4 ? (ratingAvg >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#fff;"></i>
                 </button>
             </div>
-            <div class="rating-breakdown col-md-6 float-right" style="width: 50%;padding: 0 5px;">
+            <div class="rating-breakdown col-md-6 float-left" style="padding: 0px 5px;">
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">5 <i class="far fa-star"></i></div>
+                        <div style="height:9px; margin:5px 0;">5 <i class="fas fa-star" style="color: #ffc107;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -31,11 +37,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right" style="margin-left:5px;margin-top: 5px;">{{ number_5_star }}</div>
+                    <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_5_star }}</div>
                 </div>
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">4 <i class="far fa-star"></i></div>
+                        <div style="height:9px; margin:5px 0;">4 <i class="fas fa-star" style="color: #ffc107;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -44,11 +50,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right" style="margin-left:5px;margin-top: 5px;">{{ number_4_star }}</div>
+                    <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_4_star }}</div>
                 </div>
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">3 <i class="far fa-star"></i></div>
+                        <div style="height:9px; margin:5px 0;">3 <i class="fas fa-star" style="color: #ffc107;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -57,11 +63,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right" style="margin-left:5px;margin-top: 5px;">{{ number_3_star }}</div>
+                    <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_3_star }}</div>
                 </div>
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">2 <i class="far fa-star"></i></div>
+                        <div style="height:9px; margin:5px 0;">2 <i class="fas fa-star" style="color: #ffc107;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -70,11 +76,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right" style="margin-left:5px;margin-top: 5px;">{{ number_2_star }}</div>
+                    <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_2_star }}</div>
                 </div>
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">1 <i class="far fa-star"></i></div>
+                        <div style="height:9px; margin:5px 0;">1 <i class="fas fa-star" style="color: #ffc107;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -83,44 +89,94 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right" style="margin-left:5px;margin-top: 5px;">{{ number_1_star }}</div>
+                    <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_1_star }}</div>
                 </div>
             </div>
+
         </div>
-        <div  v-if="ratingAvg > 0">
-            <div v-for="review in reviews">
-                <div class="content">
-                    <img v-bind:src="url + '/public/mobile/images/user-buyer2.png'" alt="">
-                    <div class="text">
-                        <h6>{{ review.name }}</h6>
-                        <ul class="rate-product">
-                            <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                            <li><i v-bind:class="review.rating >= '2' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                            <li><i v-bind:class="review.rating >= '3' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                            <li><i v-bind:class="review.rating >= '4' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                            <li><i v-bind:class="review.rating >= '5' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                        </ul>
-                        <p class="date">
-                            {{ review.created_date | moment("from", "now") }}
-                        </p>
-                        <!--                    <i class="fas fa-thumbs-up like-button"></i>-->
-                        <p v-text="review.content"></p>
+        <div id="rating" class="col-md-6 float-left">
+          <div class="sheet-modal rating-sheet">
+            <div class="toolbar">
+              <div class="toolbar-inner">
+                <div class="left" style="font-size: 20px;margin: 5px;">Viết nhận xét</div>
+              </div>
+            </div>
+            <div class="sheet-modal-inner segments">
+              <div class="page-content" style="background: #fff;padding-bottom: 20px;">
+                <div class="container" id="form-review" style="padding: 0px;">
+                  <form style="padding-top: 10px;">
+                    <input id="ratings-hidden" name="rating" type="hidden">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Họ tên" id="fullname" v-model="fullname" ref="fullname">
                     </div>
+                    <div :class="['form-group', isPhoneValid()]">
+                      <input type="text" class="form-control" placeholder="Số điện thoại" id="phone" v-model="phone" ref="phone">
+                    </div>
+                    <div :class="['form-group', isEmailValid()]">
+                      <input type="email" class="form-control" placeholder="Email" id="email" v-model="email" ref="email">
+                    </div>
+                    <div class="form-group">
+                      <textarea rows="3" class="form-control" placeholder="Nội dung nhận xét" id="content" v-model="content" ref="content"></textarea>
+                    </div>
+                    <div class="float-left">
+                      <star-rating :item-size="30"
+                                   border-color="#ffffff"
+                                   inactive-color="#D8D8D8"
+                                   active-color="#ffc107"
+                                   v-model="rating"
+                      ></star-rating>
+                    </div>
+                    <div style="text-align: right;">
+                      <button type="button" class="btn btn-primary" v-on:click="submitReviews()">Đồng ý</button>
+                    </div>
+                  </form>
                 </div>
-                <!-- divider -->
-                <div class="divider-line-half"></div>
+                <div id="form-review-success" class="hidden">
+                  <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                  </div>
+                  <div class="swal2-title" style="">Đăng nhận xét thành công!</div>
+                  <div class="swal2-text" style="text-align: center;width: 100%;">Cám ơn bạn đã nhận xét sản phẩm!</div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div v-else>
-            <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
-        </div>
-        <!-- end divider -->
-        <!-- view all reviews -->
-        <div class="view-all-review" v-if="total_rating > 3">
-            <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>
-        </div>
-        <!-- end view all reviews -->
-    </div>
+          <div v-if="ratingAvg > 0" style="display: inline-block;width: 100%;">
+              <div class="content" v-for="review in reviews" style="display: inline-block;width: 100%;padding: 0 20px;border-top: 1px solid #80808036;">
+                  <div class="text">
+                      <h5>{{ review.name }}</h5>
+                      <ul class="rate-product" style="display: inline-flex;">
+                          <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                          <li><i v-bind:class="review.rating >= '2' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                          <li><i v-bind:class="review.rating >= '3' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                          <li><i v-bind:class="review.rating >= '4' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                          <li><i v-bind:class="review.rating >= '5' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                      </ul>
+                      <p class="date" style="display: inline-flex;font-style: italic;color: gray;">
+                          {{ review.created_date | moment("from", "now") }}
+                      </p>
+                      <!--                    <i class="fas fa-thumbs-up like-button"></i>-->
+                      <p v-text="review.content" style="font-size: 14px;"></p>
+                  </div>
+              </div>
+              <!-- divider -->
+              <div class="divider-line-half"></div>
+          </div>
+          <div v-else>
+              <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
+          </div>
+          <!-- end divider -->
+          <!-- view all reviews -->
+          <div class="view-all-review" v-if="total_rating > 3">
+              <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>
+<!--            <button class="btn btn-primary">Xem tất cả</button>-->
+          </div>
+          <!-- end view all reviews -->
+      </div>
+  </section>
 </template>
 
 <script>
@@ -142,7 +198,15 @@
                 number_1_star:0,
                 url: '',
                 total_rating: 0,
-                product_name: ''
+                product_name: '',
+                rating: 0,
+                fullname: '',
+                phone: '',
+                email: '',
+                content: '',
+                email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+                phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
+                reload: 0
             }
         },
         props: ['product_id'],
@@ -201,6 +265,77 @@
                         }
                     });
             },
+            submitReviews: function () {
+                if(!this.validate()) {
+                    return false;
+                }
+                let review = [];
+                review.push({
+                    "name": this.fullname,
+                    "phone": this.phone,
+                    "email": this.email,
+                    "content" : this.content,
+                    "rating" : this.rating,
+                    "product_id": this.product_id
+                });
+                console.log(JSON.stringify(review));
+                axios.post(url + "/api/submit-reviews", {
+                    body: review
+                }).then(response => {
+                    console.log(response.data);
+                    if(response.data === 201) {
+                        $("#form-review").addClass('hidden');
+                        $("#form-review-success").removeClass('hidden');
+                        this.reload++;
+                    } else {
+                        swal({
+                            title: "Đã xảy ra lỗi!",
+                            text: "Xin vui lòng thử lại sau!",
+                            icon: "error",
+                            button: "Đồng ý",
+                        });
+                    }
+                })
+            },
+            validate: function () {
+                if(this.fullname && this.phone && this.content && this.rating) {
+                    return true;
+                }
+                if(!this.fullname) {
+                    this.$toast.top('Bạn chưa nhập tên');
+                    this.$refs.fullname.focus();
+                    return false;
+                }
+                if(this.phone === '') {
+                    this.$toast.top('Bạn chưa nhập số điện thoại');
+                    this.$refs.phone.focus();
+                    return false;
+                }  else if(!this.phone_reg.test(this.phone)) {
+                    this.$toast.top('Số điện thoại chưa đúng.');
+                    this.$refs.phone.focus();
+                    return false;
+                }
+                if(this.email !== '' && !this.email_reg.test(this.email)) {
+                    this.$toast.top('Email chưa đúng.');
+                    this.$refs.email.focus();
+                    return false;
+                }
+                if(!this.content) {
+                    this.$toast.top('Bạn chưa nhập nội dung nhận xét');
+                    this.$refs.content.focus();
+                    return false;
+                }
+                if(!this.rating) {
+                    this.$toast.top('Bạn chưa chọn số sao');
+                    return false;
+                }
+            },
+            isPhoneValid: function() {
+                return (this.phone === "")? "" : (this.phone_reg.test(this.phone)) ? 'has-success' : 'has-error';
+            },
+            isEmailValid: function() {
+                return (this.email === "")? "" : (this.email_reg.test(this.email)) ? 'has-success' : 'has-error';
+            }
         },
     }
 

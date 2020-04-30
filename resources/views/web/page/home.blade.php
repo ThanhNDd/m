@@ -5,7 +5,10 @@
 <div id="app" class="body-content outer-top-vs" id="top-banner-and-menu">
     <div class="container">
         <div class="row">
-        @include('web.page.sidebar.sidebar')
+          <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+            @include('web.page.sidebar.vertical_menu')
+            @include('web.page.sidebar.sidebar')
+          </div>
             <!-- ============================================== CONTENT ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
                 <!-- ========================================== SECTION – HERO ========================================= -->
@@ -106,7 +109,11 @@
                 <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
                 <!-- /.sidebar-widget -->
                 <!-- ============================================== BEST SELLER : END ============================================== -->
-
+              @if(session()->has('viewed'))
+                  <div>
+                    <recently-product-component/>
+                  </div>
+              @endif
                 <!-- ============================================== BLOG SLIDER ============================================== -->
                 <section class="section latest-blog outer-bottom-vs">
                     <h3 class="section-title">Blog</h3>
