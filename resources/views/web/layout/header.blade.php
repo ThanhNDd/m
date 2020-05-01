@@ -119,7 +119,7 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                        </a>--}}
-                        <cart-number-component/>
+                        <cart-number-component></cart-number-component>
                         <!-- /.dropdown-menu-->
                     </div>
                     <!-- /.dropdown-cart -->

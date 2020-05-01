@@ -1715,10 +1715,11 @@ header {
   top: 10px;
   width: 18px;
   background: #fdd922;
-  color: #0f6cb2;
+  color: #666;
   font-size: 11px;
   text-align: center;
-  line-height: 19px;;
+  line-height: 19px;
+  font-weight: 700;
 }
 
 .top-cart-row .dropdown-cart .dropdown-menu {
@@ -3452,7 +3453,7 @@ header {
 
 .product .product-info .product-price .price {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 30px;
   margin-right: 8px;
 }
@@ -4796,7 +4797,7 @@ header {
 
 .single-product .product-info-block .name {
   margin-top: 0px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: normal;
   font-size: 30px
 }
@@ -7198,9 +7199,9 @@ header {
     font-size: 24px;
   }
 
-  .product .product-info .product-price .price {
-    font-size: 16px;
-  }
+  /*.product .product-info .product-price .price {*/
+  /*  font-size: 17px;*/
+  /*}*/
 
   .product .product-info .product-price .price-before-discount {
     font-size: 16px;
@@ -7604,9 +7605,9 @@ header {
     width: 66px;
   }
 
-  .product .product-info .product-price .price {
-    font-size: 16px;
-  }
+  /*.product .product-info .product-price .price {*/
+  /*  font-size: 16px;*/
+  /*}*/
 
   .product .product-info .product-price .price-before-discount {
     font-size: 16px;

@@ -65,9 +65,6 @@
   width: 70px;
   margin-right: 5px;
 }
-.related-product .tab-content {
-  padding-left: 0;
-}
 .color-choose div {
   display: inline-block;
 }
@@ -152,4 +149,8 @@ i.fa-star.fas {
 }
 i.fa-star.far {
   color: #f0ad4e;
+}
+section.section.related-product {
+  background: #fff;
+  border-radius: 0 6px 6px 0;
 }

@@ -34,7 +34,7 @@
 </head>
 <body class="cnt-home">
     @include('web.layout.fbsdk')
-    @include('web.layout.header')
+{{--    @include('web.layout.header')--}}
     @yield('content')
     @include('web.layout.footer')
 <script>

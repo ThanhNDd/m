@@ -26,6 +26,7 @@
   @else
     <div id="app"></div>
     <div id="detail" xmlns:v-on="http://www.w3.org/1999/xhtml">
+      @include('web.layout.header')
       @include('web.layout.breadcrum')
       <input type="hidden" id="cat_id" ref="categoryId" value="{{$product->category_id}}">
       <input type="hidden" id="product_id" ref="productId" value="{{$product->id}}">
@@ -51,7 +52,8 @@
                               @if($loop->first)
                               <div class="single-product-gallery-item" id="slide{{$loop->index}}">
                                 <a data-lightbox="image-{{$loop->index}}" data-title="Gallery"
-                                   href="{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}">
+{{--                                   href="{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}">--}}
+                                      href="javascript:void(0);">
                                   <img class="img-responsive" width="100%"
                                        src="{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}"
                                        alt="{{ $product->name }}" title="{{ $product->name }}"
@@ -104,7 +106,8 @@
                           <div class="row col-md-12 col-lg-12">
                             <div class="price-box">
                               <span class="price">{{ number_format($product->retail).' đ' }}</span>
-                              <span class="price-strike">200,000 đ</span>
+                              <p style="color: gray;margin-top: 10px;line-height: 1px;">Tiết kiệm: <span style="color: red;">66%</span> (86,000 đ)</p>
+                              <p style="color: gray;">Giá thị trường: 350,000 đ</p>
                             </div>
                           </div><!-- /.row -->
                           <div class="description-container m-t-20">
@@ -152,13 +155,13 @@
                               <div class="add-btn">
                                 <a href="javascript:void(0);" class="btn btn-primary"
                                    v-on:click="addToCart('{{$product->id}}', '{{$product->name}}', '{{$product->retail}}', '{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}')">
-                                  <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                  <i class="fas fa-cart-plus"></i> Thêm vào giỏ
                                 </a>
                               </div>
                               <div class="add-btn">
                                 <a href="javascript:void(0);" class="btn btn-danger"
                                    v-on:click="buyNow('{{$product->id}}', '{{$product->name}}', '{{$product->retail}}', '{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}')">
-                                    <i class="fas fa-cart-plus"></i> Mua ngay
+                                  <i class="fa fa-shopping-cart"></i> Mua ngay
                                 </a>
                               </div>
                             </div><!-- /.row -->
@@ -260,7 +263,7 @@
                       body: this.products
                   }).then(response => {
                       this.$toast.top('Đã thêm vào giỏ hàng');
-                      document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger">' + response.data.length + '</span>';
+                      document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
                       if (this.type === "buyNow") {
                           window.location.href = url + "/thanh-toan.html";
                       }

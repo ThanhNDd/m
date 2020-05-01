@@ -3,7 +3,7 @@
         <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
           <div class="items-cart-inner">
             <div class="basket">
-              <div class="basket-item-count">
+              <div class="basket-item-count cart_number">
                 <span class="count" v-if="cart_number">{{cart_number}}</span>
               </div>
             </div>
@@ -55,6 +55,5 @@
                     this.cart_number = response.data
                 });
         },
-        methods: {}
     }
 </script>

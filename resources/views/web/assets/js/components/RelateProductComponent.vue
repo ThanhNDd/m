@@ -9,7 +9,7 @@
       <div class="tab-pane in active" id="all" ref="product_carousel">
         <div class="product-slider">
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" style="opacity: 1; display: block;">
-            <div class="item item-carousel" style="width: 206px;" v-for="product in products">
+            <div class="item item-carousel" v-for="product in products">
               <div class="products">
                 <div class="product">
                   <div class="product-image">
@@ -35,20 +35,20 @@
 
                   </div>
                   <!-- /.product-info -->
-                  <div class="cart clearfix animate-effect">
-                    <div class="action">
-                      <ul class="list-unstyled">
-                        <li class="add-cart-button btn-group">
-                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"><i
-                            class="fa fa-shopping-cart"></i></button>
-                          <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                        </li>
-                        <!--                        <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>-->
-                        <!--                        <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>-->
-                      </ul>
-                    </div>
-                    <!-- /.action -->
-                  </div>
+<!--                  <div class="cart clearfix animate-effect">-->
+<!--                    <div class="action">-->
+<!--                      <ul class="list-unstyled">-->
+<!--                        <li class="add-cart-button btn-group">-->
+<!--                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"><i-->
+<!--                            class="fa fa-shopping-cart"></i></button>-->
+<!--                          <button class="btn btn-primary cart-btn" type="button">Add to cart</button>-->
+<!--                        </li>-->
+<!--                        &lt;!&ndash;                        <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>&ndash;&gt;-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; /.action &ndash;&gt;-->
+<!--                  </div>-->
                   <!-- /.cart -->
                 </div>
                 <!-- /.product -->

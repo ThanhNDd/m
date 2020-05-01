@@ -8,7 +8,7 @@
     <div class="product-review segments" style="display: inline-block;">
         <div class="row col-md-6" style="margin: 0;display: inline-block;padding:45px 0px 20px 0px;">
             <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;text-align: center;display: inline-block;">
-                <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}</h1>
+                <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}/5</h1>
                 <button type="button" class="btn btn-sm" v-bind:class="ratingAvg >= 1 ? 'btn-warning ' : 'btn-default btn-grey'" aria-label="Left Align">
                     <i v-bind:class="ratingAvg >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt'" style="color:#fff;"></i>
                 </button>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="float-left">
                     <div class="float-left" style="width:30px; line-height:1;">
-                        <div style="height:9px; margin:5px 0;">1 <i class="fas fa-star" style="color: #ffc107;"></i></div>
+                        <div style="height:9px; margin:5px 0;">1 <i class="fas fa-star" style="color: #ffc107;margin-left: 3px;"></i></div>
                     </div>
                     <div class="float-left" style="width:110px;">
                         <div class="progress" style="height:9px; margin:8px 0;">
@@ -98,7 +98,7 @@
           <div class="sheet-modal rating-sheet">
             <div class="toolbar">
               <div class="toolbar-inner">
-                <div class="left" style="font-size: 20px;margin: 5px;">Viết nhận xét</div>
+                <div class="left" style="font-size: 18px;margin: 5px;">Viết nhận xét</div>
               </div>
             </div>
             <div class="sheet-modal-inner segments">
@@ -165,7 +165,8 @@
               <!-- divider -->
               <div class="divider-line-half"></div>
           </div>
-          <div v-else>
+          <div v-else style="display: inline-block;width: 100%;text-align: center;">
+              <p><i class="fas fa-comments" style="font-size: 100px;color: #b9b6b640;"></i></p>
               <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
           </div>
           <!-- end divider -->

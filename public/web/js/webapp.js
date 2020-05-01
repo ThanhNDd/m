@@ -2391,8 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get(url + '/api/cart').then(function (response) {
       _this.cart_number = response.data;
     });
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -2934,6 +2933,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -42949,9 +42949,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                      " +
+                                        "\n                        " +
                                           _vm._s(product.name) +
-                                          "\n                    "
+                                          "\n                      "
                                       )
                                     ]
                                   )
@@ -42971,9 +42971,7 @@ var render = function() {
                                   ])
                                 ])
                               ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(1, true)
+                            )
                           ])
                         ])
                       ])
@@ -42996,40 +42994,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "more-info-tab clearfix " }, [
       _c("h3", { staticClass: "new-product-title pull-left" }, [
         _vm._v("Bán chạy nhất")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart clearfix animate-effect" }, [
-      _c("div", { staticClass: "action" }, [
-        _c("ul", { staticClass: "list-unstyled" }, [
-          _c("li", { staticClass: "add-cart-button btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary icon",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  type: "button",
-                  title: "Add Cart"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-shopping-cart" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary cart-btn",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Add to cart")]
-            )
-          ])
-        ])
       ])
     ])
   }
@@ -43065,7 +43029,7 @@ var render = function() {
       [
         _c("div", { staticClass: "items-cart-inner" }, [
           _c("div", { staticClass: "basket" }, [
-            _c("div", { staticClass: "basket-item-count" }, [
+            _c("div", { staticClass: "basket-item-count cart_number" }, [
               _vm.cart_number
                 ? _c("span", { staticClass: "count" }, [
                     _vm._v(_vm._s(_vm.cart_number))
@@ -43243,9 +43207,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                      " +
+                                            "\n                        " +
                                               _vm._s(product.name) +
-                                              "\n                    "
+                                              "\n                      "
                                           )
                                         ]
                                       )
@@ -43271,9 +43235,7 @@ var render = function() {
                                       ]
                                     )
                                   ]
-                                ),
-                                _vm._v(" "),
-                                _vm._m(1, true)
+                                )
                               ])
                             ])
                           ]
@@ -43323,40 +43285,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "more-info-tab clearfix " }, [
       _c("h3", { staticClass: "new-product-title pull-left" }, [
         _vm._v("Hàng mới")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart clearfix animate-effect" }, [
-      _c("div", { staticClass: "action" }, [
-        _c("ul", { staticClass: "list-unstyled" }, [
-          _c("li", { staticClass: "add-cart-button btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary icon",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  type: "button",
-                  title: "Add Cart"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-shopping-cart" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary cart-btn",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Add to cart")]
-            )
-          ])
-        ])
       ])
     ])
   }
@@ -43517,7 +43445,11 @@ var render = function() {
               {
                 staticClass:
                   "owl-carousel home-owl-carousel custom-carousel owl-theme",
-                staticStyle: { opacity: "1", display: "block" }
+                staticStyle: {
+                  opacity: "1",
+                  display: "block",
+                  "padding-left": "0px"
+                }
               },
               _vm._l(_vm.products, function(product) {
                 return _c("div", { staticClass: "item item-carousel" }, [
@@ -43561,9 +43493,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                      " +
+                                "\n                        " +
                                   _vm._s(product.name) +
-                                  "\n                    "
+                                  "\n                      "
                               )
                             ]
                           )
@@ -43573,14 +43505,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "product-price" }, [
                           _c("p", { staticClass: "price" }, [
-                            _vm._v(
-                              _vm._s(_vm._f("formatPrice")(product.retail))
-                            )
+                            _vm._v(_vm._s(_vm._f("formatPrice")(product.price)))
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1, true)
+                      ])
                     ])
                   ])
                 ])
@@ -43601,40 +43529,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "more-info-tab clearfix " }, [
       _c("h3", { staticClass: "new-product-title pull-left" }, [
         _vm._v("Sản phẩm đã xem")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart clearfix animate-effect" }, [
-      _c("div", { staticClass: "action" }, [
-        _c("ul", { staticClass: "list-unstyled" }, [
-          _c("li", { staticClass: "add-cart-button btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary icon",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  type: "button",
-                  title: "Add Cart"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-shopping-cart" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary cart-btn",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Add to cart")]
-            )
-          ])
-        ])
       ])
     ])
   }
@@ -43735,9 +43629,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                      " +
+                                "\n                        " +
                                   _vm._s(product.name) +
-                                  "\n                    "
+                                  "\n                      "
                               )
                             ]
                           )
@@ -43752,9 +43646,7 @@ var render = function() {
                             )
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1, true)
+                      ])
                     ])
                   ])
                 ])
@@ -43775,40 +43667,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "more-info-tab clearfix " }, [
       _c("h3", { staticClass: "new-product-title pull-left" }, [
         _vm._v("Có thể bạn quan tâm")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart clearfix animate-effect" }, [
-      _c("div", { staticClass: "action" }, [
-        _c("ul", { staticClass: "list-unstyled" }, [
-          _c("li", { staticClass: "add-cart-button btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary icon",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  type: "button",
-                  title: "Add Cart"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-shopping-cart" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary cart-btn",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Add to cart")]
-            )
-          ])
-        ])
       ])
     ])
   }
@@ -43864,77 +43722,68 @@ var render = function() {
                 staticStyle: { opacity: "1", display: "block" }
               },
               _vm._l(_vm.products, function(product) {
-                return _c(
-                  "div",
-                  {
-                    staticClass: "item item-carousel",
-                    staticStyle: { width: "206px" }
-                  },
-                  [
-                    _c("div", { staticClass: "products" }, [
-                      _c("div", { staticClass: "product" }, [
-                        _c("div", { staticClass: "product-image" }, [
-                          _c("div", { staticClass: "image" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: _vm._f("url_product")(
-                                    _vm._f("change_to_slug")(product.name),
-                                    product.id
-                                  )
-                                }
-                              },
-                              [
-                                _c("img", {
-                                  attrs: {
-                                    src: _vm._f("format_image")(product.image),
-                                    alt: product.name
-                                  }
-                                })
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "product-info text-left" }, [
-                          _c("h3", { staticClass: "name" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: _vm._f("url_product")(
-                                    _vm._f("change_to_slug")(product.name),
-                                    product.id
-                                  )
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(product.name) +
-                                    "\n                    "
+                return _c("div", { staticClass: "item item-carousel" }, [
+                  _c("div", { staticClass: "products" }, [
+                    _c("div", { staticClass: "product" }, [
+                      _c("div", { staticClass: "product-image" }, [
+                        _c("div", { staticClass: "image" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm._f("url_product")(
+                                  _vm._f("change_to_slug")(product.name),
+                                  product.id
                                 )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "rating rateit-small" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "product-price" }, [
-                            _c("p", { staticClass: "price" }, [
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: _vm._f("format_image")(product.image),
+                                  alt: product.name
+                                }
+                              })
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "product-info text-left" }, [
+                        _c("h3", { staticClass: "name" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm._f("url_product")(
+                                  _vm._f("change_to_slug")(product.name),
+                                  product.id
+                                )
+                              }
+                            },
+                            [
                               _vm._v(
-                                _vm._s(_vm._f("formatPrice")(product.retail))
+                                "\n                        " +
+                                  _vm._s(product.name) +
+                                  "\n                      "
                               )
-                            ])
-                          ])
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
-                        _vm._m(1, true)
+                        _c("div", { staticClass: "rating rateit-small" }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "product-price" }, [
+                          _c("p", { staticClass: "price" }, [
+                            _vm._v(
+                              _vm._s(_vm._f("formatPrice")(product.retail))
+                            )
+                          ])
+                        ])
                       ])
                     ])
-                  ]
-                )
+                  ])
+                ])
               }),
               0
             )
@@ -43952,40 +43801,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "more-info-tab clearfix " }, [
       _c("h3", { staticClass: "new-product-title pull-left" }, [
         _vm._v("Sản phẩm tương tự")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart clearfix animate-effect" }, [
-      _c("div", { staticClass: "action" }, [
-        _c("ul", { staticClass: "list-unstyled" }, [
-          _c("li", { staticClass: "add-cart-button btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary icon",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  type: "button",
-                  title: "Add Cart"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-shopping-cart" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary cart-btn",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Add to cart")]
-            )
-          ])
-        ])
       ])
     ])
   }
@@ -44064,7 +43879,7 @@ var render = function() {
                         color: "red"
                       }
                     },
-                    [_vm._v(_vm._s(_vm.ratingAvg))]
+                    [_vm._v(_vm._s(_vm.ratingAvg) + "/5")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -44778,11 +44593,25 @@ var render = function() {
                 ],
                 2
               )
-            : _c("div", [
-                _c("p", { staticClass: "center" }, [
-                  _vm._v("Hãy trở thành người đầu tiên đánh giá sản phẩm này.")
-                ])
-              ]),
+            : _c(
+                "div",
+                {
+                  staticStyle: {
+                    display: "inline-block",
+                    width: "100%",
+                    "text-align": "center"
+                  }
+                },
+                [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "center" }, [
+                    _vm._v(
+                      "Hãy trở thành người đầu tiên đánh giá sản phẩm này."
+                    )
+                  ])
+                ]
+              ),
           _vm._v(" "),
           _vm.total_rating > 3
             ? _c("div", { staticClass: "view-all-review" }, [
@@ -44924,7 +44753,7 @@ var staticRenderFns = [
           _vm._v("1 "),
           _c("i", {
             staticClass: "fas fa-star",
-            staticStyle: { color: "#ffc107" }
+            staticStyle: { color: "#ffc107", "margin-left": "3px" }
           })
         ])
       ]
@@ -44940,7 +44769,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass: "left",
-            staticStyle: { "font-size": "20px", margin: "5px" }
+            staticStyle: { "font-size": "18px", margin: "5px" }
           },
           [_vm._v("Viết nhận xét")]
         )
@@ -44999,6 +44828,17 @@ var staticRenderFns = [
         )
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", {
+        staticClass: "fas fa-comments",
+        staticStyle: { "font-size": "100px", color: "#b9b6b640" }
+      })
+    ])
   }
 ]
 render._withStripped = true

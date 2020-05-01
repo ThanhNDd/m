@@ -2,7 +2,9 @@
 @section('title', 'Trang chủ')
 @section('content')
 <!-- ============================================== HEADER : END ============================================== -->
-<div id="app" class="body-content outer-top-vs" id="top-banner-and-menu">
+<div id="app">
+  @include('web.layout.header')
+  <div class="body-content outer-top-vs" id="top-banner-and-menu">
     <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
@@ -497,5 +499,5 @@
 <!-- ============================================== INFO BOXES ============================================== -->
 @include('web.layout.featurebox')
 <!-- ============================================== INFO BOXES : END ============================================== -->
-
+</div>
 @endsection
