@@ -46,11 +46,17 @@ class RecommendController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $cat_id, $type)
+    public function show(Request $request)
     {
+        $row = $request->row;
+        $rowperpage = $request->rowperpage;
+        $id = $request->product_id;
+        $cat_id = $request->cat_id;
+        $type = $request->type;
         $products = DB::table('smi_products')->where([['category_id', '<>', $cat_id],['id','<>',$id],['status','=','0'],['type','=',$type],["social_publish->website", "=", 1]])
             ->orderBy('id', 'desc')
-            ->take(5)
+            ->offset($row)
+            ->limit($rowperpage)
             ->get()->jsonSerialize();
         return response($products, Response::HTTP_OK);
     }

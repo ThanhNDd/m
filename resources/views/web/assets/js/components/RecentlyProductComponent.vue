@@ -25,14 +25,17 @@
                         {{product.name}}
                       </a>
                     </h3>
-                    <div class="rating rateit-small"></div>
-                    <!--                    <div class="description"></div>-->
-                    <div class="product-price">
-                      <p class="price" v-cloak>{{product.price | formatPrice}}</p>
-                      <!--                      <span class="price-before-discount">$ 800</span> -->
+                    <div class="float-left col-md-12 col-lg-12 no-padding">
+                      <i v-bind:class="product.rating == 0 ? 'far fa-star' : (product.rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')" style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 1 ? (product.rating >= 2 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 2 ? (product.rating >= 3 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 3 ? (product.rating >= 4 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
-                    <!-- /.product-price -->
-
+                    <div class="product-price float-left col-md-12 col-lg-12 no-padding">
+                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                    </div>
                   </div>
                   <!-- /.product-info -->
 <!--                  <div class="cart clearfix animate-effect">-->

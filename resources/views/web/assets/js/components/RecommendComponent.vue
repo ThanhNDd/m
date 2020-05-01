@@ -25,14 +25,17 @@
                         {{product.name}}
                       </a>
                     </h3>
-                    <div class="rating rateit-small"></div>
-                    <!--                    <div class="description"></div>-->
-                    <div class="product-price">
-                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
-                      <!--                      <span class="price-before-discount">$ 800</span> -->
+                    <div class="float-left col-md-12 col-lg-12 no-padding">
+                      <i v-bind:class="product.rating == 0 ? 'far fa-star' : (product.rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')" style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 1 ? (product.rating >= 2 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 2 ? (product.rating >= 3 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 3 ? (product.rating >= 4 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
-                    <!-- /.product-price -->
-
+                    <div class="product-price float-left col-md-12 col-lg-12 no-padding">
+                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                    </div>
                   </div>
                   <!-- /.product-info -->
 <!--                  <div class="cart clearfix animate-effect">-->
@@ -61,6 +64,11 @@
           <!-- /.home-owl-carousel -->
         </div>
         <!-- /.product-slider -->
+        <div class="row justify-content-center">
+          <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(10)'>
+            <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> {{buttonText}} &nbsp;<i class="fa fa-caret-down"></i>
+          </a>
+        </div>
       </div>
       <!-- /.tab-pane -->
     </div>
@@ -71,21 +79,64 @@
     export default {
         data() {
             return {
-                products: [],
+                products: '',
+                isFinished: false,
+                row: 0, // Record selction position
+                // rowperpage: 5, // Number of records fetch at a time
+                buttonText: 'Xem thêm',
                 url: '',
+                submit: false,
             }
         },
         created() {
             this.url = url;
-            let cat_id = document.querySelector('#cat_id').getAttribute('value');
-            let id = document.querySelector('#product_id').getAttribute('value');
-            let type = document.querySelector('#type_id').getAttribute('value');
-            axios.get(url + '/api/recommend/'+id+'/category/'+cat_id+'/type/'+type)
-                .then(response => {
-                    this.products = response.data
-                });
+            // let cat_id = document.querySelector('#cat_id').getAttribute('value');
+            // let id = document.querySelector('#product_id').getAttribute('value');
+            // let type = document.querySelector('#type_id').getAttribute('value');
+            // axios.get(url + '/api/recommend/'+id+'/category/'+cat_id+'/type/'+type)
+            //     .then(response => {
+            //         this.products = response.data
+            //     });
+            this.getProducts(5);
         },
         methods: {
+            getProducts: function (rowperpage) {
+                let cat_id = document.querySelector('#cat_id').getAttribute('value');
+                let id = document.querySelector('#product_id').getAttribute('value');
+                let type = document.querySelector('#type_id').getAttribute('value');
+                this.submit = true;
+                axios.post(url + '/api/recommend', {
+                    product_id: id,
+                    cat_id: cat_id,
+                    type: type,
+                    row: this.row,
+                    rowperpage: rowperpage
+                }).then(response => {
+                    console.log(response.data);
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.row += rowperpage;
+                        let len = this.products.length;
+                        if (len > 0) {
+                            this.buttonText = "Loading ...";
+                            let that = this;
+                            setTimeout(function () {
+                                that.buttonText = 'Xem thêm';
+                                for (let i = 0; i < response.data.length; i++) {
+                                    that.products.push(response.data[i]);
+                                }
+                                that.submit = false;
+                            }, 500);
+                        } else {
+                            this.products = response.data;
+                            this.submit = false;
+                        }
+                    } else {
+                        this.buttonText = "Không có thêm sản phẩm.";
+                        this.isFinished = true;
+                        this.submit = false;
+                    }
+                });
+            }
         },
     }
 </script>

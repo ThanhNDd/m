@@ -36,6 +36,7 @@
 .justify-content-center {
   display: inline-block;
   margin-bottom: 20px;
+  margin-top: 20px;
   width: 100%;
   text-align: center;
 }
@@ -153,4 +154,8 @@ i.fa-star.far {
 section.section.related-product {
   background: #fff;
   border-radius: 0 6px 6px 0;
+}
+
+.no-padding {
+  padding: 0 !important;
 }

@@ -111,80 +111,6 @@
                 <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
                 <!-- /.sidebar-widget -->
                 <!-- ============================================== BEST SELLER : END ============================================== -->
-              @if(session()->has('viewed'))
-                  <div>
-                    <recently-product-component/>
-                  </div>
-              @endif
-                <!-- ============================================== BLOG SLIDER ============================================== -->
-                <section class="section latest-blog outer-bottom-vs">
-                    <h3 class="section-title">Blog</h3>
-                    <div class="blog-slider-container outer-top-xs">
-                        <div class="owl-carousel blog-slider custom-carousel" style="opacity: 1; display: block;">
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_03.jpg') }}" alt=""></a> </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_01.jpg') }}" alt=""></a> </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_02.jpg') }}" alt=""></a> </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                        </div>
-                        <!-- /.owl-carousel -->
-                    </div>
-                    <!-- /.blog-slider-container -->
-                </section>
-                <!-- /.section -->
-                <!-- ============================================== BLOG SLIDER : END ============================================== -->
 
                 <!-- ============================================== FEATURED PRODUCTS ============================================== -->
                 <section class="section new-arriavls">
@@ -482,7 +408,80 @@
                 </section>
                 <!-- /.section -->
                 <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+                @if(session()->has('viewed'))
+                    <div>
+                        <recently-product-component/>
+                    </div>
+                @endif
+              <!-- ============================================== BLOG SLIDER ============================================== -->
+              <section class="section latest-blog outer-bottom-vs">
+                <h3 class="section-title">Blog</h3>
+                <div class="blog-slider-container outer-top-xs">
+                  <div class="owl-carousel blog-slider custom-carousel" style="opacity: 1; display: block;">
+                    <div class="item">
+                      <div class="blog-post">
+                        <div class="blog-post-image">
+                          <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_03.jpg') }}" alt=""></a> </div>
+                        </div>
+                        <!-- /.blog-post-image -->
 
+                        <div class="blog-post-info text-left">
+                          <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                          <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
+                          <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
+                        </div>
+                        <!-- /.blog-post-info -->
+
+                      </div>
+                      <!-- /.blog-post -->
+                    </div>
+                    <!-- /.item -->
+
+                    <div class="item">
+                      <div class="blog-post">
+                        <div class="blog-post-image">
+                          <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_01.jpg') }}" alt=""></a> </div>
+                        </div>
+                        <!-- /.blog-post-image -->
+
+                        <div class="blog-post-info text-left">
+                          <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                          <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
+                          <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
+                        </div>
+                        <!-- /.blog-post-info -->
+
+                      </div>
+                      <!-- /.blog-post -->
+                    </div>
+                    <!-- /.item -->
+
+                    <div class="item">
+                      <div class="blog-post">
+                        <div class="blog-post-image">
+                          <div class="image"> <a href="blog.html"><img src="{{url('resources/views/web/assets/images/blog-post/blog_big_02.jpg') }}" alt=""></a> </div>
+                        </div>
+                        <!-- /.blog-post-image -->
+
+                        <div class="blog-post-info text-left">
+                          <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
+                          <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
+                          <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
+                        </div>
+                        <!-- /.blog-post-info -->
+
+                      </div>
+                      <!-- /.blog-post -->
+                    </div>
+                    <!-- /.item -->
+
+                  </div>
+                  <!-- /.owl-carousel -->
+                </div>
+                <!-- /.blog-slider-container -->
+              </section>
+              <!-- /.section -->
+              <!-- ============================================== BLOG SLIDER : END ============================================== -->
             </div>
             <!-- /.homebanner-holder -->
             <!-- ============================================== CONTENT : END ============================================== -->

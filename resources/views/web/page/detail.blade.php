@@ -101,8 +101,8 @@
                                   </div>
                                 </div>
                               </div>
-                            </div><!-- /.row -->
-                          </div><!-- /.stock-container -->
+                            </div>
+                          </div>
                           <div class="row col-md-12 col-lg-12">
                             <div class="price-box">
                               <span class="price">{{ number_format($product->retail).' đ' }}</span>

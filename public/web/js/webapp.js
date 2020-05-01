@@ -2268,6 +2268,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 // import jQuery from 'jquery';
 // let $ = jQuery;
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2480,6 +2485,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // import jQuery from 'jquery';
 // let $ = jQuery;
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2489,8 +2497,6 @@ __webpack_require__.r(__webpack_exports__);
       isFinished: false,
       row: 0,
       // Record selction position
-      rowperpage: 10,
-      // Number of records fetch at a time
       buttonText: 'Xem thêm',
       url: '',
       submit: false
@@ -2498,21 +2504,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.url = url;
-    this.getProducts();
+    this.getProducts(10);
   },
   methods: {
-    getProducts: function getProducts() {
+    getProducts: function getProducts(rowperpage) {
       var _this = this;
 
       this.submit = true;
       axios.post(url + '/api/products', {
         row: this.row,
-        rowperpage: this.rowperpage
+        rowperpage: rowperpage
       }).then(function (response) {
         console.log(response.data);
 
         if (response.data !== '' && response.data.length > 0) {
-          _this.row += _this.rowperpage;
+          _this.row += rowperpage;
           var len = _this.products.length;
 
           if (len > 0) {
@@ -2696,6 +2702,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2799,25 +2808,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: [],
-      url: ''
+      products: '',
+      isFinished: false,
+      row: 0,
+      // Record selction position
+      // rowperpage: 5, // Number of records fetch at a time
+      buttonText: 'Xem thêm',
+      url: '',
+      submit: false
     };
   },
   created: function created() {
-    var _this = this;
+    this.url = url; // let cat_id = document.querySelector('#cat_id').getAttribute('value');
+    // let id = document.querySelector('#product_id').getAttribute('value');
+    // let type = document.querySelector('#type_id').getAttribute('value');
+    // axios.get(url + '/api/recommend/'+id+'/category/'+cat_id+'/type/'+type)
+    //     .then(response => {
+    //         this.products = response.data
+    //     });
 
-    this.url = url;
-    var cat_id = document.querySelector('#cat_id').getAttribute('value');
-    var id = document.querySelector('#product_id').getAttribute('value');
-    var type = document.querySelector('#type_id').getAttribute('value');
-    axios.get(url + '/api/recommend/' + id + '/category/' + cat_id + '/type/' + type).then(function (response) {
-      _this.products = response.data;
-    });
+    this.getProducts(5);
   },
-  methods: {}
+  methods: {
+    getProducts: function getProducts(rowperpage) {
+      var _this = this;
+
+      var cat_id = document.querySelector('#cat_id').getAttribute('value');
+      var id = document.querySelector('#product_id').getAttribute('value');
+      var type = document.querySelector('#type_id').getAttribute('value');
+      this.submit = true;
+      axios.post(url + '/api/recommend', {
+        product_id: id,
+        cat_id: cat_id,
+        type: type,
+        row: this.row,
+        rowperpage: rowperpage
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (response.data !== '' && response.data.length > 0) {
+          _this.row += rowperpage;
+          var len = _this.products.length;
+
+          if (len > 0) {
+            _this.buttonText = "Loading ...";
+            var that = _this;
+            setTimeout(function () {
+              that.buttonText = 'Xem thêm';
+
+              for (var i = 0; i < response.data.length; i++) {
+                that.products.push(response.data[i]);
+              }
+
+              that.submit = false;
+            }, 500);
+          } else {
+            _this.products = response.data;
+            _this.submit = false;
+          }
+        } else {
+          _this.buttonText = "Không có thêm sản phẩm.";
+          _this.isFinished = true;
+          _this.submit = false;
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2900,26 +2967,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: [],
-      url: ''
+      products: '',
+      isFinished: false,
+      row: 0,
+      // Record selction position
+      // rowperpage: 5, // Number of records fetch at a time
+      buttonText: 'Xem thêm',
+      url: '',
+      submit: false
     };
   },
   created: function created() {
-    var _this = this;
-
     this.url = url;
-    var cat_id = document.querySelector('#cat_id').getAttribute('value');
-    var id = document.querySelector('#product_id').getAttribute('value');
-    var type = document.querySelector('#type_id').getAttribute('value');
-    axios.get(url + '/api/relate/' + id + '/category/' + cat_id + '/type/' + type).then(function (response) {
-      _this.products = response.data;
-    });
+    this.getProducts(5);
   },
-  methods: {},
-  mounted: function mounted() {}
+  methods: {
+    getProducts: function getProducts(rowperpage) {
+      var _this = this;
+
+      var cat_id = document.querySelector('#cat_id').getAttribute('value');
+      var id = document.querySelector('#product_id').getAttribute('value');
+      var type = document.querySelector('#type_id').getAttribute('value'); // axios.get(url + '/api/relate/'+id+'/category/'+cat_id+'/type/'+type)
+      //     .then(response => {
+      //         this.products = response.data;
+      //     });
+
+      this.submit = true;
+      axios.post(url + '/api/relate', {
+        product_id: id,
+        cat_id: cat_id,
+        type: type,
+        row: this.row,
+        rowperpage: rowperpage
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (response.data !== '' && response.data.length > 0) {
+          _this.row += rowperpage;
+          var len = _this.products.length;
+
+          if (len > 0) {
+            _this.buttonText = "Loading ...";
+            var that = _this;
+            setTimeout(function () {
+              that.buttonText = 'Xem thêm';
+
+              for (var i = 0; i < response.data.length; i++) {
+                that.products.push(response.data[i]);
+              }
+
+              that.submit = false;
+            }, 500);
+          } else {
+            _this.products = response.data;
+            _this.submit = false;
+          }
+        } else {
+          _this.buttonText = "Không có thêm sản phẩm.";
+          _this.isFinished = true;
+          _this.submit = false;
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42957,19 +43079,100 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("div", {
-                                  staticClass: "rating rateit-small"
-                                }),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "float-left col-md-12 col-lg-12 no-padding"
+                                  },
+                                  [
+                                    _c("i", {
+                                      class:
+                                        product.rating == 0
+                                          ? "far fa-star"
+                                          : product.rating >= 1
+                                          ? "fas fa-star"
+                                          : "fas fa-star-half-alt",
+                                      staticStyle: { color: "#ffc107" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", {
+                                      class:
+                                        product.rating > 1
+                                          ? product.rating >= 2
+                                            ? "fas fa-star"
+                                            : "fas fa-star-half-alt"
+                                          : "far fa-star",
+                                      staticStyle: { color: "#ffc107" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", {
+                                      class:
+                                        product.rating > 2
+                                          ? product.rating >= 3
+                                            ? "fas fa-star"
+                                            : "fas fa-star-half-alt"
+                                          : "far fa-star",
+                                      staticStyle: { color: "#ffc107" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", {
+                                      class:
+                                        product.rating > 3
+                                          ? product.rating >= 4
+                                            ? "fas fa-star"
+                                            : "fas fa-star-half-alt"
+                                          : "far fa-star",
+                                      staticStyle: { color: "#ffc107" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", {
+                                      class:
+                                        product.rating > 4
+                                          ? product.rating >= 5
+                                            ? "fas fa-star"
+                                            : "fas fa-star-half-alt"
+                                          : "far fa-star",
+                                      staticStyle: { color: "#ffc107" }
+                                    }),
+                                    _vm._v(" "),
+                                    product.reviews > 0
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "margin-left": "5px",
+                                              color: "gray"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "(" +
+                                                _vm._s(product.reviews) +
+                                                ")"
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "product-price" }, [
-                                  _c("p", { staticClass: "price" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("formatPrice")(product.retail)
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "product-price float-left col-md-12 col-lg-12 no-padding"
+                                  },
+                                  [
+                                    _c("p", { staticClass: "price" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("formatPrice")(product.retail)
+                                        )
                                       )
-                                    )
-                                  ])
-                                ])
+                                    ])
+                                  ]
+                                )
                               ]
                             )
                           ])
@@ -43215,13 +43418,90 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c("div", {
-                                      staticClass: "rating rateit-small"
-                                    }),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "float-left col-md-12 col-lg-12 no-padding"
+                                      },
+                                      [
+                                        _c("i", {
+                                          class:
+                                            product.rating == 0
+                                              ? "far fa-star"
+                                              : product.rating >= 1
+                                              ? "fas fa-star"
+                                              : "fas fa-star-half-alt",
+                                          staticStyle: { color: "#ffc107" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("i", {
+                                          class:
+                                            product.rating > 1
+                                              ? product.rating >= 2
+                                                ? "fas fa-star"
+                                                : "fas fa-star-half-alt"
+                                              : "far fa-star",
+                                          staticStyle: { color: "#ffc107" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("i", {
+                                          class:
+                                            product.rating > 2
+                                              ? product.rating >= 3
+                                                ? "fas fa-star"
+                                                : "fas fa-star-half-alt"
+                                              : "far fa-star",
+                                          staticStyle: { color: "#ffc107" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("i", {
+                                          class:
+                                            product.rating > 3
+                                              ? product.rating >= 4
+                                                ? "fas fa-star"
+                                                : "fas fa-star-half-alt"
+                                              : "far fa-star",
+                                          staticStyle: { color: "#ffc107" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("i", {
+                                          class:
+                                            product.rating > 4
+                                              ? product.rating >= 5
+                                                ? "fas fa-star"
+                                                : "fas fa-star-half-alt"
+                                              : "far fa-star",
+                                          staticStyle: { color: "#ffc107" }
+                                        }),
+                                        _vm._v(" "),
+                                        product.reviews > 0
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticStyle: {
+                                                  "margin-left": "5px",
+                                                  color: "gray"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "(" +
+                                                    _vm._s(product.reviews) +
+                                                    ")"
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "div",
-                                      { staticClass: "product-price" },
+                                      {
+                                        staticClass:
+                                          "product-price float-left col-md-12 col-lg-12 no-padding"
+                                      },
                                       [
                                         _c("p", { staticClass: "price" }, [
                                           _vm._v(
@@ -43251,7 +43531,7 @@ var render = function() {
                             attrs: { href: "javascript:void(0);" },
                             on: {
                               click: function($event) {
-                                return _vm.getProducts()
+                                return _vm.getProducts(10)
                               }
                             }
                           },
@@ -43501,13 +43781,92 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "rating rateit-small" }),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("i", {
+                              class:
+                                product.rating == 0
+                                  ? "far fa-star"
+                                  : product.rating >= 1
+                                  ? "fas fa-star"
+                                  : "fas fa-star-half-alt",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 1
+                                  ? product.rating >= 2
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 2
+                                  ? product.rating >= 3
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 3
+                                  ? product.rating >= 4
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 4
+                                  ? product.rating >= 5
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            product.reviews > 0
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      "margin-left": "5px",
+                                      color: "gray"
+                                    }
+                                  },
+                                  [_vm._v("(" + _vm._s(product.reviews) + ")")]
+                                )
+                              : _vm._e()
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "product-price" }, [
-                          _c("p", { staticClass: "price" }, [
-                            _vm._v(_vm._s(_vm._f("formatPrice")(product.price)))
-                          ])
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product-price float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("p", { staticClass: "price" }, [
+                              _vm._v(
+                                _vm._s(_vm._f("formatPrice")(product.retail))
+                              )
+                            ])
+                          ]
+                        )
                       ])
                     ])
                   ])
@@ -43637,21 +43996,123 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "rating rateit-small" }),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("i", {
+                              class:
+                                product.rating == 0
+                                  ? "far fa-star"
+                                  : product.rating >= 1
+                                  ? "fas fa-star"
+                                  : "fas fa-star-half-alt",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 1
+                                  ? product.rating >= 2
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 2
+                                  ? product.rating >= 3
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 3
+                                  ? product.rating >= 4
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 4
+                                  ? product.rating >= 5
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            product.reviews > 0
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      "margin-left": "5px",
+                                      color: "gray"
+                                    }
+                                  },
+                                  [_vm._v("(" + _vm._s(product.reviews) + ")")]
+                                )
+                              : _vm._e()
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "product-price" }, [
-                          _c("p", { staticClass: "price" }, [
-                            _vm._v(
-                              _vm._s(_vm._f("formatPrice")(product.retail))
-                            )
-                          ])
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product-price float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("p", { staticClass: "price" }, [
+                              _vm._v(
+                                _vm._s(_vm._f("formatPrice")(product.retail))
+                              )
+                            ])
+                          ]
+                        )
                       ])
                     ])
                   ])
                 ])
               }),
               0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c(
+              "a",
+              {
+                staticClass: "view-more",
+                class: [_vm.isFinished ? "finish" : "load-more"],
+                attrs: { href: "javascript:void(0);" },
+                on: {
+                  click: function($event) {
+                    return _vm.getProducts(10)
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-spinner fa-spin",
+                  class: _vm.submit ? "" : "hidden",
+                  staticStyle: { "font-size": "20px" }
+                }),
+                _vm._v(" " + _vm._s(_vm.buttonText) + "  "),
+                _c("i", { staticClass: "fa fa-caret-down" })
+              ]
             )
           ])
         ]
@@ -43771,21 +44232,123 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "rating rateit-small" }),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("i", {
+                              class:
+                                product.rating == 0
+                                  ? "far fa-star"
+                                  : product.rating >= 1
+                                  ? "fas fa-star"
+                                  : "fas fa-star-half-alt",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 1
+                                  ? product.rating >= 2
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 2
+                                  ? product.rating >= 3
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 3
+                                  ? product.rating >= 4
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              class:
+                                product.rating > 4
+                                  ? product.rating >= 5
+                                    ? "fas fa-star"
+                                    : "fas fa-star-half-alt"
+                                  : "far fa-star",
+                              staticStyle: { color: "#ffc107" }
+                            }),
+                            _vm._v(" "),
+                            product.reviews > 0
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticStyle: {
+                                      "margin-left": "5px",
+                                      color: "gray"
+                                    }
+                                  },
+                                  [_vm._v("(" + _vm._s(product.reviews) + ")")]
+                                )
+                              : _vm._e()
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "product-price" }, [
-                          _c("p", { staticClass: "price" }, [
-                            _vm._v(
-                              _vm._s(_vm._f("formatPrice")(product.retail))
-                            )
-                          ])
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product-price float-left col-md-12 col-lg-12 no-padding"
+                          },
+                          [
+                            _c("p", { staticClass: "price" }, [
+                              _vm._v(
+                                _vm._s(_vm._f("formatPrice")(product.retail))
+                              )
+                            ])
+                          ]
+                        )
                       ])
                     ])
                   ])
                 ])
               }),
               0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c(
+              "a",
+              {
+                staticClass: "view-more",
+                class: [_vm.isFinished ? "finish" : "load-more"],
+                attrs: { href: "javascript:void(0);" },
+                on: {
+                  click: function($event) {
+                    return _vm.getProducts(10)
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-spinner fa-spin",
+                  class: _vm.submit ? "" : "hidden",
+                  staticStyle: { "font-size": "20px" }
+                }),
+                _vm._v(" " + _vm._s(_vm.buttonText) + "  "),
+                _c("i", { staticClass: "fa fa-caret-down" })
+              ]
             )
           ])
         ]

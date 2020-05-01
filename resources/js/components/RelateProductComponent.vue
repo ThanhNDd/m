@@ -19,6 +19,11 @@
                     </div>
                 </div>
             </div>
+            <div class="row justify-content-center">
+              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
+                <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Xem thêm<i class="fas fa-caret-down"></i>
+              </a>
+            </div>
         </div>
     </div>
 
@@ -28,22 +33,61 @@
     export default {
         data() {
             return {
-                products: [],
+                products: '',
+                isFinished: false,
+                row: 0, // Record selction position
+                rowperpage: 5, // Number of records fetch at a time
+                buttonText: 'Xem thêm',
                 url: '',
-                swiper: null
+                submit: false,
             }
         },
         created() {
             this.url = url;
-            let cat_id = document.querySelector('#cat_id').getAttribute('value');
-            let id = document.querySelector('#product_id').getAttribute('value');
-            let type = document.querySelector('#type_id').getAttribute('value');
-            axios.get(url + '/api/relate/'+id+'/category/'+cat_id+'/type/'+type)
-                .then(response => {
-                    this.products = response.data;
-                });
+            this.getProducts();
         },
         methods: {
+            getProducts: function () {
+                let cat_id = document.querySelector('#cat_id').getAttribute('value');
+                let id = document.querySelector('#product_id').getAttribute('value');
+                let type = document.querySelector('#type_id').getAttribute('value');
+                // axios.get(url + '/api/relate/'+id+'/category/'+cat_id+'/type/'+type)
+                //     .then(response => {
+                //         this.products = response.data;
+                //     });
+                this.submit = true;
+                axios.post(url + '/api/relate', {
+                    product_id: id,
+                    cat_id: cat_id,
+                    type: type,
+                    row: this.row,
+                    rowperpage: this.rowperpage
+                }).then(response => {
+                    console.log(response.data);
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.row += this.rowperpage;
+                        let len = this.products.length;
+                        if (len > 0) {
+                            this.buttonText = "Loading ...";
+                            let that = this;
+                            setTimeout(function () {
+                                that.buttonText = 'Xem thêm';
+                                for (let i = 0; i < response.data.length; i++) {
+                                    that.products.push(response.data[i]);
+                                }
+                                that.submit = false;
+                            }, 500);
+                        } else {
+                            this.products = response.data;
+                            this.submit = false;
+                        }
+                    } else {
+                        this.buttonText = "Không có thêm sản phẩm.";
+                        this.isFinished = true;
+                        this.submit = false;
+                    }
+                });
+            }
         },
         mounted:function () {
             this.swiper = new window.Swiper('.swiper-container', {

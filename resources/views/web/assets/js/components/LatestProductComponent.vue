@@ -26,14 +26,17 @@
                         {{product.name}}
                       </a>
                     </h3>
-                    <div class="rating rateit-small"></div>
-                    <!--                    <div class="description"></div>-->
-                    <div class="product-price">
-                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
-                      <!--                      <span class="price-before-discount">$ 800</span> -->
+                    <div class="float-left col-md-12 col-lg-12 no-padding">
+                      <i v-bind:class="product.rating == 0 ? 'far fa-star' : (product.rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')" style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 1 ? (product.rating >= 2 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 2 ? (product.rating >= 3 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 3 ? (product.rating >= 4 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                      <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
-                    <!-- /.product-price -->
-
+                    <div class="product-price float-left col-md-12 col-lg-12 no-padding">
+                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                    </div>
                   </div>
                   <!-- /.product-info -->
 <!--                  <div class="cart clearfix animate-effect">-->
@@ -58,7 +61,7 @@
               <!-- /.products -->
             </div>
             <div class="row justify-content-center">
-              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
+              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(10)'>
                 <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> Xem thêm &nbsp;<i class="fa fa-caret-down"></i>
               </a>
             </div>
@@ -82,7 +85,6 @@
                 products: '',
                 isFinished: false,
                 row: 0, // Record selction position
-                rowperpage: 10, // Number of records fetch at a time
                 buttonText: 'Xem thêm',
                 url: '',
                 submit: false,
@@ -90,18 +92,18 @@
         },
         created() {
             this.url = url;
-            this.getProducts();
+            this.getProducts(10);
         },
         methods: {
-            getProducts: function () {
+            getProducts: function (rowperpage) {
                 this.submit = true;
                 axios.post(url + '/api/products', {
                     row: this.row,
-                    rowperpage: this.rowperpage
+                    rowperpage: rowperpage
                 }).then(response => {
                     console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
-                        this.row += this.rowperpage;
+                        this.row += rowperpage;
                         let len = this.products.length;
                         if (len > 0) {
                             this.buttonText = "Loading ...";

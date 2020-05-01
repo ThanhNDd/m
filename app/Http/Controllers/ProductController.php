@@ -69,8 +69,10 @@ class ProductController extends Controller
             $viewed = array();
             $viewed["id"] = $product->id;
             $viewed["name"] = $product->name;
-            $viewed["price"] = $product->retail;
+            $viewed["retail"] = $product->retail;
             $viewed["image"] = $product->image;
+            $viewed["rating"] = $product->rating;
+            $viewed["reviews"] = $product->reviews;
             array_push($vieweds, $viewed);
             $reversed = array_reverse($vieweds);
             $request->session()->put('viewed', $reversed);

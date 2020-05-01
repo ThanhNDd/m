@@ -3301,26 +3301,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: [],
+      products: '',
+      isFinished: false,
+      row: 0,
+      // Record selction position
+      rowperpage: 5,
+      // Number of records fetch at a time
+      buttonText: 'Xem thêm',
       url: '',
-      swiper: null
+      submit: false
     };
   },
   created: function created() {
-    var _this = this;
-
     this.url = url;
-    var cat_id = document.querySelector('#cat_id').getAttribute('value');
-    var id = document.querySelector('#product_id').getAttribute('value');
-    var type = document.querySelector('#type_id').getAttribute('value');
-    axios.get(url + '/api/relate/' + id + '/category/' + cat_id + '/type/' + type).then(function (response) {
-      _this.products = response.data;
-    });
+    this.getProducts();
   },
-  methods: {},
+  methods: {
+    getProducts: function getProducts() {
+      var _this = this;
+
+      var cat_id = document.querySelector('#cat_id').getAttribute('value');
+      var id = document.querySelector('#product_id').getAttribute('value');
+      var type = document.querySelector('#type_id').getAttribute('value'); // axios.get(url + '/api/relate/'+id+'/category/'+cat_id+'/type/'+type)
+      //     .then(response => {
+      //         this.products = response.data;
+      //     });
+
+      this.submit = true;
+      axios.post(url + '/api/relate', {
+        product_id: id,
+        cat_id: cat_id,
+        type: type,
+        row: this.row,
+        rowperpage: this.rowperpage
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (response.data !== '' && response.data.length > 0) {
+          _this.row += _this.rowperpage;
+          var len = _this.products.length;
+
+          if (len > 0) {
+            _this.buttonText = "Loading ...";
+            var that = _this;
+            setTimeout(function () {
+              that.buttonText = 'Xem thêm';
+
+              for (var i = 0; i < response.data.length; i++) {
+                that.products.push(response.data[i]);
+              }
+
+              that.submit = false;
+            }, 500);
+          } else {
+            _this.products = response.data;
+            _this.submit = false;
+          }
+        } else {
+          _this.buttonText = "Không có thêm sản phẩm.";
+          _this.isFinished = true;
+          _this.submit = false;
+        }
+      });
+    }
+  },
   mounted: function mounted() {
     this.swiper = new window.Swiper('.swiper-container', {
       cssMode: true,
@@ -44742,7 +44794,31 @@ var render = function() {
           )
         }),
         0
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c(
+          "a",
+          {
+            staticClass: "view-more",
+            class: [_vm.isFinished ? "finish" : "load-more"],
+            attrs: { href: "javascript:void(0);" },
+            on: {
+              click: function($event) {
+                return _vm.getProducts()
+              }
+            }
+          },
+          [
+            _c("span", {
+              staticClass: "spinner-border spinner-border-sm",
+              class: _vm.submit ? "" : "hidden"
+            }),
+            _vm._v(" Xem thêm"),
+            _c("i", { staticClass: "fas fa-caret-down" })
+          ]
+        )
+      ])
     ])
   ])
 }

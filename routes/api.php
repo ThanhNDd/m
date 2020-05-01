@@ -23,8 +23,9 @@ Route::post('/best-seller', 'BestSellerController@index');
 Route::Resource('/attributes', 'AttributesController', ['parameters' => [
     'attributes' => 'id'
 ]]);
-Route::Resource('/relate.category.type', 'RelateProductController');
-Route::Resource('/recommend.category.type', 'RecommendController');
+//Route::post('/relate.category.type', 'RelateProductController@show');
+Route::post('/relate', 'RelateProductController@show');
+Route::post('/recommend', 'RecommendController@show');
 Route::Resource('/cart', 'CartController');
 Route::get('/carts', 'CartController@get_all_items');
 Route::group(['prefix' => 'cart'], function(){
