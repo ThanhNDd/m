@@ -13,8 +13,13 @@ class CartController extends Controller
 
     public function show()
     {
-        $is_active = 'cart';
-        return view('theme.page.cart', compact('is_active'));
+
+        if ($this->is_mobile()) {
+            $is_active = 'cart';
+            return view('theme.page.cart', compact('is_active'));
+        } else {
+            return view('web.page.cart');
+        }
     }
 
     public function count(Request $request) {

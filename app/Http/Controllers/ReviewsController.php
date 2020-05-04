@@ -58,13 +58,17 @@ class ReviewsController extends Controller
         return response($ratings, Response::HTTP_OK);
     }
 
-    public function show($product_id) {
+    public function show(Request $request) {
+        $row = $request->row;
+        $rowperpage = $request->rowperpage;
+        $product_id = $request->product_id;
         $reviews = DB::table('smi_reviews')
             ->join('smi_products', 'smi_reviews.product_id', '=', 'smi_products.id')
             ->select('smi_reviews.*', 'smi_products.name as product_name')
             ->where([['product_id', $product_id]])
             ->orderBy('created_date', 'desc')
-            ->take(3)
+            ->offset($row)
+            ->limit($rowperpage)
             ->get()->jsonSerialize();
         return response($reviews, Response::HTTP_OK);
     }

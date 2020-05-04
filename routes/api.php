@@ -46,7 +46,7 @@ Route::group(['prefix' => 'danh-muc'], function(){
     Route::post('/giay-dep.html', 'CategoriesController@shoes');
 });
 Route::post('/submit-reviews', 'ReviewsController@store');
-Route::Resource('/reviews', 'ReviewsController');
+Route::post('/reviews', 'ReviewsController@show');
 Route::get('/rating-avg/{id}', 'ReviewsController@countRating');
 Route::get('/rating-number-detail/{id}', 'ReviewsController@ratingNumberDetail');
 Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');

@@ -13,7 +13,7 @@
                           </a>
                         </li>
                         <li class="header_cart hidden-xs">
-                          <a href="javascript:void(0);">
+                          <a href="{{url('/gio-hang.html')}}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Giỏ hàng
                           </a>
                         </li>

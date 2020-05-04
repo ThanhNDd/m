@@ -171,10 +171,15 @@
           </div>
           <!-- end divider -->
           <!-- view all reviews -->
-          <div class="view-all-review" v-if="total_rating > 3">
-              <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>
+<!--          <div class="view-all-review" v-if="total_rating > 3">-->
+<!--              <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>-->
 <!--            <button class="btn btn-primary">Xem tất cả</button>-->
-          </div>
+            <div class="row justify-content-center"v-if="total_rating > 3">
+              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getAllReviews(5)'>
+                <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> {{buttonText}} &nbsp;<i class="fa fa-caret-down"></i>
+              </a>
+            </div>
+<!--          </div>-->
           <!-- end view all reviews -->
       </div>
   </section>
@@ -207,13 +212,17 @@
                 content: '',
                 email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                 phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
-                reload: 0
+                reload: 0,
+                isFinished: false,
+                row: 0,
+                buttonText: 'Xem thêm',
+                submit: false,
             }
         },
         props: ['product_id'],
         created() {
             this.url = url;
-            this.getAllReviews();
+            this.getAllReviews(3);
             this.getRatingAvg();
             this.getRatingNumberDetail();
         },
@@ -257,14 +266,48 @@
                         }
                     });
             },
-            getAllReviews: function () {
-                axios.get(url + '/api/reviews/'+this.product_id)
-                    .then(response => {
-                        this.reviews = response.data;
-                        if(response.data.length > 0) {
-                            this.product_name = response.data[0].product_name;
+            getAllReviews: function (rowperpage) {
+                // axios.get(url + '/api/reviews/'+this.product_id)
+                //     .then(response => {
+                //         this.reviews = response.data;
+                //         if(response.data.length > 0) {
+                //             this.product_name = response.data[0].product_name;
+                //         }
+                //     });
+
+                this.submit = true;
+                axios.post(url + '/api/reviews', {
+                    product_id: this.product_id,
+                    row: this.row,
+                    rowperpage: rowperpage
+                }).then(response => {
+                    console.log(response.data);
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.row += rowperpage;
+                        let len = this.reviews.length;
+                        if (len > 0) {
+                            this.buttonText = "Loading ...";
+                            let that = this;
+                            setTimeout(function () {
+                                that.buttonText = 'Xem thêm';
+                                for (let i = 0; i < response.data.length; i++) {
+                                    that.reviews.push(response.data[i]);
+                                }
+                                that.submit = false;
+                            }, 500);
+                        } else {
+                            this.reviews = response.data;
+                            if(response.data.length > 0) {
+                                this.product_name = response.data[0].product_name;
+                            }
+                            this.submit = false;
                         }
-                    });
+                    } else {
+                        this.buttonText = "Không có thêm đánh giá.";
+                        this.isFinished = true;
+                        this.submit = false;
+                    }
+                });
             },
             submitReviews: function () {
                 if(!this.validate()) {

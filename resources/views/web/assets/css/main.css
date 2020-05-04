@@ -250,6 +250,7 @@ img[src="assets/images/blank.gif"] {
 
 .inner-left-md {
   padding-left: 60px;
+  color:red;
 }
 
 .inner-left-sm {
@@ -1299,7 +1300,8 @@ a {
 }
 
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span span {
-  color: #0b816a;
+  color: #666666;
+  text-transform: capitalize;
 }
 
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-edit a:hover,
@@ -1308,7 +1310,7 @@ a {
 }
 
 .shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {
-  color: #0b816a;
+  color: #666666;
 }
 
 .shopping-cart-table table tbody tr td .quant-input .arrows .arrow:hover,
@@ -6397,7 +6399,7 @@ header {
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span {
   font-size: 14px;
   color: #666666;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span span {
@@ -6504,7 +6506,7 @@ header {
   display: block;
   font-size: 16px;
   color: #555;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 .shopping-cart .estimate-ship-tax table tbody tr td .form-group label,
