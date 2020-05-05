@@ -54,14 +54,16 @@
                     </a>
                   </td>
                   <td class="cart-image">
-                    <a class="entry-thumbnail" href="javascript:void(0);">
+                      <a class="entry-thumbnail" v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
                         <img v-bind:src="cart['image']" alt="">
                     </a>
                   </td>
                   <td class="cart-product-name-info">
-                    <h4 class='cart-product-description'>
-                      <p>{{cart['name']}}</p>
-                    </h4>
+                    <a v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
+                      <h4 class='cart-product-description'>
+                        {{cart['name']}}
+                      </h4>
+                    </a>
                     <div class="cart-product-info">
                       <span class="product-color">Màu:<span>{{ cart['color'] }}</span></span>
                     </div>
@@ -70,7 +72,7 @@
                     </div>
                   </td>
                   <td class="cart-product-sub-total">
-                    <span class="cart-sub-total-price">{{ cart['price'] | formatPrice }}</span>
+                    <span class="cart-sub-total-price" ref="price">{{ cart['price'] | formatPrice }}</span>
                   </td>
                   <td class="cart-product-quantity">
                     <div class="quant-input">
@@ -86,11 +88,11 @@
                           </span>
                         </div>
                       </div>
-                      <input type="text" v-bind:value="cart['qty']" readonly>
+                      <input type="text" v-bind:value="cart['qty']" readonly ref="qty">
                     </div>
                   </td>
                   <td class="cart-product-grand-total">
-                    <span class="cart-grand-total-price">{{subtotal(cart['price'], cart('qty'))}}</span>
+                    <span class="cart-grand-total-price">{{subtotal(cart) | formatPrice}}</span>
                   </td>
                 </tr>
                 </tbody><!-- /tbody -->
@@ -165,7 +167,9 @@
 
         },
         methods: {
-            subtotal(price, qty) {
+            subtotal(cart) {
+                let price = cart['price'];
+                let qty = cart['qty'];
                 return price * qty;
             },
             plus: function (cart) {

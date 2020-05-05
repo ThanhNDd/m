@@ -13,7 +13,6 @@ class CartController extends Controller
 
     public function show()
     {
-
         if ($this->is_mobile()) {
             $is_active = 'cart';
             return view('theme.page.cart', compact('is_active'));
@@ -124,7 +123,12 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $is_active = 'checkout';
-        return view('theme.page.checkout', compact('is_active'));
+        if ($this->is_mobile()) {
+            $is_active = 'checkout';
+            return view('theme.page.checkout', compact('is_active'));
+        } else {
+            return view('web.page.checkout');
+        }
+
     }
 }

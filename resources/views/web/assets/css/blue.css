@@ -398,16 +398,16 @@ a {
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info h4 a:focus {
   color: #0f6cb2;
 }
-.shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span span {
-  color: #84b943;
-}
+/*.shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span span {*/
+/*  color: #84b943;*/
+/*}*/
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-edit a:hover,
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-edit a:focus {
   color: #0f6cb2;
 }
-.shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {
-  color: #84b943;
-}
+/*.shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {*/
+/*  color: #84b943;*/
+/*}*/
 .shopping-cart-table table tbody tr td .quant-input .arrows .arrow:hover,
 .shopping-cart-table table tbody tr td .quant-input .arrows .arrow:focus {
   color: #0f6cb2;

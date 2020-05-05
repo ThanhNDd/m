@@ -6405,7 +6405,6 @@ header {
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info .cart-product-info span span {
   font-family: 'Open Sans', sans-serif, sans-serif;
   font-size: 12px;
-  text-transform: lowercase;
   margin-left: 14px;
 }
 

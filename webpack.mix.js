@@ -50,6 +50,7 @@ mix.js([
       // 'resources/views/web/assets/css/font-awesome.css',
       'public/mobile/css/font-awesome.min.css',
       'resources/views/web/assets/css/style.css',
+      'public/mobile/css/vue-select.css',
     ], 'public/web/css/webapp.css');
 mix.copyDirectory('resources/views/web/assets/css/images', 'public/web/css/images');
 mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');

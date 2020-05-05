@@ -23,9 +23,9 @@
 
                   <div class="product-info text-left">
                     <h3 class="name">
-                      <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-                        {{product.name}}
-                      </a>
+                    <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
+                      {{product.name}}
+                    </a>
                     </h3>
                     <div class="float-left col-md-12 col-lg-12 no-padding">
                       <i v-bind:class="product.rating == 0 ? 'far fa-star' : (product.rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')" style="color:#ffc107;"></i>

@@ -8,6 +8,7 @@ import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import vSelect from 'vue-select';
 import jQuery from 'jquery';
 import Lingallery from 'lingallery';
 
@@ -34,6 +35,7 @@ Vue.use(require('vue-moment'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component("v-select", vSelect);
 Vue.component('lingallery', Lingallery);
 Vue.component('star-rating', StarRating);
 Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
@@ -46,6 +48,7 @@ Vue.component('recently-product-component', require('./components/RecentlyProduc
 Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('cart-number-component', require('./components/CartComponent').default);
 Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
+Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');
