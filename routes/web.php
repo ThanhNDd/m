@@ -38,5 +38,5 @@ Route::get('/gioi-thieu.html', 'InfoController@show');
 Route::get('/thong-bao.html', function () {
     return view('theme.page.notifications');
 });
-Route::get('/cam-on.html', 'CheckoutController@finish');
+Route::get('/hoan-thanh.html', 'CheckoutController@finish');
 

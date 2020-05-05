@@ -245,3 +245,38 @@ i.far.fa-check-circle{
   font-size: 25px;
   margin-top: 5px;
 }
+.shopping-cart .cart-shopping-total table tbody tr td .cart-grand-total{
+  font-size: 16px;
+  font-weight: 600;
+}
+.wrap-total-cart {
+  margin-top: 20px;
+}
+.wrap-total-cart .container .content-total ul li {
+  display: inline-block;
+  text-align: right;
+  width: 48%;
+}
+.wrap-total-cart .container .content-total ul li p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+.wrap-total-cart .container .content-total ul li h6 {
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+}
+.content-text p {
+  font-size: 14px;
+}
+.coupon-code input {
+  width: 80%;
+  float: left;
+  margin-right: 20px;
+  height: 40px;
+}
+.w-product {
+  max-height: 224px;
+  overflow: scroll;
+}

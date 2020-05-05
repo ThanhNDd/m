@@ -18,7 +18,7 @@
                           </a>
                         </li>
                         <li class="check">
-                          <a href="javascript:void(0);">
+                          <a href="{{url('/thanh-toan.html')}}">
                             <i class="fas fa-credit-card"></i>&nbsp;Thanh toán
                           </a>
                         </li>
@@ -39,23 +39,6 @@
                       </a>
                     </li>
                   </ul>
-{{--                    <ul class="list-unstyled list-inline">--}}
-{{--                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>--}}
-{{--                            <ul class="dropdown-menu">--}}
-{{--                                <li><a href="#">USD</a></li>--}}
-{{--                                <li><a href="#">INR</a></li>--}}
-{{--                                <li><a href="#">GBP</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
-{{--                        <li class="dropdown dropdown-small lang"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>--}}
-{{--                            <ul class="dropdown-menu">--}}
-{{--                                <li><a href="#">English</a></li>--}}
-{{--                                <li><a href="#">French</a></li>--}}
-{{--                                <li><a href="#">German</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                    <!-- /.list-unstyled -->--}}
                 </div>
                 <!-- /.cnt-cart -->
                 <div class="clearfix"></div>
@@ -109,26 +92,13 @@
 
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 animate-dropdown top-cart-row">
                     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-
                     <div class="dropdown dropdown-cart">
-{{--                        <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">--}}
-{{--                            <div class="items-cart-inner">--}}
-{{--                                <div class="basket">--}}
-{{--                                    <div class="basket-item-count"><span class="count">2</span></div>--}}
-{{--                                    <div class="total-price-basket"> <span class="lbl">Shopping Cart</span> <span class="value">$4580</span> </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
                         <cart-number-component></cart-number-component>
-                        <!-- /.dropdown-menu-->
                     </div>
-                    <!-- /.dropdown-cart -->
-
                     <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
                 <!-- /.top-cart-row -->
             </div>
             <!-- /.row -->
-
         </div>
         <!-- /.container -->
 

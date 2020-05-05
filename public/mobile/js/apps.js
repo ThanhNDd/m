@@ -2755,7 +2755,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.submit = false;
 
         if (response.data === 201) {
-          window.location.href = url + "/cam-on.html";
+          window.location.href = url + "/hoan-thanh.html";
         } else {
           swal({
             title: "Đã xảy ra lỗi!",

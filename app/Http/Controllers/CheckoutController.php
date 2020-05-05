@@ -119,6 +119,10 @@ class CheckoutController extends Controller
     }
 
     public function finish() {
-        return view('theme.page.finish');
+        if ($this->is_mobile()) {
+          return view('theme.page.finish');
+        } else {
+          return view('web.page.finish');
+        }
     }
 }

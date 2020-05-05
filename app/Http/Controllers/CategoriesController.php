@@ -89,6 +89,11 @@ class CategoriesController extends Controller
         return $this->getCategory($cat_title);
     }
     function getCategory($cat_title) {
-        return view('theme.page.category.category', compact('cat_title'));
+        if ($this->is_mobile()) {
+            return view('theme.page.category.category', compact('cat_title'));
+        } else {
+            return view('web.page.category', compact('cat_title'));
+        }
+
     }
 }

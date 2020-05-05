@@ -8109,7 +8109,8 @@ header {
     font-weight: 500;
   }
 
-  .shopping-cart .cart-shopping-total table thead tr th .cart-sub-total, .shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {
+  .shopping-cart .cart-shopping-total table thead tr th .cart-sub-total, .shopping-cart .cart-shopping-total table thead tr th .cart-grand-total,
+  .shopping-cart .cart-shopping-total table tbody tr td .cart-grand-total{
     font-size: 16px;
     font-weight: 600;
   }

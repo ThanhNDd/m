@@ -44,6 +44,7 @@
     "vue-toasted": "^1.1.28",
     "vue2-timeago": "^1.2.6",
     "vue2-toast": "^2.1.0",
+    "vuejs-paginate": "^2.1.0",
     "vuelidate": "^0.7.5"
   }
 }

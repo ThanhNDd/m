@@ -1,7 +1,7 @@
 <template>
     <div class="container"  v-if="carts.length === 0" style="margin: 20px 0; text-align: center">
       <div class="content">
-        <h4 class="center">Không tồn tại sản phẩm trong giỏ hàng</h4>
+        <h4 class="center">Không tồn tại sản phẩm để thanh toán</h4>
         <div class="divider-space-content"></div>
         <a v-bind:href="url" class="btn btn-primary">
           <i class="fas fa-arrow-alt-circle-left"></i> Quay về trang chủ
@@ -32,124 +32,109 @@
       </div>
     </div>
     <form @submit="checkForm" novalidate="true">
-      <div class="row ">
-      <div class="shopping-cart">
-        <div class="shopping-cart-table ">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-              <tr>
-                <th class="cart-description item">Hình ảnh</th>
-                <th class="cart-product-name item">Tên sản phẩm</th>
-                <th class="cart-sub-total item">Đơn giá</th>
-                <th class="cart-qty item">Số lượng</th>
-                <th class="cart-total last-item">Thành tiền</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="(cart, index) in carts">
-                <td class="cart-image">
-                  <a class="entry-thumbnail" v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
-                    <img v-bind:src="cart['image']" alt="">
-                  </a>
-                </td>
-                <td class="cart-product-name-info">
-                  <a v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
-                    <h4 class='cart-product-description'>
-                      {{cart['name']}}
-                    </h4>
-                  </a>
-                  <div class="cart-product-info">
-                    <span class="product-color">Màu:<span>{{ cart['color'] }}</span></span>
-                  </div>
-                  <div class="cart-product-info">
-                    <span class="product-color">Size:<span>{{ cart['size'] }}</span></span>
-                  </div>
-                </td>
-                <td class="cart-product-sub-total">
-                  <span class="cart-sub-total-price" ref="price">{{ cart['price'] | formatPrice }}</span>
-                </td>
-                <td class="cart-product-quantity">
-                  <div class="quant-input">
-                    <p>{{cart['qty']}}</p>
-                  </div>
-                </td>
-                <td class="cart-product-grand-total">
-                  <span class="cart-grand-total-price">{{subtotal(cart) | formatPrice}}</span>
-                </td>
-              </tr>
-              </tbody><!-- /tbody -->
-            </table><!-- /table -->
-          </div>
-        </div><!-- /.shopping-cart-table -->
-        <div class="col-md-4 col-sm-12 estimate-ship-tax">
-          <a  v-bind:href="url" class="btn btn-upper btn-primary outer-left-xs">
-            <i class="fas fa-arrow-circle-left"></i>&nbsp;Tiếp tục mua hàng
-          </a>
-        </div>
-        <div class="col-md-4 col-sm-12 estimate-ship-tax">
-          <h3>Thông tin người nhận</h3>
-          <div class="divider-space-content"></div>
-          <div style="margin-bottom: 20px;">
-            <div class="form-group">
-              <input type="text" placeholder="Họ tên" class="form-control" v-model="name" ref="name">
-            </div>
-            <div :class="['form-group', isPhoneValid()]">
-              <input type="text" placeholder="Số điện thoại" class="form-control" v-model="phone" ref="phone">
-            </div>
-            <div :class="['form-group', isEmailValid()]">
-              <input type="email" class="form-control" placeholder="Email" v-model="email" ref="email" />
-            </div>
-            <v-select :options="city" :reduce="city => city.id" @input="changeCity" v-model="city_id" placeholder="Thành phố" label="text" ref="city" class="form-group"></v-select>
-            <v-select :options="district" :reduce="district => district.id" @input="changeDistrict" v-model="district_id" placeholder="Quận huyện" label="text" ref="district" class="form-group"></v-select>
-            <v-select :options="village" :reduce="village => village.id" @input="changeVillage" v-model="village_id" placeholder="Phường xã" label="text" ref="village
+          <div class="row col-md-12" style="background: #fff; margin-bottom: 30px;">
+            <div class="col-md-6">
+              <h3>Thông tin người nhận</h3>
+              <div class="divider-space-content"></div>
+              <div style="margin-bottom: 20px;">
+                <div class="form-group">
+                  <input type="text" placeholder="Họ tên" class="form-control" v-model="name" ref="name">
+                </div>
+                <div :class="['form-group', isPhoneValid()]">
+                  <input type="text" placeholder="Số điện thoại" class="form-control" v-model="phone" ref="phone">
+                </div>
+                <div :class="['form-group', isEmailValid()]">
+                  <input type="email" class="form-control" placeholder="Email" v-model="email" ref="email" />
+                </div>
+                <v-select :options="city" :reduce="city => city.id" @input="changeCity" v-model="city_id" placeholder="Thành phố" label="text" ref="city" class="form-group"></v-select>
+                <v-select :options="district" :reduce="district => district.id" @input="changeDistrict" v-model="district_id" placeholder="Quận huyện" label="text" ref="district" class="form-group"></v-select>
+                <v-select :options="village" :reduce="village => village.id" @input="changeVillage" v-model="village_id" placeholder="Phường xã" label="text" ref="village
 " class="form-group"></v-select>
-            <div class="form-group">
-              <input type="text" placeholder="Thôn xóm, số nhà ..." class="form-control" v-model="address" ref="address">
+                <div class="form-group">
+                  <input type="text" placeholder="Thôn xóm, số nhà ..." class="form-control" v-model="address" ref="address">
+                </div>
+                <div class="form-group">
+                  <textarea placeholder="Ghi chú đơn hàng ..." class="form-control" v-model="note" ref="note"></textarea>
+                </div>
+              </div>
             </div>
-          </div>
-        </div><!-- /.estimate-ship-tax -->
-        <div class="col-md-4 col-sm-12 cart-shopping-total">
-          <table class="table">
-            <thead>
-            <tr>
-              <th>
-                <div class="cart-grand-total">
-                  Tổng <span class="inner-left-md">{{totalAmount | formatPrice}}</span>
+            <div class="col-md-6">
+              <h3>Danh sách sản phẩm</h3>
+              <div class="container" style="padding: 0;width: 100%;">
+                <div class="w-product">
+                  <div class="content" v-for="(cart, index) in carts">
+                    <div class="row">
+                      <div class="col-md-3 col-lg-3">
+                        <div class="content-image">
+                          <img v-bind:src="cart['image']" width="100px">
+                        </div>
+                      </div>
+                      <div class="col-md-8 col-lg-8">
+                        <div class="content-text">
+                          <p class="title-product" v-text="cart['name'] +' - '+ cart['color'] +' - '+ cart['size']"></p>
+                          <p v-text="displayPrice(cart['price'], cart['qty'])"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </th>
-            </tr>
-            </thead><!-- /thead -->
-            <tbody>
-            <tr>
-              <td>
-                <div class="cart-grand-total">
-                  Phí ship <span class="inner-left-md">{{totalShipping | formatPrice}}</span>
+                  <div class="coupon-code">
+                      <input type="text" class="form-control" placeholder="Mã giảm giá">
+                      <button class="btn btn-primary">Áp dụng</button>
+                  </div>
+                  <div class="wrap-total-cart">
+                    <div class="container" style="padding: 0;background: #f8f8f8;">
+                      <div class="content-total">
+                        <ul>
+                          <li>
+                            <p>Tổng tiền</p>
+                          </li>
+                          <li>
+                            <h6>{{totalAmount | formatPrice}}</h6>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="content-total">
+                        <ul>
+                          <li>
+                            <p>Phí ship</p>
+                          </li>
+                          <li>
+                            <h6>{{totalShipping | formatPrice}}</h6>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="content-total">
+                        <ul>
+                          <li>
+                            <p>Tổng thanh toán</p>
+                          </li>
+                          <li>
+                            <h6>{{totalMoney | formatPrice}}</h6>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-12 estimate-ship-tax" style="margin-bottom: 20px;margin-top: 10px;padding: 0;">
+                <div class="col-md-6">
+                    <a v-bind:href="url" class="btn btn-upper btn-primary outer-left-xs">
+                      <i class="fas fa-arrow-circle-left"></i>&nbsp;Tiếp tục mua hàng
+                    </a>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cart-grand-total">
-                  Tổng thanh toán <span class="inner-left-md">{{totalMoney | formatPrice}}</span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cart segments">
-                  <button type="submit" class="button primary-button" v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-danger" style="float: right;" v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
                     <span class="fas fa-shopping-bag" v-bind:class="submit ? 'hidden' : ''"></span>
                     <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Thanh toán
                   </button>
                 </div>
-              </td>
-            </tr>
-            </tbody><!-- /tbody -->
-          </table><!-- /table -->
-        </div><!-- /.cart-shopping-total -->
-      </div><!-- /.shopping-cart -->
-    </div> <!-- /.row -->
+            </div>
+          </div>
+<!--        </div>-->
+<!--      </div>&lt;!&ndash; /.shopping-cart &ndash;&gt;-->
+<!--    </div> &lt;!&ndash; /.row &ndash;&gt;-->
     </form>
     </div>
 
@@ -165,6 +150,7 @@
                 phone: '',
                 email: '',
                 address: '',
+                note: '',
                 city: [],
                 city_id: '',
                 district: [],
@@ -226,6 +212,10 @@
             }
         },
         methods: {
+            displayPrice: function (price, qty) {
+                let val = this.formatPrice(price*qty);
+                return this.formatPrice(price) + " x " + qty + " = " + val;
+            },
             subtotal(cart) {
                 let price = cart['price'];
                 let qty = cart['qty'];
@@ -317,7 +307,8 @@
                     "address" : this.address,
                     "total_amount" : this.total_amount,
                     "shipping" : this.shipping,
-                    "total_checkout" : this.total_checkout
+                    "total_checkout" : this.total_checkout,
+                    "note" : this.note,
                 });
                 console.log(JSON.stringify(orders));
                 axios.post(url + "/api/thuc-hien-thanh-toan", {
@@ -325,7 +316,7 @@
                 }).then(response => {
                     this.submit = false;
                     if(response.data === 201) {
-                        window.location.href =  url + "/cam-on.html";
+                        window.location.href =  url + "/hoan-thanh.html";
                     } else {
                         swal({
                             title: "Đã xảy ra lỗi!",

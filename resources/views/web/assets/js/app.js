@@ -11,6 +11,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import vSelect from 'vue-select';
 import jQuery from 'jquery';
 import Lingallery from 'lingallery';
+import Paginate from 'vuejs-paginate'
 
 
 window.Vue = require('vue');
@@ -35,6 +36,7 @@ Vue.use(require('vue-moment'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('paginate', Paginate);
 Vue.component("v-select", vSelect);
 Vue.component('lingallery', Lingallery);
 Vue.component('star-rating', StarRating);
