@@ -99,6 +99,14 @@ class ProductController extends Controller
     }
     return response()->json($vieweds);
   }
+
+  public function bestViewProduct()
+  {
+    $products = DB::table('smi_products')
+      ->whereIn('id', [513, 510, 509])
+      ->get()->jsonSerialize();
+    return response($products, Response::HTTP_OK);
+  }
 }
 
 

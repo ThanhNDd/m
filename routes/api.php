@@ -21,6 +21,7 @@ Route::post('/flash-sales', 'SaleController@index');
 Route::post('/sales', 'SaleController@index');
 Route::get('/sales', 'SaleController@count');
 Route::post('/best-seller', 'BestSellerController@index');
+Route::get('/best-view-product', 'ProductController@bestViewProduct');
 Route::Resource('/attributes', 'AttributesController', ['parameters' => [
     'attributes' => 'id'
 ]]);

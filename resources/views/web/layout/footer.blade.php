@@ -39,11 +39,36 @@
                     </div>
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="Contact us">Chính sách vận chuyển và giao nhận hàng</a></li>
-                            <li><a href="#" title="About us">Chính sách đổi hàng, trả, hoàn tiền</a></li>
-                            <li><a href="#" title="faq">Câu hỏi thường gặp</a></li>
-                            <li><a href="#" title="Popular Searches">Hướng dẫn chọn size</a></li>
-                            <li><a href="https://blog.shopmein.vn" title="Blog">Blog</a></li>
+                            <li class="first">
+                              <a href="#" title="Chính sách vận chuyển và giao nhận hàng">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Chính sách vận chuyển và giao nhận hàng
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" title="Chính sách đổi hàng, trả, hoàn tiền">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Chính sách đổi hàng, trả, hoàn tiền
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" title="Câu hỏi thường gặp">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Câu hỏi thường gặp
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" title="Hướng dẫn chọn size">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Hướng dẫn chọn size
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" title="Liên hệ">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Liên hệ
+                              </a>
+                            </li>
+                            <li>
+                              <a href="https://blog.shopmein.vn" title="Blog">
+                                <i class="fas fa-angle-double-right"></i>&nbsp;Blog
+                              </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -54,8 +79,6 @@
                     <div class="module-heading">
                         <h4 class="module-title">Chúng tôi trên facebook</h4>
                     </div>
-                    <!-- /.module-heading -->
-
                     <div class="module-body">
                       <div class="fb-page" data-href="https://www.facebook.com/shopmein.net/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shopmein.net/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shopmein.net/">Shop Mẹ Ỉn</a></blockquote></div>
                     </div>
@@ -83,5 +106,14 @@
               Copyright &copy; <a target="_blank" href="https://shopmein.vn">Shop Mẹ Ỉn</a>
             </div>
         </div>
+        <ul class="td-tags td-post-small-box clearfix">
+            <li><a href="{{url('')}}" title="quần áo trẻ em">Quần áo trẻ em</a></li>
+            <li><a href="{{url('')}}" title="đầm bé gái">Váy bé gái</a></li>
+            <li><a href="{{url('')}}" title="vest bé trai">Vest bé trai</a></li>
+            <li><a href="{{url('')}}" title="quần áo bé gái">quần áo bé gái</a></li>
+            <li><a href="{{url('')}}" title="quần áo sành điệu cho bé gái">quần áo sành điệu cho bé gái</a></li>
+            <li><a href="{{url('')}}" title="quần áo bé trai">quần áo bé trai</a></li>
+            <li><a href="{{url('')}}" title="quần áo bé trai sành điệu">quần áo bé trai sành điệu</a></li>
+        </ul>
     </div>
 </footer>

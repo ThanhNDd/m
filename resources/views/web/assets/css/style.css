@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Pony;
+  src: url('../fonts/Pony.ttf');
+}
+
 :root {
   --main-color: #005bbd;
 }
@@ -241,54 +246,116 @@ figure {
 
 i.fas.fa-shopping-cart,
 i.fas.fa-shopping-basket,
-i.far.fa-check-circle{
+i.far.fa-check-circle {
   font-size: 25px;
   margin-top: 5px;
 }
-.shopping-cart .cart-shopping-total table tbody tr td .cart-grand-total{
+
+.shopping-cart .cart-shopping-total table tbody tr td .cart-grand-total {
   font-size: 16px;
   font-weight: 600;
 }
+
 .wrap-total-cart {
   margin-top: 20px;
 }
+
 .wrap-total-cart .container .content-total ul li {
   display: inline-block;
   text-align: right;
   width: 48%;
 }
+
 .wrap-total-cart .container .content-total ul li p {
   font-size: 16px;
   font-weight: 500;
   color: #333;
 }
+
 .wrap-total-cart .container .content-total ul li h6 {
   font-size: 16px;
   font-weight: 500;
   color: red;
 }
+
 .content-text p {
   font-size: 14px;
 }
+
 .coupon-code input {
   width: 80%;
   float: left;
   margin-right: 20px;
   height: 40px;
 }
+
 .w-product {
   max-height: 224px;
   overflow: scroll;
 }
+
 .pagination {
   float: right;
 }
+
 .center {
   text-align: center !important;
 }
+
 .left {
   text-align: left !important;
 }
+
 .right {
   text-align: right !important;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 35px;
+  vertical-align: middle;
+  margin-left: 10px;
+  font-family: Pony;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.policy {
+  display: inline-block;
+  padding: 20px;
+  border: solid 1px #dfdfdf;
+  margin: 20px;
+  border-radius: 5px;
+  height: 200px;
+  vertical-align: top;
+}
+
+.policy-info {
+  display: inline-block;
+  background: #fff;
+  margin-top: 30px;
+  width: 100%;
+}
+.policy.no-mobile span {
+  display: inline-block;
+  width: 100%;
+  line-height: 2;
+}
+.policy.no-mobile h3 {
+  margin: 0;
+  line-height: 2;
+}
+ul.td-tags.td-post-small-box.clearfix {
+  text-align: center;
+  background: #2e353b;
+  margin-top: 20px;
+}
+ul.td-tags.td-post-small-box.clearfix li {
+  display: inline-block;
+}
+ul.td-tags.td-post-small-box.clearfix li a, span {
+  color: #bbb7b7;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 2px;
 }

@@ -4202,17 +4202,17 @@ header {
   line-height: 30px;
   color: #abafb1;
   position: relative;
-  margin-left: 23px;
+  /*margin-left: 23px;*/
   display: block;
 }
 
-.footer .footer-bottom .module-body ul li a:before {
-  content: "\f111";
-  font-family: FontAwesome;
-  position: absolute;
-  margin-left: -22px;
-  font-size: 6px;
-}
+/*.footer .footer-bottom .module-body ul li a:before {*/
+/*  content: "\f111";*/
+/*  font-family: FontAwesome;*/
+/*  position: absolute;*/
+/*  margin-left: -22px;*/
+/*  font-size: 6px;*/
+/*}*/
 
 .product-tag .item {
   background-color: #f5f5f5;

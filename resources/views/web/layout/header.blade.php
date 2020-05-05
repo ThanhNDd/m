@@ -22,6 +22,11 @@
                             <i class="fas fa-credit-card"></i>&nbsp;Thanh toán
                           </a>
                         </li>
+                        <li class="check">
+                          <a href="{{url('')}}">
+                            <i class="fas fa-id-badge"></i>&nbsp;Liên hệ
+                          </a>
+                        </li>
                         <li class="login">
                           <a href="javascript:void(0);">
                             <i class="fas fa-sign-in-alt"></i>&nbsp;Đăng nhập
@@ -56,7 +61,8 @@
                     <!-- ============================================================= LOGO ============================================================= -->
                     <div class="logo">
                       <a href="{{url('')}}">
-                        <img src="{{url('resources/views/web/assets/images/logo.png') }}" alt="logo">
+                        <img src="http://localhost/m/public/web/images/icon.png" alt="logo" style="width: 50px;">
+                        <span class="logo-text">Shop Mẹ Ỉn</span>
                       </a>
                     </div>
                     <!-- /.logo -->

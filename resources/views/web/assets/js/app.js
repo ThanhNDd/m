@@ -53,6 +53,8 @@ Vue.component('items-cart-component', require('./components/ItemsInCartComponent
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('category-component', require('./components/CategoryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
+Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
+Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

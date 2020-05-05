@@ -41,7 +41,7 @@
                 <i class="fas fa-phone-alt" style="font-size: 40px;color: gray;"></i>
               </div>
               <div class="inner-content">
-                <h3><span>Cần tư vấn</span></h3>
+                <h3><span>Tư vấn 24/7</span></h3>
                 <p>Hotline : 0962.926.302</p>
               </div>
             </div>
