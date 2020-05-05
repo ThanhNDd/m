@@ -1,9 +1,18 @@
 @extends('web.layout.layout')
-@section("title", $cat_title)
+@section("title", "Khuyến mãi")
 @section('content')
   <div id="app">
     @include('web.layout.header')
-    @include('web.layout.breadcrum')
+    <div class="breadcrumb">
+      <div class="container">
+        <div class="breadcrumb-inner">
+          <ul class="list-inline list-unstyled">
+            <li><a href="{{url('')}}">Trang chủ</a></li>
+            <li><a href="javascript:void(0)">Khuyến mãi</a></li>
+          </ul>
+        </div><!-- /.breadcrumb-inner -->
+      </div><!-- /.container -->
+    </div>
     <div class="body-content outer-top-xs">
       <div class="container">
         <div class="row">
@@ -44,7 +53,7 @@
               </div>
             </div>
             <div>
-              <category-component/>
+              <sale-component/>
             </div>
           </div>
         </div>

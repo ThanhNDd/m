@@ -229,12 +229,12 @@ figure {
   margin-top: 0;
 }
 
-.btn-indigo {
+.steps-form .btn-indigo {
   color: #fff;
   background-color: #3f51b5 !important;
 }
 
-.btn-default {
+.steps-form .btn-default {
   color: #fff;
   background-color: #2bbbad !important;
 }
@@ -279,4 +279,16 @@ i.far.fa-check-circle{
 .w-product {
   max-height: 224px;
   overflow: scroll;
+}
+.pagination {
+  float: right;
+}
+.center {
+  text-align: center !important;
+}
+.left {
+  text-align: left !important;
+}
+.right {
+  text-align: right !important;
 }

@@ -13,18 +13,18 @@
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                                     <div class="media-body">
-                                        <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                                        <p>Số 227 - Phố Huyện - Thị trấn Quốc Oai - Hà Nội</p>
                                     </div>
                                 </li>
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                                     <div class="media-body">
-                                        <p> + (888) 123-4567 / + (888) 456-7890</p>
+                                      <p>Hotline / Zalo: 0962.926.302</p>
                                     </div>
                                 </li>
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                                    <div class="media-body"> <span><a href="#">marazzo@themesground.com</a></span> </div>
+                                    <div class="media-body"> <span><a href="#">shopmein@gmail.com</a></span> </div>
                                 </li>
                             </ul>
                         </div>
@@ -35,17 +35,15 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
-                        <h4 class="module-title">Customer Service</h4>
+                        <h4 class="module-title">Liên kết</h4>
                     </div>
-                    <!-- /.module-heading -->
-
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                            <li><a href="#" title="About us">Order History</a></li>
-                            <li><a href="#" title="faq">FAQ</a></li>
-                            <li><a href="#" title="Popular Searches">Specials</a></li>
-                            <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                            <li class="first"><a href="#" title="Contact us">Chính sách vận chuyển và giao nhận hàng</a></li>
+                            <li><a href="#" title="About us">Chính sách đổi hàng, trả, hoàn tiền</a></li>
+                            <li><a href="#" title="faq">Câu hỏi thường gặp</a></li>
+                            <li><a href="#" title="Popular Searches">Hướng dẫn chọn size</a></li>
+                            <li><a href="https://blog.shopmein.vn" title="Blog">Blog</a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -54,18 +52,12 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
-                        <h4 class="module-title">Corporation</h4>
+                        <h4 class="module-title">Chúng tôi trên facebook</h4>
                     </div>
                     <!-- /.module-heading -->
 
                     <div class="module-body">
-                        <ul class='list-unstyled'>
-                            <li class="first"><a title="Your Account" href="#">About us</a></li>
-                            <li><a title="Information" href="#">Customer Service</a></li>
-                            <li><a title="Addresses" href="#">Company</a></li>
-                            <li><a title="Addresses" href="#">Investor Relations</a></li>
-                            <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>
-                        </ul>
+                      <div class="fb-page" data-href="https://www.facebook.com/shopmein.net/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shopmein.net/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shopmein.net/">Shop Mẹ Ỉn</a></blockquote></div>
                     </div>
                     <!-- /.module-body -->
                 </div>
@@ -73,18 +65,12 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
-                        <h4 class="module-title">Why Choose Us</h4>
+                        <h4 class="module-title" style="margin-left: 30px;">Về chúng tôi</h4>
                     </div>
-                    <!-- /.module-heading -->
-
                     <div class="module-body">
-                        <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-                            <li><a href="#" title="Blog">Blog</a></li>
-                            <li><a href="#" title="Company">Company</a></li>
-                            <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                            <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
-                        </ul>
+                        <p style="color:#fff;margin-left: 30px;">
+                            Shop Mẹ Ỉn - Chuyên cung cấp hàng thời trang quần áo, giày dép cho trẻ em. Cam kết hàng chất lượng, mẫu mã đa dạng. Giao hàng toàn quốc, thanh toán khi nhận hàng, đổi trả hàng nếu không vừa ý.
+                        </p>
                     </div>
                     <!-- /.module-body -->
                 </div>
@@ -93,29 +79,8 @@
     </div>
     <div class="copyright-bar">
         <div class="container">
-            <div class="col-xs-12 col-sm-4 no-padding social">
-                <ul class="link">
-                    <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
-                    <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
-                    <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
-                    <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
-                    <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="#" title="PInterest"></a></li>
-                    <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a></li>
-                    <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-4 no-padding copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a> </div>
-            <div class="col-xs-12 col-sm-4 no-padding">
-                <div class="clearfix payment-methods">
-                    <ul>
-                        <li><img src="{{url('resources/views/web/assets/images/payments/1.png') }}" alt=""></li>
-                        <li><img src="{{url('resources/views/web/assets/images/payments/2.png') }}" alt=""></li>
-                        <li><img src="{{url('resources/views/web/assets/images/payments/3.png') }}" alt=""></li>
-                        <li><img src="{{url('resources/views/web/assets/images/payments/4.png') }}" alt=""></li>
-                        <li><img src="{{url('resources/views/web/assets/images/payments/5.png') }}" alt=""></li>
-                    </ul>
-                </div>
-                <!-- /.payment-methods -->
+            <div class="col-md-12 center no-padding copyright">
+              Copyright &copy; <a target="_blank" href="https://shopmein.vn">Shop Mẹ Ỉn</a>
             </div>
         </div>
     </div>

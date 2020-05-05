@@ -25,8 +25,18 @@ class SaleController extends Controller
         return response($products, Response::HTTP_OK);
     }
 
+  public function count() {
+    $total = DB::table('smi_products')->where([['status', '=',0],["social_publish->website", "=", 1],['discount', '>',0]])
+      ->count();
+    return response($total, Response::HTTP_OK);
+  }
+
     public function get_all_products() {
-        $is_active = 'sales';
-        return view('theme.page.sales', compact('is_active'));
+      if ($this->is_mobile()) {
+          $is_active = 'sales';
+          return view('theme.page.sales', compact('is_active'));
+      } else {
+          return view('web.page.sales');
+      }
     }
 }

@@ -67,6 +67,47 @@ class CategoriesController extends Controller
         return $products;
     }
 
+    public function countBoys() {
+      $total = $this->countProductByType(0);
+      return response($total, Response::HTTP_OK);
+    }
+
+    public function countGirls() {
+      $total = $this->countProductByType(1);
+      return response($total, Response::HTTP_OK);
+    }
+
+    public function countAccessories() {
+      $products = $this->countProductsByCategory(array(7,8));
+      return response($products, Response::HTTP_OK);
+    }
+
+    public function countShoes() {
+      $products = $this->countProductsByCategory(array(5,6));
+      return response($products, Response::HTTP_OK);
+    }
+
+    private function countProductByType($type) {
+        if($type == 0) {
+          $cat = [1,2,3];
+        } else {
+          $cat = [1,2,3,4];
+        }
+        $count = DB::table('smi_products')
+            ->where([['status', '=',0],["social_publish->website", "=", 1],['type', '=',$type]])
+            ->whereIn('category_id', $cat)
+            ->count();
+        return $count;
+    }
+
+    private function countProductsByCategory($catId) {
+        $count = DB::table('smi_products')
+          ->where([['status', '=',0],["social_publish->website", "=", 1]])
+          ->whereIn('category_id', $catId)
+          ->count();
+        return $count;
+    }
+
     public function categories() {
         $is_active = 'categories';
         return view('theme.page.category.categories', compact('is_active'));

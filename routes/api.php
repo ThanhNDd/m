@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/products', 'ProductController@index');
 Route::post('/flash-sales', 'SaleController@index');
 Route::post('/sales', 'SaleController@index');
+Route::get('/sales', 'SaleController@count');
 Route::post('/best-seller', 'BestSellerController@index');
 Route::Resource('/attributes', 'AttributesController', ['parameters' => [
     'attributes' => 'id'
@@ -44,6 +45,10 @@ Route::group(['prefix' => 'danh-muc'], function(){
     Route::post('/be-trai.html', 'CategoriesController@boys');
     Route::post('/phu-kien.html', 'CategoriesController@accessories');
     Route::post('/giay-dep.html', 'CategoriesController@shoes');
+    Route::get('/be-gai.html', 'CategoriesController@countGirls');
+    Route::get('/be-trai.html', 'CategoriesController@countBoys');
+    Route::get('/phu-kien.html', 'CategoriesController@countAccessories');
+    Route::get('/giay-dep.html', 'CategoriesController@countShoes');
 });
 Route::post('/submit-reviews', 'ReviewsController@store');
 Route::post('/reviews', 'ReviewsController@show');

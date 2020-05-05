@@ -142,7 +142,7 @@
                                   </a>
                                 </li>
                                 <li class="dropdown hidden-sm">
-                                  <a href="{{ url("/danh-muc/khuyen-mai.html") }}">
+                                  <a href="{{ url("/khuyen-mai.html") }}">
                                     Khuyến mãi
                                     <span class="menu-label hot-menu hidden-xs">hot</span>
                                   </a>
