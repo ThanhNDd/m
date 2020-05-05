@@ -345,17 +345,14 @@ i.far.fa-check-circle {
   margin: 0;
   line-height: 2;
 }
-ul.td-tags.td-post-small-box.clearfix {
+ul.keyword-search {
   text-align: center;
-  background: #2e353b;
-  margin-top: 20px;
+  margin-top: 10px;
 }
-ul.td-tags.td-post-small-box.clearfix li {
+ul.keyword-search li {
   display: inline-block;
 }
-ul.td-tags.td-post-small-box.clearfix li a, span {
-  color: #bbb7b7;
-  padding: 3px;
-  margin: 3px;
-  border-radius: 2px;
+ul.keyword-search li a {
+  color: #abafb1;
+  padding: 5px;
 }

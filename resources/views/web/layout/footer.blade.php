@@ -106,7 +106,7 @@
               Copyright &copy; <a target="_blank" href="https://shopmein.vn">Shop Mẹ Ỉn</a>
             </div>
         </div>
-        <ul class="td-tags td-post-small-box clearfix">
+        <ul class="keyword-search">
             <li><a href="{{url('')}}" title="quần áo trẻ em">Quần áo trẻ em</a></li>
             <li><a href="{{url('')}}" title="đầm bé gái">Váy bé gái</a></li>
             <li><a href="{{url('')}}" title="vest bé trai">Vest bé trai</a></li>
