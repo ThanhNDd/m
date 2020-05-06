@@ -20,4 +20,18 @@ class HomeController extends Controller
             return view('web.page.home', compact('is_active', 'products'));
         }
     }
+    public function transport() {
+      if($this->is_mobile()) {
+        return view('theme.page.policy.transport');
+      } else {
+        return view('web.page.policy.transport');
+      }
+    }
+  public function return() {
+    if($this->is_mobile()) {
+      return view('theme.page.policy.return');
+    } else {
+      return view('web.page.policy.return');
+    }
+  }
 }

@@ -39,4 +39,6 @@ Route::get('/thong-bao.html', function () {
     return view('theme.page.notifications');
 });
 Route::get('/hoan-thanh.html', 'CheckoutController@finish');
+Route::get('/chinh-sach-van-chuyen.html', 'HomeController@transport');
+Route::get('/chinh-sach-doi-hang.html', 'HomeController@return');
 

@@ -40,12 +40,12 @@
                     <div class="module-body">
                         <ul class='list-unstyled'>
                             <li class="first">
-                              <a href="#" title="Chính sách vận chuyển và giao nhận hàng">
+                              <a href="{{url('/chinh-sach-van-chuyen.html')}}" title="Chính sách vận chuyển và giao nhận hàng">
                                 <i class="fas fa-angle-double-right"></i>&nbsp;Chính sách vận chuyển và giao nhận hàng
                               </a>
                             </li>
                             <li>
-                              <a href="#" title="Chính sách đổi hàng, trả, hoàn tiền">
+                              <a href="{{url('/chinh-sach-doi-hang.html')}}" title="Chính sách đổi hàng, trả, hoàn tiền">
                                 <i class="fas fa-angle-double-right"></i>&nbsp;Chính sách đổi hàng, trả, hoàn tiền
                               </a>
                             </li>
