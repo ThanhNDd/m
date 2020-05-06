@@ -49,7 +49,11 @@
         },
         methods: {
             getProducts: function () {
-                axios.get('https://blog.shopmein.vn/wp-json/wp/v2/posts?_embed&per_page=3')
+                axios.get('https://blog.shopmein.vn/wp-json/wp/v2/posts?_embed&per_page=3',{
+                    headers: {
+                        'Access-Control-Allow-Headers': '*'
+                    }
+                })
                     .then(response => {
                     console.log(response.data);
                     this.posts = response.data;

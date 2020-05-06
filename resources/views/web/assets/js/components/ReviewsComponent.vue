@@ -8,7 +8,7 @@
     <div class="product-review segments" style="display: inline-block;">
         <div class="row col-md-6" style="margin: 0;display: inline-block;padding:45px 0px 20px 0px;">
             <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;text-align: center;display: inline-block;">
-                <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}/5</h1>
+                <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}</h1>
                 <button type="button" class="btn btn-sm" v-bind:class="ratingAvg >= 1 ? 'btn-warning ' : 'btn-default btn-grey'" aria-label="Left Align">
                     <i v-bind:class="ratingAvg >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt'" style="color:#fff;"></i>
                 </button>
@@ -92,7 +92,6 @@
                     <div class="float-left" style="margin-left:5px;margin-top: 5px;">{{ number_1_star }}</div>
                 </div>
             </div>
-
         </div>
         <div id="rating" class="col-md-6 float-left">
           <div class="sheet-modal rating-sheet">
@@ -127,60 +126,55 @@
                       ></star-rating>
                     </div>
                     <div style="text-align: right;">
-                      <button type="button" class="btn btn-primary" v-on:click="submitReviews()">Đồng ý</button>
+                      <button type="button" class="btn btn-primary" v-on:click="submitReviews()">
+                        <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i>&nbsp;Đồng ý
+                      </button>
                     </div>
                   </form>
-                </div>
-                <div id="form-review-success" class="hidden">
-                  <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
-                    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
-                    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
-                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
-                  </div>
-                  <div class="swal2-title" style="">Đăng nhận xét thành công!</div>
-                  <div class="swal2-text" style="text-align: center;width: 100%;">Cám ơn bạn đã nhận xét sản phẩm!</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-          <div v-if="ratingAvg > 0" style="display: inline-block;width: 100%;">
-              <div class="content" v-for="review in reviews" style="display: inline-block;width: 100%;padding: 0 20px;border-top: 1px solid #80808036;">
-                  <div class="text">
-                      <h5>{{ review.name }}</h5>
-                      <ul class="rate-product" style="display: inline-flex;">
-                          <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                          <li><i v-bind:class="review.rating >= '2' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                          <li><i v-bind:class="review.rating >= '3' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                          <li><i v-bind:class="review.rating >= '4' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                          <li><i v-bind:class="review.rating >= '5' ? 'fas' : 'far'" class="fa-star" ></i></li>
-                      </ul>
-                      <p class="date" style="display: inline-flex;font-style: italic;color: gray;">
-                          {{ review.created_date | moment("from", "now") }}
-                      </p>
-                      <!--                    <i class="fas fa-thumbs-up like-button"></i>-->
-                      <p v-text="review.content" style="font-size: 14px;"></p>
-                  </div>
-              </div>
-              <!-- divider -->
-              <div class="divider-line-half"></div>
+        <div id="form-review-success" class="hidden">
+          <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+            <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
           </div>
-          <div v-else style="display: inline-block;width: 100%;text-align: center;">
-              <p><i class="fas fa-comments" style="font-size: 100px;color: #b9b6b640;"></i></p>
-              <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
-          </div>
-          <!-- end divider -->
-          <!-- view all reviews -->
-<!--          <div class="view-all-review" v-if="total_rating > 3">-->
-<!--              <a v-bind:href="product_name | change_to_slug | url_reviews(this.product_id)">Xem tất cả</a>-->
-<!--            <button class="btn btn-primary">Xem tất cả</button>-->
-            <div class="row justify-content-center"v-if="total_rating > 3">
-              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getAllReviews(5)'>
-                <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> {{buttonText}} &nbsp;<i class="fa fa-caret-down"></i>
-              </a>
+          <div class="swal2-title" style="">Đăng nhận xét thành công!</div>
+          <div class="swal2-text" style="text-align: center;width: 100%;">Cám ơn bạn đã nhận xét sản phẩm!</div>
+        </div>
+        <div v-if="ratingAvg > 0" style="display: inline-block;width: 100%;">
+            <div class="content" v-for="review in reviews" style="display: inline-block;width: 100%;padding: 0 20px;border-top: 1px solid #80808036;">
+                <div class="text">
+                    <h5>{{ review.name }}</h5>
+                    <ul class="rate-product" style="display: inline-flex;">
+                        <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                        <li><i v-bind:class="review.rating >= '2' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                        <li><i v-bind:class="review.rating >= '3' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                        <li><i v-bind:class="review.rating >= '4' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                        <li><i v-bind:class="review.rating >= '5' ? 'fas' : 'far'" class="fa-star" ></i></li>
+                    </ul>
+                    <p class="date" style="display: inline-flex;font-style: italic;color: gray;">
+                        {{ review.created_date | moment("from", "now") }}
+                    </p>
+                    <!--                    <i class="fas fa-thumbs-up like-button"></i>-->
+                    <p v-text="review.content" style="font-size: 14px;"></p>
+                </div>
             </div>
-<!--          </div>-->
-          <!-- end view all reviews -->
+            <!-- divider -->
+            <div class="divider-line-half"></div>
+        </div>
+        <div v-else style="display: inline-block;width: 100%;text-align: center;">
+            <p><i class="fas fa-comments" style="font-size: 100px;color: #b9b6b640;"></i></p>
+            <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
+        </div>
+        <div class="row justify-content-center"v-if="total_rating > 3">
+          <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getAllReviews(5)'>
+            <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="hidden ? '' : 'hidden'"></i> {{buttonText}} &nbsp;<i class="fa fa-caret-down"></i>
+          </a>
+        </div>
       </div>
   </section>
 </template>
@@ -217,6 +211,7 @@
                 row: 0,
                 buttonText: 'Xem thêm',
                 submit: false,
+                hidden: false,
             }
         },
         props: ['product_id'],
@@ -267,15 +262,7 @@
                     });
             },
             getAllReviews: function (rowperpage) {
-                // axios.get(url + '/api/reviews/'+this.product_id)
-                //     .then(response => {
-                //         this.reviews = response.data;
-                //         if(response.data.length > 0) {
-                //             this.product_name = response.data[0].product_name;
-                //         }
-                //     });
-
-                this.submit = true;
+                this.hidden = true;
                 axios.post(url + '/api/reviews', {
                     product_id: this.product_id,
                     row: this.row,
@@ -293,19 +280,32 @@
                                 for (let i = 0; i < response.data.length; i++) {
                                     that.reviews.push(response.data[i]);
                                 }
-                                that.submit = false;
+                                that.hidden = false;
                             }, 500);
                         } else {
                             this.reviews = response.data;
                             if(response.data.length > 0) {
                                 this.product_name = response.data[0].product_name;
                             }
-                            this.submit = false;
+                            this.hidden = false;
                         }
                     } else {
                         this.buttonText = "Không có thêm đánh giá.";
                         this.isFinished = true;
-                        this.submit = false;
+                        this.hidden = false;
+                    }
+                });
+            },
+            reloadReviews: function (rowperpage) {
+                this.hidden = true;
+                axios.post(url + '/api/reviews', {
+                    product_id: this.product_id,
+                    row: this.row,
+                    rowperpage: rowperpage
+                }).then(response => {
+                    console.log(response.data);
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.reviews = response.data;
                     }
                 });
             },
@@ -313,6 +313,7 @@
                 if(!this.validate()) {
                     return false;
                 }
+                this.submit = true;
                 let review = [];
                 review.push({
                     "name": this.fullname,
@@ -328,17 +329,23 @@
                 }).then(response => {
                     console.log(response.data);
                     if(response.data === 201) {
-                        $("#form-review").addClass('hidden');
+                        $("#rating").addClass('hidden');
                         $("#form-review-success").removeClass('hidden');
-                        this.reload++;
+                        // this.reload++;
+                        this.row = 0;
+                        this.reviews = [];
+                        this.reloadReviews(3);
+                        this.getRatingAvg();
+                        this.getRatingNumberDetail();
                     } else {
-                        swal({
+                        Swal({
                             title: "Đã xảy ra lỗi!",
                             text: "Xin vui lòng thử lại sau!",
                             icon: "error",
                             button: "Đồng ý",
                         });
                     }
+                    this.submit = false;
                 })
             },
             validate: function () {

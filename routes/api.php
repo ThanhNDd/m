@@ -22,6 +22,7 @@ Route::post('/sales', 'SaleController@index');
 Route::get('/sales', 'SaleController@count');
 Route::post('/best-seller', 'BestSellerController@index');
 Route::get('/best-view-product', 'ProductController@bestViewProduct');
+Route::get('/hot-boy-product', 'ProductController@hotboyProduct');
 Route::Resource('/attributes', 'AttributesController', ['parameters' => [
     'attributes' => 'id'
 ]]);
@@ -57,4 +58,5 @@ Route::get('/rating-avg/{id}', 'ReviewsController@countRating');
 Route::get('/rating-number-detail/{id}', 'ReviewsController@ratingNumberDetail');
 Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');
 Route::get('/viewed-product', 'ProductController@viewedProduct');
+Route::get('/status/{id}', 'ProductController@getStatus');
 

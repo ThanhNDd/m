@@ -36,9 +36,6 @@
           <div class='row single-product'>
             <div class='col-xs-12 col-sm-12 col-md-3 sidebar'>
               <div class="sidebar-module-container">
-                <div class="home-banner outer-top-n outer-bottom-xs">
-                  <img src="{{url('resources/views/web/assets/images/banners/LHS-banner.jpg')}}" alt="Image">
-                </div>
                 @include('web.page.sidebar.sidebar')
               </div>
             </div>
@@ -69,7 +66,7 @@
                             </div>
                             <div class="pull-left">
                               <div class="stock-box">
-                                <span class="value">Còn hàng</span>
+                                <status-component :product_id="{{$product->id}}"/>
                               </div>
                             </div>
                           </div>
@@ -180,6 +177,7 @@
                   </span>
                 </div>
               </div>
+              @if($product->description)
               <div class="product-tabs inner-bottom-xs">
                 <div class="row">
                   <div class="col-sm-12 col-md-3 col-lg-3">
@@ -200,6 +198,7 @@
                   </div><!-- /.col -->
                 </div><!-- /.row -->
               </div><!-- /.product-tabs -->
+              @endif
               <div>
                 <relate-product-component/>
               </div>
@@ -280,110 +279,7 @@
                       }
                   })
               },
-              cancelReview: function () {
-                  this.fullname = '';
-                  this.phone = '';
-                  this.email = '';
-                  this.content = '';
-                  this.rating = 0;
-                  this.$refs.fullname.focus();
-                  $("#form-review").removeClass('hidden');
-                  $("#form-review-success").addClass('hidden');
-              },
-              isPhoneValid: function () {
-                  return (this.phone === "") ? "" : (this.phone_reg.test(this.phone)) ? 'has-success' : 'has-error';
-              },
-              isEmailValid: function () {
-                  return (this.email === "") ? "" : (this.email_reg.test(this.email)) ? 'has-success' : 'has-error';
-              },
-              submitReviews: function (product_id) {
-                  if (!this.validate()) {
-                      return false;
-                  }
-                  let review = [];
-                  review.push({
-                      "name": this.fullname,
-                      "phone": this.phone,
-                      "email": this.email,
-                      "content": this.content,
-                      "rating": this.rating,
-                      "product_id": product_id
-                  });
-                  console.log(JSON.stringify(review));
-                  axios.post(url + "/api/submit-reviews", {
-                      body: review
-                  }).then(response => {
-                      console.log(response.data);
-                      if (response.data === 201) {
-                          $("#form-review").addClass('hidden');
-                          $("#form-review-success").removeClass('hidden');
-                          this.reload++;
-                      } else {
-                          swal({
-                              title: "Đã xảy ra lỗi!",
-                              text: "Xin vui lòng thử lại sau!",
-                              icon: "error",
-                              button: "Đồng ý",
-                          });
-                      }
-                  })
-              },
-              validate: function () {
-                  if (this.fullname && this.phone && this.content && this.rating) {
-                      return true;
-                  }
-                  if (!this.fullname) {
-                      this.$toast.top('Bạn chưa nhập tên');
-                      this.$refs.fullname.focus();
-                      return false;
-                  }
-                  if (this.phone === '') {
-                      this.$toast.top('Bạn chưa nhập số điện thoại');
-                      this.$refs.phone.focus();
-                      return false;
-                  } else if (!this.phone_reg.test(this.phone)) {
-                      this.$toast.top('Số điện thoại chưa đúng.');
-                      this.$refs.phone.focus();
-                      return false;
-                  }
-                  if (this.email !== '' && !this.email_reg.test(this.email)) {
-                      this.$toast.top('Email chưa đúng.');
-                      this.$refs.email.focus();
-                      return false;
-                  }
-                  if (!this.content) {
-                      this.$toast.top('Bạn chưa nhập nội dung nhận xét');
-                      this.$refs.content.focus();
-                      return false;
-                  }
-                  if (!this.rating) {
-                      this.$toast.top('Bạn chưa chọn số sao');
-                      return false;
-                  }
-              },
-              openPopupReview: function () {
-                  $(".rating-sheet").addClass("modal-in");
-                  $("html").addClass("with-modal-sheet");
-                  $(".sheet-close").click(function () {
-                      $(".rating-sheet").removeClass("modal-in");
-                      $("html").removeClass("with-modal-sheet");
-
-                  });
-              }
           }
       });
-      // new Swiper('.swiper-detail-product', {
-      //     cssMode: true,
-      //     mousewheel: true,
-      //     keyboard: true,
-      //     pagination: {
-      //         el: '.swiper-pagination-detail-product',
-      //         dynamicBullets: true,
-      //         paginationClickable: true
-      //     },
-      //     autoplay: {
-      //         delay: 5000,
-      //     },
-      // });
   </script>
 @endsection

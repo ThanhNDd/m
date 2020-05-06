@@ -13,16 +13,19 @@
                             </div>
                             <div class="text">
                                 <p class="title-product title-product-center" v-text="product.name"></p>
+                                <div class="float-left col-md-12 col-lg-12 no-padding">
+                                  <i v-bind:class="product.rating == 0 ? 'far fa-star' : (product.rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')" style="color:#ffc107;"></i>
+                                  <i v-bind:class="product.rating > 1 ? (product.rating >= 2 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                                  <i v-bind:class="product.rating > 2 ? (product.rating >= 3 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                                  <i v-bind:class="product.rating > 3 ? (product.rating >= 4 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                                  <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
+                                  <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
+                                </div>
                                 <p class="price">{{product.retail | formatPrice}}</p>
                             </div>
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
-                <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Xem thêm<i class="fas fa-caret-down"></i>
-              </a>
             </div>
         </div>
     </div>
@@ -35,9 +38,8 @@
             return {
                 products: '',
                 isFinished: false,
-                row: 0, // Record selction position
-                rowperpage: 5, // Number of records fetch at a time
-                buttonText: 'Xem thêm',
+                row: 0,
+                rowperpage: 10,
                 url: '',
                 submit: false,
             }
@@ -51,10 +53,6 @@
                 let cat_id = document.querySelector('#cat_id').getAttribute('value');
                 let id = document.querySelector('#product_id').getAttribute('value');
                 let type = document.querySelector('#type_id').getAttribute('value');
-                // axios.get(url + '/api/relate/'+id+'/category/'+cat_id+'/type/'+type)
-                //     .then(response => {
-                //         this.products = response.data;
-                //     });
                 this.submit = true;
                 axios.post(url + '/api/relate', {
                     product_id: id,

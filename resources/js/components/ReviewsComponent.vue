@@ -90,7 +90,7 @@
         <div  v-if="ratingAvg > 0">
             <div v-for="review in reviews">
                 <div class="content">
-                    <img v-bind:src="url + '/public/mobile/images/user-buyer2.png'" alt="">
+<!--                    <img v-bind:src="url + '/public/mobile/images/user-buyer2.png'" alt="">-->
                     <div class="text">
                         <h6>{{ review.name }}</h6>
                         <ul class="rate-product">
@@ -111,7 +111,8 @@
                 <div class="divider-line-half"></div>
             </div>
         </div>
-        <div v-else>
+        <div v-else class="center">
+            <i class="fas fa-comments" style="font-size: 60px; color: rgba(185, 182, 182, 0.25);"></i>
             <p class="center">Hãy trở thành người đầu tiên đánh giá sản phẩm này.</p>
         </div>
         <!-- end divider -->
@@ -142,13 +143,18 @@
                 number_1_star:0,
                 url: '',
                 total_rating: 0,
-                product_name: ''
+                product_name: '',
+                isFinished: false,
+                row: 0,
+                buttonText: 'Xem thêm',
+                submit: false,
+                hidden: false,
             }
         },
         props: ['product_id'],
         created() {
             this.url = url;
-            this.getAllReviews();
+            this.getAllReviews(3);
             this.getRatingAvg();
             this.getRatingNumberDetail();
         },
@@ -192,14 +198,39 @@
                         }
                     });
             },
-            getAllReviews: function () {
-                axios.get(url + '/api/reviews/'+this.product_id)
-                    .then(response => {
-                        this.reviews = response.data;
-                        if(response.data.length > 0) {
-                            this.product_name = response.data[0].product_name;
+            getAllReviews: function (rowperpage) {
+                axios.post(url + '/api/reviews', {
+                    product_id: this.product_id,
+                    row: this.row,
+                    rowperpage: rowperpage
+                }).then(response => {
+                    console.log(response.data);
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.row += rowperpage;
+                        let len = this.reviews.length;
+                        if (len > 0) {
+                            this.buttonText = "Loading ...";
+                            let that = this;
+                            setTimeout(function () {
+                                that.buttonText = 'Xem thêm';
+                                for (let i = 0; i < response.data.length; i++) {
+                                    that.reviews.push(response.data[i]);
+                                }
+                                that.hidden = false;
+                            }, 500);
+                        } else {
+                            this.reviews = response.data;
+                            if(response.data.length > 0) {
+                                this.product_name = response.data[0].product_name;
+                            }
+                            this.hidden = false;
                         }
-                    });
+                    } else {
+                        this.buttonText = "Không có thêm đánh giá.";
+                        this.isFinished = true;
+                        this.hidden = false;
+                    }
+                });
             },
         },
     }

@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ReviewsController extends Controller
@@ -96,18 +97,27 @@ class ReviewsController extends Controller
                     ]
                 );
                 if(empty($id)) {
+                  Log::error('[Reviews][Store] Cannot insert reviews');
                   throw new Exception('Cannot insert reviews');
                 }
-//                Mail::to('thanhit228@gmail.com')->send(new SendEmailReviews());
-
                 DB::commit();
+                try {
+                    $rating_avg = $this->getRatingAvg($data['product_id']);
+                    $product = new ProductController();
+                    $product->updateRatingAndReviews($data['product_id'],$rating_avg);
+                    Mail::to('thanhit228@gmail.com')->send(new SendEmailReviews());
+                } catch (\Exception $ex) {
+                    Log::error('[Reviews][Store] Error Exception >>>>>> '.$ex->getMessage());
+                }
                 return response()->json(201);
             } else {
+                Log::error("[Reviews][Store] Invalid input data");
                 throw new Exception ("Invalid input data");
             }
         } catch (Exception $e) {
             DB::rollback();
-            return response()->json($e);
+            Log::error('[Reviews][Store] Error Exception >>>>>> '.$e->getMessage());
+            return response()->json(500);
         }
     }
 }

@@ -13,7 +13,6 @@ import jQuery from 'jquery';
 import Lingallery from 'lingallery';
 import Paginate from 'vuejs-paginate'
 
-
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
 window.Swal = require('sweetalert2');
@@ -55,6 +54,8 @@ Vue.component('category-component', require('./components/CategoryComponent.vue'
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
 Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
 Vue.component('blog-component', require('./components/BlogComponent.vue').default);
+Vue.component('status-component', require('./components/StatusComponent.vue').default);
+Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

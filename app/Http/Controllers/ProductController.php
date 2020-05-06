@@ -103,8 +103,32 @@ class ProductController extends Controller
   public function bestViewProduct()
   {
     $products = DB::table('smi_products')
-      ->whereIn('id', [513, 510, 509])
+      ->whereIn('id', [513, 510, 509, 504])
       ->get()->jsonSerialize();
+    return response($products, Response::HTTP_OK);
+  }
+
+  public function hotboyProduct()
+  {
+    $products = DB::table('smi_products')
+      ->whereIn('id', [92, 88, 452, 379])
+      ->get()->jsonSerialize();
+    return response($products, Response::HTTP_OK);
+  }
+
+  public function updateRatingAndReviews($productId, $rating) {
+      $product = DB::table('smi_products')->where('id',$productId)->first();
+      $reviews = $product->reviews++;
+
+      DB::table('smi_products')->where('id',$productId)->update(['rating' => $rating, 'reviews' => $reviews]);
+      return response('', Response::HTTP_OK);
+  }
+  public function getStatus($productId)
+  {
+    $products = DB::table('smi_products')
+      ->select('status')
+      ->where('id', $productId)
+      ->get();
     return response($products, Response::HTTP_OK);
   }
 }

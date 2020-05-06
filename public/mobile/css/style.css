@@ -3087,3 +3087,16 @@ textarea#content {
     -o-border-radius: 0;
     border-radius: 0;
 }
+i.fa-star.fas {
+  color: #f0ad4e;
+}
+
+i.fa-star.far,
+.wrap-title-product .product-review i.fa-star.far{
+  /*color: #f0ad4e;*/
+  color: #d3d3d3 !important;
+}
+
+.product-review i.fa-star.far {
+  color: #ffffff !important;
+}

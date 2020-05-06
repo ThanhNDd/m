@@ -172,7 +172,8 @@ i.fa-star.fas {
 }
 
 i.fa-star.far {
-  color: #f0ad4e;
+  /*color: #f0ad4e;*/
+  color: #d3d3d3 !important;
 }
 
 section.section.related-product {
