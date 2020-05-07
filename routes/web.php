@@ -42,3 +42,5 @@ Route::get('/hoan-thanh.html', 'CheckoutController@finish');
 Route::get('/chinh-sach-van-chuyen.html', 'HomeController@transport');
 Route::get('/chinh-sach-doi-hang.html', 'HomeController@return');
 
+Route::post('/blog', 'BlogController@index');
+

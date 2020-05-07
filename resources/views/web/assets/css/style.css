@@ -357,3 +357,13 @@ ul.keyword-search li a {
   color: #abafb1;
   padding: 5px;
 }
+.row.our-features-box .container {
+  width: 1600px;
+  margin: auto;
+}
+.list-inline>li {
+  padding-right: 0 !important;
+}
+.breadcrumb ul li:after {
+  margin-right: 0 !important;
+}

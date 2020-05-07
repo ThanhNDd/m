@@ -2443,12 +2443,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       posts: [],
-      url: ''
+      url: '',
+      rowperpage: 3
     };
   },
   created: function created() {
@@ -2459,10 +2459,8 @@ __webpack_require__.r(__webpack_exports__);
     getProducts: function getProducts() {
       var _this = this;
 
-      axios.get('https://blog.shopmein.vn/wp-json/wp/v2/posts?_embed&per_page=3', {
-        headers: {
-          'Access-Control-Allow-Headers': '*'
-        }
+      axios.post(url + '/blog', {
+        rowperpage: this.rowperpage
       }).then(function (response) {
         console.log(response.data);
         _this.posts = response.data;
@@ -52490,7 +52488,7 @@ var render = function() {
             _c("div", { staticClass: "blog-post" }, [
               _c("div", { staticClass: "blog-post-image" }, [
                 _c("div", { staticClass: "image" }, [
-                  _c("a", { attrs: { href: post.link } }, [
+                  _c("a", { attrs: { href: post.link, target: "_blank" } }, [
                     _c("img", {
                       attrs: {
                         src: post._embedded["wp:featuredmedia"]["0"].source_url,
@@ -52503,7 +52501,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "blog-post-info text-left" }, [
                 _c("h3", { staticClass: "name" }, [
-                  _c("a", { attrs: { href: post.link } }, [
+                  _c("a", { attrs: { href: post.link, target: "_blank" } }, [
                     _vm._v(
                       "\n                " +
                         _vm._s(post.title.rendered) +
@@ -52512,13 +52510,10 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("p", { staticClass: "text" }, [
-                  _vm._v(
-                    "\n              " +
-                      _vm._s(post.excerpt.rendered) +
-                      "\n            "
-                  )
-                ])
+                _c("p", {
+                  staticClass: "text",
+                  domProps: { innerHTML: _vm._s(post.excerpt.rendered) }
+                })
               ])
             ])
           ])
@@ -55226,7 +55221,7 @@ var render = function() {
         "div",
         {
           staticClass: "product-review segments",
-          staticStyle: { display: "inline-block" }
+          staticStyle: { display: "inline-block", width: "100%" }
         },
         [
           _c(
@@ -55679,7 +55674,7 @@ var render = function() {
                         "div",
                         {
                           staticClass: "container",
-                          staticStyle: { padding: "0px" },
+                          staticStyle: { padding: "0px", width: "100%" },
                           attrs: { id: "form-review" }
                         },
                         [
@@ -78331,7 +78326,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/views/web/assets/js/app.js */"./resources/views/web/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\views\web\assets\js\app.js */"./resources/views/web/assets/js/app.js");
 
 
 /***/ })

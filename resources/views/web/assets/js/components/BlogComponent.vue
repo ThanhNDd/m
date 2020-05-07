@@ -7,7 +7,7 @@
           <div class="blog-post">
             <div class="blog-post-image">
               <div class="image">
-                <a v-bind:href="post.link">
+                <a v-bind:href="post.link" target="_blank">
                   <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
                 </a>
               </div>
@@ -15,12 +15,11 @@
             <!-- /.blog-post-image -->
             <div class="blog-post-info text-left">
               <h3 class="name">
-                <a v-bind:href="post.link">
+                <a v-bind:href="post.link" target="_blank">
                   {{post.title.rendered}}
                 </a>
               </h3>
-              <p class="text">
-                {{post.excerpt.rendered}}
+              <p class="text" v-html="post.excerpt.rendered">
               </p>
             </div>
             <!-- /.blog-post-info -->
@@ -41,6 +40,7 @@
             return {
                 posts: [],
                 url: '',
+                rowperpage: 3
             }
         },
         created() {
@@ -49,12 +49,9 @@
         },
         methods: {
             getProducts: function () {
-                axios.get('https://blog.shopmein.vn/wp-json/wp/v2/posts?_embed&per_page=3',{
-                    headers: {
-                        'Access-Control-Allow-Headers': '*'
-                    }
-                })
-                    .then(response => {
+                axios.post(url + '/blog', {
+                  rowperpage: this.rowperpage
+                }).then(response => {
                     console.log(response.data);
                     this.posts = response.data;
                 });
