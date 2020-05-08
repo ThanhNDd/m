@@ -2452,6 +2452,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -51325,6 +51333,7 @@ var render = function() {
               _c("div", { staticClass: "blog-post-image" }, [
                 _c("div", { staticClass: "image" }, [
                   _c("a", { attrs: { href: post.link, target: "_blank" } }, [
+                    _vm._v("\n<<<<<<< HEAD\n                  "),
                     _c(
                       "div",
                       {
@@ -51353,6 +51362,16 @@ var render = function() {
                           }
                         })
                       ]
+                    ),
+                    _vm._v("\n=======\n                  "),
+                    _c("img", {
+                      attrs: {
+                        src: post._embedded["wp:featuredmedia"]["0"].source_url,
+                        alt: ""
+                      }
+                    }),
+                    _vm._v(
+                      "\n>>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36\n                "
                     )
                   ])
                 ])
@@ -51362,21 +51381,37 @@ var render = function() {
                 _c("h3", { staticClass: "name" }, [
                   _c("a", { attrs: { href: post.link, target: "_blank" } }, [
                     _vm._v(
-                      "\n                " +
+                      "\n                  " +
                         _vm._s(post.title.rendered) +
-                        "\n              "
+                        "\n                "
                     )
                   ])
                 ]),
-                _vm._v(" "),
-                _c("p", {
-                  staticClass: "text",
-                  domProps: {
-                    innerHTML: _vm._s(
-                      post.excerpt.rendered.substring(0, 150) + "..."
+                _vm._v("\n<<<<<<< HEAD\n              "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "text",
+                    domProps: {
+                      innerHTML: _vm._s(
+                        post.excerpt.rendered.substring(0, 150) + "..."
+                      )
+                    }
+                  },
+                  [_vm._v("\n=======\n              ")]
+                ),
+                _c(
+                  "p",
+                  {
+                    staticClass: "text",
+                    domProps: { innerHTML: _vm._s(post.excerpt.rendered) }
+                  },
+                  [
+                    _vm._v(
+                      "\n>>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36\n              "
                     )
-                  }
-                })
+                  ]
+                )
               ])
             ])
           ])
@@ -51395,7 +51430,7 @@ var staticRenderFns = [
       _c(
         "a",
         { attrs: { href: "https://blog.shopmein.vn", target: "_blank" } },
-        [_vm._v("\n      Blog\n    ")]
+        [_vm._v("\n        Blog\n      ")]
       )
     ])
   }
