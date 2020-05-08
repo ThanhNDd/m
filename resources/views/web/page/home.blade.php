@@ -79,7 +79,9 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="wide-banner1 cnt-strip">
-                                <div class="image"> <img class="img-responsive" src="{{url('resources/views/web/assets/images/banners/home-banner.jpg') }}" alt=""> </div>
+                                <div class="image">
+                                  <img class="img-responsive" src="{{url('resources/views/web/assets/images/banners/home-banner.jpg') }}" alt="">
+                                </div>
                                 <div class="strip strip-text">
                                     <div class="strip-inner">
                                         <h2 class="text-right">Amazing Sunglasses<br>
@@ -118,7 +120,7 @@
                 @endif
               <!-- ============================================== BLOG SLIDER ============================================== -->
               <div>
-                <blog-component/>
+{{--                <blog-component/>--}}
               </div>
               <!-- /.section -->
               <!-- ============================================== BLOG SLIDER : END ============================================== -->
@@ -127,9 +129,6 @@
             <!-- ============================================== CONTENT : END ============================================== -->
         </div>
         <!-- /.row -->
-        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-{{--        @include('web.layout.logoslider')--}}
-        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
     </div>
     <!-- /.container -->
 </div>

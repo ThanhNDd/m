@@ -61,7 +61,7 @@
                     <!-- ============================================================= LOGO ============================================================= -->
                     <div class="logo">
                       <a href="{{url('')}}">
-                        <img src="http://localhost/m/public/web/images/icon.png" alt="logo" style="width: 50px;">
+                        <img src="{{url('public/web/images/icon.png')}}" alt="logo" style="width: 50px;">
                         <span class="logo-text">Shop Mẹ Ỉn</span>
                       </a>
                     </div>

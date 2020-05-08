@@ -7,7 +7,6 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="robots" content="all">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="icon" href="{{ url('public/web/images/icon.png') }}">
     <title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
@@ -44,17 +43,17 @@
 <!-- ============================================================= FOOTER : END============================================================= -->
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 
-    <script src="{{url('resources/views/web/assets/js/libs/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/bootstrap.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/owl.carousel.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/echo.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/jquery.easing-1.3.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-slider.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/jquery.rateit.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/lightbox.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-select.min.js') }}"></script>
-    <script src="{{url('resources/views/web/assets/js/libs/wow.min.js') }}"></script>
+{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery-1.11.1.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/owl.carousel.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/echo.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery.easing-1.3.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-slider.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/jquery.rateit.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/lightbox.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/bootstrap-select.min.js') }}"></script>--}}
+{{--    <script src="{{url('resources/views/web/assets/js/libs/wow.min.js') }}"></script>--}}
 
 {{--    <script src="{!! url('resources/views/web/assets/js/app.js') !!}"></script>--}}
     <script src="{{url('public/web/js/webapp.js') }}"></script>

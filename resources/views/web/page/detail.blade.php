@@ -45,7 +45,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 gallery-holder">
                     <div class="product-item-holder size-big single-product-gallery small-gallery">
                       <div id="owl-single-product">
-                        <lingallery :width="600" :height="400" :items="{{ $images }}"/>
+                        <lingallery :width="600" :height="400" :items="{{ $images }}"></lingallery>
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                       <h1 class="name">{{$product->name}}</h1>
                       <div>
                         <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'"
-                                          :key="reload"/>
+                                          :key="reload"></rating-component>
                       </div>
                       <div class="stock-container info-container m-t-10">
                         <div class="row">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="pull-left">
                               <div class="stock-box">
-                                <status-component :product_id="{{$product->id}}"/>
+                                <status-component :product_id="{{$product->id}}"></status-component>
                               </div>
                             </div>
                           </div>
@@ -206,7 +206,7 @@
                 <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
               </div>
               <div>
-                <recommend-product-component/>
+                  <recommend-product-component/>
               </div>
               @if(session()->has('viewed'))
                 <div>
@@ -245,12 +245,18 @@
               addToCart: function (id, name, price, image) {
                   let color = document.querySelector('input[name=color]:checked');
                   if (color == null) {
-                      this.$toast.top('Bạn chưa chọn màu');
+                      this.$toast.error({
+                          title:'Lỗi',
+                          message:'Bạn chưa chọn màu'
+                      });
                       return;
                   }
                   let size = document.querySelector('input[name=size]:checked');
                   if (size == null) {
-                      this.$toast.top('Bạn chưa chọn size');
+                      this.$toast.error({
+                          title:'Lỗi',
+                          message:'Bạn chưa chọn size'
+                      });
                       return;
                   }
                   this.products = [];
@@ -272,7 +278,10 @@
                   axios.post(url + "/api/cart", {
                       body: this.products
                   }).then(response => {
-                      this.$toast.top('Đã thêm vào giỏ hàng');
+                      this.$toast.success({
+                          title:'Thông báo',
+                          message:'Sản phẩm đã được thêm vào giỏ hàng'
+                      });
                       document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
                       if (this.type === "buyNow") {
                           window.location.href = url + "/thanh-toan.html";

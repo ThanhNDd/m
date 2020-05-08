@@ -87,42 +87,8 @@
                         </div>
                     </div>
                     @endif
-                    <div class="blog segments-bottom segments no-pd-b">
-                        <div class="container">
-                            <div class="section-title">
-                                <h3>Blog
-                                    <a href="https://blog.shopmein.vn" class="see-all-link" target="_blank">Xem thêm &raquo;</a>
-                                </h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-50">
-                                    <div class="content content-shadow-product">
-                                        <a href="https://blog.shopmein.vn/easy-crafts-to-make-this-easter/" target="_blank">
-                                            <div class="image">
-                                                <img src="https://blog.shopmein.vn/wp-content/uploads/2020/04/6-696x418.jpg" alt="">
-                                            </div>
-                                            <div class="text">
-                                                <p class="title-product title-product-center">Elegant Blue
-                                                    t-Shirt</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-50">
-                                    <div class="content content-shadow-product">
-                                        <a href="https://blog.shopmein.vn/genius-decorating-ideas-for-every-room-in-your-house/" target="_blank">
-                                            <div class="image">
-                                                <img src="http://localhost/blog/wp-content/uploads/2020/04/2.jpg" alt="">
-                                            </div>
-                                            <div class="text">
-                                                <p class="title-product title-product-center">Elegant Blue
-                                                    t-Shirt</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <blog-component/>
                     </div>
                 </div>
             </div>

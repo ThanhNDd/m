@@ -13,14 +13,12 @@
                   <div class="product-image">
                     <div class="image">
                       <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-                        <img v-bind:src="product.image | format_image" v-bind:alt="product.name">
+                        <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading1.svg' }">
+                          <img v-bind:data-src="product.image | format_image" v-bind:alt="product.name">
+                        </div>
                       </a>
                     </div>
-                    <!-- /.image -->
-                    <!--                    <div class="tag new"><span>new</span></div>-->
                   </div>
-                  <!-- /.product-image -->
-
                   <div class="product-info text-left">
                     <h3 class="name">
                     <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
@@ -99,6 +97,9 @@
                         this.isFinished = true;
                     }
                 });
+            },
+            handler (component) {
+                console.log('this component is showing')
             }
         },
         mounted: function(){

@@ -5,7 +5,7 @@
         <h3 class="new-product-title pull-left">Nhận xét và đánh giá</h3>
       </div>
     </div>
-    <div class="product-review segments" style="display: inline-block;">
+    <div class="product-review segments" style="display: inline-block;width: 100%;">
         <div class="row col-md-6" style="margin: 0;display: inline-block;padding:45px 0px 20px 0px;">
             <div class="rating-block col-md-6 float-left" style="padding: 20px 5px;text-align: center;display: inline-block;">
                 <h1 class="bold padding-bottom-7" style="padding-bottom: 5px;margin-top: 0px;font-size: 50px;font-weight: 600;color: red;">{{ratingAvg}}</h1>
@@ -102,7 +102,7 @@
             </div>
             <div class="sheet-modal-inner segments">
               <div class="page-content" style="background: #fff;padding-bottom: 20px;">
-                <div class="container" id="form-review" style="padding: 0px;">
+                <div class="container" id="form-review" style="padding: 0px;width: 100%;">
                   <form style="padding-top: 10px;">
                     <input id="ratings-hidden" name="rating" type="hidden">
                     <div class="form-group">
@@ -338,11 +338,9 @@
                         this.getRatingAvg();
                         this.getRatingNumberDetail();
                     } else {
-                        Swal({
-                            title: "Đã xảy ra lỗi!",
-                            text: "Xin vui lòng thử lại sau!",
-                            icon: "error",
-                            button: "Đồng ý",
+                        this.$toast.error({
+                            title:'Đã xảy ra lỗi',
+                            message:'Vui lòng thử lại sau!'
                         });
                     }
                     this.submit = false;
@@ -353,31 +351,49 @@
                     return true;
                 }
                 if(!this.fullname) {
-                    this.$toast.top('Bạn chưa nhập tên');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập tên'
+                    });
                     this.$refs.fullname.focus();
                     return false;
                 }
                 if(this.phone === '') {
-                    this.$toast.top('Bạn chưa nhập số điện thoại');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập số điện thoại'
+                    });
                     this.$refs.phone.focus();
                     return false;
                 }  else if(!this.phone_reg.test(this.phone)) {
-                    this.$toast.top('Số điện thoại chưa đúng.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Số điện thoại chưa đúng'
+                    });
                     this.$refs.phone.focus();
                     return false;
                 }
                 if(this.email !== '' && !this.email_reg.test(this.email)) {
-                    this.$toast.top('Email chưa đúng.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Email chưa đúng'
+                    });
                     this.$refs.email.focus();
                     return false;
                 }
                 if(!this.content) {
-                    this.$toast.top('Bạn chưa nhập nội dung nhận xét');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập nội dung nhận xét'
+                    });
                     this.$refs.content.focus();
                     return false;
                 }
                 if(!this.rating) {
-                    this.$toast.top('Bạn chưa chọn số sao');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa chọn số sao'
+                    });
                     return false;
                 }
             },

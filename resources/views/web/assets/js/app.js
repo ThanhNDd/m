@@ -3,25 +3,35 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 require('./bootstrap');
-import Toast from "vue2-toast";
-import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
-import 'sweetalert2/dist/sweetalert2.min.css';
 import vSelect from 'vue-select';
 import jQuery from 'jquery';
 import Lingallery from 'lingallery';
-import Paginate from 'vuejs-paginate'
+import Paginate from 'vuejs-paginate';
+import CxltToastr from 'cxlt-vue2-toastr'
+import Lazyload from 'vue-lazyload'
+
+import 'vue2-toast/lib/toast.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
-window.Swal = require('sweetalert2');
 
-Vue.use(Toast, {
-    type: 'center',
-    duration: 3000,
-    wordWrap: true,
-    width: '90%'
+Vue.use(Lazyload, {
+  lazyComponent: true,
+  preLoad: 1.3,
+  attempt: 1,
+  listenEvents: [ 'scroll' ],
+  throttleWait: 500
+});
+Vue.use(CxltToastr, {
+  position: 'top right',
+  showDuration: 500,
+  hideDuration: 5000,
+  closeButton: true
 });
 Vue.use(require('vue-moment'));
 

@@ -26,17 +26,6 @@ mix.js([
   ], 'public/mobile/css/all.css');
 
     mix.js(['resources/views/web/assets/js/app.js',
-      // 'resources/views/web/assets/js/libs/bootstrap.min.js',
-      // 'resources/views/web/assets/js/libs/bootstrap-hover-dropdown.min.js',
-      // 'resources/views/web/assets/js/libs/owl.carousel.min.js',
-      // 'resources/views/web/assets/js/libs/echo.min.js',
-      // 'resources/views/web/assets/js/libs/jquery.easing-1.3.min.js',
-      // 'resources/views/web/assets/js/libs/bootstrap-slider.min.js',
-      // 'resources/views/web/assets/js/libs/jquery.rateit.min.js',
-      // 'resources/views/web/assets/js/libs/lightbox.min.js',
-      // 'resources/views/web/assets/js/libs/bootstrap-select.min.js',
-      // 'resources/views/web/assets/js/libs/wow.min.js',
-      // 'resources/views/web/assets/js/libs/scripts.js',
     ], 'public/web/js/webapp.js');
     mix.styles([
       'resources/views/web/assets/css/bootstrap.min.css',
@@ -56,7 +45,7 @@ mix.copyDirectory('resources/views/web/assets/css/images', 'public/web/css/image
 mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');
 mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
 
-mix.autoload({ jQuery: 'jquery', $: 'jquery', jquery: 'jquery' });
+// mix.autoload({ jQuery: 'jquery', $: 'jquery', jquery: 'jquery' });
 
 // Full API
 // mix.js(src, output);

@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 
 class BestSellerController extends Controller
@@ -20,14 +16,14 @@ class BestSellerController extends Controller
         $products = DB::select(DB::raw("select p.id, p.name, p.image, p.retail, p.rating, p.reviews from smi_products p inner join
           (select distinct e.product_id from (
           select b.product_id from smi_orders a left join smi_order_detail b on a.id = b.order_id
-          order by a.created_date desc limit 30) as e) d on p.id = d.product_id
+          order by a.created_date desc limit 50) as e) d on p.id = d.product_id
           where p.status = 0 and p.social_publish->'$.website' = 1 limit $row, $rowperpage"));
 
         // on server with mariadb
 //        $products = DB::select(DB::raw("select p.id, p.name, p.image, p.retail, p.rating, p.reviews from smi_products p inner join
 //          (select distinct e.product_id from (
 //          select b.product_id from smi_orders a left join smi_order_detail b on a.id = b.order_id
-//          order by a.created_date desc limit 30) as e) d on p.id = d.product_id
+//          order by a.created_date desc limit 50) as e) d on p.id = d.product_id
 //          where p.status = 0 and JSON_CONTAINS(p.social_publish, 1, '$.website') limit $row, $rowperpage"));
 
 
