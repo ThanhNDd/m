@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductController extends Controller
 {
@@ -46,8 +48,6 @@ class ProductController extends Controller
         $cat_title = 'Thời trang bé gái';
         $cat_uri = url('') . '/categories/girls';
       }
-      // store in cookie
-      $this->storeInSession($request, $product);
       $images = "[";
       foreach (json_decode($product->image) as $key => $image) {
         $myObj['id'] = "image$key";
@@ -57,22 +57,28 @@ class ProductController extends Controller
       }
       $images .= "]";
     }
+    $hasCookie = $request->hasCookie('recently_viewed');
+    // store in cookie
+    $recentlyViewed = $this->storeInCookie($request, $product);
     if ($this->is_mobile()) {
-      return view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images'));
+      return response(view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie')))
+        ->withCookie($recentlyViewed);
     } else {
-      return view('web.page.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images'));
+      return response(view('web.page.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie')))
+        ->withCookie($recentlyViewed);
     }
 
   }
 
-  function storeInSession(Request $request, $product)
+  function storeInCookie(Request $request, $product)
   {
-    $vieweds = array();
+    $products = array();
+    $minutes = 60*24*30;// 1 month
     $is_exists = false;
-    if ($request->session()->has("viewed")) {
-      $vieweds = $request->session()->get("viewed");
-      foreach ($vieweds as $key => $v) {
-        if ($v["id"] == $product->id) {
+    if ($request->hasCookie('recently_viewed')) {
+      $products = json_decode($request->cookie('recently_viewed'));
+      foreach ($products as $key => $v) {
+        if ($v->id == $product->id) {
           $is_exists = true;
         }
       }
@@ -85,19 +91,21 @@ class ProductController extends Controller
       $viewed["image"] = $product->image;
       $viewed["rating"] = $product->rating;
       $viewed["reviews"] = $product->reviews;
-      array_push($vieweds, $viewed);
-      $reversed = array_reverse($vieweds);
-      $request->session()->put('viewed', $reversed);
+      array_push($products, $viewed);
+      $reversed = array_reverse($products);
+      return cookie("recently_viewed", json_encode($reversed), $minutes);
     }
+    return cookie("recently_viewed", json_encode($products), $minutes);
   }
 
-  public function viewedProduct(Request $request)
+  public function getProductInCookie(Request $request)
   {
-    $vieweds = array();
-    if ($request->session()->has("viewed")) {
-      $vieweds = $request->session()->get("viewed");
+    $products = array();
+    if ($request->hasCookie('recently_viewed')) {
+      $products = Crypt::decrypt(Cookie::get('recently_viewed'), false);
+      $products = json_decode($products);
     }
-    return response()->json($vieweds);
+    return $products;
   }
 
   public function bestViewProduct()

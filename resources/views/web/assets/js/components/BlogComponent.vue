@@ -12,13 +12,10 @@
             <div class="blog-post-image">
               <div class="image">
                 <a v-bind:href="post.link" target="_blank">
-<<<<<<< HEAD
-                  <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">
-                    <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
-                  </div>
-=======
                   <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
->>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36
+<!--                  <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">-->
+<!--                    <img v-bind:data-src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">-->
+<!--                  </div>-->
                 </a>
               </div>
             </div>
@@ -29,11 +26,7 @@
                   {{post.title.rendered}}
                 </a>
               </h3>
-<<<<<<< HEAD
               <p class="text" v-html="post.excerpt.rendered.substring(0,150) +'...'">
-=======
-              <p class="text" v-html="post.excerpt.rendered">
->>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36
               </p>
             </div>
             <!-- /.blog-post-info -->

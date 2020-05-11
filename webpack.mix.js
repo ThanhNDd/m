@@ -12,11 +12,11 @@ let mix = require('laravel-mix');
  */
 
 // mix.js('src/app.js', 'dist/').sass('src/app.scss', 'dist/');
-mix.js([
-  'resources/js/app.js',
-  'resources/js/main.js',
-], 'public/mobile/js/apps.js')
-  .styles([
+  mix.js([
+    'resources/js/app.js',
+    'resources/js/main.js',
+  ], 'public/mobile/js/apps.js');
+  mix.styles([
     'public/mobile/css/bootstrap.min.css',
     'public/mobile/css/vue-select.css',
     'public/mobile/css/framework7.bundle.min.css',
@@ -25,8 +25,25 @@ mix.js([
     'public/mobile/css/swiper.min.css',
   ], 'public/mobile/css/all.css');
 
+  mix.js(['resources/js/detail.js'], 'public/mobile/js/detail.js');
+  mix.js(['resources/js/home.js'], 'public/mobile/js/home.js');
+  // mix.minify('public/mobile/js/detail.js');
+  // mix.minify('resources/js/home.js');
+
+
+  // web
+    mix.minify('resources/views/web/assets/js/app.js');
+    mix.minify('resources/views/web/assets/js/detail.js');
+
     mix.js(['resources/views/web/assets/js/app.js',
     ], 'public/web/js/webapp.js');
+
+    mix.js(['resources/views/web/assets/js/detail.js',
+    ], 'public/web/js/detail.js');
+
+    mix.minify('public/web/js/webapp.js');
+    mix.minify('public/web/js/detail.js');
+
     mix.styles([
       'resources/views/web/assets/css/bootstrap.min.css',
       'resources/views/web/assets/css/main.css',
@@ -36,14 +53,28 @@ mix.js([
       'resources/views/web/assets/css/animate.min.css',
       'resources/views/web/assets/css/rateit.css',
       'resources/views/web/assets/css/bootstrap-select.min.css',
-      // 'resources/views/web/assets/css/font-awesome.css',
       'public/mobile/css/font-awesome.min.css',
       'resources/views/web/assets/css/style.css',
       'public/mobile/css/vue-select.css',
     ], 'public/web/css/webapp.css');
+
+mix.minify('resources/views/web/assets/css/main.css');
+mix.minify('resources/views/web/assets/css/blue.css');
+mix.minify('resources/views/web/assets/css/style.css');
+mix.styles([
+  'resources/views/web/assets/css/bootstrap.min.css',
+  'resources/views/web/assets/css/main.min.css',
+  'resources/views/web/assets/css/blue.min.css',
+  'public/mobile/css/font-awesome.min.css',
+  'resources/views/web/assets/css/style.min.css',
+], 'public/web/css/webapp.css');
+mix.minify('public/web/css/webapp.css');
+
 mix.copyDirectory('resources/views/web/assets/css/images', 'public/web/css/images');
 mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');
 mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
+
+
 
 // mix.autoload({ jQuery: 'jquery', $: 'jquery', jquery: 'jquery' });
 

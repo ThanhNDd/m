@@ -1,19 +1,30 @@
+
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+
 import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
 import vSelect from "../../node_modules/vue-select";
-import 'sweetalert2/dist/sweetalert2.min.css';
+// import 'sweetalert2/dist/sweetalert2.min.css';
+import VueLazyload from "vue-lazyload";
 
 window.Vue = require('vue');
-window.VueRoute = require('vue-router');
-window.Swal = require('sweetalert2');
+// window.VueRoute = require('vue-router');
+// window.Swal = require('sweetalert2');
 
+Vue.use(VueLazyload, {
+  lazyComponent: true,
+  preLoad: 1.3,
+  attempt: 1,
+  listenEvents: ['scroll'],
+  throttleWait: 500
+});
 Vue.use(Toast, {
     type: 'center',
     duration: 3000,
@@ -32,24 +43,25 @@ Vue.use(require('vue-moment'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component("home-component",require('./components/homeComponent.vue').default);
 Vue.component("v-select", vSelect);
 Vue.component('star-rating', StarRating);
-Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
-Vue.component('flash-sale-component', require('./components/FlashSaleProductComponent.vue').default);
+// Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
+// Vue.component('flash-sale-component', require('./components/FlashSaleProductComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
-Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
-Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
-Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
+// Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
+// Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
+// Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
 Vue.component('cart-number-component', require('./components/CartComponent.vue').default);
 Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
-Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
+// Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 Vue.component('category-component', require('./components/CategoryComponent.vue').default);
-Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
+// Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('all-reviews-component', require('./components/AllReviewsComponent.vue').default);
-Vue.component('viewed-product-component', require('./components/ViewedProductComponent.vue').default);
-Vue.component('rating-component', require('./components/RatingComponent.vue').default);
-Vue.component('blog-component', require('./components/BlogComponent.vue').default);
+// Vue.component('viewed-product-component', require('./components/ViewedProductComponent.vue').default);
+// Vue.component('rating-component', require('./components/RatingComponent.vue').default);
+// Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

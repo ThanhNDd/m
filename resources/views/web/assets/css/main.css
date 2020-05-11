@@ -9027,7 +9027,7 @@ header {
   .item.item-carousel {
     width: 200px;
   }
-  .row.our-features-box .container {
+  .our-features-box .container {
     width: 100%;
     margin: auto;
   }

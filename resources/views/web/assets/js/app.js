@@ -6,15 +6,15 @@
 
 require('./bootstrap');
 import {StarRating} from 'vue-rate-it';
-import vSelect from 'vue-select';
-import jQuery from 'jquery';
-import Lingallery from 'lingallery';
+// import vSelect from 'vue-select';
+// import jQuery from 'jquery';
+// import Lingallery from 'lingallery';
 import Paginate from 'vuejs-paginate';
 import CxltToastr from 'cxlt-vue2-toastr'
 import Lazyload from 'vue-lazyload'
 
 import 'vue2-toast/lib/toast.css';
-import 'sweetalert2/dist/sweetalert2.min.css';
+// import 'sweetalert2/dist/sweetalert2.min.css';
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 
 window.Vue = require('vue');
@@ -46,26 +46,34 @@ Vue.use(require('vue-moment'));
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('paginate', Paginate);
-Vue.component("v-select", vSelect);
-Vue.component('lingallery', Lingallery);
+// Vue.component("v-select", vSelect);
+// Vue.component('lingallery', Lingallery);
 Vue.component('star-rating', StarRating);
-Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
-Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
-Vue.component('rating-component', require('./components/RatingComponent.vue').default);
-Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
-Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
-Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
-Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
+
+// Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
+// Vue.component('best-seller-component', require('./components/BestSellerComponent.vue').default);
+
+
+Vue.component('home-component', require('./components/HomeComponent.vue').default);
+Vue.component('sidebar-component', require('./components/sidebarComponent.vue').default);
+Vue.component('footer-component', require('./components/footerComponent.vue').default);
+
+// Vue.component('rating-component', require('./components/RatingComponent.vue').default);
+// Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
+// Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
+// Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
+// Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
 Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('cart-number-component', require('./components/CartComponent').default);
 Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('category-component', require('./components/CategoryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
-Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
-Vue.component('blog-component', require('./components/BlogComponent.vue').default);
-Vue.component('status-component', require('./components/StatusComponent.vue').default);
-Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
+// Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
+// Vue.component('blog-component', require('./components/BlogComponent.vue').default);
+// Vue.component('status-component', require('./components/StatusComponent.vue').default);
+// Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
+
 
 Vue.filter('formatPrice', function (value) {
     let val = (value/1).toFixed(0).replace('.', ',');

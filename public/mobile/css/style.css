@@ -1859,7 +1859,7 @@ ul li {
 }
 
 .related-products .swiper-slide {
-    width: 37%;
+    width: 35% !important;
 }
 
 .related-products .swiper-slide .content {

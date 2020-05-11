@@ -180,6 +180,8 @@
 </template>
 
 <script>
+    // import {StarRating} from 'vue-rate-it';
+    // Vue.component('star-rating', StarRating);
     export default {
         data() {
             return {
@@ -215,6 +217,9 @@
             }
         },
         props: ['product_id'],
+        components: {
+            // StarRating
+        },
         created() {
             this.url = url;
             this.getAllReviews(3);
@@ -351,11 +356,11 @@
                     return true;
                 }
                 if(!this.fullname) {
+                    this.$refs.fullname.focus();
                     this.$toast.error({
                         title:'Lỗi',
                         message:'Bạn chưa nhập tên'
                     });
-                    this.$refs.fullname.focus();
                     return false;
                 }
                 if(this.phone === '') {

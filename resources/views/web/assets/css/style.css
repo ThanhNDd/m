@@ -1,6 +1,6 @@
 @font-face {
   font-family: Pony;
-  src: url('../fonts/Pony.ttf');
+  src: url('../fonts/Pony.woff2');
 }
 
 :root {
@@ -357,19 +357,15 @@ ul.keyword-search li a {
   color: #abafb1;
   padding: 5px;
 }
-<<<<<<< HEAD
-=======
-.row.our-features-box .container {
-  width: 1600px;
-  margin: auto;
-}
->>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36
+/*.row.our-features-box .container {*/
+/*  width: 1600px;*/
+/*  margin: auto;*/
+/*}*/
 .list-inline>li {
   padding-right: 0 !important;
 }
 .breadcrumb ul li:after {
   margin-right: 0 !important;
-<<<<<<< HEAD
 }
 
 .loader{
@@ -386,6 +382,6 @@ ul.keyword-search li a {
   width: 24px !important;
   height: 30px !important;
 }
-=======
+.fa-stack {
+  height: 2.5em !important;
 }
->>>>>>> 39d0e0dca61854c4560e7d3660cd691244fa6f36

@@ -80,9 +80,10 @@
                         <h4 class="module-title">Chúng tôi trên facebook</h4>
                     </div>
                     <div class="module-body">
-                      <div class="fb-page" data-href="https://www.facebook.com/shopmein.net/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shopmein.net/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shopmein.net/">Shop Mẹ Ỉn</a></blockquote></div>
+                      <lazy-component>
+                        <facebook-component></facebook-component>
+                      </lazy-component>
                     </div>
-                    <!-- /.module-body -->
                 </div>
                 <!-- /.col -->
 

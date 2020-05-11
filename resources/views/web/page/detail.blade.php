@@ -36,7 +36,7 @@
           <div class='row single-product'>
             <div class='col-xs-12 col-sm-12 col-md-3 sidebar'>
               <div class="sidebar-module-container">
-                @include('web.page.sidebar.sidebar')
+                  <sidebar-component></sidebar-component>
               </div>
             </div>
             <div class='col-xs-12 col-sm-12 col-md-9 rht-col'>
@@ -53,8 +53,10 @@
                     <div class="product-info">
                       <h1 class="name">{{$product->name}}</h1>
                       <div>
-                        <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'"
+                        <lazy-component>
+                          <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'"
                                           :key="reload"></rating-component>
+                        </lazy-component>
                       </div>
                       <div class="stock-container info-container m-t-10">
                         <div class="row">
@@ -66,7 +68,9 @@
                             </div>
                             <div class="pull-left">
                               <div class="stock-box">
-                                <status-component :product_id="{{$product->id}}"></status-component>
+                                <lazy-component>
+                                  <status-component :product_id="{{$product->id}}"></status-component>
+                                </lazy-component>
                               </div>
                             </div>
                           </div>
@@ -83,7 +87,9 @@
                         </div>
                       </div><!-- /.row -->
                       <div class="description-container m-t-20">
-                        <attributes-component/>
+{{--                        <lazy-component>--}}
+                          <attributes-component/>
+{{--                        </lazy-component>--}}
                       </div>
                       <div class="quantity-container info-container">
                         <div class="row">
@@ -139,53 +145,14 @@
                   </div><!-- /.col-sm-7 -->
                 </div><!-- /.row -->
               </div>
-              <div class="policy-info">
-                <div class="policy no-mobile" style="width: 50%">
-                  <span>
-                    <h3>Chính sách vận chuyển:</h3>
-                  </span>
-                  <span>
-                    <i class="fa fa-arrow-circle-right text-success"></i> Giao hàng tận nhà, cho kiểm tra hàng trước khi nhận.
-                  </span>
-                  <span>
-                    <i class="fa fa-arrow-circle-right text-success"></i> Cước phí vận chuyển trong Hà nội là <b class="text-danger">20K</b>, tỉnh thành khác từ <b class="text-danger">25K</b> đến <b class="text-danger">35K</b>.
-                  </span>
-                  <span>
-                    <i class="fa fa-arrow-circle-right text-success"></i>
-                    <b class="text-danger">FREESHIP</b> Hà nội cho đơn hàng từ
-                    <b class="text-danger">250K</b>, các tỉnh/thành khác hỗ trợ
-                    <b class="text-danger">20K</b>
-                  </span>
-                  <span>
-                    <i class="fa fa-arrow-circle-right text-success"></i>
-                    <b class="text-danger">FREESHIP</b> TOÀN QUỐC cho đơn hàng hơn
-                    <b class="text-danger">500K</b>
-                  </span>
-                </div>
-                <div class="policy no-mobile" style="width: 40%">
-                  <span>
-                    <h3>Shop Mẹ Ỉn cam kết:</h3>
-                  </span>
-                  <span>
-                    <i class="fa fa-check-circle text-success"></i> Sản phẩm <b class="text-danger">100%</b> như hình
-                  </span>
-                  <span>
-                    <i class="fa fa-check-circle text-success"></i> Vải bền đẹp, không bong tróc.
-                  </span>
-                  <span>
-                    <i class="fa fa-check-circle text-success"></i> Đổi trả nhanh &amp; dễ dàng nếu không vừa ý
-                  </span>
-                </div>
-              </div>
+              @include('web.page.policy.policy')
               @if($product->description)
               <div class="product-tabs inner-bottom-xs">
                 <div class="row">
                   <div class="col-sm-12 col-md-3 col-lg-3">
                     <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
                       <li class="active"><a data-toggle="tab" href="#description">Chi tiết</a></li>
-                      {{--                          <li><a data-toggle="tab" href="#review">REVIEW</a></li>--}}
-                      {{--                          <li><a data-toggle="tab" href="#tags">TAGS</a></li>--}}
-                    </ul><!-- /.nav-tabs #product-tabs -->
+                    </ul>
                   </div>
                   <div class="col-sm-12 col-md-9 col-lg-9">
                     <div class="tab-content">
@@ -197,98 +164,41 @@
                     </div><!-- /.tab-content -->
                   </div><!-- /.col -->
                 </div><!-- /.row -->
-              </div><!-- /.product-tabs -->
+            </div><!-- /.product-tabs -->
               @endif
               <div>
-                <relate-product-component/>
+                <lazy-component>
+                  <relate-product-component/>
+                </lazy-component>
               </div>
               <div>
-                <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
+{{--                <lazy-component>--}}
+                  <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
+{{--                </lazy-component>--}}
               </div>
               <div>
+                <lazy-component>
                   <recommend-product-component/>
+                </lazy-component>
               </div>
-              @if(session()->has('viewed'))
+              @if(isset($hasCookie) && $hasCookie)
                 <div>
-                  <recently-product-component/>
+                  <lazy-component>
+                    <recently-product-component></recently-product-component>
+                  </lazy-component>
                 </div>
               @endif
             </div>
           </div>
         </div>
       </div>
+      <div>
+        <footer-component></footer-component>
+      </div>
     </div>
   @endif
 @endsection
 
 @section("script")
-  <script>
-      const detail = new Vue({
-          el: '#detail',
-          data() {
-              return {
-                  products: [],
-                  type: '',
-                  description: '',
-                  rating: 0,
-                  fullname: '',
-                  phone: '',
-                  email: '',
-                  content: '',
-                  email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-                  phone_reg: /^((09|03|07|08|05)+([0-9]{8})\b)$/,
-                  reload: 0,
-                  items: []
-              }
-          },
-          methods: {
-              addToCart: function (id, name, price, image) {
-                  let color = document.querySelector('input[name=color]:checked');
-                  if (color == null) {
-                      this.$toast.error({
-                          title:'Lỗi',
-                          message:'Bạn chưa chọn màu'
-                      });
-                      return;
-                  }
-                  let size = document.querySelector('input[name=size]:checked');
-                  if (size == null) {
-                      this.$toast.error({
-                          title:'Lỗi',
-                          message:'Bạn chưa chọn size'
-                      });
-                      return;
-                  }
-                  this.products = [];
-                  this.products.push({
-                      "id": id,
-                      "name": name,
-                      "price": price,
-                      "image": image,
-                      "color": color.value,
-                      "size": size.value,
-                  });
-                  this.storeInCart();
-              },
-              buyNow: function (id, name, price, image) {
-                  this.type = "buyNow";
-                  this.addToCart(id, name, price, image);
-              },
-              storeInCart: function () {
-                  axios.post(url + "/api/cart", {
-                      body: this.products
-                  }).then(response => {
-                      this.$toast.success({
-                          title:'Thông báo',
-                          message:'Sản phẩm đã được thêm vào giỏ hàng'
-                      });
-                      document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
-                      if (this.type === "buyNow") {
-                          window.location.href = url + "/thanh-toan.html";
-                      }
-                  })
-              },
-          }
-      });
-  </script>
+    <script src="{{url('public/web/js/detail.min.js') }}"></script>
 @endsection

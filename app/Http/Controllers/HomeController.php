@@ -14,6 +14,9 @@ class HomeController extends Controller
             ->take(1)
             ->get();
         $is_active = 'home';
+        if ($request->hasCookie('recently_viewed')) {
+          $request->session()->put("viewed", true);
+        }
         if($this->is_mobile()) {
             return view('theme.page.home', compact('is_active', 'products'));
         } else {

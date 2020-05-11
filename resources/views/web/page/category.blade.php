@@ -9,7 +9,8 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
             @include('web.page.sidebar.vertical_menu')
-            @include('web.page.sidebar.sidebar')
+{{--            @include('web.page.sidebar.sidebar')--}}
+            <sidebar-component></sidebar-component>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-9 rht-col">
             <!-- ========================================== SECTION – HERO ========================================= -->

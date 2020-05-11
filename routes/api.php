@@ -57,6 +57,7 @@ Route::post('/reviews', 'ReviewsController@show');
 Route::get('/rating-avg/{id}', 'ReviewsController@countRating');
 Route::get('/rating-number-detail/{id}', 'ReviewsController@ratingNumberDetail');
 Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');
-Route::get('/viewed-product', 'ProductController@viewedProduct');
+//Route::get('/viewed-product', 'ProductController@viewedProduct');
+Route::get('/viewed-product', 'ProductController@getProductInCookie');
 Route::get('/status/{id}', 'ProductController@getStatus');
 

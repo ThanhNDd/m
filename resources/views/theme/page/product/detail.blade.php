@@ -46,13 +46,13 @@
                                                     <div class="swiper-slide">
                                                         <div class="content">
                                                             <div class="mask"></div>
-                                                            <img
-                                                                src="{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}"
+                                                            <div class="item" v-lazy-container="{ selector: 'img', error: '{{url('')}}/public/web/images/404.jpg', loading: '' }">
+                                                              <img data-src="{{ url($image->type == 'upload' ? env('IMAGE_URL').$image->src : $image->src) }}"
                                                                 alt="{{ $product->name }}" title="{{ $product->name }}">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
-
                                             </div>
                                             <div class="swiper-pagination swiper-pagination-detail-product"></div>
                                         </div>
@@ -60,7 +60,9 @@
                                     <div class="wrap-title-product wrap-c-margin">
                                         <h4>{{ $product->name }}</h4>
                                         <div>
-                                            <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'" :key="reload"/>
+                                            <lazy-component>
+                                              <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'" :key="reload"/>
+                                            </lazy-component>
                                         </div>
                                         <h3 style="color: var(--main-color)">{{ number_format($product->retail).' đ' }}</h3>
                                     </div>
@@ -82,7 +84,9 @@
                                     </div>
                                 </div>
                                 <div>
+                                  <lazy-component>
                                     <relate-product-component/>
+                                  </lazy-component>
                                 </div>
                                 <!-- product review -->
                                 <div>
@@ -94,20 +98,22 @@
                                             </span>
                                         </h3>
                                     </div>
+                                  <lazy-component>
                                     <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
+                                  </lazy-component>
                                 </div>
                                 <div>
+                                  <lazy-component>
                                     <recommend-product-component/>
+                                  </lazy-component>
+
                                 </div>
                                 <!-- end recommended for you -->
-                                @if(session()->has('viewed'))
+                                @if(isset($hasCookie) && $hasCookie)
                                     <div class="related-products flash-sale segments no-pd-b" style="padding: 0;">
-                                        <div class="container" style="padding: 0 !important;">
-                                            <div class="section-title">
-                                                <h3>Sản phẩm đã xem</h3>
-                                            </div>
+                                      <lazy-component>
                                             <viewed-product-component/>
-                                        </div>
+                                      </lazy-component>
                                     </div>
                                 @endif
                             </div>
@@ -282,166 +288,5 @@
 @endsection
 
 @section("script")
-    <script>
-        const detail = new Vue({
-            el: '#detail',
-            data() {
-                return {
-                    products: [],
-                    type: '',
-                    description: '',
-                    rating: 0,
-                    fullname: '',
-                    phone: '',
-                    email: '',
-                    content: '',
-                    email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-                    phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
-                    reload: 0
-                }
-            },
-            methods: {
-                addToCart: function (id, name, price, image) {
-                    let color = document.querySelector('input[name=color]:checked');
-                    if (color == null) {
-                        this.$toast.top('Bạn chưa chọn màu');
-                        return;
-                    }
-                    let size = document.querySelector('input[name=size]:checked');
-                    if (size == null) {
-                        this.$toast.top('Bạn chưa chọn size');
-                        return;
-                    }
-                    this.products = [];
-                    this.products.push({
-                        "id": id,
-                        "name": name,
-                        "price": price,
-                        "image": image,
-                        "color": color.value,
-                        "size": size.value,
-                    });
-                    this.storeInCart();
-                },
-                buyNow: function (id, name, price, image) {
-                    this.type = "buyNow";
-                    this.addToCart(id, name, price, image);
-                },
-                storeInCart: function () {
-                    axios.post(url +"/api/cart", {
-                        body: this.products
-                    }).then(response => {
-                        this.$toast.top('Đã thêm vào giỏ hàng');
-                        document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger">' + response.data.length + '</span>';
-                        if(this.type === "buyNow") {
-                            window.location.href =  url +  "/thanh-toan.html";
-                        }
-                    })
-                },
-                cancelReview: function () {
-                    this.fullname = '';
-                    this.phone = '';
-                    this.email = '';
-                    this.content = '';
-                    this.rating = 0;
-                    this.$refs.fullname.focus();
-                    $("#form-review").removeClass('hidden');
-                    $("#form-review-success").addClass('hidden');
-                },
-                isPhoneValid: function() {
-                    return (this.phone === "")? "" : (this.phone_reg.test(this.phone)) ? 'has-success' : 'has-error';
-                },
-                isEmailValid: function() {
-                    return (this.email === "")? "" : (this.email_reg.test(this.email)) ? 'has-success' : 'has-error';
-                },
-                submitReviews: function (product_id) {
-                    if(!this.validate()) {
-                        return false;
-                    }
-                    let review = [];
-                    review.push({
-                        "name": this.fullname,
-                        "phone": this.phone,
-                        "email": this.email,
-                        "content" : this.content,
-                        "rating" : this.rating,
-                        "product_id": product_id
-                    });
-                    console.log(JSON.stringify(review));
-                    axios.post(url + "/api/submit-reviews", {
-                        body: review
-                    }).then(response => {
-                        console.log(response.data);
-                        if(response.data === 201) {
-                            $("#form-review").addClass('hidden');
-                            $("#form-review-success").removeClass('hidden');
-                            this.reload++;
-                        } else {
-                            swal({
-                                title: "Đã xảy ra lỗi!",
-                                text: "Xin vui lòng thử lại sau!",
-                                icon: "error",
-                                button: "Đồng ý",
-                            });
-                        }
-                    })
-                },
-                validate: function () {
-                    if(this.fullname && this.phone && this.content && this.rating) {
-                        return true;
-                    }
-                    if(!this.fullname) {
-                        this.$toast.top('Bạn chưa nhập tên');
-                        this.$refs.fullname.focus();
-                        return false;
-                    }
-                    if(this.phone === '') {
-                        this.$toast.top('Bạn chưa nhập số điện thoại');
-                        this.$refs.phone.focus();
-                        return false;
-                    }  else if(!this.phone_reg.test(this.phone)) {
-                        this.$toast.top('Số điện thoại chưa đúng.');
-                        this.$refs.phone.focus();
-                        return false;
-                    }
-                    if(this.email !== '' && !this.email_reg.test(this.email)) {
-                        this.$toast.top('Email chưa đúng.');
-                        this.$refs.email.focus();
-                        return false;
-                    }
-                    if(!this.content) {
-                        this.$toast.top('Bạn chưa nhập nội dung nhận xét');
-                        this.$refs.content.focus();
-                        return false;
-                    }
-                    if(!this.rating) {
-                        this.$toast.top('Bạn chưa chọn số sao');
-                        return false;
-                    }
-                },
-                openPopupReview: function () {
-                    $(".rating-sheet").addClass("modal-in");
-                    $("html").addClass("with-modal-sheet");
-                    $(".sheet-close").click(function() {
-                        $(".rating-sheet").removeClass("modal-in");
-                        $("html").removeClass("with-modal-sheet");
-
-                    });
-                }
-            }
-        });
-        new Swiper('.swiper-detail-product', {
-            cssMode: true,
-            mousewheel: true,
-            keyboard: true,
-            pagination: {
-                el: '.swiper-pagination-detail-product',
-                dynamicBullets: true,
-                paginationClickable: true
-            },
-            autoplay: {
-                delay: 5000,
-            },
-        });
-    </script>
+  <script src="{{url('public/mobile/js/detail.js') }}"></script>
 @endsection

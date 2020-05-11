@@ -1,11 +1,13 @@
-{{--@include('web.page.sidebar.flase_sale')--}}
-{{--@include('web.page.sidebar.best_view')--}}
 <div>
-  <best-view-product-component/>
+  <lazy-component>
+    <best-view-product-component></best-view-product-component>
+  </lazy-component>
 </div>
 
 @include('web.page.sidebar.tags')
 <div>
-  <hotboy-component/>
+  <lazy-component>
+    <hotboy-component></hotboy-component>
+  </lazy-component>
 </div>
 @include('web.page.sidebar.testimonials')

@@ -10,8 +10,8 @@
         <div class="col-50" v-for="post in posts">
           <div class="content content-shadow-product">
             <div class="image">
-              <a v-bind:href="post.link" target="_blank">
-                <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
+              <a v-bind:href="post.link" target="_blank" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
+                <img v-bind:data-src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
               </a>
             </div>
             <div class="text">

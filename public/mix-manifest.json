@@ -1,6 +1,17 @@
 {
     "/mobile/js/apps.js": "/mobile/js/apps.js",
+    "/mobile/js/detail.js": "/mobile/js/detail.js",
+    "/mobile/js/home.js": "/mobile/js/home.js",
+    "/web/js/detail.js": "/web/js/detail.js",
     "/web/js/webapp.js": "/web/js/webapp.js",
     "/mobile/css/all.css": "/mobile/css/all.css",
-    "/web/css/webapp.css": "/web/css/webapp.css"
+    "/resources/views/web/assets/js/app.min.js": "/resources/views/web/assets/js/app.min.js",
+    "/resources/views/web/assets/js/detail.min.js": "/resources/views/web/assets/js/detail.min.js",
+    "/web/js/webapp.min.js": "/web/js/webapp.min.js",
+    "/web/js/detail.min.js": "/web/js/detail.min.js",
+    "/web/css/webapp.css": "/web/css/webapp.css",
+    "/resources/views/web/assets/css/main.min.css": "/resources/views/web/assets/css/main.min.css",
+    "/resources/views/web/assets/css/blue.min.css": "/resources/views/web/assets/css/blue.min.css",
+    "/resources/views/web/assets/css/style.min.css": "/resources/views/web/assets/css/style.min.css",
+    "/web/css/webapp.min.css": "/web/css/webapp.min.css"
 }

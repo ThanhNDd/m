@@ -3,7 +3,6 @@
     <ul>
       <li>
           <div class="row">
-<!--            <div class="col-md-3 col-lg-3">Mô tả</div>-->
             <div class="col-md-12 col-lg-12" v-html="attributes.short_description">
             </div>
           </div>
@@ -68,29 +67,6 @@
             </div>
           </div>
       </li>
-      <!--            <li>-->
-      <!--                <a href="#" class="item-link item-content sheet-open">-->
-      <!--                    <div class="item-inner item-cell">-->
-      <!--                        <div class="item-row">-->
-      <!--                            <div class="item-cell ">Cách chọn size</div>-->
-      <!--                            <div class="item-cell detail">Chi tiết</div>-->
-      <!--                        </div>-->
-      <!--                    </div>-->
-      <!--                </a>-->
-      <!--            </li>-->
-      <!--            <li v-if="description.length > 0">-->
-      <!--                <div style="position: relative;margin-bottom: 40px;overflow: hidden;" v-bind:style="{'height':height}">-->
-      <!--                    <p style="font-size: 13px;color: #333;margin-top: 10px;margin-bottom: 10px;">Mô tả</p>-->
-      <!--                    <div class="description" style="font-size: 13px;color: #333;" v-html="description">-->
-      <!--                    </div>-->
-      <!--                    <div style="font-size: 13px;text-align: center;height: 50px;display: table;width: 100%;bottom: 0;" v-bind:style="{'position':position}">-->
-      <!--                        <div style="display: table-cell;background: linear-gradient(rgba(255, 255, 255, 0.7) 10%, rgb(255, 255, 255));vertical-align: middle;">-->
-      <!--                            <a href="javascript:void(0);" class="btn btn-info" style="color: #fff;font-size: 13px;background: var(&#45;&#45;main-color);" @click="viewMore()">{{text}} <i class="fas" v-bind:class="icon"></i></a>-->
-      <!--                        </div>-->
-      <!--                    </div>-->
-      <!--                </div>-->
-      <!--            </li>-->
-
     </ul>
   </div>
 </template>
