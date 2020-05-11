@@ -65,8 +65,8 @@
                   <div class="content" v-for="(cart, index) in carts">
                     <div class="row">
                       <div class="col-md-3 col-lg-3">
-                        <div class="content-image">
-                          <img v-bind:src="cart['image']" width="100px">
+                        <div class="content-image" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
+                          <img v-bind:data-src="cart['image']" width="100px">
                         </div>
                       </div>
                       <div class="col-md-8 col-lg-8">

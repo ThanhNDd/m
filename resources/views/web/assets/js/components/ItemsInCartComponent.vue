@@ -54,8 +54,8 @@
                     </a>
                   </td>
                   <td class="cart-image">
-                      <a class="entry-thumbnail" v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
-                        <img v-bind:src="cart['image']" alt="">
+                    <a class="entry-thumbnail" v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
+                      <img v-bind:data-src="cart['image']" alt="">
                     </a>
                   </td>
                   <td class="cart-product-name-info">

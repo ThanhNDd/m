@@ -60,9 +60,9 @@
                                     <div class="wrap-title-product wrap-c-margin">
                                         <h4>{{ $product->name }}</h4>
                                         <div>
-                                            <lazy-component>
+{{--                                            <lazy-component>--}}
                                               <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'" :key="reload"/>
-                                            </lazy-component>
+{{--                                            </lazy-component>--}}
                                         </div>
                                         <h3 style="color: var(--main-color)">{{ number_format($product->retail).' đ' }}</h3>
                                     </div>
@@ -80,7 +80,9 @@
                                         <p class=""><i class="fas fa-truck"></i> {{ $product->retail > 250000 ? 'Miễn phí vận chuyển' : 'Miễn phí vận chuyển cho đơn tư 250k' }}</p>
                                     </div>
                                     <div class="wrap-info">
+                                      <lazy-component>
                                         <attributes-component :description="'{{ $product->description }}'"/>
+                                      </lazy-component>
                                     </div>
                                 </div>
                                 <div>
