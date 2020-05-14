@@ -412,3 +412,8 @@
     }
 
 </script>
+<style scoped>
+  i.fa-star.far {
+    color: #ffffff !important;
+  }
+</style>

@@ -23,9 +23,9 @@
       <!-- /.owl-carousel -->
     </div>
     <div class="best-seller">
-      <lazy-component>
-        <best-seller-component/>
-      </lazy-component>
+<!--      <lazy-component>-->
+      <best-seller-component></best-seller-component>
+<!--      </lazy-component>-->
     </div>
 
     <!-- ========================================= SECTION – HERO : END ========================================= -->
@@ -74,9 +74,7 @@
     <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
     <!-- ============================================== FEATURED PRODUCTS ============================================== -->
     <section class="section featured-product">
-      <lazy-component>
         <latest-product-component></latest-product-component>
-      </lazy-component>
     </section>
     <!-- /.section -->
     <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->

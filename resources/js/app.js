@@ -11,7 +11,7 @@ import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
 import vSelect from "../../node_modules/vue-select";
-// import 'sweetalert2/dist/sweetalert2.min.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import VueLazyload from "vue-lazyload";
 
 window.Vue = require('vue');
@@ -23,7 +23,7 @@ Vue.use(VueLazyload, {
   preLoad: 1.3,
   attempt: 1,
   listenEvents: ['scroll'],
-  throttleWait: 500
+  throttleWait: 200
 });
 Vue.use(Toast, {
     type: 'center',
@@ -76,14 +76,20 @@ Vue.filter('formatSalePrice', function (discount, retail) {
     }
     return val;
 });
-Vue.filter('format_image', function (value) {
-    let image = JSON.parse(value);
-    let src = image[0].src;
-    let type = image[0].type;
-    if(type === 'upload') {
-        src = 'https://img.shopmein.vn/' + src;
+Vue.filter('format_image', function (value, thumb) {
+  let image = JSON.parse(value);
+  let src = image[0].src;
+  let type = image[0].type;
+  if(type === 'upload') {
+    src = 'https://img.shopmein.vn/' + src;
+  } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
+    if(typeof thumb !== 'undefined' && thumb !== '') {
+      let ext = src.substr(src.lastIndexOf('.') + 1);
+      src = src.replace('.'+ext,'');
+      src = src+'.'+thumb+'.'+ext;
     }
-    return src;
+  }
+  return src;
 });
 Vue.filter('validateEmail', function (email) {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

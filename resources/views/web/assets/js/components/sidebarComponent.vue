@@ -1,19 +1,19 @@
 <template>
   <div>
     <div>
-      <lazy-component>
+<!--      <lazy-component>-->
         <best-view-product-component></best-view-product-component>
-      </lazy-component>
+<!--      </lazy-component>-->
     </div>
     <div>
-      <lazy-component>
+<!--      <lazy-component>-->
         <tags-component></tags-component>
-      </lazy-component>
+<!--      </lazy-component>-->
     </div>
     <div>
-      <lazy-component>
+<!--      <lazy-component>-->
         <hotboy-component></hotboy-component>
-      </lazy-component>
+<!--      </lazy-component>-->
     </div>
   </div>
 </template>

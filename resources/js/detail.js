@@ -31,7 +31,8 @@ const detail = new Vue({
       content: '',
       email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
-      reload: 0
+      reload: 0,
+      submit: false
     }
   },
   methods: {
@@ -92,6 +93,7 @@ const detail = new Vue({
       if(!this.validate()) {
         return false;
       }
+      this.submit = true;
       let review = [];
       review.push({
         "name": this.fullname,
@@ -106,6 +108,7 @@ const detail = new Vue({
         body: review
       }).then(response => {
         console.log(response.data);
+        this.submit = false;
         if(response.data === 201) {
           $("#form-review").addClass('hidden');
           $("#form-review-success").removeClass('hidden');

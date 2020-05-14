@@ -2,7 +2,10 @@
 @section('title', !empty($prod_title) ? $prod_title : 'Không tồn tại sản phẩm')
 @section('content')
     @if(empty($product))
-        <div id="app"></div>
+      <div id="app" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+           xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+           xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+           xmlns:v-bind="http://www.w3.org/1999/xhtml"></div>
         <div id="detail" xmlns:v-on="http://www.w3.org/1999/xhtml">
             <div id="detail-product" class="page">
                 <div class="view view-main view-init ios-edges">
@@ -26,7 +29,7 @@
         </div>
     @else
         <div id="app"></div>
-        <div id="detail" xmlns:v-on="http://www.w3.org/1999/xhtml">
+        <div id="detail" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
             <div id="detail-product" class="page">
                 <div class="view view-main view-init ios-edges">
                     @include('theme.layout.header')
@@ -80,15 +83,15 @@
                                         <p class=""><i class="fas fa-truck"></i> {{ $product->retail > 250000 ? 'Miễn phí vận chuyển' : 'Miễn phí vận chuyển cho đơn tư 250k' }}</p>
                                     </div>
                                     <div class="wrap-info">
-                                      <lazy-component>
+{{--                                      <lazy-component>--}}
                                         <attributes-component :description="'{{ $product->description }}'"/>
-                                      </lazy-component>
+{{--                                      </lazy-component>--}}
                                     </div>
                                 </div>
                                 <div>
-                                  <lazy-component>
+{{--                                  <lazy-component>--}}
                                     <relate-product-component/>
-                                  </lazy-component>
+{{--                                  </lazy-component>--}}
                                 </div>
                                 <!-- product review -->
                                 <div>
@@ -100,14 +103,14 @@
                                             </span>
                                         </h3>
                                     </div>
-                                  <lazy-component>
+{{--                                  <lazy-component>--}}
                                     <reviews-component :product_id="{{ $product->id }}" :key="reload"/>
-                                  </lazy-component>
+{{--                                  </lazy-component>--}}
                                 </div>
                                 <div>
-                                  <lazy-component>
+{{--                                  <lazy-component>--}}
                                     <recommend-product-component/>
-                                  </lazy-component>
+{{--                                  </lazy-component>--}}
 
                                 </div>
                                 <!-- end recommended for you -->
@@ -261,22 +264,23 @@
                                                      v-model="rating"
                                         ></star-rating>
                                         <div class="float-right">
-                                            <button type="button" class="btn btn-primary" v-on:click="submitReviews('{{$product->id}}')">Đồng ý</button>
+                                            <button type="button" class="btn btn-primary" v-on:click="submitReviews('{{$product->id}}')" :disabled="submit">
+                                              <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i>&nbsp;Đồng ý
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div id="form-review-success" class="hidden">
-                                <div class="swal-icon swal-icon--success">
-                                    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
-                                    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
-                                    <div class="swal-icon--success__ring"></div>
-                                    <div class="swal-icon--success__hide-corners"></div>
-                                    </div>
-                                <div class="swal-title" style="">Đăng nhận xét thành công!</div>
-                                <div class="swal-text" style="text-align: center;width: 100%;">Cám ơn bạn đã nhận xét sản phẩm!</div>
-                                <div class="swal-footer" style="text-align: center;margin-top: 0;">
-                                    <div class="swal-button-container">
+                                <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                                    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+                                    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                                </div>
+                                <div class="swal2-title" style="">Đăng nhận xét thành công!</div>
+                                <div class="swal2-text" style="text-align: center;width: 100%;">Cám ơn bạn đã nhận xét sản phẩm!</div>
+                                <div class="swal2-footer" style="text-align: center;margin-top: 0;">
+                                    <div class="swal2-button-container" style="width: 50%;margin: auto;">
                                         <button class="link sheet-close btn btn-danger" v-on:click="cancelReview()">Đóng</button>
                                     </div>
                                 </div>
@@ -290,5 +294,5 @@
 @endsection
 
 @section("script")
-  <script src="{{url('public/mobile/js/detail.js') }}"></script>
+  <script src="{{url('public/mobile/js/detail.min.js') }}"></script>
 @endsection

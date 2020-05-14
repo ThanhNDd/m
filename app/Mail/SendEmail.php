@@ -11,14 +11,16 @@ class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $mailContent;
+
+  /**
+   * Create a new message instance.
+   *
+   * @param $product
+   */
+    public function __construct($mailContent)
     {
-        //
+        $this->mailContent = $mailContent;
     }
 
     /**
@@ -28,6 +30,7 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('theme.page.mail')->subject('[Shop Mẹ Ỉn] Đơn hàng mới');
+        $orderId = $this->mailContent['order_id'];
+        return $this->view('theme.page.mail')->subject('[Shop Mẹ Ỉn] Đơn hàng mới #'.$orderId);
     }
 }

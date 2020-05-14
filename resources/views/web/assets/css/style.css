@@ -282,9 +282,11 @@ i.far.fa-check-circle {
 .content-text p {
   font-size: 14px;
 }
-
+.coupon-code {
+  margin: 20px 0;
+}
 .coupon-code input {
-  width: 80%;
+  width: 70%;
   float: left;
   margin-right: 20px;
   height: 40px;

@@ -167,9 +167,9 @@
             </div><!-- /.product-tabs -->
               @endif
               <div>
-                <lazy-component>
+{{--                <lazy-component>--}}
                   <relate-product-component/>
-                </lazy-component>
+{{--                </lazy-component>--}}
               </div>
               <div>
 {{--                <lazy-component>--}}
@@ -177,9 +177,9 @@
 {{--                </lazy-component>--}}
               </div>
               <div>
-                <lazy-component>
+{{--                <lazy-component>--}}
                   <recommend-product-component/>
-                </lazy-component>
+{{--                </lazy-component>--}}
               </div>
               @if(isset($hasCookie) && $hasCookie)
                 <div>

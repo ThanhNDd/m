@@ -68,5 +68,5 @@
   </div>
 @endsection
 @section("script")
-  <script src="{{url('public/mobile/js/home.js') }}"></script>
+  <script src="{{url('public/mobile/js/home.min.js') }}"></script>
 @endsection

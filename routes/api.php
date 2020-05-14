@@ -51,6 +51,14 @@ Route::group(['prefix' => 'danh-muc'], function(){
     Route::get('/be-trai.html', 'CategoriesController@countBoys');
     Route::get('/phu-kien.html', 'CategoriesController@countAccessories');
     Route::get('/giay-dep.html', 'CategoriesController@countShoes');
+  Route::post('/vay.html', 'CategoriesController@dress');
+  Route::get('/vay.html', 'CategoriesController@countDress');
+  Route::post('/bo-quan-ao.html', 'CategoriesController@suit');
+  Route::get('/bo-quan-ao.html', 'CategoriesController@countSuit');
+  Route::post('/ao.html', 'CategoriesController@shirt');
+  Route::get('/ao.html', 'CategoriesController@shirt');
+  Route::post('/quan.html', 'CategoriesController@trouser');
+  Route::get('/quan.html', 'CategoriesController@trouser');
 });
 Route::post('/submit-reviews', 'ReviewsController@store');
 Route::post('/reviews', 'ReviewsController@show');

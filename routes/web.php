@@ -31,6 +31,15 @@ Route::group(['prefix' => '/danh-muc'], function () {
     Route::get('/phu-kien.html', 'CategoriesController@getAccessories');
 });
 
+Route::group(['prefix' => '/bo-suu-tap'], function () {
+  Route::get('/vay.html', 'CategoriesController@getDress');
+  Route::get('/bo-quan-ao.html', 'CategoriesController@getSuit');
+  Route::get('/ao.html', 'CategoriesController@getShirt');
+  Route::get('/quan.html', 'CategoriesController@getTrouser');
+  Route::get('/giay-dep.html', 'CategoriesController@getShoes');
+  Route::get('/phu-kien.html', 'CategoriesController@getAccessories');
+});
+
 Route::get('/khuyen-mai.html', 'SaleController@get_all_products');
 Route::get('/gio-hang.html', 'CartController@show');
 Route::get('/thanh-toan.html', 'CartController@checkout');

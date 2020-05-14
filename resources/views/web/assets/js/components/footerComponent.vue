@@ -74,7 +74,9 @@
           <!-- /.col -->
 
           <div class="col-xs-12 col-sm-6 col-md-3">
-            <facebook-component></facebook-component>
+<!--            <lazy-component>-->
+              <facebook-component></facebook-component>
+<!--            </lazy-component>-->
           </div>
           <!-- /.col -->
 
@@ -126,6 +128,8 @@
       },
       methods: {
 
+      },
+      mounted() {
       }
   }
 </script>

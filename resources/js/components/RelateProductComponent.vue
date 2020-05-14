@@ -9,7 +9,7 @@
                     <div class="content content-shadow-product">
                         <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
                             <div class="image">
-                                <img v-bind:src="product.image | format_image" v-bind:alt="product.name">
+                                <img v-bind:src="product.image | format_image('150x150')" v-bind:alt="product.name">
                             </div>
                             <div class="text">
                                 <p class="title-product title-product-center" v-text="product.name"></p>

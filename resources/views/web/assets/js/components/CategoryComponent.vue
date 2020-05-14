@@ -11,8 +11,8 @@
                     <div class="product-image">
                       <div class="image">
                         <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-                          <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                            <img v-bind:data-src="product.image | format_image" v-bind:alt="product.name">
+                          <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
+                            <img v-bind:data-src="product.image | format_image('400x400')" v-bind:alt="product.name">
                           </div>
                         </a>
                       </div>

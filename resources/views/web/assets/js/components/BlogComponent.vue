@@ -12,10 +12,10 @@
             <div class="blog-post-image">
               <div class="image">
                 <a v-bind:href="post.link" target="_blank">
-                  <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
-<!--                  <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">-->
-<!--                    <img v-bind:data-src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">-->
-<!--                  </div>-->
+<!--                  <img v-bind:src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">-->
+                  <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
+                    <img v-bind:data-src="post._embedded['wp:featuredmedia']['0'].source_url" alt="">
+                  </div>
                 </a>
               </div>
             </div>

@@ -1,13 +1,13 @@
-<div>
-  <lazy-component>
+{{--<div>--}}
+{{--  <lazy-component>--}}
     <best-view-product-component></best-view-product-component>
-  </lazy-component>
-</div>
+{{--  </lazy-component>--}}
+{{--</div>--}}
 
 @include('web.page.sidebar.tags')
-<div>
-  <lazy-component>
+{{--<div>--}}
+{{--  <lazy-component>--}}
     <hotboy-component></hotboy-component>
-  </lazy-component>
-</div>
-@include('web.page.sidebar.testimonials')
+{{--  </lazy-component>--}}
+{{--</div>--}}
+{{--@include('web.page.sidebar.testimonials')--}}

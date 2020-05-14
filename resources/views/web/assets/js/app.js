@@ -6,15 +6,16 @@
 
 require('./bootstrap');
 import {StarRating} from 'vue-rate-it';
-// import vSelect from 'vue-select';
+import vSelect from 'vue-select';
 // import jQuery from 'jquery';
 // import Lingallery from 'lingallery';
 import Paginate from 'vuejs-paginate';
 import CxltToastr from 'cxlt-vue2-toastr'
 import Lazyload from 'vue-lazyload'
 
+
 import 'vue2-toast/lib/toast.css';
-// import 'sweetalert2/dist/sweetalert2.min.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 
 window.Vue = require('vue');
@@ -25,7 +26,7 @@ Vue.use(Lazyload, {
   preLoad: 1.3,
   attempt: 1,
   listenEvents: [ 'scroll' ],
-  throttleWait: 500
+  throttleWait: 200
 });
 Vue.use(CxltToastr, {
   position: 'top right',
@@ -46,7 +47,7 @@ Vue.use(require('vue-moment'));
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('paginate', Paginate);
-// Vue.component("v-select", vSelect);
+Vue.component("v-select", vSelect);
 // Vue.component('lingallery', Lingallery);
 Vue.component('star-rating', StarRating);
 
@@ -69,10 +70,10 @@ Vue.component('items-cart-component', require('./components/ItemsInCartComponent
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('category-component', require('./components/CategoryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
-// Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
+Vue.component('best-view-product-component', require('./components/BestViewProductComponent.vue').default);
 // Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 // Vue.component('status-component', require('./components/StatusComponent.vue').default);
-// Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
+Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
 
 
 Vue.filter('formatPrice', function (value) {
@@ -88,12 +89,18 @@ Vue.filter('formatSalePrice', function (discount, retail) {
     }
     return val;
 });
-Vue.filter('format_image', function (value) {
+Vue.filter('format_image', function (value, thumb) {
     let image = JSON.parse(value);
     let src = image[0].src;
     let type = image[0].type;
     if(type === 'upload') {
         src = 'https://img.shopmein.vn/' + src;
+    } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
+      if(typeof thumb !== 'undefined' && thumb !== '') {
+        let ext = src.substr(src.lastIndexOf('.') + 1);
+        src = src.replace('.'+ext,'');
+        src = src+'.'+thumb+'.'+ext;
+      }
     }
     return src;
 });

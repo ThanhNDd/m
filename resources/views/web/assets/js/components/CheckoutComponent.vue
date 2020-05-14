@@ -110,7 +110,7 @@
                             <p>Tổng thanh toán</p>
                           </li>
                           <li>
-                            <h6>{{totalMoney | formatPrice}}</h6>
+                            <strong style="font-size: 20px; color: red;">{{totalMoney | formatPrice}}</strong>
                           </li>
                         </ul>
                       </div>
@@ -233,38 +233,62 @@
                     return true;
                 }
                 if (!this.name) {
-                    this.$toast.top('Bạn chưa nhập tên');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập tên'
+                    });
                     this.$refs.name.focus();
                     return false;
                 }
                 if (!this.phone) {
-                    this.$toast.top('Bạn chưa nhập số điện thoại.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập số điện thoại.'
+                    });
                     this.$refs.phone.focus();
                     return false;
                 } else if(!this.phone_reg.test(this.phone)) {
-                    this.$toast.top('Số điện thoại chưa đúng.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Số điện thoại chưa đúng.'
+                    });
                     this.$refs.phone.focus();
                     return false;
                 }
                 if(this.email !== '' && !this.email_reg.test(this.email)) {
-                    this.$toast.top('Email chưa đúng.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Email chưa đúng.'
+                    });
                     this.$refs.email.focus();
                     return false;
                 }
                 if (!this.city_id) {
-                    this.$toast.top('Bạn chưa chọn thành phố.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa chọn thành phố.'
+                    });
                     return false;
                 }
                 if (!this.district_id) {
-                    this.$toast.top('Bạn chưa chọn quận huyện.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa chọn quận huyện.'
+                    });
                     return false;
                 }
                 if (!this.village_id) {
-                    this.$toast.top('Bạn chưa chọn phường xã.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa chọn phường xã.'
+                    });
                     return false;
                 }
                 if (!this.address) {
-                    this.$toast.top('Bạn chưa nhập số nhà.');
+                    this.$toast.error({
+                        title:'Lỗi',
+                        message:'Bạn chưa nhập số nhà.'
+                    });
                     this.$refs.address.focus();
                     return false;
                 }
@@ -318,11 +342,9 @@
                     if(response.data === 201) {
                         window.location.href =  url + "/hoan-thanh.html";
                     } else {
-                        swal({
-                            title: "Đã xảy ra lỗi!",
-                            text: response.data,
-                            icon: "error",
-                            button: "Đồng ý",
+                        this.$toast.error({
+                            title:'Lỗi',
+                            message:'Đã xảy ra lỗi.'
                         });
                     }
                 })

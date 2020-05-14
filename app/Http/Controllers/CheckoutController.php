@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\cities\Zone;
+use App\Jobs\SendEmailJob;
 use App\Mail\SendEmail;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PHPUnit\Framework\Exception;
 
 class CheckoutController extends Controller
 {
 
     public function store(Request $request)
     {
+        $mailContent = [];
         $body = $request->body;
         $data = $body[0];
         DB::beginTransaction();
@@ -37,7 +40,6 @@ class CheckoutController extends Controller
                         'village_id' => (integer)$data['villageId'],
                     ]
                 );
-//                print_r('customerId: ' . $customerId);
                 if (empty($customerId)) {
                     throw new Exception ('Cannot insert customer!!!');
                 }
@@ -54,16 +56,19 @@ class CheckoutController extends Controller
                         'source' => '1' // website
                     ]
                 );
-//                print_r('orderId: ' . $orderId);
+
                 if (empty($orderId)) {
                     throw new Exception ('Cannot insert Order!!!');
                 }
                 // create order detail
+                $products = [];
                 $carts = null;
                 if ($request->session()->has("cart")) {
                     $carts = $request->session()->get("cart");
                     foreach ($carts as $key => $value) {
+                        $product = [];
                         $product_id = $value['id'];
+                        $product_name = $value['name'];
                         $color = $value['color'];
                         $size = $value['size'];
                         $qty = $value['qty'];
@@ -93,22 +98,45 @@ class CheckoutController extends Controller
                         } else {
                             throw new Exception ("Variation is empty!!!");
                         }
+                        $product["product_id"] = $product_id;
+                        $product["product_name"] = $product_name;
+                        $product["qty"] = $qty;
+                        $product["price"] = $price;
+                        $product["sku"] = $variations->sku;
+                        array_push($products, $product);
                     }
                 } else {
                     throw new Exception ("Not exist item in cart !!!");
                 }
 
-
                 // clear session
-                $request->session()->forget("cart");
+//                $request->session()->forget("cart");
                 $request->session()->put("finish", true);
                 try {
-                    Mail::to('thanhit228@gmail.com')->send(new SendEmail());
-                } catch (\Exception $ex) {
-                }
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $zone = new Zone();
+                    $cityName = $zone->get_name_city($data['cityId']);
+                    $districtName = $zone->get_name_district($data['districtId']);
+                    $villageName = $zone->get_name_village($data['villageId']);
+                    $address = $data['address'].' - '. $villageName. ' - '.$districtName. ' - '.$cityName;
 
-                DB::commit();
-                return response()->json(201);
+                    $mailContent['customer_name'] = $data['customer_name'];
+                    $mailContent['customer_phone'] = $data['number_phone'];
+                    $mailContent['customer_email'] = $data['email'];
+                    $mailContent['customer_address'] = $address;
+                    $mailContent['order_id'] = $orderId;
+                    $mailContent['products'] = $products;
+                    $mailContent["total_amount"] = $data['total_amount'];
+                    $mailContent["total_checkout"] = $data['total_checkout'];
+                    $mailContent["shipping"] = $data['shipping'];
+                    $mailContent["order_date"] = date("Y-m-d H:i:s");
+                    $mailContent["note"] = $data['note'];
+                    Mail::to('timtrongvovong@gmail.com')->queue(new SendEmail($mailContent));
+                } catch (\Exception $ex) {
+                  return response()->json($ex);
+                }
+//                DB::commit();
+                return response()->json(500);
             } else {
                 throw new Exception ("Invalid input data");
             }

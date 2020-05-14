@@ -43,16 +43,22 @@ class ProductController extends Controller
       $cat_uri = '';
       if ($type == 0) {
         $cat_title = 'Thời trang bé trai';
-        $cat_uri = url('') . '/categories/boys';
+        $cat_uri = url('') . '/danh-muc/be-trai.html';
       } else if ($type == 1) {
         $cat_title = 'Thời trang bé gái';
-        $cat_uri = url('') . '/categories/girls';
+        $cat_uri = url('') . '/danh-muc/be-gai.html';
       }
       $images = "[";
       foreach (json_decode($product->image) as $key => $image) {
+        $path_parts = pathinfo($image->src);
+        $dirname = $path_parts['dirname'];
+        $extension = $path_parts['extension'];
+        $filename = $path_parts['filename'];
+        $thumb = $dirname.'/'.$filename.'.100x100xz.'.$extension;
+
         $myObj['id'] = "image$key";
         $myObj['src'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $image->src);
-        $myObj['thumbnail'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $image->src);
+        $myObj['thumbnail'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $thumb);
         $images .= json_encode($myObj) . ",";
       }
       $images .= "]";

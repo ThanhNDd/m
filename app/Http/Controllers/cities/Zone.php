@@ -147,7 +147,7 @@ class Zone
     {
         global $village_arr;
         if (!is_array($village_arr) || empty($village_arr)) {
-            include '$village.php';
+            include 'village.php';
         }
         $village_id = sprintf("%05d", intval($id));
         if (is_array($village_arr) && !empty($village_arr)) {
