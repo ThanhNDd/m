@@ -133,7 +133,7 @@ return [
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
     'to' => [
-        'address' => 'thanhit228@gmail.com',
+        'address' => env('MAIL_TO_ADDRESS'),
         'name' => ''
     ],
 

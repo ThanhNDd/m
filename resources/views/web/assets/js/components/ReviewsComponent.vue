@@ -326,7 +326,8 @@
                     "email": this.email,
                     "content" : this.content,
                     "rating" : this.rating,
-                    "product_id": this.product_id
+                    "product_id": this.product_id,
+                    "product_name": this.product_name
                 });
                 console.log(JSON.stringify(review));
                 axios.post(url + "/api/submit-reviews", {

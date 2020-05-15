@@ -105,9 +105,19 @@ class ReviewsController extends Controller
                     $rating_avg = $this->getRatingAvg($data['product_id']);
                     $product = new ProductController();
                     $product->updateRatingAndReviews($data['product_id'],$rating_avg);
-                    Mail::to('thanhit228@gmail.com')->send(new SendEmailReviews());
+
+                    $mailContent = [];
+                    $mailContent['customer_name'] = $data['name'];
+                    $mailContent['customer_phone'] = $data['phone'];
+                    $mailContent['customer_email'] = $data['email'];
+                    $mailContent['product_name'] = $data['product_name'];
+                    $mailContent['rating'] = $data['rating'];
+                    $mailContent["content"] = $data['content'];
+                    $mailContent["review_date"] = date("d/m/Y H:i:s");
+                    Mail::send(new SendEmailReviews($mailContent));
                 } catch (\Exception $ex) {
                     Log::error('[Reviews][Store] Error Exception >>>>>> '.$ex->getMessage());
+                    echo $ex->getMessage();
                 }
                 return response()->json(201);
             } else {

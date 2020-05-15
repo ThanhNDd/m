@@ -3903,7 +3903,8 @@ __webpack_require__.r(__webpack_exports__);
         "email": this.email,
         "content": this.content,
         "rating": this.rating,
-        "product_id": this.product_id
+        "product_id": this.product_id,
+        "product_name": this.product_name
       });
       console.log(JSON.stringify(review));
       axios.post(url + "/api/submit-reviews", {
@@ -44263,9 +44264,10 @@ var render = function() {
                             class: _vm.submit ? "hidden" : ""
                           }),
                           _vm._v(" "),
-                          _c("span", {
-                            staticClass: "spinner-border spinner-border-sm",
-                            class: _vm.submit ? "" : "hidden"
+                          _c("i", {
+                            staticClass: "fa fa-spinner fa-spin",
+                            class: _vm.submit ? "" : "hidden",
+                            staticStyle: { "font-size": "20px" }
                           }),
                           _vm._v(" Thanh toán\n                  ")
                         ]

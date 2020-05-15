@@ -264,7 +264,7 @@
                                                      v-model="rating"
                                         ></star-rating>
                                         <div class="float-right">
-                                            <button type="button" class="btn btn-primary" v-on:click="submitReviews('{{$product->id}}')" :disabled="submit">
+                                            <button type="button" class="btn btn-primary" v-on:click="submitReviews('{{$product->id}}','{{$product->name}}')" :disabled="submit">
                                               <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i>&nbsp;Đồng ý
                                             </button>
                                         </div>
@@ -294,5 +294,5 @@
 @endsection
 
 @section("script")
-  <script src="{{url('public/mobile/js/detail.min.js') }}"></script>
+  <script src="{{url('public/mobile/js/detail.js') }}"></script>
 @endsection

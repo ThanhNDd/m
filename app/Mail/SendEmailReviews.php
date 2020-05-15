@@ -11,14 +11,15 @@ class SendEmailReviews extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $mailContent;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mailContent)
     {
-        //
+        $this->mailContent = $mailContent;
     }
 
     /**
@@ -28,6 +29,7 @@ class SendEmailReviews extends Mailable
      */
     public function build()
     {
-        return $this->view('theme.page.mail')->subject('[Shop Mẹ Ỉn] Nhận xét mới');
+        $product_name = $this->mailContent['product_name'];
+        return $this->view('theme.page.mailReviews')->subject('Nhận xét mới sản phẩm "'.$product_name.'"');
     }
 }

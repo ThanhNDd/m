@@ -127,7 +127,7 @@
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-danger" style="float: right;" v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
                     <span class="fas fa-shopping-bag" v-bind:class="submit ? 'hidden' : ''"></span>
-                    <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Thanh toán
+                    <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> Thanh toán
                   </button>
                 </div>
             </div>

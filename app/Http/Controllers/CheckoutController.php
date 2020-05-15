@@ -108,12 +108,11 @@ class CheckoutController extends Controller
                 } else {
                     throw new Exception ("Not exist item in cart !!!");
                 }
-
                 // clear session
-//                $request->session()->forget("cart");
+                $request->session()->forget("cart");
                 $request->session()->put("finish", true);
                 try {
-                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+
                     $zone = new Zone();
                     $cityName = $zone->get_name_city($data['cityId']);
                     $districtName = $zone->get_name_district($data['districtId']);
@@ -129,14 +128,14 @@ class CheckoutController extends Controller
                     $mailContent["total_amount"] = $data['total_amount'];
                     $mailContent["total_checkout"] = $data['total_checkout'];
                     $mailContent["shipping"] = $data['shipping'];
-                    $mailContent["order_date"] = date("Y-m-d H:i:s");
+                    $mailContent["order_date"] = date("d/m/Y H:i:s");
                     $mailContent["note"] = $data['note'];
-                    Mail::to('timtrongvovong@gmail.com')->queue(new SendEmail($mailContent));
+                    Mail::send(new SendEmail($mailContent));
                 } catch (\Exception $ex) {
                   return response()->json($ex);
                 }
-//                DB::commit();
-                return response()->json(500);
+                DB::commit();
+                return response()->json(201);
             } else {
                 throw new Exception ("Invalid input data");
             }

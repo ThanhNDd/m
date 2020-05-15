@@ -11,5 +11,8 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, MobileDetection;
-
+    public function __construct()
+    {
+      date_default_timezone_set('Asia/Ho_Chi_Minh');
+    }
 }

@@ -26,9 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        if (!$this->osProcessIsRunning('queue:work')) {
-          $schedule->command('queue:work')->everyMinute();
-        }
+//        if (!$this->osProcessIsRunning('queue:work')) {
+//          $schedule->command('queue:work')->everyMinute();
+//        }
+
     }
 
     protected function osProcessIsRunning($needle)

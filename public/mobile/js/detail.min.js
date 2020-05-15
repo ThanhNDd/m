@@ -3223,7 +3223,7 @@ var detail = new Vue({
     isEmailValid: function isEmailValid() {
       return this.email === "" ? "" : this.email_reg.test(this.email) ? 'has-success' : 'has-error';
     },
-    submitReviews: function submitReviews(product_id) {
+    submitReviews: function submitReviews(product_id, product_name) {
       var _this2 = this;
 
       if (!this.validate()) {
@@ -3238,7 +3238,8 @@ var detail = new Vue({
         "email": this.email,
         "content": this.content,
         "rating": this.rating,
-        "product_id": product_id
+        "product_id": product_id,
+        "product_name": product_name
       });
       console.log(JSON.stringify(review));
       axios.post(url + "/api/submit-reviews", {
@@ -3252,12 +3253,7 @@ var detail = new Vue({
           $("#form-review-success").removeClass('hidden');
           _this2.reload++;
         } else {
-          swal({
-            title: "Đã xảy ra lỗi!",
-            text: "Xin vui lòng thử lại sau!",
-            icon: "error",
-            button: "Đồng ý"
-          });
+          _this2.$toast.top('Đã xảy ra lỗi!');
         }
       });
     },
