@@ -2184,7 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
     getProducts: function getProducts() {
       var _this = this;
 
-      axios.post(url + '/blog', {
+      axios.post(url + '/api/blog', {
         rowperpage: this.rowperpage
       }).then(function (response) {
         console.log(response.data);

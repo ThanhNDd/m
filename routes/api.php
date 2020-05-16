@@ -68,4 +68,4 @@ Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');
 //Route::get('/viewed-product', 'ProductController@viewedProduct');
 Route::get('/viewed-product', 'ProductController@getProductInCookie');
 Route::get('/status/{id}', 'ProductController@getStatus');
-
+Route::post('/blog', 'BlogController@index');
