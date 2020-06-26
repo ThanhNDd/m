@@ -59664,8 +59664,8 @@ function set_active_tab(id) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/js/main.js */"./resources/js/main.js");
+__webpack_require__(/*! C:\xampp\htdocs\m\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

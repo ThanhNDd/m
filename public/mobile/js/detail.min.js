@@ -3328,7 +3328,7 @@ new Swiper('.swiper-detail-product', {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/js/detail.js */"./resources/js/detail.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\js\detail.js */"./resources/js/detail.js");
 
 
 /***/ })

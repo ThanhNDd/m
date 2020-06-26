@@ -1890,7 +1890,7 @@ var home = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/js/home.js */"./resources/js/home.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\js\home.js */"./resources/js/home.js");
 
 
 /***/ })

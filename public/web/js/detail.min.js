@@ -23983,7 +23983,7 @@ var detail = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/views/web/assets/js/detail.js */"./resources/views/web/assets/js/detail.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\views\web\assets\js\detail.js */"./resources/views/web/assets/js/detail.js");
 
 
 /***/ })

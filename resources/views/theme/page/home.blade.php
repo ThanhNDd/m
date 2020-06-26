@@ -18,7 +18,7 @@
                               <div class="content">
                                   <div class="mask"></div>
 {{--                                      <div class="item" v-lazy-container="{ selector: 'img', error: '{{url('')}}/public/web/images/404.jpg', loading: '{{url('')}}/public/web/images/loading.gif' }">--}}
-                                  <img src="{{ url('public/mobile/images/banner-m1.png') }}" alt="">
+                                  <img src="{{ url('resources/views/web/assets/images/banners/smi.jpg') }}" alt="">
 {{--                                      </div>--}}
                               </div>
                           </div>
@@ -26,18 +26,18 @@
                               <div class="content">
                                   <div class="mask"></div>
 {{--                                      <div class="item" v-lazy-container="{ selector: 'img', error: '{{url('')}}/public/web/images/404.jpg', loading: '{{url('')}}/public/web/images/loading.gif' }">--}}
-                                  <img src="{{ url('public/mobile/images/banner3.png') }}" alt="">
+                                          <img src="{{ url('public/mobile/images/banner-m1.png') }}" alt="">
 {{--                                      </div>--}}
                               </div>
                           </div>
-                          <div class="swiper-slide">
-                              <div class="content">
-                                  <div class="mask"></div>
+{{--                          <div class="swiper-slide">--}}
+{{--                              <div class="content">--}}
+{{--                                  <div class="mask"></div>--}}
 {{--                                      <div class="item" v-lazy-container="{ selector: 'img', error: '{{url('')}}/public/web/images/404.jpg', loading: '{{url('')}}/public/web/images/loading.gif' }">--}}
-                                  <img src="{{ url('public/mobile/images/banner2.png') }}" alt="">
+{{--                                  <img src="{{ url('public/mobile/images/banner2.png') }}" alt="">--}}
 {{--                                      </div>--}}
-                              </div>
-                          </div>
+{{--                              </div>--}}
+{{--                          </div>--}}
                       </div>
                       <!-- Add Pagination -->
                       <div class="swiper-pagination swiper-pagination1"></div>

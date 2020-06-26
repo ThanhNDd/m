@@ -44377,7 +44377,7 @@ var render = function() {
         _c("img", {
           staticClass: "img-responsive",
           attrs: {
-            src: _vm.url + "/resources/views/web/assets/images/sliders/01.jpg",
+            src: _vm.url + "/resources/views/web/assets/images/banners/smi.jpg",
             alt: ""
           }
         })
@@ -69363,7 +69363,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/m/resources/views/web/assets/js/app.js */"./resources/views/web/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\m\resources\views\web\assets\js\app.js */"./resources/views/web/assets/js/app.js");
 
 
 /***/ })

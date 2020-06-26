@@ -15,7 +15,7 @@
 <!--          </div>-->
           <!-- /.container-fluid -->
 <!--          <div class="item" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
-            <img class="img-responsive" v-bind:src="url+'/resources/views/web/assets/images/sliders/01.jpg'" alt="">
+            <img class="img-responsive" v-bind:src="url+'/resources/views/web/assets/images/banners/smi.jpg'" alt="">
 <!--          </div>-->
 <!--        </div>-->
         <!-- /.item -->
