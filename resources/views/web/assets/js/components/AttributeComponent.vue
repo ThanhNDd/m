@@ -35,38 +35,38 @@
             </div>
           </div>
       </li>
-      <li>
-          <div class="row">
-            <div class="col-md-3 col-lg-3">Cân nặng</div>
-            <div class="col-md-9 col-lg-9">
-              {{weight}}
-            </div>
-          </div>
-      </li>
-      <li>
-          <div class="row">
-            <div class="col-md-3 col-lg-3">Chiều cao</div>
-            <div class="col-md-9 col-lg-9">
-              {{height}}
-            </div>
-          </div>
-      </li>
-      <li>
-          <div class="row">
-            <div class="col-md-3 col-lg-3">Chất liệu</div>
-            <div class="col-md-9 col-lg-9">
-              {{attributes.material | format_material}}
-            </div>
-          </div>
-      </li>
-      <li>
-          <div class="row">
-            <div class="col-md-3 col-lg-3">Xuất xứ</div>
-            <div class="col-md-9 col-lg-9">
-              {{attributes.origin | format_origin}}
-            </div>
-          </div>
-      </li>
+<!--      <li>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-3 col-lg-3">Cân nặng</div>-->
+<!--            <div class="col-md-9 col-lg-9">-->
+<!--              {{weight}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-3 col-lg-3">Chiều cao</div>-->
+<!--            <div class="col-md-9 col-lg-9">-->
+<!--              {{height}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-3 col-lg-3">Chất liệu</div>-->
+<!--            <div class="col-md-9 col-lg-9">-->
+<!--              {{attributes.material | format_material}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-3 col-lg-3">Xuất xứ</div>-->
+<!--            <div class="col-md-9 col-lg-9">-->
+<!--              {{attributes.origin | format_origin}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--      </li>-->
     </ul>
   </div>
 </template>

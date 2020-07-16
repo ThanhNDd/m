@@ -9522,58 +9522,6 @@ var render = function() {
             )
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3 col-lg-3" }, [_vm._v("Cân nặng")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9 col-lg-9" }, [
-            _vm._v("\n            " + _vm._s(_vm.weight) + "\n          ")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3 col-lg-3" }, [
-            _vm._v("Chiều cao")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9 col-lg-9" }, [
-            _vm._v("\n            " + _vm._s(_vm.height) + "\n          ")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3 col-lg-3" }, [
-            _vm._v("Chất liệu")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9 col-lg-9" }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm._f("format_material")(_vm.attributes.material)) +
-                "\n          "
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3 col-lg-3" }, [_vm._v("Xuất xứ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9 col-lg-9" }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm._f("format_origin")(_vm.attributes.origin)) +
-                "\n          "
-            )
-          ])
-        ])
       ])
     ])
   ])
