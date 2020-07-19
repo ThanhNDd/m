@@ -5,15 +5,18 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="address-block">
-
-                        <!-- /.module-heading -->
-
                         <div class="module-body">
+                            <div class="logo">
+                                <a href="{{url('')}}">
+                                    <img src="{{url('public/web/images/icon.png')}}" alt="logo" style="width: 50px;">
+                                    <span class="logo-text">Shop Mẹ Ỉn</span>
+                                </a>
+                            </div>
                             <ul class="toggle-footer" style="">
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                                     <div class="media-body">
-                                        <p>Số 227 - Phố Huyện - Thị trấn Quốc Oai - Hà Nội</p>
+                                        <p>Số 227 - Phố Huyện</p>
                                     </div>
                                 </li>
                                 <li class="media">
@@ -29,7 +32,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- /.module-body -->
                 </div>
                 <!-- /.col -->
 

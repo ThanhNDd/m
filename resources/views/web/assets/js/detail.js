@@ -10,6 +10,7 @@ Vue.component('relate-product-component', require('./components/RelateProductCom
 // Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
+Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
 
 
 const detail = new Vue({
@@ -31,51 +32,60 @@ const detail = new Vue({
     }
   },
   methods: {
-    addToCart: function (id, name, price, image) {
-      let color = document.querySelector('input[name=color]:checked');
-      if (color == null) {
-        this.$toast.error({
-          title:'Lỗi',
-          message:'Bạn chưa chọn màu'
-        });
-        return;
-      }
-      let size = document.querySelector('input[name=size]:checked');
-      if (size == null) {
-        this.$toast.error({
-          title:'Lỗi',
-          message:'Bạn chưa chọn size'
-        });
-        return;
-      }
-      this.products = [];
-      this.products.push({
-        "id": id,
-        "name": name,
-        "price": price,
-        "image": image,
-        "color": color.value,
-        "size": size.value,
-      });
-      this.storeInCart();
-    },
-    buyNow: function (id, name, price, image) {
-      this.type = "buyNow";
-      this.addToCart(id, name, price, image);
-    },
-    storeInCart: function () {
-      axios.post(url + "/api/cart", {
-        body: this.products
-      }).then(response => {
-        this.$toast.success({
-          title:'Thông báo',
-          message:'Sản phẩm đã được thêm vào giỏ hàng'
-        });
-        document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
-        if (this.type === "buyNow") {
-          window.location.href = url + "/thanh-toan.html";
-        }
-      })
-    },
+    // addToCart: function (id, name) {
+    //   let color = document.querySelector('input[name=color]:checked');
+    //   if (color == null) {
+    //     this.$toast.error({
+    //       title:'Lỗi',
+    //       message:'Bạn chưa chọn màu'
+    //     });
+    //     return;
+    //   }
+    //   let size = document.querySelector('input[name=size]:checked');
+    //   if (size == null) {
+    //     this.$toast.error({
+    //       title:'Lỗi',
+    //       message:'Bạn chưa chọn size'
+    //     });
+    //     return;
+    //   }
+    //   let qty = document.querySelector("#qty").value;
+    //   if (!qty || qty < 0) {
+    //     qty = 1;
+    //   }
+    //   let price = document.querySelector("#retail").value;
+    //   let sku = document.querySelector("#sku_selected").value;
+    //   let image = document.querySelector("#image_selected").value;
+    //   this.products = [];
+    //   this.products.push({
+    //     "id": id,
+    //     "sku": sku,
+    //     "name": name,
+    //     "price": price,
+    //     "image": image,
+    //     "color": color.value,
+    //     "size": size.value,
+    //     "qty": qty
+    //   });
+    //   this.storeInCart();
+    // },
+    // buyNow: function (id, name, price) {
+    //   this.type = "buyNow";
+    //   this.addToCart(id, name, price);
+    // },
+    // storeInCart: function () {
+    //   axios.post(url + "/api/cart", {
+    //     body: this.products
+    //   }).then(response => {
+    //     this.$toast.success({
+    //       title:'Thông báo',
+    //       message:'Sản phẩm đã được thêm vào giỏ hàng'
+    //     });
+    //     document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
+    //     if (this.type === "buyNow") {
+    //       window.location.href = url + "/thanh-toan.html";
+    //     }
+    //   })
+    // },
   }
 });

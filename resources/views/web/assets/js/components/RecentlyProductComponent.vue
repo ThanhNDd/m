@@ -37,7 +37,7 @@
                       <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
                     <div class="product-price float-left col-md-12 col-lg-12 no-padding">
-                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                      <p class="price" v-html="$options.filters.formatPrice(product.retail)"></p>
                     </div>
                   </div>
                 </div>
@@ -60,19 +60,44 @@
         data() {
             return {
                 products: '',
+                swiper: null,
+                isFinished: false,
+                row: 0,
+                buttonText: 'Xem thêm',
                 url: '',
-                swiper: null
+                submit: false,
             }
         },
         created() {
             this.url = url;
-            this.getProducts();
+            this.getProducts(5);
         },
         methods: {
-            getProducts: function () {
+            getProducts: function (rowperpage) {
                 axios.get(url + '/api/viewed-product')
                     .then(response => {
-                    this.products = response.data;
+                      if (response.data !== '' && response.data.length > 0) {
+                        this.row += rowperpage;
+                        let len = this.products.length;
+                        if (len > 0) {
+                          this.buttonText = "Loading ...";
+                          let that = this;
+                          setTimeout(function () {
+                            that.buttonText = 'Xem thêm';
+                            for (let i = 0; i < response.data.length; i++) {
+                              that.products.push(response.data[i]);
+                            }
+                            that.submit = false;
+                          }, 500);
+                        } else {
+                          this.products = response.data;
+                          this.submit = false;
+                        }
+                      } else {
+                        this.buttonText = "Không có thêm sản phẩm.";
+                        this.isFinished = true;
+                        this.submit = false;
+                      }
                 });
             }
         },

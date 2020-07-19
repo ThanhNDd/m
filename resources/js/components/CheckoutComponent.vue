@@ -65,7 +65,7 @@
                                     <p>Tổng tiền</p>
                                 </li>
                                 <li>
-                                    <h6>{{totalAmount | formatPrice}}</h6>
+                                    <h6 v-html="$options.filters.formatPrice(totalAmount)"></h6>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +75,7 @@
                                     <p>Phí ship</p>
                                 </li>
                                 <li>
-                                    <h6>{{totalShipping | formatPrice}}</h6>
+                                    <h6 v-html="$options.filters.formatPrice(totalShipping)"></h6>
                                 </li>
                             </ul>
                         </div>
@@ -85,7 +85,7 @@
                                     <p>Tổng thanh toán</p>
                                 </li>
                                 <li>
-                                    <h6>{{totalMoney | formatPrice}}</h6>
+                                    <h6 v-html="$options.filters.formatPrice(totalMoney)"></h6>
                                 </li>
                             </ul>
                         </div>

@@ -32,7 +32,9 @@
                         <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
                         <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                       </div>
-                      <div class="product-price"><span class="price">{{product.retail | formatPrice}}</span></div>
+                      <div class="product-price">
+                        <span class="price" v-html="$options.filters.formatPrice(product.retail)"></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -73,7 +75,7 @@
                         <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                       </div>
                       <div class="product-price">
-                        <span class="price">{{product.retail | formatPrice}}</span>
+                        <span class="price" v-html="$options.filters.formatPrice(product.retail)"></span>
                       </div>
                       <!-- /.product-price -->
                       <div class="description m-t-10">{{product.short_description}}</div>
@@ -95,7 +97,12 @@
       :next-text="'Next'"
       :click-handler="getProducts"
       :container-class="'pagination'"
-      :page-class="'page-item'">
+      :page-class="'page-item'"
+      :page-link-class="'page-link'"
+      :prev-class="'page-item'"
+      :prev-link-class="'page-link'"
+       :next-class="'page-item'"
+       :next-link-class="'page-link'">
     </paginate>
   </div>
 </template>
@@ -152,7 +159,7 @@
             scrollToTop() {
                 // window.scrollTo(0,600);
                 window.scrollTo({
-                    top: 600,
+                    top: 300,
                     left: 0,
                     behavior: 'smooth'
                 });

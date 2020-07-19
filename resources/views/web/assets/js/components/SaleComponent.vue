@@ -33,7 +33,7 @@
                         <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                       </div>
                       <div class="product-price">
-                        <p class="price sale-price"> {{ product.retail | formatPrice }}</p>
+                        <p class="price sale-price" v-html="$options.filters.formatPrice(product.retail)"></p>
                         <p class="price">{{product.discount, product.retail | formatSalePrice }}</p>
                       </div>
                     </div>
@@ -76,7 +76,7 @@
                         <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                       </div>
                       <div class="product-price">
-                        <p class="price sale-price"> {{ product.retail | formatPrice }}</p>
+                        <p class="price sale-price" v-html="$options.filters.formatPrice(product.retail )"></p>
                         <p class="price">{{product.discount, product.retail | formatSalePrice }}</p>
                       </div>
                       <!-- /.product-price -->

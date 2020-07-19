@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ url('public/web/images/icon.png') }}">
     <title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
 
-    <link rel="stylesheet" href="{!! url('public/web/css/webapp.min.css') !!}">
+    <link rel="stylesheet" href="{!! url('public/web/css/webapp.css') !!}">
     <meta property="og:url" content="{{Request::url()}}"/>
     <meta property="og:type"          content="website" />
     <meta property="og:title" content="{{!empty($product) ? $product->name.' | Shop Mẹ Ỉn - Thời trang trẻ em' : 'Shop Mẹ Ỉn - Thời trang trẻ em' }}"/>
@@ -26,11 +26,12 @@
     @else
         <meta property="og:image" content="{{url('public/web/images/icon.png') }}"/>
     @endif
-{{--  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">--}}
-{{--    <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">--}}
-{{--    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>--}}
-{{--    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>--}}
-{{--    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>--}}
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="cnt-home">
     @include('web.layout.fbsdk')

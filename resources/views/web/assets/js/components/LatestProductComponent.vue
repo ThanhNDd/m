@@ -36,7 +36,7 @@
                       <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
                     <div class="product-price float-left col-md-12 col-lg-12 no-padding">
-                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                        <p class="price" v-html="$options.filters.formatPrice(product.retail)"></p>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="row justify-content-center">
               <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(10)'>
-                <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> Xem thêm &nbsp;<i class="fa fa-caret-down"></i>
+                <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="submit"></i> Xem thêm &nbsp;<i class="fa fa-caret-down"></i>
               </a>
             </div>
             <!-- /.item -->

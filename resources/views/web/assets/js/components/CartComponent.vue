@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a v-bind:href="url + '/gio-hang.html'" class="dropdown-toggle lnk-cart">
+        <a v-bind:href="url + '/gio-hang.html'" class="lnk-cart">
           <div class="items-cart-inner">
             <div class="basket">
               <div class="basket-item-count cart_number">

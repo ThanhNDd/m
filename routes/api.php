@@ -26,6 +26,7 @@ Route::get('/hot-boy-product', 'ProductController@hotboyProduct');
 Route::Resource('/attributes', 'AttributesController', ['parameters' => [
     'attributes' => 'id'
 ]]);
+Route::get('/images/{id}', 'AttributesController@get_image_product');
 //Route::post('/relate.category.type', 'RelateProductController@show');
 Route::post('/relate', 'RelateProductController@show');
 Route::post('/recommend', 'RecommendController@show');

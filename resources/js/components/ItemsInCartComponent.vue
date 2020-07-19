@@ -26,7 +26,7 @@
                 <div class="col-40">
                     <div class="content-text">
                         <p class="title-product" v-text="cart['name'] +' - '+ cart['color'] +' - '+ cart['size']"></p>
-                        <p class="price">{{ cart['price'] | formatPrice }}</p>
+                        <p class="price" v-html="$options.filters.formatPrice(cart['price'])"></p>
                     </div>
                 </div>
                 <div class="col-30 align-self-center">
@@ -54,7 +54,7 @@
                             <p>Total</p>
                         </li>
                         <li>
-                            <h6>{{Total | formatPrice}}</h6>
+                            <h6 v-html="$options.filters.formatPrice(Total)"></h6>
                         </li>
                     </ul>
                 </div>

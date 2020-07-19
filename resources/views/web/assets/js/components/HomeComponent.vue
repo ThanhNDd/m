@@ -1,5 +1,5 @@
 <template>
-  <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+  <div class="col-xs-12 col-sm-12 col-md-12 homebanner-holder">
     <!-- ========================================== SECTION – HERO ========================================= -->
     <div id="hero">
 <!--      <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm" style="opacity: 1; display: block;">-->
@@ -30,45 +30,45 @@
 
     <!-- ========================================= SECTION – HERO : END ========================================= -->
     <!-- ============================================== WIDE PRODUCTS ============================================== -->
-    <div class="wide-banners outer-bottom-xs">
-      <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <div class="wide-banner cnt-strip">
-            <div class="image">
-              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                <img class="img-responsive" v-bind:data-src="url+'/resources/views/web/assets/images/banners/home-banner1.jpg'" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- /.wide-banner -->
-        </div>
+<!--    <div class="wide-banners outer-bottom-xs">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4 col-sm-4">-->
+<!--          <div class="wide-banner cnt-strip">-->
+<!--            <div class="image">-->
+<!--              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
+<!--                <img class="img-responsive" v-bind:data-src="url+'/resources/views/web/assets/images/banners/home-banner1.jpg'" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.wide-banner &ndash;&gt;-->
+<!--        </div>-->
 
-        <div class="col-md-4 col-sm-4">
-          <div class="wide-banner cnt-strip">
-            <div class="image">
-              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                <img class="img-responsive" v-bind:data-src="url+'/resources/views/web/assets/images/banners/home-banner3.jpg'" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- /.wide-banner -->
-        </div>
+<!--        <div class="col-md-4 col-sm-4">-->
+<!--          <div class="wide-banner cnt-strip">-->
+<!--            <div class="image">-->
+<!--              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
+<!--                <img class="img-responsive" v-bind:data-src="url+'/resources/views/web/assets/images/banners/home-banner3.jpg'" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.wide-banner &ndash;&gt;-->
+<!--        </div>-->
 
-        <!-- /.col -->
-        <div class="col-md-4 col-sm-4">
-          <div class="wide-banner cnt-strip">
-            <div class="image">
-              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner2.jpg'" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- /.wide-banner -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
+<!--        &lt;!&ndash; /.col &ndash;&gt;-->
+<!--        <div class="col-md-4 col-sm-4">-->
+<!--          <div class="wide-banner cnt-strip">-->
+<!--            <div class="image">-->
+<!--              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
+<!--                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner2.jpg'" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.wide-banner &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /.col &ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash; /.row &ndash;&gt;-->
+<!--    </div>-->
     <!-- /.wide-banners -->
 
     <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
@@ -79,43 +79,43 @@
     <!-- /.section -->
     <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
     <!-- ============================================== WIDE PRODUCTS ============================================== -->
-    <div class="wide-banners outer-bottom-xs">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="wide-banner1 cnt-strip">
-            <div class="image">
-              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner.jpg'" alt="">
-              </div>
-            </div>
-            <div class="strip strip-text">
-              <div class="strip-inner">
-                <h2 class="text-right">Amazing Sunglasses<br>
-                  <span class="shopping-needs">Get 40% off on selected items</span></h2>
-              </div>
-            </div>
-            <div class="new-label">
-              <div class="text">NEW</div>
-            </div>
-            <!-- /.new-label -->
-          </div>
-          <!-- /.wide-banner -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-4">
-          <div class="wide-banner cnt-strip">
-            <div class="image">
-              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">
-                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner4.jpg'" alt="">
-              </div>
-            </div>
-          </div>
-          <!-- /.wide-banner -->
-        </div>
+<!--    <div class="wide-banners outer-bottom-xs">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-8">-->
+<!--          <div class="wide-banner1 cnt-strip">-->
+<!--            <div class="image">-->
+<!--              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
+<!--                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner.jpg'" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="strip strip-text">-->
+<!--              <div class="strip-inner">-->
+<!--                <h2 class="text-right">Amazing Sunglasses<br>-->
+<!--                  <span class="shopping-needs">Get 40% off on selected items</span></h2>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="new-label">-->
+<!--              <div class="text">NEW</div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.new-label &ndash;&gt;-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.wide-banner &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /.col &ndash;&gt;-->
+<!--        <div class="col-md-4">-->
+<!--          <div class="wide-banner cnt-strip">-->
+<!--            <div class="image">-->
+<!--              <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.gif' }">-->
+<!--                <img class="img-responsive" v-bind:data-src="url + '/resources/views/web/assets/images/banners/home-banner4.jpg'" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /.wide-banner &ndash;&gt;-->
+<!--        </div>-->
 
-      </div>
-      <!-- /.row -->
-    </div>
+<!--      </div>-->
+<!--      &lt;!&ndash; /.row &ndash;&gt;-->
+<!--    </div>-->
     <!-- /.wide-banners -->
     <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
     <!-- /.sidebar-widget -->

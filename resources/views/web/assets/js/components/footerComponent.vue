@@ -7,22 +7,35 @@
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="address-block">
               <div class="module-body">
+                <div class="logo col-md-12 no-padding">
+                  <div class="image col-md-3 no-padding">
+                    <a v-bind:href="url">
+                      <img v-bind:src="url + '/public/web/images/icon.png'" alt="logo" style="width: 100px;">
+                    </a>
+                  </div>
+                  <div class="title col-md-9 no-padding">
+                    <a v-bind:href="url">
+                      <a v-bind:href="url" class="logo-text">Shop Mẹ Ỉn</a>
+                      <a v-bind:href="url" class="text">Thời Trang Trẻ Em</a>
+                    </a>
+                  </div>
+                </div>
                 <ul class="toggle-footer" style="">
                   <li class="media">
-                    <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
+                    <div class="pull-left mr-2"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                     <div class="media-body">
-                      <p>Số 227 - Phố Huyện - Thị trấn Quốc Oai - Hà Nội</p>
+                      <a href="javascript:void(0)">Số 227 - Phố Huyện - TT.Quốc Oai - Hà Nội</a>
                     </div>
                   </li>
                   <li class="media">
-                    <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
+                    <div class="pull-left mr-2"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                     <div class="media-body">
-                      <p>Hotline / Zalo: 0962.926.302</p>
+                      <a href="javascript:void(0)">Hotline / Zalo: 0962.926.302</a>
                     </div>
                   </li>
                   <li class="media">
-                    <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                    <div class="media-body"> <span><a href="#">shopmein@gmail.com</a></span> </div>
+                    <div class="pull-left mr-2"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
+                    <div class="media-body"><a href="javascript:void(0)">shopmein@gmail.com</a></div>
                   </li>
                 </ul>
               </div>
@@ -33,7 +46,7 @@
 
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="module-heading">
-              <h4 class="module-title">Liên kết</h4>
+              <h4 class="module-title">Hỗ trợ</h4>
             </div>
             <div class="module-body">
               <ul class='list-unstyled'>
@@ -80,14 +93,37 @@
           </div>
           <!-- /.col -->
 
-          <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="col-xs-12 col-sm-6 col-md-3 connect-social">
             <div class="module-heading">
-              <h4 class="module-title" style="margin-left: 30px;">Về chúng tôi</h4>
+              <h4 class="module-title" style="margin-left: 30px;">Kết nối</h4>
             </div>
             <div class="module-body">
-              <p style="color:#fff;margin-left: 30px;">
-                Shop Mẹ Ỉn - Chuyên cung cấp hàng thời trang quần áo, giày dép cho trẻ em. Cam kết hàng chất lượng, mẫu mã đa dạng. Giao hàng toàn quốc, thanh toán khi nhận hàng, đổi trả hàng nếu không vừa ý.
-              </p>
+<!--              <p style="color:#fff;margin-left: 30px;">-->
+<!--                Shop Mẹ Ỉn - Chuyên cung cấp hàng thời trang quần áo, giày dép cho trẻ em. Cam kết hàng chất lượng, mẫu mã đa dạng. Giao hàng toàn quốc, thanh toán khi nhận hàng, đổi trả hàng nếu không vừa ý.-->
+<!--              </p>-->
+              <ul class="link">
+                <li class="pull-left">
+                  <a target="_blank" rel="nofollow" href="https://www.facebook.com/shopmein.vn" title="Facebook">
+                    <i class="fab fa-facebook-square"></i>
+                  </a>
+                </li>
+                <li class="pull-left">
+                  <a target="_blank" rel="nofollow" href="https://m.me/shopmein.vn" title="Messenger">
+                    <i class="fab fa-facebook-messenger"></i>
+                  </a>
+                </li>
+                <li class="pull-left">
+                  <a target="_blank" rel="nofollow" href="https://www.instagram.com/shopmein.vn" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li class="pull-left">
+                  <a target="_blank" rel="nofollow" href="https://www.youtube.com/channel/UCUopGcFzb-pMlSIBKSIezRQ" title="Youtube">
+                    <i class="fab fa-youtube-square"></i>
+                  </a>
+                </li>
+
+              </ul>
             </div>
             <!-- /.module-body -->
           </div>

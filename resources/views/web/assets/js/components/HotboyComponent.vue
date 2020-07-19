@@ -8,7 +8,6 @@
             <div class="product" v-for="product in products">
               <div class="product-micro">
                 <div class="row product-micro-row">
-                  <div class="col col-xs-5">
                     <div class="product-image">
                       <div class="image">
                         <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
@@ -19,9 +18,6 @@
                         </a>
                       </div>
                     </div>
-                  </div>
-                  <!-- /.col -->
-                  <div class="col col-xs-7">
                     <div class="product-info">
                       <h3 class="name">
                         <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
@@ -37,11 +33,10 @@
                         <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                       </div>
                       <div class="product-price float-left col-md-12 col-lg-12 no-padding">
-                        <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                          <p class="price" v-html="$options.filters.formatPrice(product.retail)"></p>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>

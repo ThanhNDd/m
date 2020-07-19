@@ -1,6 +1,5 @@
 <!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
-
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
         <div class="container">
@@ -28,9 +27,10 @@
                           </a>
                         </li>
                         <li class="login">
-                          <a href="javascript:void(0);">
-                            <i class="fas fa-sign-in-alt"></i>&nbsp;Đăng nhập
-                          </a>
+{{--                          <a href="javascript:void(0);" id="btn_login" @click="open_popup()">--}}
+{{--                            <i class="fas fa-sign-in-alt"></i>&nbsp;Đăng nhập--}}
+{{--                          </a>--}}
+                            <login-component></login-component>
                         </li>
                     </ul>
                 </div>
@@ -115,10 +115,10 @@
     <div class="header-nav animate-dropdown">
         <div class="container">
             <div class="yamm navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                </div>
+{{--                <div class="navbar-header">--}}
+{{--                    <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">--}}
+{{--                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>--}}
+{{--                </div>--}}
                 <div class="nav-bg-class">
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
@@ -171,5 +171,4 @@
     </div>
     <!-- /.header-nav -->
     <!-- ============================================== NAVBAR : END ============================================== -->
-
 </header>

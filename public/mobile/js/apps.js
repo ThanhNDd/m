@@ -40958,9 +40958,14 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "price" }, [
-                    _vm._v(_vm._s(_vm._f("formatPrice")(product.retail)))
-                  ])
+                  _c("p", {
+                    staticClass: "price",
+                    domProps: {
+                      innerHTML: _vm._s(
+                        _vm.$options.filters.formatPrice(product.retail)
+                      )
+                    }
+                  })
                 ])
               ]
             )
@@ -41283,9 +41288,13 @@ var render = function() {
                       _vm._m(0),
                       _vm._v(" "),
                       _c("li", [
-                        _c("h6", [
-                          _vm._v(_vm._s(_vm._f("formatPrice")(_vm.totalAmount)))
-                        ])
+                        _c("h6", {
+                          domProps: {
+                            innerHTML: _vm._s(
+                              _vm.$options.filters.formatPrice(_vm.totalAmount)
+                            )
+                          }
+                        })
                       ])
                     ])
                   ]),
@@ -41295,11 +41304,15 @@ var render = function() {
                       _vm._m(1),
                       _vm._v(" "),
                       _c("li", [
-                        _c("h6", [
-                          _vm._v(
-                            _vm._s(_vm._f("formatPrice")(_vm.totalShipping))
-                          )
-                        ])
+                        _c("h6", {
+                          domProps: {
+                            innerHTML: _vm._s(
+                              _vm.$options.filters.formatPrice(
+                                _vm.totalShipping
+                              )
+                            )
+                          }
+                        })
                       ])
                     ])
                   ]),
@@ -41309,9 +41322,13 @@ var render = function() {
                       _vm._m(2),
                       _vm._v(" "),
                       _c("li", [
-                        _c("h6", [
-                          _vm._v(_vm._s(_vm._f("formatPrice")(_vm.totalMoney)))
-                        ])
+                        _c("h6", {
+                          domProps: {
+                            innerHTML: _vm._s(
+                              _vm.$options.filters.formatPrice(_vm.totalMoney)
+                            )
+                          }
+                        })
                       ])
                     ])
                   ])
@@ -41448,9 +41465,14 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("p", { staticClass: "price" }, [
-                      _vm._v(_vm._s(_vm._f("formatPrice")(cart["price"])))
-                    ])
+                    _c("p", {
+                      staticClass: "price",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.$options.filters.formatPrice(cart["price"])
+                        )
+                      }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
@@ -41501,7 +41523,13 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("li", [
-                    _c("h6", [_vm._v(_vm._s(_vm._f("formatPrice")(_vm.Total)))])
+                    _c("h6", {
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.$options.filters.formatPrice(_vm.Total)
+                        )
+                      }
+                    })
                   ])
                 ])
               ]),
@@ -41658,9 +41686,14 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "price sale-price" }, [
-                    _vm._v(" " + _vm._s(_vm._f("formatPrice")(product.retail)))
-                  ]),
+                  _c("p", {
+                    staticClass: "price sale-price",
+                    domProps: {
+                      innerHTML: _vm._s(
+                        _vm.$options.filters.formatPrice(product.retail)
+                      )
+                    }
+                  }),
                   _vm._v(" "),
                   _c("p", { staticClass: "price" }, [
                     _vm._v(

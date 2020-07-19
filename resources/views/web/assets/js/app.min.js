@@ -7,26 +7,30 @@
 require('./bootstrap');
 import {StarRating} from 'vue-rate-it';
 import vSelect from 'vue-select';
-// import jQuery from 'jquery';
-// import Lingallery from 'lingallery';
 import Paginate from 'vuejs-paginate';
 import CxltToastr from 'cxlt-vue2-toastr'
 import Lazyload from 'vue-lazyload'
-
+import VueSweetalert2 from 'vue-sweetalert2';
 
 import 'vue2-toast/lib/toast.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-default.css';
+
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
-
+Vue.use(VueSweetalert2);
 Vue.use(Lazyload, {
   lazyComponent: true,
   preLoad: 1.3,
   attempt: 1,
   listenEvents: [ 'scroll' ],
   throttleWait: 200
+});
+Vue.use(VueToast, {
+    position: 'top'
 });
 Vue.use(CxltToastr, {
   position: 'top right',
@@ -74,11 +78,40 @@ Vue.component('best-view-product-component', require('./components/BestViewProdu
 // Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 // Vue.component('status-component', require('./components/StatusComponent.vue').default);
 Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
+// Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
+
+jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
+    icons: {
+        time: 'far fa-clock',
+        date: 'far fa-calendar',
+        up: 'fas fa-arrow-up',
+        down: 'fas fa-arrow-down',
+        previous: 'fas fa-chevron-left',
+        next: 'fas fa-chevron-right',
+        today: 'fas fa-calendar-check',
+        clear: 'far fa-trash-alt',
+        close: 'far fa-times-circle'
+    }
+});
 
 
 Vue.filter('formatPrice', function (value) {
+    if(!value) {
+        return value;
+    }
+    if(value.toString().indexOf(" - ") > -1) {
+        let arr = value.split(" - ");
+        let min_price = arr[0];
+        let max_price = arr[1];
+        min_price = (min_price/1).toFixed(0).replace('.', ',');
+        max_price = (max_price/1).toFixed(0).replace('.', ',');
+        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
+        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
+        return min_price + " - " +max_price;
+    }
     let val = (value/1).toFixed(0).replace('.', ',');
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' đ';
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
 });
 Vue.filter('formatSalePrice', function (discount, retail) {
     let sale_price = retail - (discount * retail) / 100;
@@ -90,19 +123,23 @@ Vue.filter('formatSalePrice', function (discount, retail) {
     return val;
 });
 Vue.filter('format_image', function (value, thumb) {
-    let image = JSON.parse(value);
-    let src = image[0].src;
-    let type = image[0].type;
-    if(type === 'upload') {
-        src = 'https://img.shopmein.vn/' + src;
-    } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
-      if(typeof thumb !== 'undefined' && thumb !== '') {
-        let ext = src.substr(src.lastIndexOf('.') + 1);
-        src = src.replace('.'+ext,'');
-        src = src+'.'+thumb+'.'+ext;
-      }
+    try {
+        let image = JSON.parse(value);
+        let src = image[0].src;
+        let type = image[0].type;
+        if(type === 'upload') {
+            src = 'https://img.shopmein.vn/' + src;
+        } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
+            if(typeof thumb !== 'undefined' && thumb !== '') {
+                let ext = src.substr(src.lastIndexOf('.') + 1);
+                src = src.replace('.'+ext,'');
+                src = src+'.'+thumb+'.'+ext;
+            }
+        }
+        return src;
+    } catch (e) {
+        return value;
     }
-    return src;
 });
 Vue.filter('validateEmail', function (email) {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -192,5 +229,5 @@ Vue.filter('url_reviews', function (slug, id) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 new Vue({
-    el: '#app',
+    el: '#app'
 });

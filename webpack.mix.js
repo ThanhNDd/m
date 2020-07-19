@@ -57,7 +57,7 @@ let mix = require('laravel-mix');
     // ], 'public/web/css/webapp.css');
     mix.styles([
       'resources/views/web/assets/css/bootstrap.min.css',
-      'resources/views/web/assets/css/main.min.css',
+      'resources/views/web/assets/css/main.css',
       'resources/views/web/assets/css/blue.min.css',
       'public/mobile/css/font-awesome.min.css',
       'resources/views/web/assets/css/style.css',

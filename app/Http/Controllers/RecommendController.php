@@ -53,11 +53,40 @@ class RecommendController extends Controller
         $id = $request->product_id;
         $cat_id = $request->cat_id;
         $type = $request->type;
-        $products = DB::table('smi_products')->where([['category_id', '<>', $cat_id],['id','<>',$id],['status','=','0'],['type','=',$type],["social_publish->website", "=", 1]])
-            ->orderBy('id', 'desc')
-            ->offset($row)
-            ->limit($rowperpage)
-            ->get()->jsonSerialize();
+//        $products = DB::table('smi_products')->where([['category_id', '<>', $cat_id],['id','<>',$id],['status','=','0'],['type','=',$type],["social_publish->website", "=", 1]])
+//            ->orderBy('id', 'desc')
+//            ->offset($row)
+//            ->limit($rowperpage)
+//            ->get()->jsonSerialize();
+        $products = DB::select(DB::raw("SELECT a.id,
+                                                       a.name,
+                                                       a.image,
+                                                       a.rating,
+                                                       a.reviews,
+                                                       a.type,
+                                                       a.category_id,
+                                                       a.description,
+                                                       CASE
+                                                           WHEN MIN(b.retail) = MAX(b.retail) THEN MIN(b.retail)
+                                                           ELSE CONCAT(MIN(b.retail), \" - \", MAX(b.retail))
+                                                       END AS retail
+                                                FROM smi_products a
+                                                LEFT JOIN smi_variations b ON a.id = b.product_id
+                                                WHERE a.id <> $id
+                                                  AND category_id <> $cat_id
+                                                  AND TYPE = $type
+                                                  AND a.status = 0
+                                                  AND a.social_publish->'$.website' = 1
+                                                GROUP BY a.id,
+                                                         a.name,
+                                                         a.image,
+                                                         a.rating,
+                                                         a.reviews,
+                                                         a.type,
+                                                         a.category_id,
+                                                         a.description
+                                                order by a.id
+                                                limit $row, $rowperpage"));
         return response($products, Response::HTTP_OK);
     }
 

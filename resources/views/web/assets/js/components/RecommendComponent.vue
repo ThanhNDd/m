@@ -37,7 +37,7 @@
                       <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
                     <div class="product-price float-left col-md-12 col-lg-12 no-padding">
-                      <p class="price" v-cloak>{{product.retail | formatPrice}}</p>
+                        <p class="price" v-html="$options.filters.formatPrice(product.retail)"></p>
                     </div>
                   </div>
                   <!-- /.product-info -->
@@ -85,7 +85,6 @@
                 products: '',
                 isFinished: false,
                 row: 0, // Record selction position
-                // rowperpage: 5, // Number of records fetch at a time
                 buttonText: 'Xem thêm',
                 url: '',
                 submit: false,

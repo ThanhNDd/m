@@ -54,12 +54,13 @@ class CartController extends Controller
         if(!$is_exists) {
             $cart = array();
             $cart["id"] = $body["id"];
+            $cart["sku"] = $body["sku"];
             $cart["name"] = $body["name"];
             $cart["price"] = $body["price"];
             $cart["image"] = $body["image"];
             $cart["color"] = $body["color"];
             $cart["size"] = $body["size"];
-            $cart["qty"] = 1;
+            $cart["qty"] = $body["qty"];
             array_push($carts, $cart);
         }
         $request->session()->put('cart', $carts);

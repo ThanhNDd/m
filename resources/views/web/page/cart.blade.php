@@ -18,6 +18,9 @@
         <items-cart-component/>
       </div>
     </div>
+    <div>
+      <footer-component></footer-component>
+    </div>
   </div>
 @endsection
 

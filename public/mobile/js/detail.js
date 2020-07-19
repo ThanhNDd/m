@@ -1636,9 +1636,14 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("p", { staticClass: "price" }, [
-                        _vm._v(_vm._s(_vm._f("formatPrice")(product.retail)))
-                      ])
+                      _c("p", {
+                        staticClass: "price",
+                        domProps: {
+                          innerHTML: _vm._s(
+                            _vm.$options.filters.formatPrice(product.retail)
+                          )
+                        }
+                      })
                     ])
                   ]
                 )
@@ -1796,9 +1801,14 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("p", { staticClass: "price" }, [
-                        _vm._v(_vm._s(_vm._f("formatPrice")(product.retail)))
-                      ])
+                      _c("p", {
+                        staticClass: "price",
+                        domProps: {
+                          innerHTML: _vm._s(
+                            _vm.$options.filters.formatPrice(product.retail)
+                          )
+                        }
+                      })
                     ])
                   ]
                 )
@@ -2563,11 +2573,16 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("p", { staticClass: "price" }, [
-                                _vm._v(
-                                  _vm._s(_vm._f("formatPrice")(product.retail))
-                                )
-                              ])
+                              _c("p", {
+                                staticClass: "price",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.formatPrice(
+                                      product.retail
+                                    )
+                                  )
+                                }
+                              })
                             ])
                           ]
                         )

@@ -47,7 +47,7 @@
             return {
                 posts: [],
                 url: '',
-                rowperpage: 3
+                rowperpage: 4
             }
         },
         created() {

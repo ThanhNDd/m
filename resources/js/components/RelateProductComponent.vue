@@ -21,7 +21,7 @@
                                   <i v-bind:class="product.rating > 4 ? (product.rating >= 5 ? 'fas fa-star' : 'fas fa-star-half-alt') : 'far fa-star' " style="color:#ffc107;"></i>
                                   <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                                 </div>
-                                <p class="price">{{product.retail | formatPrice}}</p>
+                                <p class="price" v-html="$options.filters.formatPrice(product.retail)"></p>
                             </div>
                         </a>
                     </div>
