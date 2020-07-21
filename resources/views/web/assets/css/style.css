@@ -262,7 +262,6 @@ i.far.fa-check-circle {
 .wrap-total-cart .container .content-total ul li {
   display: inline-block;
   text-align: right;
-  width: 48%;
 }
 
 .wrap-total-cart .container .content-total ul li p {
@@ -536,4 +535,11 @@ li.media {
 }
 #city input, #district input, #village input {
   height: 28px;
+}
+
+.form-control--error {
+  border: 1px solid #ff00009c !important;
+}
+.text--error {
+  color: #ff00009c !important;
 }

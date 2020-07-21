@@ -149,28 +149,28 @@
                                 </table><!-- /table -->
                             </div>
                         </div>
-                        <div class="coupon-code col-md-6 float-left">
+                        <div class="coupon-code col-md-6 float-left no-padding">
                             <input type="text" class="form-control" placeholder="Mã giảm giá">
-                            <button class="btn btn-primary btn-flat mt-2">Áp dụng</button>
+                            <button class="btn btn-primary btn-flat">Áp dụng</button>
                         </div>
-                        <div class="wrap-total-cart col-md-6 float-left">
+                        <div class="wrap-total-cart col-md-6 float-left no-padding">
                             <div class="container" style="padding: 0;background: #f8f8f8;">
                                 <div class="content-total mb-2">
-                                    <ul>
-                                        <li>
+                                    <ul class="col-md-12 no-padding">
+                                        <li class="col-md-6 no-padding float-left">
                                             <p>Tổng tiền</p>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 no-padding">
                                             <h6 v-html="$options.filters.formatPrice(totalAmount)"></h6>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="content-total mb-2">
-                                    <ul>
-                                        <li>
+                                    <ul class="col-md-12 no-padding">
+                                        <li class="col-md-6 no-padding float-left">
                                             <p>Phí ship</p>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 no-padding">
                                             <h6 v-if="shipping > 0"
                                                 v-html="$options.filters.formatPrice(totalShipping)"></h6>
                                             <span v-else class="badge badge-success"
@@ -179,21 +179,21 @@
                                     </ul>
                                 </div>
                                 <div class="content-total mb-2">
-                                    <ul>
-                                        <li>
+                                    <ul class="col-md-12 no-padding">
+                                        <li class="col-md-6 no-padding float-left">
                                             <p>Chiết khấu</p>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 no-padding">
                                             <h6 v-html="$options.filters.formatPrice(reduce)"></h6>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="content-total mb-2">
-                                    <ul>
-                                        <li>
+                                    <ul class="col-md-12 no-padding">
+                                        <li class="col-md-6 no-padding float-left">
                                             <p>Tổng thanh toán</p>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 no-padding">
                                             <h6 style="font-size: 25px; color: red;"
                                                 v-html="$options.filters.formatPrice(totalMoney)"></h6>
                                         </li>
@@ -205,7 +205,7 @@
                 </div>
                 <div class="col-md-12 estimate-ship-tax"
                      style="margin-bottom: 20px;margin-top: 10px;padding: 0;text-align: right;">
-                    <button type="submit" class="btn btn-danger btn-flat mr-2" style="float: right;"
+                    <button type="submit" class="btn btn-warning btn-flat mr-2" style="float: right;"
                             v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
                         <span class="fas fa-shopping-bag" v-if="submit"></span>
                         <i class="fa fa-spinner fa-spin" style="font-size:20px"v-if="submit"></i>

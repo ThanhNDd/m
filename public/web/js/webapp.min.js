@@ -3722,9 +3722,180 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Import this component
  // Import date picker css
 
+ // import DisableAutocomplete from 'vue-disable-autocomplete';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3734,8 +3905,7 @@ __webpack_require__.r(__webpack_exports__);
       password2: '',
       fullname: '',
       phone: '',
-      male: '',
-      female: '',
+      gender: '',
       email: '',
       email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       phone_reg: /^((09|03|07|08|05)+([0-9]{8})\b)$/,
@@ -3743,95 +3913,441 @@ __webpack_require__.r(__webpack_exports__);
       hidden: false,
       hasLogin: false,
       isRegister: false,
+      isChangePassword: false,
       birthday: '',
       options: {
         format: 'DD/MM/YYYY',
-        useCurrent: false,
-        locale: url + '/resources/views/web/assets/js/libs/vi.js'
+        useCurrent: false
       },
       city: [],
       city_id: '',
       district: [],
       district_id: '',
       village: [],
-      village_id: ''
+      village_id: '',
+      address: '',
+      verify_code: '',
+      submitStatus: null,
+      is_valid_username: true,
+      is_valid_password: true,
+      is_valid_password_length: true,
+      is_valid_password2: true,
+      is_valid_diff_password: true,
+      is_valid_name: true,
+      is_valid_phone: true,
+      is_valid_phone_format: true,
+      is_valid_phone_not_exist: true,
+      is_valid_email: true,
+      is_valid_email_format: true,
+      is_valid_city: true,
+      is_valid_district: true,
+      is_valid_village: true,
+      is_valid_address: true,
+      is_valid_gender: true,
+      is_valid_birthday: true,
+      is_exist_phone: false,
+      is_correct_phone_or_password: true,
+      is_send_email_change_pass_success: true,
+      is_valid_verify_code: true,
+      is_correct_verify_code: true
     };
   },
   components: {
-    datePicker: vue_bootstrap_datetimepicker__WEBPACK_IMPORTED_MODULE_0___default.a
+    datePicker: vue_bootstrap_datetimepicker__WEBPACK_IMPORTED_MODULE_0___default.a // DisableAutocomplete
+
   },
   created: function created() {
     this.loadCity();
   },
   filters: {},
+  watch: {
+    username: function username() {
+      this.is_valid_username = this.username;
+    },
+    password: function password() {
+      this.is_valid_password = this.password;
+
+      if (this.password.length > 0) {
+        this.is_valid_password_length = this.password.length >= 6;
+      }
+    },
+    password2: function password2() {
+      this.is_valid_password2 = this.password2;
+
+      if (this.password2.length > 0) {
+        this.is_valid_diff_password = this.password === this.password2;
+      }
+    },
+    fullname: function fullname() {
+      this.is_valid_name = this.fullname;
+    },
+    phone: function phone() {
+      this.is_valid_phone = this.phone;
+
+      if (this.phone.length > 0) {
+        this.is_valid_phone_format = this.phone_reg.test(this.phone);
+
+        if (!this.is_valid_phone_format) {
+          this.is_valid_phone_not_exist = true;
+          this.is_exist_phone = false;
+        }
+      }
+    },
+    email: function email() {
+      this.is_valid_email = this.email;
+
+      if (this.email.length > 0) {
+        this.is_valid_email_format = this.email_reg.test(this.email);
+      }
+    },
+    city_id: function city_id() {
+      this.is_valid_city = this.city_id;
+    },
+    district_id: function district_id() {
+      this.is_valid_district = this.district_id;
+    },
+    village_id: function village_id() {
+      this.is_valid_village = this.village_id;
+    },
+    address: function address() {
+      this.is_valid_address = this.address;
+    },
+    gender: function gender() {
+      this.is_valid_gender = this.gender;
+    },
+    birthday: function birthday() {
+      this.is_valid_birthday = this.birthday;
+    }
+  },
   methods: {
-    login: function login() {},
-    register: function register() {},
-    loadCity: function loadCity() {
+    openModal: function openModal() {
+      $("#login_phone").removeAttr("readonly");
+      $("#loginForm").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+    },
+    login: function login() {
       var _this = this;
 
+      if (!this.checkLoginForm()) {
+        return;
+      }
+
+      axios.post(url + "/api/dang-nhap", {
+        phone: this.phone,
+        password: this.password
+      }).then(function (response) {
+        if (response.data.status === 200) {
+          _this.is_correct_phone_or_password = true;
+        }
+      })["catch"](function (e) {
+        console.log(e.response.status);
+        _this.is_correct_phone_or_password = false;
+      });
+    },
+    register: function register() {
+      var _this2 = this;
+
+      var customer = [];
+      customer.push({
+        "username": this.username,
+        "password": this.password,
+        "password2": this.password2,
+        "fullname": this.fullname,
+        "phone": this.phone,
+        "email": this.email,
+        "city": this.city_id,
+        "district": this.district_id,
+        "village": this.village_id,
+        "address": this.address,
+        "birthday": this.birthday,
+        "gender": this.gender
+      });
+      console.log(JSON.stringify(customer));
+      axios.post(url + "/api/dang-ky", {
+        body: customer
+      }).then(function (response) {
+        _this2.submit = false;
+
+        if (response.data === 201) {} else {
+          _this2.$toast.error({
+            title: 'Lỗi',
+            message: 'Đã xảy ra lỗi.'
+          });
+        }
+      });
+    },
+    checkPhone: function checkPhone() {
+      var _this3 = this;
+
+      if (!this.phone || !this.phone_reg.test(this.phone)) {
+        return;
+      }
+
+      axios.get(url + "/api/check-exist-phone/" + this.phone).then(function (response) {
+        console.log(response.data);
+
+        if (response && response.data > 0) {
+          _this3.is_exist_phone = true;
+          setTimeout(function () {
+            $("#login_password").removeAttr("readonly");
+          }, 100);
+        } else {
+          _this3.is_valid_phone_not_exist = false;
+        }
+      });
+    },
+    sendEmail: function sendEmail() {
+      if (!this.email || !this.email_reg.test(this.email)) {
+        return;
+      }
+
+      axios.post(url + "/api/send-email-change-password/", {
+        email: this.email
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (response) {} else {}
+      });
+    },
+    checkLoginForm: function checkLoginForm() {
+      var is_invalid_form = true;
+
+      if (this.phone && this.password) {
+        return true;
+      }
+
+      if (!this.phone) {
+        this.is_valid_phone = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.password) {
+        this.is_invalid_password = false;
+        is_invalid_form = false;
+      } else if (this.password.length < 6) {
+        this.is_invalid_password_length = false;
+        is_invalid_form = false;
+      }
+
+      return is_invalid_form;
+    },
+    checkForm: function checkForm() {
+      var is_invalid_form = true;
+
+      if (this.name && this.phone && this.address && this.city && this.district && this.village && this.address) {
+        this.submit = true;
+        this.register();
+        is_invalid_form = true;
+      }
+
+      if (!this.username) {
+        this.is_valid_username = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.password) {
+        this.is_invalid_password = false;
+        is_invalid_form = false;
+      } else if (!this.password.length < 6) {
+        this.is_invalid_password_length = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.password2) {
+        this.is_valid_password2 = false;
+        is_invalid_form = false;
+      } else if (this.password2 !== this.password) {
+        this.is_valid_diff_password = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.fullname) {
+        this.is_valid_name = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.phone) {
+        this.is_valid_phone = false;
+        is_invalid_form = false;
+      } else if (!this.phone_reg.test(this.phone)) {
+        this.is_valid_phone_format = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.email) {
+        this.is_valid_email = false;
+        is_invalid_form = false;
+      } else if (!this.email_reg.test(this.email)) {
+        this.is_valid_email_format = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.city_id) {
+        this.is_valid_city = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.district_id) {
+        this.is_valid_district = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.village_id) {
+        this.is_valid_village = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.address) {
+        this.is_valid_address = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.gender) {
+        this.is_valid_gender = false;
+        is_invalid_form = false;
+      }
+
+      if (!this.birthday) {
+        this.is_valid_birthday = false;
+        is_invalid_form = false;
+      }
+
+      return is_invalid_form;
+    },
+    loadCity: function loadCity() {
+      var _this4 = this;
+
       axios.get(url + '/api/zone/city').then(function (response) {
-        _this.city = JSON.parse(response.data).results;
+        _this4.city = JSON.parse(response.data).results;
       });
     },
     changeCity: function changeCity(val) {
-      var _this2 = this;
+      var _this5 = this;
 
       this.city_id = val;
       axios.get(url + '/api/zone/district/' + val).then(function (response) {
-        _this2.district = JSON.parse(response.data).results;
-        _this2.district_id = null;
-        _this2.village_id = null;
+        _this5.district = JSON.parse(response.data).results;
+        _this5.district_id = null;
+        _this5.village_id = null;
       });
     },
     changeDistrict: function changeDistrict(val) {
-      var _this3 = this;
+      var _this6 = this;
 
       this.district_id = val;
       axios.get(url + '/api/zone/village/' + val).then(function (response) {
-        _this3.village = JSON.parse(response.data).results;
-        _this3.village_id = null;
+        _this6.village = JSON.parse(response.data).results;
+        _this6.village_id = null;
       });
     },
     changeVillage: function changeVillage(val) {
       this.village_id = val;
     },
-    showAlert: function showAlert() {
-      this.$swal({
-        title: '<strong>HTML <u>example</u></strong>',
-        icon: 'info',
-        html: 'You can use <b>bold text</b>, ' + '<a href="//sweetalert2.github.io">links</a> ' + 'and other HTML tags',
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
-        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
-        confirmButtonAriaLabel: 'Thumbs up, great!',
-        cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-        cancelButtonAriaLabel: 'Thumbs down',
-        showClass: {
-          popup: 'swal2-show',
-          backdrop: 'swal2-backdrop-show',
-          icon: 'swal2-icon-show'
-        },
-        hideClass: {
-          popup: 'swal2-hide',
-          backdrop: 'swal2-backdrop-hide',
-          icon: 'swal2-icon-hide'
-        },
-        allowOutsideClick: false,
-        allowEscapeKey: false
-      });
+    // showAlert() {
+    //     this.$swal({
+    //         title: '<strong>HTML <u>example</u></strong>',
+    //         icon: 'info',
+    //         html:
+    //             'You can use <b>bold text</b>, ' +
+    //             '<a href="//sweetalert2.github.io">links</a> ' +
+    //             'and other HTML tags',
+    //         showCloseButton: true,
+    //         showCancelButton: true,
+    //         focusConfirm: false,
+    //         confirmButtonText:
+    //             '<i class="fa fa-thumbs-up"></i> Great!',
+    //         confirmButtonAriaLabel: 'Thumbs up, great!',
+    //         cancelButtonText:
+    //             '<i class="fa fa-thumbs-down"></i>',
+    //         cancelButtonAriaLabel: 'Thumbs down',
+    //         showClass: {
+    //             popup: 'swal2-show',
+    //             backdrop: 'swal2-backdrop-show',
+    //             icon: 'swal2-icon-show'
+    //         },
+    //         hideClass: {
+    //             popup: 'swal2-hide',
+    //             backdrop: 'swal2-backdrop-hide',
+    //             icon: 'swal2-icon-hide'
+    //         },
+    //         allowOutsideClick: false,
+    //         allowEscapeKey: false
+    //     });
+    // },
+    switchLoginForm: function switchLoginForm() {
+      this.resetLoginForm();
     },
-    isPhoneValid: function isPhoneValid() {
-      return this.phone === "" ? "" : this.phone_reg.test(this.phone) ? 'has-success' : 'has-error';
+    switchRegisterForm: function switchRegisterForm() {
+      this.resetRegisterForm();
     },
-    isEmailValid: function isEmailValid() {
-      return this.email === "" ? "" : this.email_reg.test(this.email) ? 'has-success' : 'has-error';
+    switchChangePassword: function switchChangePassword() {
+      this.resetChangePasswordForm();
     },
-    isPasswordValid: function isPasswordValid() {
-      return this.password.length >= 6 ? 'has-success' : 'has-error';
+    resetChangePasswordForm: function resetChangePasswordForm() {
+      this.isChangePassword = true;
+      this.is_valid_email = true;
+      this.is_valid_email_format = true;
+      this.email = '';
+      setTimeout(function () {
+        $("#email_change_pwd").removeAttr("readonly");
+      }, 100);
+    },
+    resetRegisterForm: function resetRegisterForm() {
+      this.isRegister = true;
+      this.isChangePassword = false; // this.phone = '';
+
+      this.password = '';
+      this.password2 = '';
+      this.fullname = '';
+      this.email = '';
+      this.city_id = '';
+      this.district_id = '';
+      this.village_id = '';
+      this.address = '';
+      this.gender = '';
+      this.birthday = '';
+      this.is_valid_phone = true;
+      this.is_valid_phone_format = true;
+      this.is_valid_password = true;
+      this.is_valid_password_length = true;
+      this.is_valid_password2 = true;
+      this.is_valid_password2_length = true;
+      this.is_valid_name = true;
+      this.is_valid_email = true;
+      this.is_valid_email_format = true;
+      this.is_valid_city = true;
+      this.is_valid_district = true;
+      this.is_valid_village = true;
+      this.is_valid_address = true;
+      this.is_valid_gender = true;
+      this.is_valid_birthday = true;
+      setTimeout(function () {
+        $("#reg_password").removeAttr("readonly");
+        $("#reg_password2").removeAttr("readonly");
+        $("#reg_fullname").removeAttr("readonly");
+        $("#reg_email").removeAttr("readonly");
+        $("#reg_address").removeAttr("readonly");
+        $("input[type=radio]").removeAttr("readonly");
+        $("#reg_birthday").removeAttr("readonly");
+      }, 500);
+    },
+    resetLoginForm: function resetLoginForm() {
+      this.isRegister = false;
+      this.phone = '';
+      this.is_valid_phone = true;
+      this.is_exist_phone = false;
+      this.password = '';
+      this.isChangePassword = false;
+      this.is_valid_phone_format = true;
+      this.is_valid_phone_not_exist = true;
+      setTimeout(function () {
+        $("#login_phone").removeAttr("readonly");
+      }, 100);
     }
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -68851,7 +69367,10 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "wrap-total-cart col-md-6 float-left" },
+                      {
+                        staticClass:
+                          "wrap-total-cart col-md-6 float-left no-padding"
+                      },
                       [
                         _c(
                           "div",
@@ -68861,91 +69380,124 @@ var render = function() {
                           },
                           [
                             _c("div", { staticClass: "content-total mb-2" }, [
-                              _c("ul", [
-                                _vm._m(5),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("h6", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.formatPrice(
-                                          _vm.totalAmount
-                                        )
-                                      )
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "content-total mb-2" }, [
-                              _c("ul", [
-                                _vm._m(6),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _vm.shipping > 0
-                                    ? _c("h6", {
+                              _c(
+                                "ul",
+                                { staticClass: "col-md-12 no-padding" },
+                                [
+                                  _vm._m(5),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "col-md-6 no-padding" },
+                                    [
+                                      _c("h6", {
                                         domProps: {
                                           innerHTML: _vm._s(
                                             _vm.$options.filters.formatPrice(
-                                              _vm.totalShipping
+                                              _vm.totalAmount
                                             )
                                           )
                                         }
                                       })
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass: "badge badge-success",
-                                          staticStyle: {
-                                            "font-size": "13px",
-                                            "font-weight": "normal"
-                                          }
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content-total mb-2" }, [
+                              _c(
+                                "ul",
+                                { staticClass: "col-md-12 no-padding" },
+                                [
+                                  _vm._m(6),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "col-md-6 no-padding" },
+                                    [
+                                      _vm.shipping > 0
+                                        ? _c("h6", {
+                                            domProps: {
+                                              innerHTML: _vm._s(
+                                                _vm.$options.filters.formatPrice(
+                                                  _vm.totalShipping
+                                                )
+                                              )
+                                            }
+                                          })
+                                        : _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-success",
+                                              staticStyle: {
+                                                "font-size": "13px",
+                                                "font-weight": "normal"
+                                              }
+                                            },
+                                            [_vm._v("Miễn ship")]
+                                          )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content-total mb-2" }, [
+                              _c(
+                                "ul",
+                                { staticClass: "col-md-12 no-padding" },
+                                [
+                                  _vm._m(7),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "col-md-6 no-padding" },
+                                    [
+                                      _c("h6", {
+                                        domProps: {
+                                          innerHTML: _vm._s(
+                                            _vm.$options.filters.formatPrice(
+                                              _vm.reduce
+                                            )
+                                          )
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content-total mb-2" }, [
+                              _c(
+                                "ul",
+                                { staticClass: "col-md-12 no-padding" },
+                                [
+                                  _vm._m(8),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "col-md-6 no-padding" },
+                                    [
+                                      _c("h6", {
+                                        staticStyle: {
+                                          "font-size": "25px",
+                                          color: "red"
                                         },
-                                        [_vm._v("Miễn ship")]
-                                      )
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "content-total mb-2" }, [
-                              _c("ul", [
-                                _vm._m(7),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("h6", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.formatPrice(
-                                          _vm.reduce
-                                        )
-                                      )
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "content-total mb-2" }, [
-                              _c("ul", [
-                                _vm._m(8),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("h6", {
-                                    staticStyle: {
-                                      "font-size": "25px",
-                                      color: "red"
-                                    },
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.formatPrice(
-                                          _vm.totalMoney
-                                        )
-                                      )
-                                    }
-                                  })
-                                ])
-                              ])
+                                        domProps: {
+                                          innerHTML: _vm._s(
+                                            _vm.$options.filters.formatPrice(
+                                              _vm.totalMoney
+                                            )
+                                          )
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
                             ])
                           ]
                         )
@@ -68969,7 +69521,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-danger btn-flat mr-2",
+                        staticClass: "btn btn-warning btn-flat mr-2",
                         class: _vm.submit ? "disabled" : "",
                         staticStyle: { float: "right" },
                         attrs: { type: "submit", disabled: _vm.submit }
@@ -69101,40 +69653,52 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "coupon-code col-md-6 float-left" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Mã giảm giá" }
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-primary btn-flat mt-2" }, [
-        _vm._v("Áp dụng")
-      ])
+    return _c(
+      "div",
+      { staticClass: "coupon-code col-md-6 float-left no-padding" },
+      [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Mã giảm giá" }
+        }),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary btn-flat" }, [
+          _vm._v("Áp dụng")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "col-md-6 no-padding float-left" }, [
+      _c("p", [_vm._v("Tổng tiền")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("p", [_vm._v("Tổng tiền")])])
+    return _c("li", { staticClass: "col-md-6 no-padding float-left" }, [
+      _c("p", [_vm._v("Phí ship")])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("p", [_vm._v("Phí ship")])])
+    return _c("li", { staticClass: "col-md-6 no-padding float-left" }, [
+      _c("p", [_vm._v("Chiết khấu")])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("p", [_vm._v("Chiết khấu")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("p", [_vm._v("Tổng thanh toán")])])
+    return _c("li", { staticClass: "col-md-6 no-padding float-left" }, [
+      _c("p", [_vm._v("Tổng thanh toán")])
+    ])
   }
 ]
 render._withStripped = true
@@ -70232,7 +70796,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "a",
+      { attrs: { href: "javascript:void(0);" }, on: { click: _vm.openModal } },
+      [
+        _c("i", { staticClass: "fas fa-sign-in-alt" }),
+        _vm._v(" Đăng nhập\n        ")
+      ]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -70250,32 +70821,40 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "modal-dialog modal-lg modal-dialog-centered",
+            class: [
+              "modal-dialog",
+              _vm.isRegister ? "modal-lg" : "",
+              "modal-dialog-centered"
+            ],
             attrs: { role: "document" }
           },
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
-                !_vm.isRegister
+                _vm.isChangePassword && !_vm.isRegister
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Đổi mật khẩu")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.isRegister && !_vm.isChangePassword
                   ? _c("h5", { staticClass: "modal-title" }, [
                       _vm._v("Đăng nhập")
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.isRegister
+                _vm.isRegister && !_vm.isChangePassword
                   ? _c("h5", { staticClass: "modal-title" }, [
                       _vm._v("Đăng ký")
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(0)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body col-md-12" }, [
-                _c("div"),
-                _vm._v(" "),
-                !_vm.isRegister
-                  ? _c("div", {}, [
+                !_vm.isRegister && !_vm.isChangePassword
+                  ? _c("div", [
                       _c(
                         "div",
                         {
@@ -70300,8 +70879,8 @@ var render = function() {
                                   _c("div", { staticClass: "form-group" }, [
                                     _c(
                                       "label",
-                                      { attrs: { for: "username" } },
-                                      [_vm._v("Tên đăng nhập / Email")]
+                                      { attrs: { for: "login_phone" } },
+                                      [_vm._v("Số điện thoại")]
                                     ),
                                     _vm._v(" "),
                                     _c("input", {
@@ -70309,33 +70888,559 @@ var render = function() {
                                         {
                                           name: "model",
                                           rawName: "v-model",
-                                          value: _vm.username,
-                                          expression: "username"
+                                          value: _vm.phone,
+                                          expression: "phone"
                                         }
                                       ],
-                                      ref: "username",
-                                      staticClass: "form-control",
+                                      ref: "phone",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_phone ||
+                                        !_vm.is_valid_phone_format
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Tên đăng nhập",
-                                        id: "username"
+                                        placeholder: "Nhập số điện thoại",
+                                        id: "login_phone",
+                                        readonly: "",
+                                        autocomplete: "off"
                                       },
-                                      domProps: { value: _vm.username },
+                                      domProps: { value: _vm.phone },
+                                      on: {
+                                        keydown: function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "enter",
+                                              13,
+                                              $event.key,
+                                              "Enter"
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          $event.preventDefault()
+                                          return _vm.checkPhone($event)
+                                        },
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.phone = $event.target.value
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_phone
+                                      ? _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_phone_format
+                                      ? _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Số điện thoại không đúng\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_phone_not_exist
+                                      ? _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Số điện thoại không tồn tại. Bạn có thể\n                                                    "
+                                            ),
+                                            _c(
+                                              "a",
+                                              {
+                                                staticStyle: {
+                                                  color: "#0f6cb2 !important"
+                                                },
+                                                attrs: {
+                                                  href: "javascript:void(0)"
+                                                },
+                                                on: {
+                                                  click: _vm.switchRegisterForm
+                                                }
+                                              },
+                                              [_vm._v("Đăng ký")]
+                                            ),
+                                            _vm._v(
+                                              " tài khoản mới.\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.is_exist_phone
+                                    ? _c("div", { staticClass: "form-group" }, [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "login_password" } },
+                                          [_vm._v("Mật khẩu")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.password,
+                                              expression: "password"
+                                            }
+                                          ],
+                                          ref: "password",
+                                          class: [
+                                            "form-control",
+                                            !_vm.is_valid_password ||
+                                            !_vm.is_valid_password_length
+                                              ? "form-control--error"
+                                              : ""
+                                          ],
+                                          attrs: {
+                                            type: "password",
+                                            placeholder: "Mật khẩu",
+                                            id: "login_password",
+                                            readonly: "",
+                                            autocomplete: "off"
+                                          },
+                                          domProps: { value: _vm.password },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.password = $event.target.value
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        !_vm.is_valid_password
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Trường này là bắt buộc\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        !_vm.is_valid_password_length
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Mật khẩu phải có ít nhất 6 ký tự\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        !_vm.is_correct_phone_or_password
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Bạn quên mật khẩu?\n                                                    "
+                                            ),
+                                            _c(
+                                              "a",
+                                              {
+                                                staticStyle: {
+                                                  color: "#0f6cb2 !important"
+                                                },
+                                                attrs: {
+                                                  href: "javascript:void(0)"
+                                                },
+                                                on: {
+                                                  click:
+                                                    _vm.switchChangePassword
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                        Đổi mật khẩu\n                                                    "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    : _vm._e()
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isChangePassword
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "page-content",
+                          staticStyle: {
+                            background: "#fff",
+                            "padding-bottom": "20px"
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "container",
+                              staticStyle: { padding: "0px", width: "100%" }
+                            },
+                            [
+                              _c(
+                                "form",
+                                { staticStyle: { "padding-top": "10px" } },
+                                [
+                                  !_vm.is_send_email_change_pass_success
+                                    ? _c("div", { staticClass: "form-group" }, [
+                                        _c(
+                                          "label",
+                                          {
+                                            attrs: { for: "email_change_pwd" }
+                                          },
+                                          [_vm._v("Email")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.email,
+                                              expression: "email"
+                                            }
+                                          ],
+                                          ref: "email",
+                                          class: [
+                                            "form-control",
+                                            !_vm.is_valid_email ||
+                                            !_vm.is_valid_email_format
+                                              ? "form-control--error"
+                                              : ""
+                                          ],
+                                          attrs: {
+                                            type: "text",
+                                            placeholder: "Nhập email",
+                                            id: "email_change_pwd",
+                                            readonly: "",
+                                            autocomplete: "off"
+                                          },
+                                          domProps: { value: _vm.email },
+                                          on: {
+                                            keydown: function($event) {
+                                              if (
+                                                !$event.type.indexOf("key") &&
+                                                _vm._k(
+                                                  $event.keyCode,
+                                                  "enter",
+                                                  13,
+                                                  $event.key,
+                                                  "Enter"
+                                                )
+                                              ) {
+                                                return null
+                                              }
+                                              $event.preventDefault()
+                                            },
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.email = $event.target.value
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        !_vm.is_valid_email
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    Trường này là bắt buộc\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        !_vm.is_valid_email_format
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    Email không đúng\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.is_send_email_change_pass_success
+                                    ? _c("div", { staticClass: "form-group" }, [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "verify_code" } },
+                                          [_vm._v("Email")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.verify_code,
+                                              expression: "verify_code"
+                                            }
+                                          ],
+                                          ref: "verify_code",
+                                          class: [
+                                            "form-control",
+                                            !_vm.is_valid_verify_code
+                                              ? "form-control--error"
+                                              : ""
+                                          ],
+                                          attrs: {
+                                            type: "text",
+                                            placeholder: "Nhập mã xác nhận",
+                                            id: "verify_code",
+                                            readonly: "",
+                                            autocomplete: "off"
+                                          },
+                                          domProps: { value: _vm.verify_code },
+                                          on: {
+                                            keydown: function($event) {
+                                              if (
+                                                !$event.type.indexOf("key") &&
+                                                _vm._k(
+                                                  $event.keyCode,
+                                                  "enter",
+                                                  13,
+                                                  $event.key,
+                                                  "Enter"
+                                                )
+                                              ) {
+                                                return null
+                                              }
+                                              $event.preventDefault()
+                                            },
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.verify_code =
+                                                $event.target.value
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        !_vm.is_valid_verify_code
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    Trường này là bắt buộc\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        !_vm.is_correct_verify_code
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mt-2 text--error d-inline-block col-md-12 no-padding mb-0"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    Mã xác nhận không đúng. Vui lòng thử lại\n                                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    : _vm._e()
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isRegister
+                  ? _c("div", {}, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "page-content",
+                          staticStyle: {
+                            background: "#fff",
+                            "padding-bottom": "20px"
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "container",
+                              staticStyle: { padding: "0px", width: "100%" }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-6 float-left" },
+                                [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "reg_fullname" } },
+                                      [_vm._v("Số điện thoại")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.phone,
+                                          expression: "phone"
+                                        }
+                                      ],
+                                      ref: "phone",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_phone ||
+                                        !_vm.is_valid_phone_format
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Số điện thoại",
+                                        id: "reg_phone",
+                                        autocomplete: "off"
+                                      },
+                                      domProps: { value: _vm.phone },
                                       on: {
                                         input: function($event) {
                                           if ($event.target.composing) {
                                             return
                                           }
-                                          _vm.username = $event.target.value
+                                          _vm.phone = $event.target.value
                                         }
                                       }
-                                    })
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_phone
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_phone_format
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Số điện thoại không đúng\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "form-group" }, [
                                     _c(
                                       "label",
-                                      { attrs: { for: "password" } },
+                                      { attrs: { for: "reg_password" } },
                                       [_vm._v("Mật khẩu")]
                                     ),
                                     _vm._v(" "),
@@ -70349,11 +71454,20 @@ var render = function() {
                                         }
                                       ],
                                       ref: "password",
-                                      staticClass: "form-control",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_password ||
+                                        !_vm.is_valid_password_length
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "password",
+                                        value: "",
                                         placeholder: "Mật khẩu",
-                                        id: "password"
+                                        id: "reg_password",
+                                        autocomplete: "off",
+                                        readonly: ""
                                       },
                                       domProps: { value: _vm.password },
                                       on: {
@@ -70364,690 +71478,647 @@ var render = function() {
                                           _vm.password = $event.target.value
                                         }
                                       }
-                                    })
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_password
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_password_length
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Mật khẩu phải có ít nhất 6 ký tự\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
                                   ]),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "col-md-12" }, [
+                                  _c("div", { staticClass: "form-group" }, [
                                     _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "form-group col-md-6 float-left text-left"
+                                      "label",
+                                      { attrs: { for: "reg_password2" } },
+                                      [_vm._v("Nhập lại mật khẩu")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.password2,
+                                          expression: "password2"
+                                        }
+                                      ],
+                                      ref: "password2",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_password2 ||
+                                        !_vm.is_valid_diff_password
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
+                                      attrs: {
+                                        type: "password",
+                                        placeholder: "Nhập lại mật khẩu",
+                                        id: "reg_password2",
+                                        autocomplete: "off",
+                                        readonly: ""
                                       },
-                                      [
-                                        _vm._v(
-                                          "\n                                                Bạn chưa có tài khoản?\n                                                    "
-                                        ),
-                                        _c(
-                                          "a",
+                                      domProps: { value: _vm.password2 },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.password2 = $event.target.value
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_password2
+                                      ? _c(
+                                          "small",
                                           {
-                                            staticStyle: {
-                                              color: "#0f6cb2 !important"
-                                            },
-                                            attrs: {
-                                              href: "javascript:void(0)"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.isRegister = true
-                                              }
-                                            }
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
                                           },
-                                          [_vm._v("Đăng ký ngay")]
+                                          [
+                                            _vm._v(
+                                              "Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
                                         )
-                                      ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_diff_password
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Mật khẩu nhập lại không khớp\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "reg_fullname" } },
+                                      [_vm._v("Họ Tên")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.fullname,
+                                          expression: "fullname"
+                                        }
+                                      ],
+                                      ref: "fullname",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_name
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Họ tên",
+                                        id: "reg_fullname",
+                                        autocomplete: "off",
+                                        readonly: ""
+                                      },
+                                      domProps: { value: _vm.fullname },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.fullname = $event.target.value
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_name
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "reg_email" } },
+                                      [_vm._v("Email")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.email,
+                                          expression: "email"
+                                        }
+                                      ],
+                                      ref: "email",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_email
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
+                                      attrs: {
+                                        type: "email",
+                                        placeholder: "Email",
+                                        id: "reg_email",
+                                        value: "",
+                                        autocomplete: "off",
+                                        readonly: ""
+                                      },
+                                      domProps: { value: _vm.email },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.email = $event.target.value
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_email
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_email_format
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Email không đúng\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-6  float-left" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "form-group" },
+                                    [
+                                      _c("label", { attrs: { for: "city" } }, [
+                                        _vm._v("Tỉnh / Thành phố")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-select", {
+                                        ref: "city",
+                                        class: [
+                                          !_vm.is_valid_city
+                                            ? "form-control--error"
+                                            : ""
+                                        ],
+                                        attrs: {
+                                          options: _vm.city,
+                                          reduce: function(city) {
+                                            return city.id
+                                          },
+                                          placeholder: "Thành phố",
+                                          label: "text",
+                                          id: "city",
+                                          readonly: ""
+                                        },
+                                        on: { input: _vm.changeCity },
+                                        model: {
+                                          value: _vm.city_id,
+                                          callback: function($$v) {
+                                            _vm.city_id = $$v
+                                          },
+                                          expression: "city_id"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      !_vm.is_valid_city
+                                        ? _c(
+                                            "small",
+                                            {
+                                              staticClass:
+                                                "mt-1 text--error d-inline-block"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    Trường này là bắt buộc\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        { attrs: { for: "district" } },
+                                        [_vm._v("Quận / Huyện")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-select", {
+                                        ref: "district",
+                                        class: [
+                                          !_vm.is_valid_district
+                                            ? "form-control--error"
+                                            : ""
+                                        ],
+                                        attrs: {
+                                          options: _vm.district,
+                                          reduce: function(district) {
+                                            return district.id
+                                          },
+                                          placeholder: "Quận huyện",
+                                          label: "text",
+                                          id: "district",
+                                          readonly: ""
+                                        },
+                                        on: { input: _vm.changeDistrict },
+                                        model: {
+                                          value: _vm.district_id,
+                                          callback: function($$v) {
+                                            _vm.district_id = $$v
+                                          },
+                                          expression: "district_id"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      !_vm.is_valid_district
+                                        ? _c(
+                                            "small",
+                                            {
+                                              staticClass:
+                                                "mt-1 text--error d-inline-block"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Trường này là bắt buộc\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        { attrs: { for: "village" } },
+                                        [_vm._v("Phường / Xã")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-select", {
+                                        ref: "village",
+                                        class: [
+                                          !_vm.is_valid_village
+                                            ? "form-control--error"
+                                            : ""
+                                        ],
+                                        attrs: {
+                                          options: _vm.village,
+                                          reduce: function(village) {
+                                            return village.id
+                                          },
+                                          placeholder: "Phường xã",
+                                          label: "text",
+                                          id: "village",
+                                          readonly: ""
+                                        },
+                                        on: { input: _vm.changeVillage },
+                                        model: {
+                                          value: _vm.village_id,
+                                          callback: function($$v) {
+                                            _vm.village_id = $$v
+                                          },
+                                          expression: "village_id"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      !_vm.is_valid_village
+                                        ? _c(
+                                            "small",
+                                            {
+                                              staticClass:
+                                                "mt-1 text--error d-inline-block"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    Trường này là bắt buộc\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "reg_address" } },
+                                      [_vm._v("Địa chỉ")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.address,
+                                          expression: "address"
+                                        }
+                                      ],
+                                      ref: "address",
+                                      class: [
+                                        "form-control",
+                                        !_vm.is_valid_address
+                                          ? "form-control--error"
+                                          : ""
+                                      ],
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Số nhà, ...",
+                                        id: "reg_address",
+                                        autocomplete: "off",
+                                        readonly: ""
+                                      },
+                                      domProps: { value: _vm.address },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.address = $event.target.value
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_address
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { staticClass: "form-check-inline" },
+                                      [_vm._v("Giới tính")]
                                     ),
                                     _vm._v(" "),
                                     _c(
                                       "div",
                                       {
-                                        staticClass:
-                                          "form-group col-md-6 float-right text-right"
+                                        class: [
+                                          "form-control",
+                                          !_vm.is_valid_gender
+                                            ? "form-control--error"
+                                            : ""
+                                        ]
                                       },
                                       [
                                         _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-info btn-flat",
-                                            attrs: { type: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.login()
-                                              }
-                                            }
-                                          },
+                                          "div",
+                                          { staticClass: "form-check-inline" },
                                           [
-                                            _vm.hidden
-                                              ? _c("i", {
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "form-check-label"
+                                              },
+                                              [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.gender,
+                                                      expression: "gender"
+                                                    }
+                                                  ],
                                                   staticClass:
-                                                    "fa fa-spinner fa-spin",
-                                                  staticStyle: {
-                                                    "font-size": "20px"
+                                                    "form-check-input",
+                                                  attrs: {
+                                                    type: "radio",
+                                                    name: "gender",
+                                                    value: "Nam",
+                                                    readonly: ""
+                                                  },
+                                                  domProps: {
+                                                    checked: _vm._q(
+                                                      _vm.gender,
+                                                      "Nam"
+                                                    )
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      _vm.gender = "Nam"
+                                                    }
                                                   }
-                                                })
-                                              : _vm._e(),
-                                            _vm._v(
-                                              " Đăng nhập\n                                                "
+                                                }),
+                                                _vm._v(
+                                                  " Nam\n                                                        "
+                                                )
+                                              ]
                                             )
                                           ]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.isRegister
-                  ? _c("div", {}, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "page-content",
-                          staticStyle: {
-                            background: "#fff",
-                            "padding-bottom": "20px"
-                          }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "container",
-                              staticStyle: { padding: "0px", width: "100%" }
-                            },
-                            [
-                              _c(
-                                "form",
-                                { staticStyle: { "padding-top": "10px" } },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-6 float-left" },
-                                    [
-                                      _c("div", { staticClass: "form-group" }, [
-                                        _c(
-                                          "label",
-                                          { attrs: { for: "reg_username" } },
-                                          [_vm._v("Tên đăng nhập")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.username,
-                                              expression: "username"
-                                            }
-                                          ],
-                                          ref: "username",
-                                          staticClass: "form-control",
-                                          attrs: {
-                                            type: "text",
-                                            placeholder: "Tên đăng nhập",
-                                            id: "reg_username"
-                                          },
-                                          domProps: { value: _vm.username },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.username = $event.target.value
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          class: [
-                                            "form-group",
-                                            _vm.isPasswordValid()
-                                          ]
-                                        },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "reg_password" } },
-                                            [_vm._v("Mật khẩu")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.password,
-                                                expression: "password"
-                                              }
-                                            ],
-                                            ref: "password",
-                                            staticClass: "form-control",
-                                            attrs: {
-                                              type: "password",
-                                              placeholder: "Email",
-                                              id: "reg_password"
-                                            },
-                                            domProps: { value: _vm.password },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.password =
-                                                  $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          class: [
-                                            "form-group",
-                                            _vm.isPasswordValid()
-                                          ]
-                                        },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "reg_password2" } },
-                                            [_vm._v("Nhập lại mật khẩu")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.password2,
-                                                expression: "password2"
-                                              }
-                                            ],
-                                            ref: "password2",
-                                            staticClass: "form-control",
-                                            attrs: {
-                                              type: "password",
-                                              placeholder: "Email",
-                                              id: "reg_password2"
-                                            },
-                                            domProps: { value: _vm.password2 },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.password2 =
-                                                  $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "form-group" }, [
-                                        _c(
-                                          "label",
-                                          { attrs: { for: "reg_fullname" } },
-                                          [_vm._v("Họ Tên")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.fullname,
-                                              expression: "fullname"
-                                            }
-                                          ],
-                                          ref: "fullname",
-                                          staticClass: "form-control",
-                                          attrs: {
-                                            type: "text",
-                                            placeholder: "Họ tên",
-                                            id: "reg_fullname"
-                                          },
-                                          domProps: { value: _vm.fullname },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.fullname = $event.target.value
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          class: [
-                                            "form-group",
-                                            _vm.isPhoneValid()
-                                          ]
-                                        },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "reg_fullname" } },
-                                            [_vm._v("Số điện thoại")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.phone,
-                                                expression: "phone"
-                                              }
-                                            ],
-                                            ref: "phone",
-                                            staticClass: "form-control",
-                                            attrs: {
-                                              type: "text",
-                                              placeholder: "Số điện thoại",
-                                              id: "reg_phone"
-                                            },
-                                            domProps: { value: _vm.phone },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.phone = $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-6  float-left" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "city" } },
-                                            [_vm._v("Tỉnh / Thành phố")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-select", {
-                                            ref: "city",
-                                            staticClass: "form-group",
-                                            attrs: {
-                                              options: _vm.city,
-                                              reduce: function(city) {
-                                                return city.id
-                                              },
-                                              placeholder: "Thành phố",
-                                              label: "text",
-                                              id: "city"
-                                            },
-                                            on: { input: _vm.changeCity },
-                                            model: {
-                                              value: _vm.city_id,
-                                              callback: function($$v) {
-                                                _vm.city_id = $$v
-                                              },
-                                              expression: "city_id"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "district" } },
-                                            [_vm._v("Quận / Huyện")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-select", {
-                                            ref: "district",
-                                            staticClass: "form-group",
-                                            attrs: {
-                                              options: _vm.district,
-                                              reduce: function(district) {
-                                                return district.id
-                                              },
-                                              placeholder: "Quận huyện",
-                                              label: "text",
-                                              id: "district"
-                                            },
-                                            on: { input: _vm.changeDistrict },
-                                            model: {
-                                              value: _vm.district_id,
-                                              callback: function($$v) {
-                                                _vm.district_id = $$v
-                                              },
-                                              expression: "district_id"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "village" } },
-                                            [_vm._v("Phường / Xã")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-select", {
-                                            ref: "village",
-                                            staticClass: "form-group",
-                                            attrs: {
-                                              options: _vm.village,
-                                              reduce: function(village) {
-                                                return village.id
-                                              },
-                                              placeholder: "Phường xã",
-                                              label: "text",
-                                              id: "village"
-                                            },
-                                            on: { input: _vm.changeVillage },
-                                            model: {
-                                              value: _vm.village_id,
-                                              callback: function($$v) {
-                                                _vm.village_id = $$v
-                                              },
-                                              expression: "village_id"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "form-group" }, [
-                                        _c(
-                                          "label",
-                                          { staticClass: "form-check-inline" },
-                                          [_vm._v("Giới tính")]
                                         ),
                                         _vm._v(" "),
                                         _c(
                                           "div",
-                                          { staticClass: "form-control" },
+                                          { staticClass: "form-check-inline" },
                                           [
                                             _c(
-                                              "div",
+                                              "label",
                                               {
-                                                staticClass: "form-check-inline"
+                                                staticClass: "form-check-label"
                                               },
                                               [
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    staticClass:
-                                                      "form-check-label"
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.gender,
+                                                      expression: "gender"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "form-check-input",
+                                                  attrs: {
+                                                    type: "radio",
+                                                    name: "gender",
+                                                    value: "Nữ",
+                                                    readonly: ""
                                                   },
-                                                  [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value: _vm.male,
-                                                          expression: "male"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-check-input",
-                                                      attrs: {
-                                                        type: "radio",
-                                                        name: "gender"
-                                                      },
-                                                      domProps: {
-                                                        checked: _vm._q(
-                                                          _vm.male,
-                                                          null
-                                                        )
-                                                      },
-                                                      on: {
-                                                        change: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.male = null
-                                                        }
-                                                      }
-                                                    }),
-                                                    _vm._v(
-                                                      " Nam\n                                                        "
+                                                  domProps: {
+                                                    checked: _vm._q(
+                                                      _vm.gender,
+                                                      "Nữ"
                                                     )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass: "form-check-inline"
-                                              },
-                                              [
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    staticClass:
-                                                      "form-check-label"
                                                   },
-                                                  [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value: _vm.female,
-                                                          expression: "female"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-check-input",
-                                                      attrs: {
-                                                        type: "radio",
-                                                        name: "gender"
-                                                      },
-                                                      domProps: {
-                                                        checked: _vm._q(
-                                                          _vm.female,
-                                                          null
-                                                        )
-                                                      },
-                                                      on: {
-                                                        change: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.female = null
-                                                        }
-                                                      }
-                                                    }),
-                                                    _vm._v(
-                                                      " Nữ\n                                                        "
-                                                    )
-                                                  ]
+                                                  on: {
+                                                    change: function($event) {
+                                                      _vm.gender = "Nữ"
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(
+                                                  " Nữ\n                                                        "
                                                 )
                                               ]
                                             )
                                           ]
                                         )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "reg_birthday" } },
-                                            [_vm._v("Ngày sinh")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("date-picker", {
-                                            attrs: {
-                                              id: "reg_birthday",
-                                              config: _vm.options,
-                                              placeholder: "dd/mm/yyyy"
-                                            },
-                                            model: {
-                                              value: _vm.birthday,
-                                              callback: function($$v) {
-                                                _vm.birthday = $$v
-                                              },
-                                              expression: "birthday"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          class: [
-                                            "form-group",
-                                            _vm.isEmailValid()
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    !_vm.is_valid_gender
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "mt-1 text--error d-inline-block"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Trường này là bắt buộc\n                                                "
+                                            )
                                           ]
-                                        },
-                                        [
-                                          _c(
-                                            "label",
-                                            { attrs: { for: "reg_fullname" } },
-                                            [_vm._v("Email")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.email,
-                                                expression: "email"
-                                              }
-                                            ],
-                                            ref: "email",
-                                            staticClass: "form-control",
-                                            attrs: {
-                                              type: "email",
-                                              placeholder: "Email",
-                                              id: "reg_email"
-                                            },
-                                            domProps: { value: _vm.email },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.email = $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  ),
+                                        )
+                                      : _vm._e()
+                                  ]),
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    {
-                                      staticClass:
-                                        "form-group col-md-12 float-left"
-                                    },
+                                    { staticClass: "form-group" },
                                     [
                                       _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "col-md-6 float-left text-left mt-3 no-padding"
-                                        },
-                                        [
-                                          _c("p", [
-                                            _vm._v("Bạn đã có tài khoản? "),
-                                            _c(
-                                              "a",
-                                              {
-                                                staticStyle: {
-                                                  color: "#0f6cb2 !important"
-                                                },
-                                                attrs: {
-                                                  href: "javascript:void(0)"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.isRegister = false
-                                                  }
-                                                }
-                                              },
-                                              [_vm._v("Đăng nhập ngay")]
-                                            )
-                                          ])
-                                        ]
+                                        "label",
+                                        { attrs: { for: "reg_birthday" } },
+                                        [_vm._v("Ngày sinh")]
                                       ),
                                       _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "col-md-6 float-right text-right"
+                                      _c("date-picker", {
+                                        class: [
+                                          "form-control",
+                                          !_vm.is_valid_birthday
+                                            ? "form-control--error"
+                                            : ""
+                                        ],
+                                        attrs: {
+                                          id: "reg_birthday",
+                                          config: _vm.options,
+                                          placeholder: "dd/mm/yyyy",
+                                          autocomplete: "off",
+                                          readonly: ""
                                         },
-                                        [
-                                          _c(
-                                            "button",
+                                        model: {
+                                          value: _vm.birthday,
+                                          callback: function($$v) {
+                                            _vm.birthday = $$v
+                                          },
+                                          expression: "birthday"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      !_vm.is_valid_birthday
+                                        ? _c(
+                                            "small",
                                             {
                                               staticClass:
-                                                "btn btn-primary btn-flat",
-                                              attrs: { type: "button" },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.register()
-                                                }
-                                              }
+                                                "mt-1 text--error d-inline-block"
                                             },
                                             [
-                                              _vm.hidden
-                                                ? _c("i", {
-                                                    staticClass:
-                                                      "fa fa-spinner fa-spin",
-                                                    staticStyle: {
-                                                      "font-size": "20px"
-                                                    }
-                                                  })
-                                                : _vm._e(),
                                               _vm._v(
-                                                " Đăng ký\n                                                "
+                                                "Trường này là bắt buộc\n                                                "
                                               )
                                             ]
                                           )
-                                        ]
-                                      )
-                                    ]
+                                        : _vm._e()
+                                    ],
+                                    1
                                   )
                                 ]
                               )
@@ -71056,6 +72127,171 @@ var render = function() {
                         ]
                       )
                     ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                !_vm.isRegister && !_vm.isChangePassword
+                  ? _c(
+                      "div",
+                      { staticClass: "col-md-12 float-left no-padding" },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "form-group col-md-6 float-right text-right no-padding"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-flat",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.login()
+                                  }
+                                }
+                              },
+                              [
+                                _vm.hidden
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spinner fa-spin",
+                                      staticStyle: { "font-size": "20px" }
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  " Đăng\n                                        nhập\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isRegister && !_vm.isChangePassword
+                  ? _c(
+                      "div",
+                      { staticClass: "form-group col-md-12 float-left" },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-md-6 float-left text-left mt-3 no-padding"
+                          },
+                          [
+                            _c("p", [
+                              _vm._v("Bạn đã có tài khoản? "),
+                              _c(
+                                "a",
+                                {
+                                  staticStyle: { color: "#0f6cb2 !important" },
+                                  attrs: { href: "javascript:void(0)" },
+                                  on: { click: _vm.switchLoginForm }
+                                },
+                                [_vm._v("Đăng nhập ngay")]
+                              )
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-md-6 float-right text-right no-padding"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-flat",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.switchRegisterForm()
+                                  }
+                                }
+                              },
+                              [
+                                _vm.hidden
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spinner fa-spin",
+                                      staticStyle: { "font-size": "20px" }
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  " Đăng\n                                        ký\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isChangePassword
+                  ? _c(
+                      "div",
+                      { staticClass: "col-md-12 float-left no-padding" },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-md-6 float-left text-left mt-3 no-padding"
+                          },
+                          [
+                            _c("p", [
+                              _vm._v("Bạn đã có tài khoản? "),
+                              _c(
+                                "a",
+                                {
+                                  staticStyle: { color: "#0f6cb2 !important" },
+                                  attrs: { href: "javascript:void(0)" },
+                                  on: { click: _vm.switchLoginForm }
+                                },
+                                [_vm._v("Đăng nhập ngay")]
+                              )
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "form-group col-md-6 float-right text-right no-padding"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-flat",
+                                attrs: { type: "button" },
+                                on: { click: _vm.sendEmail }
+                              },
+                              [
+                                _vm.hidden
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spinner fa-spin",
+                                      staticStyle: { "font-size": "20px" }
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  " Đổi mật khẩu\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
                   : _vm._e()
               ])
             ])
@@ -71066,26 +72302,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        attrs: {
-          href: "javascript:void(0);",
-          "data-toggle": "modal",
-          "data-target": "#loginForm",
-          "data-backdrop": "static"
-        }
-      },
-      [
-        _c("i", { staticClass: "fas fa-sign-in-alt" }),
-        _vm._v(" Đăng nhập\n        ")
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

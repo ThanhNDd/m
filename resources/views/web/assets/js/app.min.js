@@ -19,8 +19,11 @@ import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-default.css';
 
+
 window.Vue = require('vue');
 window.VueRoute = require('vue-router');
+
+
 Vue.use(VueSweetalert2);
 Vue.use(Lazyload, {
   lazyComponent: true,

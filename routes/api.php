@@ -70,3 +70,7 @@ Route::get('/total-reviews/{id}', 'ReviewsController@getTotalReviews');
 Route::get('/viewed-product', 'ProductController@getProductInCookie');
 Route::get('/status/{id}', 'ProductController@getStatus');
 Route::post('/blog', 'BlogController@index');
+Route::post('/dang-ky', 'LoginController@store');
+Route::post('/dang-nhap', 'LoginController@login');
+Route::post('/send-email-change-password', 'LoginController@sendEmailChangePassword');
+Route::get('/check-exist-phone/{phone}', 'LoginController@checkExistPhone');
