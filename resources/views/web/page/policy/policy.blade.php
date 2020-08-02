@@ -1,5 +1,5 @@
 <div class="policy-info">
-    <div class="policy no-mobile" style="width: 50%">
+    <div class="policy no-mobile pr-0">
                   <span>
                     <h3>Chính sách vận chuyển:</h3>
                   </span>
@@ -21,7 +21,7 @@
                     <b class="text-danger">500K</b>
                   </span>
     </div>
-    <div class="policy no-mobile" style="width: 40%">
+    <div class="policy no-mobile">
                   <span>
                     <h3>Shop Mẹ Ỉn cam kết:</h3>
                   </span>

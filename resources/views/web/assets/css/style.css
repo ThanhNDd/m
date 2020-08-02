@@ -146,15 +146,15 @@
   color: #333;
 }
 
-.main-header .top-search-holder .search-area .search-btn {
-  border-radius: 0px 999px 999px 0px;
-  display: inline-block;
-  float: right;
-  margin: 0px;
-  padding: 19px 25px 19px;
-  text-align: center;
-  background-color: #fdd922;
-}
+/*.main-header .top-search-holder .search-area .search-btn {*/
+/*  border-radius: 0px 999px 999px 0px;*/
+/*  display: inline-block;*/
+/*  float: right;*/
+/*  margin: 0px;*/
+/*  padding: 19px 25px 19px;*/
+/*  text-align: center;*/
+/*  background-color: #fdd922;*/
+/*}*/
 
 .single-product .product-info .quantity-container .cart-quantity .quant-input .arrows .arrow .ir i.icon.fas.fa-sort-up {
   top: 8px;
@@ -299,10 +299,10 @@ i.far.fa-check-circle {
   height: 40px;
 }
 
-.w-product {
-  max-height: 224px;
-  overflow: scroll;
-}
+/*.w-product {*/
+/*  max-height: 224px;*/
+/*  overflow: scroll;*/
+/*}*/
 
 .pagination {
   float: right;
@@ -332,28 +332,27 @@ i.far.fa-check-circle {
 
 .policy {
   display: inline-block;
-  padding: 20px;
+  margin: 10px;
   border: solid 1px #dfdfdf;
-  margin: 20px;
   border-radius: 5px;
-  height: 200px;
   vertical-align: top;
+  padding: 10px;
+  width: 100%;
 }
-
 .policy-info {
   display: inline-block;
   background: #fff;
-  margin-top: 30px;
   width: 100%;
 }
-.policy.no-mobile span {
+.policy span {
   display: inline-block;
   width: 100%;
   line-height: 2;
 }
-.policy.no-mobile h3 {
+.policy h3 {
   margin: 0;
   line-height: 2;
+  font-size: 22px;
 }
 ul.keyword-search {
   text-align: center;
@@ -542,4 +541,31 @@ li.media {
 }
 .text--error {
   color: #ff00009c !important;
+}
+
+.login-component div a.open-login-modal {
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 5px;
+  border-radius: 3px;
+  margin-left: 30px;
+  position: absolute;
+  top: 6px;
+}
+.login-component div a.open-login-modal:hover {
+  color: var(--main-color);
+  background: #fff;
+}
+.login-component div i.fa-user-circle {
+  color: #fff;
+  font-size: 30px;
+  display: inline-block;
+  float: left;
+}
+.login-component div a.customer-logged {
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-top: 6px;
 }

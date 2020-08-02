@@ -5,6 +5,7 @@
     <div id="reviews" class="view view-reviews ios-edges" xmlns:v-bind="http://www.w3.org/1999/xhtml">
         <div class="page">
             @include('theme.layout.tabbar')
+            <sidebar-component></sidebar-component>
             <div class="navbar navbar-page">
                 <div class="navbar-inner sliding">
                     <div class="left">

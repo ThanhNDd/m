@@ -64,7 +64,6 @@
                 axios.post(url + '/api/blog', {
                   rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     this.posts = response.data;
                 });
             }

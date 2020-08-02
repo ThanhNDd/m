@@ -8,8 +8,9 @@
       <div class="tabs">
         <div id="tab-home" class="tab tab-home tab-active">
           @include('theme.layout.header')
-          <div class="panel-backdrop"></div>
-          @include('theme.layout.sidebar')
+{{--          <div class="panel-backdrop"></div>--}}
+{{--          @include('theme.layout.sidebar')--}}
+            <sidebar-component></sidebar-component>
           <div class="page-content">
               <div class="slider">
                   <div class="swiper-container swiper1" >

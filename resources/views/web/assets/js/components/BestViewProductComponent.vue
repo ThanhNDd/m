@@ -62,7 +62,6 @@
             getProducts: function () {
                 axios.get(url + '/api/best-view-product')
                     .then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.products = response.data;
                     }

@@ -29,6 +29,6 @@ class SendEmailVerifyCode extends Mailable
      */
     public function build()
     {
-        return $this->view('theme.mail.verifycodemail')->subject("Xác thực quên mật khẩu");
+        return $this->view('template.mail.verifycodemail')->subject("Xác thực quên mật khẩu");
     }
 }

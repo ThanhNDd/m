@@ -8,7 +8,7 @@
             </a>
         </div>
     </div>
-    <div v-else>
+    <div v-else id="checkout_component">
         <div class="steps-form">
             <div class="steps-row setup-panel">
                 <div class="steps-step">
@@ -19,61 +19,139 @@
                     <p>Giỏ hàng</p>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-2" type="button" class="btn btn-circle waves-effect waves-light btn-indigo">
+                    <a href="javascript:void(0)" type="button" class="btn btn-circle waves-effect waves-light btn-indigo">
                         <i class="fas fa-shopping-basket"></i>
                     </a>
                     <p>Thanh toán</p>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-3" type="button" class="btn btn-default btn-circle waves-effect waves-light"
+                    <button type="button" class="btn btn-default btn-circle waves-effect waves-light"
                        disabled="disabled">
                         <i class="far fa-check-circle"></i>
-                    </a>
+                    </button>
                     <p>Hoàn thành</p>
                 </div>
             </div>
         </div>
-        <form @submit="checkForm" novalidate="true">
-            <div class="row col-md-12" style="background: #fff; margin-bottom: 30px;">
+<!--        <form @submit="checkForm" novalidate="true" style="background: #fff;">-->
+            <div class="row col-md-12" style="padding-bottom: 30px;background: rgb(255, 255, 255);margin-bottom: 30px;">
                 <div class="col-md-5 mt-2 customer-info">
                     <h3>Thông tin người nhận</h3>
                     <div v-if="!isLogged" style="display:inline-block;text-align: center;width:100%" class="mt-4 mb-4">
-                        <p style="display:inline-block;margin-right: 5px;">Hãy </p>
-                        <p style="display:inline-block;margin-right: 5px;"><login-component></login-component></p>
+                        <p style="display:inline-block;">Hãy </p>
+                        <p style="display:inline-block;"><login-component></login-component></p>
                         <p style="display:inline-block;margin-right: 5px;">để thực hiện thanh toán</p>
                     </div>
-                    <div v-if="isLogged">
+                    <div v-else>
+                        <div class="mb-2 mt-2">
+                            <p class="mb-1"><strong>Khách hàng:</strong> {{customer_name}}</p>
+                            <p class="mb-1"><strong>Địa chỉ:</strong> {{customer_address}}</p>
+                            <p class="mb-1"><strong>Số điện thoại:</strong> {{customer_phone}}</p>
+                            <p class="mb-1"><strong>Email:</strong> {{customer_email}}</p>
+                        </div>
                         <label for="different_address">
                             <input type="checkbox" id="different_address" name="different_address" v-model="different_address" @click="different_address = true">
                             &nbsp; Giao hàng đến địa chỉ khác
                         </label>
                         <div class="mb-3" v-if="different_address">
-                            <div class="form-group">
-                                <input type="text" placeholder="Họ tên" class="form-control" v-model="name" ref="name">
+                            <div class="form-group mb-1">
+                                <label for="name">Họ Tên</label>
+                                <input type="text"
+                                       :class="['form-control', !is_valid_name ? 'form-control--error' : '']"
+                                       placeholder="Họ tên" id="name" v-model="name"
+                                       :disabled="show_loading"
+                                       ref="name" autocomplete="off">
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_valid_name">
+                                    Trường này là bắt buộc
+                                </p>
                             </div>
-                            <div :class="['form-group', isPhoneValid()]">
-                                <input type="text" placeholder="Số điện thoại" class="form-control" v-model="phone"
-                                       ref="phone">
+                            <div class="form-group mb-1">
+                                <label for="regphone_">Số điện thoại</label>
+                                <input type="text"
+                                       :class="['form-control', !is_validphone_ || !is_validphone__format || isphone__not_difference ? 'form-control--error' : '']"
+                                       placeholder="Số điện thoại" id="regphone_" v-model="phone_"
+                                       :disabled="show_loading"
+                                       ref="phone" autocomplete="off">
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_validphone_">
+                                    Trường này là bắt buộc
+                                </p>
+                                <p class="mt-1 text--error d-inline-block"
+                                   v-if="!is_validphone__format">Số điện thoại không đúng
+                                </p>
+                                <p class="mt-1 text--error d-inline-block"
+                                   v-if="is_validphone__format && isphone__not_difference"> Số điện thoại người nhận phải khác số điện thoại người đặt hàng
+                                </p>
                             </div>
-                            <div :class="['form-group', isEmailValid()]">
-                                <input type="email" class="form-control" placeholder="Email" v-model="email" ref="email"/>
+                            <div class="form-group mb-1">
+                                <label for="reg_email">Email</label>
+                                <input type="email"
+                                       :class="['form-control', !is_valid_email || is_existed_email ? 'form-control--error' : '']"
+                                       placeholder="Email" id="reg_email"
+                                       v-model="email"
+                                       :disabled="show_loading"
+                                       ref="email" autocomplete="off">
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_valid_email">
+                                    Trường này là bắt buộc
+                                </p>
+                                <p class="mt-1 text--error d-inline-block" v-if="!is_valid_email_format">
+                                    Email không đúng
+                                </p>
                             </div>
-                            <v-select :options="city" :reduce="city => city.id" @input="changeCity" v-model="city_id"
-                                      placeholder="Thành phố" label="text" ref="city" class="form-group"></v-select>
-                            <v-select :options="district" :reduce="district => district.id" @input="changeDistrict"
-                                      v-model="district_id" placeholder="Quận huyện" label="text" ref="district"
-                                      class="form-group"></v-select>
-                            <v-select :options="village" :reduce="village => village.id" @input="changeVillage"
-                                      v-model="village_id" placeholder="Phường xã" label="text" ref="village" class="form-group">
-                            </v-select>
-                            <div class="form-group">
-                                <input type="text" placeholder="Thôn xóm, số nhà ..." class="form-control" v-model="address"
-                                       ref="address">
+                            <div class="form-group mb-1">
+                                <label for="city">Tỉnh / Thành phố</label>
+                                <v-select :options="city" :reduce="city => city.id" @input="changeCity"
+                                          v-model="city_id"
+                                          placeholder="Thành phố" label="text" ref="city" id="city"
+                                          :disabled="show_loading"
+                                          :class="[!is_valid_city ? 'form-control--error' : '']">
+                                </v-select>
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_valid_city">
+                                    Trường này là bắt buộc
+                                </p>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-1">
+                                <label for="district">Quận / Huyện</label>
+                                <v-select :options="district" :reduce="district => district.id"
+                                          @input="changeDistrict"
+                                          v-model="district_id" placeholder="Quận huyện" label="text"
+                                          ref="district"
+                                          id="district"
+                                          :disabled="show_loading"
+                                          :class="[!is_valid_district ? 'form-control--error' : '']">
+                                </v-select>
+                                <p class="mt-1 mb-1 text--error d-inline-block"
+                                   v-if="!is_valid_district">Trường này là bắt buộc
+                                </p>
+                            </div>
+                            <div class="form-group mb-1">
+                                <label for="village">Phường / Xã</label>
+                                <v-select :options="village" :reduce="village => village.id"
+                                          @input="changeVillage"
+                                          v-model="village_id" placeholder="Phường xã" label="text"
+                                          ref="village"
+                                          id="village"
+                                          :disabled="show_loading"
+                                          :class="[!is_valid_village ? 'form-control--error' : '']">
+                                </v-select>
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_valid_village">
+                                    Trường này là bắt buộc
+                                </p>
+                            </div>
+                            <div class="form-group mb-1">
+                                <label for="reg_address">Địa chỉ</label>
+                                <input type="text"
+                                       :class="['form-control', !is_valid_address ? 'form-control--error' : '']"
+                                       placeholder="Số nhà, ..." id="reg_address" v-model="address"
+                                       :disabled="show_loading"
+                                       ref="address" autocomplete="off">
+                                <p class="mt-1 mb-1 text--error d-inline-block" v-if="!is_valid_address">
+                                    Trường này là bắt buộc
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
                                 <textarea placeholder="Ghi chú đơn hàng ..." class="form-control" v-model="note"
                                           ref="note"></textarea>
-                            </div>
                         </div>
                     </div>
                     <div class="row col-md-12">
@@ -149,10 +227,43 @@
                                 </table><!-- /table -->
                             </div>
                         </div>
-                        <div class="coupon-code col-md-6 float-left no-padding">
-                            <input type="text" class="form-control" placeholder="Mã giảm giá">
-                            <button class="btn btn-primary btn-flat">Áp dụng</button>
+                        <div class="col-md-6 float-left no-padding">
+                            <div class="coupon-code">
+                                <input type="text" class="form-control" placeholder="Mã giảm giá">
+                                <button class="btn btn-primary btn-flat">Áp dụng</button>
+                            </div>
+                            <label class="form-check-inline" style="font-size: 16px;"><strong>Phương thức thanh toán</strong></label>
+                            <div :class="['form-control', !is_valid_payment_method ? 'form-control--error' : '']">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label" style="font-size: 14px;">
+                                        <input type="radio" class="form-check-input" name="gender"
+                                               v-model="payment_method" value="3"
+                                               :disabled="show_loading || different_address"> Thanh toán khi nhận hàng (COD)
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label" style="font-size: 14px;">
+                                        <input type="radio" class="form-check-input" name="gender"
+                                               v-model="payment_method" value="1"
+                                               :disabled="show_loading" :checked="different_address"> Thanh toán chuyển khoản
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="mt-1 text--error d-inline-block"
+                               v-if="!is_valid_payment_method">Trường này là bắt buộc
+                            </p>
+                            <div class="form-control mt-2" v-if="payment_method === '1'">
+                                <label><strong>Thông tin chuyển khoản</strong></label>
+                                <div>
+                                    <p style="font-size: 13px"><strong>Chủ tài khoản:</strong> NGUYỄN DUY THANH</p>
+                                    <p style="font-size: 13px"><strong>Ngân hàng:</strong> TIÊN PHONG BANK (TPBank)</p>
+                                    <p style="font-size: 13px"><strong>Số tài khoản:</strong> 02326064001</p>
+                                    <p style="font-size: 13px"><strong>Chi nhánh:</strong> PHẠM HÙNG</p>
+                                    <p style="font-size: 13px"><strong>Nội dung chuyển khoản:</strong> SMI   [Tên khách hàng]   [SĐT]</p>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="wrap-total-cart col-md-6 float-left no-padding">
                             <div class="container" style="padding: 0;background: #f8f8f8;">
                                 <div class="content-total mb-2">
@@ -200,36 +311,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="col-md-12 estimate-ship-tax"
+                                 style="margin-bottom: 20px;margin-top: 10px;padding: 0;text-align: right;float:right;">
+                                <button type="button" class="btn btn-warning btn-flat"
+                                        style="float: right;" v-bind:disabled="show_loading"
+                                        @click="checkout">
+                                    <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="show_loading"></i>
+                                    Thanh toán
+                                </button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
-                <div class="col-md-12 estimate-ship-tax"
-                     style="margin-bottom: 20px;margin-top: 10px;padding: 0;text-align: right;">
-                    <button type="submit" class="btn btn-warning btn-flat mr-2" style="float: right;"
-                            v-bind:class="submit ? 'disabled' : ''" v-bind:disabled="submit">
-                        <span class="fas fa-shopping-bag" v-if="submit"></span>
-                        <i class="fa fa-spinner fa-spin" style="font-size:20px"v-if="submit"></i>
-                        Thanh toán
-                    </button>
-                </div>
             </div>
-            <!--        </div>-->
-            <!--      </div>&lt;!&ndash; /.shopping-cart &ndash;&gt;-->
-            <!--    </div> &lt;!&ndash; /.row &ndash;&gt;-->
-        </form>
-    </div>
-
+        </div>
 </template>
 
 <script>
-    import loginComponent from './LoginComponent.vue';
+    import login from './LoginComponent.vue';
     export default {
         data() {
             return {
                 carts: [],
                 errors: [],
                 name: '',
-                phone: '',
+                phone_: '',
                 email: '',
                 address: '',
                 note: '',
@@ -248,22 +355,79 @@
                 url: '',
                 reduce: 0,
                 different_address: false,
-                isLogged: false
+                isLogged: false,
+                customer_id: '',
+                customer_name: '',
+                customer_phone: '',
+                customer_address: '',
+                customer_email: '',
+                customer_city: '',
+                is_valid_name: true,
+                is_validphone_: true,
+                is_validphone__format: true,
+                is_valid_email_format: true,
+                is_valid_city: true,
+                is_valid_district: true,
+                is_valid_village: true,
+                is_valid_address: true,
+                is_valid_payment_method: true,
+                isphone__not_difference: false,
+                show_loading: false,
             }
         },
-        components: {
-            loginComponent
-        },
+        mixins: [
+            login
+        ],
         created() {
             this.url = url;
-            axios.get(url + '/api/carts')
-                .then(response => {
-                    this.carts = response.data;
-                });
-            axios.get(url + '/api/zone/city')
-                .then(response => {
-                    this.city = JSON.parse(response.data).results;
-                });
+            this.loadCarts();
+            this.loadCity();
+            this.checkLogged();
+            this.calculateShipping();
+
+        },
+        watch: {
+            name: function () {
+                this.is_valid_name = this.name;
+            },
+            phone_: function () {
+                if(this.phone_) {
+                    this.is_validphone_ = true;
+                } else {
+                    this.is_validphone_ = false
+                }
+                if(this.phone_.length > 0) {
+                    this.is_validphone__format = this.phone_reg.test(this.phone_);
+                    if(this.is_validphone__format) {
+                        if(this.phone_ === this.customerphone_) {
+                            this.isphone__not_difference = true;
+                        } else {
+                            this.isphone__not_difference = false;
+                        }
+                    }
+                }
+            },
+            email: function () {
+                this.is_valid_email = this.email;
+                if(this.email.length > 0) {
+                    this.is_valid_email_format = this.email_reg.test(this.email);
+                }
+            },
+            city_id: function () {
+                this.is_valid_city = this.city_id;
+            },
+            district_id: function () {
+                this.is_valid_district = this.district_id;
+            },
+            village_id: function () {
+                this.is_valid_village = this.village_id;
+            },
+            address: function () {
+                this.is_valid_address = this.address;
+            },
+            payment_method: function () {
+                this.is_valid_payment_method = this.payment_method;
+            }
         },
         computed: {
             /**
@@ -280,7 +444,39 @@
              * @return {number}
              */
             totalShipping: function () {
-                if (this.city_id === 1) {
+               return this.calculateShipping();
+            },
+            totalMoney: function () {
+                return this.total_checkout = this.total_amount + this.shipping;
+            },
+        },
+        methods: {
+            checkLogged: function() {
+                axios.post(url + '/api/check-logged')
+                    .then(response => {
+                        if(response.data !== 'not_exist_user') {
+                            this.isLogged = true;
+                            this.customer_id = response.data.id;
+                            this.customer_name = response.data.name;
+                            this.customer_phone = response.data.phone;
+                            this.customer_address = response.data.address;
+                            this.customer_email = response.data.email;
+                            this.customer_city = response.data.city_id;
+                        } else {
+                            this.isLogged = false;
+                        }
+                    }).catch(e =>{
+                        this.isLogged = false;
+                    });
+            },
+            calculateShipping: function() {
+                let cityId = '';
+                if(this.different_address) {
+                    cityId = this.city_id;
+                } else {
+                    cityId = this.customer_city;
+                }
+                if (cityId === 1) {
                     if (this.total_amount > 250000) {
                         this.shipping = 0;
                     } else {
@@ -295,11 +491,18 @@
                 }
                 return this.shipping;
             },
-            totalMoney: function () {
-                return this.total_checkout = this.total_amount + this.shipping;
+            loadCarts: function() {
+                axios.get(url + '/api/carts')
+                    .then(response => {
+                        this.carts = response.data;
+                    });
             },
-        },
-        methods: {
+            loadCity: function() {
+                axios.get(url + '/api/zone/city')
+                    .then(response => {
+                        this.city = JSON.parse(response.data).results;
+                    });
+            },
             displayPrice: function (price, qty) {
                 let val = this.formatPrice(price * qty);
                 return this.formatPrice(price) + " x " + qty + " = " + val;
@@ -309,17 +512,11 @@
                 let qty = cart['qty'];
                 return price * qty;
             },
-            formatPrice: function (value) {
-                let val = (value / 1).toFixed(0).replace('.', ',');
-                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' đ';
-            },
-            checkForm: function (e) {
-                e.preventDefault();
-                if (this.name && this.phone && this.address && this.city && this.district && this.village && this.address) {
-                    this.submit = true;
-                    this.checkout();
-                    return true;
-                }
+            // formatPrice: function (value) {
+            //     let val = (value / 1).toFixed(0).replace('.', ',');
+            //     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' đ';
+            // },
+            checkForm: function () {
                 if(!this.isLogged) {
                     this.$toast.error({
                         title: 'Lỗi',
@@ -327,72 +524,48 @@
                     });
                     return false;
                 }
-                if (!this.name) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa nhập tên'
-                    });
-                    this.$refs.name.focus();
-                    return false;
+                let is_valid_form = true;
+                if(this.different_address) {
+                    if (!this.name) {
+                        this.is_valid_name = false;
+                        is_valid_form = false;
+                    }
+                    if (!this.phone_) {
+                        this.is_validphone_ = false;
+                        is_valid_form = false;
+                    } else if (!this.phone_reg.test(this.phone_)) {
+                        this.is_validphone__format = false;
+                        is_valid_form = false;
+                    } else if(this.phone_ === this.customerphone_) {
+                        this.isphone__not_difference = true;
+                        is_valid_form = false;
+                    }
+                    if (this.email !== '' && !this.email_reg.test(this.email)) {
+                        this.is_valid_email_format = false;
+                        is_valid_form = false;
+                    }
+                    if (!this.city_id) {
+                        this.is_valid_city = false;
+                        is_valid_form = false;
+                    }
+                    if (!this.district_id) {
+                        this.is_valid_district = false;
+                        is_valid_form = false;
+                    }
+                    if (!this.village_id) {
+                        this.is_valid_village = false;
+                        is_valid_form = false;
+                    }
+                    if (!this.address) {
+                        this.is_valid_address = false;
+                        is_valid_form = false;
+                    }
                 }
-                if (!this.phone) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa nhập số điện thoại.'
-                    });
-                    this.$refs.phone.focus();
-                    return false;
-                } else if (!this.phone_reg.test(this.phone)) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Số điện thoại chưa đúng.'
-                    });
-                    this.$refs.phone.focus();
-                    return false;
+                if(!this.payment_method) {
+                    this.is_valid_payment_method = false;
+                    is_valid_form = false;
                 }
-                if (this.email !== '' && !this.email_reg.test(this.email)) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Email chưa đúng.'
-                    });
-                    this.$refs.email.focus();
-                    return false;
-                }
-                if (!this.city_id) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa chọn thành phố.'
-                    });
-                    return false;
-                }
-                if (!this.district_id) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa chọn quận huyện.'
-                    });
-                    return false;
-                }
-                if (!this.village_id) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa chọn phường xã.'
-                    });
-                    return false;
-                }
-                if (!this.address) {
-                    this.$toast.error({
-                        title: 'Lỗi',
-                        message: 'Bạn chưa nhập số nhà.'
-                    });
-                    this.$refs.address.focus();
-                    return false;
-                }
-            },
-            isPhoneValid: function () {
-                return (this.phone === "") ? "" : (this.phone_reg.test(this.phone)) ? 'has-success' : 'has-error';
-            },
-            isEmailValid: function () {
-                return (this.email === "") ? "" : (this.email_reg.test(this.email)) ? 'has-success' : 'has-error';
+                return is_valid_form;
             },
             changeCity: function (val) {
                 this.city_id = val;
@@ -415,36 +588,66 @@
                 this.village_id = val;
             },
             checkout: function () {
-                let orders = [];
-                orders.push({
-                    "customer_name": this.name,
-                    "number_phone": this.phone,
-                    "email": this.email,
-                    "cityId": this.city_id,
-                    "districtId": this.district_id,
-                    "villageId": this.village_id,
-                    "address": this.address,
-                    "total_amount": this.total_amount,
-                    "shipping": this.shipping,
-                    "total_checkout": this.total_checkout,
-                    "note": this.note,
-                });
-                console.log(JSON.stringify(orders));
-                axios.post(url + "/api/thuc-hien-thanh-toan", {
-                    body: orders
-                }).then(response => {
-                    this.submit = false;
-                    if (response.data === 201) {
-                        window.location.href = url + "/hoan-thanh.html";
-                    } else {
-                        this.$toast.error({
-                            title: 'Lỗi',
-                            message: 'Đã xảy ra lỗi.'
+                this.show_loading = true;
+                if(!this.checkForm()) {
+                    this.show_loading = false;
+                    return;
+                }
+                this.$swal.fire({
+                    title: 'Xác nhận?',
+                    text: "Hãy chắc chắn rằng các thông tin trong đơn hàng đã chính xác!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK!'
+                }).then((result) => {
+                    if (result.value) {
+                        let orders = [];
+                        orders.push({
+                            "customer_id": this.customer_id,
+                            "difference_address": this.different_address,
+                            "name": this.name,
+                            "phone": this.phone_,
+                            "email": this.email,
+                            "city_id": this.city_id,
+                            "district_id": this.district_id,
+                            "village_id": this.village_id,
+                            "address": this.address,
+                            "total_amount": this.total_amount,
+                            "shipping": this.shipping,
+                            "total_checkout": this.total_checkout,
+                            "note": this.note,
+                            "payment_method": this.payment_method
                         });
+                        axios.post(url + "/api/thuc-hien-thanh-toan", {
+                            body: orders
+                        }).then(response => {
+                            this.show_loading = false;
+                            if (response.status === 200) {
+                                window.location.href = url + "/hoan-thanh.html";
+                            } else {
+                                this.$toast.error({
+                                    title: 'Lỗi',
+                                    message: 'Đã xảy ra lỗi.'
+                                });
+                            }
+                        }).catch(e => {
+                            this.show_loading = false;
+                            this.$toast.error({
+                                title: 'Lỗi',
+                                message: 'Đã xảy ra lỗi.'
+                            });
+                        })
                     }
-                })
+                });
             }
         },
+        mounted() {
+            this.$root.$on('checkout', () => {
+                this.isLogged = false;
+            });
+        }
     }
 
 </script>
@@ -466,13 +669,44 @@
         padding: 10px;
     }
 
-    .w-product {
-        max-height: 415px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+    /*.w-product {*/
+    /*    max-height: 415px;*/
+    /*    overflow-y: auto;*/
+    /*    overflow-x: hidden;*/
+    /*}*/
 
     .cart-product-info span {
         font-size: 12px;
+    }
+
+
+    table {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+    }
+
+    thead {
+        flex: 0 0 auto;
+    }
+
+    tbody {
+        flex: 1 1 auto;
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 350px;
+    }
+
+    tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+    .table td, .table th {
+        border-top: none;
+    }
+    .table thead th {
+        border-bottom: 1px solid #dee2e6;
     }
 </style>

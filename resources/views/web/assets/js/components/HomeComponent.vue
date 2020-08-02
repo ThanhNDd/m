@@ -121,9 +121,9 @@
     <!-- /.sidebar-widget -->
     <!-- ============================================== BEST SELLER : END ============================================== -->
     <div v-if="recently">
-      <lazy-component>
+<!--      <lazy-component>-->
         <recently-product-component></recently-product-component>
-      </lazy-component>
+<!--      </lazy-component>-->
     </div>
     <!-- ============================================== BLOG SLIDER ============================================== -->
     <div>

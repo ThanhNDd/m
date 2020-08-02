@@ -7,31 +7,45 @@ Vue.component('rating-component', require('./components/RatingComponent.vue').de
 Vue.component('status-component', require('./components/StatusComponent.vue').default);
 Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
 Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
-// Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
+Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
 Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
-
 
 const detail = new Vue({
   el: '#detail',
   data() {
     return {
-      products: [],
-      type: '',
-      description: '',
-      rating: 0,
-      fullname: '',
-      phone: '',
-      email: '',
-      content: '',
-      email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-      phone_reg: /^((09|03|07|08|05)+([0-9]{8})\b)$/,
+      // products: [],
+      // type: '',
+      // description: '',
+      // rating: 0,
+      // fullname: '',
+      // phone: '',
+      // email: '',
+      // content: '',
+      // email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+      // phone_reg: /^((09|03|07|08|05)+([0-9]{8})\b)$/,
       reload: 0,
-      items: []
+      // items: [],
     }
   },
   methods: {
+    // checkLogged: function() {
+    //   axios.post(url + '/api/check-logged')
+    //       .then(response => {
+    //         if(response.data !== 'not_exist_user') {
+    //           this.isLogged = true;
+    //           this.customer_name = response.data.name;
+    //           this.customer_id = response.data.id;
+    //           this.checkReviewed();
+    //         } else {
+    //           this.isLogged = false;
+    //         }
+    //       }).catch(e =>{
+    //     this.isLogged = false;
+    //   });
+    // },
     // addToCart: function (id, name) {
     //   let color = document.querySelector('input[name=color]:checked');
     //   if (color == null) {

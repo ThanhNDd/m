@@ -18,13 +18,13 @@
                               <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                             </div>
                             <p class="price sale-price" v-html="$options.filters.formatPrice(product.retail )"></p>
-                            <p class="price">{{product.discount, product.retail | formatSalePrice }}</p>
+                            <p class="price" v-html="$options.filters.formatSalePrice(product.discount, product.retail)"></p>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="load_more_flash_sale">
             <a href="#" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
                 {{ buttonText }} <i class="fas fa-caret-down"></i>
             </a>
@@ -54,7 +54,6 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;
@@ -66,6 +65,7 @@
                                 for (let i = 0; i < response.data.length; i++) {
                                     that.products.push(response.data[i]);
                                 }
+                                that.scrollToTop();
                             }, 500);
                         } else {
                             this.products = response.data;
@@ -74,6 +74,15 @@
                         this.buttonText = "Không có thêm sản phẩm.";
                         this.isFinished = true;
                     }
+                });
+            },
+            scrollToTop: function() {
+                let top = $('#load_more_flash_sale').offset().top;
+                top = top - 100;
+                window.scrollTo({
+                    top: top,
+                    left: 0,
+                    behavior: 'smooth'
                 });
             }
         }

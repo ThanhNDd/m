@@ -11,8 +11,10 @@
             <div class="swiper-slide" style="margin-right: 15px;" v-for="product in products">
               <div class="content content-shadow-product">
                 <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-                  <div class="image" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
-                    <img v-bind:data-src="product.image | format_image('200x200')" v-bind:alt="product.name">
+                  <div class="image">
+                    <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">
+                      <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('150x150')" v-bind:alt="product.name">
+                    </div>
                   </div>
                   <div class="text">
                     <p class="title-product title-product-center" v-text="product.name"></p>
@@ -25,7 +27,7 @@
                       <span style="margin-left: 5px; color: gray;" v-if="product.reviews > 0">({{ product.reviews }})</span>
                     </div>
                     <p class="price sale-price" v-html="$options.filters.formatPrice(product.retail)"></p>
-                    <p class="price">{{product.discount, product.retail | formatSalePrice}}</p>
+                    <p class="price" v-html="$options.filters.formatSalePrice(product.discount, product.retail)"></p>
                   </div>
                 </a>
               </div>
@@ -59,7 +61,6 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;

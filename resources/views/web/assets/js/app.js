@@ -24,6 +24,17 @@ window.Vue = require('vue');
 window.VueRoute = require('vue-router');
 
 
+import firebase from 'firebase';
+let firebaseConfig = {
+    apiKey: "AIzaSyDQRx7vqJSf9pi67MhBJhMAOAU2-ayll90",
+    authDomain: "authen-smi-sms.firebaseapp.com",
+    databaseURL: "https://authen-smi-sms.firebaseio.com",
+    projectId: "authen-smi-sms",
+    storageBucket: "authen-smi-sms.appspot.com",
+    messagingSenderId: "236690079442"
+};
+firebase.initializeApp(firebaseConfig);
+
 Vue.use(VueSweetalert2);
 Vue.use(Lazyload, {
   lazyComponent: true,
@@ -71,7 +82,7 @@ Vue.component('footer-component', require('./components/footerComponent.vue').de
 // Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
 // Vue.component('recommend-product-component', require('./components/RecommendComponent.vue').default);
 // Vue.component('recently-product-component', require('./components/RecentlyProductComponent.vue').default);
-Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
+// Vue.component('reviews-component', require('./components/ReviewsComponent.vue').default);
 Vue.component('cart-number-component', require('./components/CartComponent').default);
 Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
@@ -83,6 +94,7 @@ Vue.component('best-view-product-component', require('./components/BestViewProdu
 Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
 // Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('slider-text-component', require('./components/SliderTextComponent.vue').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {
@@ -109,12 +121,12 @@ Vue.filter('formatPrice', function (value) {
         let max_price = arr[1];
         min_price = (min_price/1).toFixed(0).replace('.', ',');
         max_price = (max_price/1).toFixed(0).replace('.', ',');
-        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
-        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
+        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
         return min_price + " - " +max_price;
     }
     let val = (value/1).toFixed(0).replace('.', ',');
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup>đ</sup>';
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
 });
 Vue.filter('formatSalePrice', function (discount, retail) {
     let sale_price = retail - (discount * retail) / 100;
@@ -200,6 +212,9 @@ Vue.filter('format_color', function (value) {
 });
 
 Vue.filter('change_to_slug', function (title) {
+    if(!title) {
+        return title;
+    }
     let slug = title.toLowerCase();
     slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
     slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -231,6 +246,24 @@ Vue.filter('url_reviews', function (slug, id) {
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-new Vue({
-    el: '#app'
+let vm = new Vue({
+    el: '#app',
+    methods: {
+        checkLogged: function() {
+            axios.post(url + '/api/check-logged')
+                .then(response => {
+                    if(response.data !== 'not_exist_user') {
+                        this.isLogged = true;
+                        this.customer_name = response.data.name;
+                        this.customer_id = response.data.id;
+                        // this.checkReviewed();
+                    } else {
+                        this.isLogged = false;
+                    }
+                }).catch(e =>{
+                this.isLogged = false;
+            });
+        },
+    }
 });
+

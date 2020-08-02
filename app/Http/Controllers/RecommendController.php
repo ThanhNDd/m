@@ -61,6 +61,7 @@ class RecommendController extends Controller
         $products = DB::select(DB::raw("SELECT a.id,
                                                        a.name,
                                                        a.image,
+                                                       b.image as variant_image,
                                                        a.rating,
                                                        a.reviews,
                                                        a.type,
@@ -76,7 +77,7 @@ class RecommendController extends Controller
                                                   AND category_id <> $cat_id
                                                   AND TYPE = $type
                                                   AND a.status = 0
-                                                  AND a.social_publish->'$.website' = 1
+                                                  AND JSON_CONTAINS(a.social_publish, 1, '$.website')
                                                 GROUP BY a.id,
                                                          a.name,
                                                          a.image,
@@ -85,7 +86,7 @@ class RecommendController extends Controller
                                                          a.type,
                                                          a.category_id,
                                                          a.description
-                                                order by a.id
+                                                order by  a.updated_at desc
                                                 limit $row, $rowperpage"));
         return response($products, Response::HTTP_OK);
     }

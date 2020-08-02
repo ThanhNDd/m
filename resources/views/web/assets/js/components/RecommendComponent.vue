@@ -17,7 +17,7 @@
                       <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
 <!--                        <img v-bind:src="product.image | format_image('400x400')" v-bind:alt="product.name">-->
                         <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
-                          <img v-bind:data-src="product.image | format_image('400x400')" v-bind:alt="product.name">
+                          <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('400x400')" v-bind:alt="product.name">
                         </div>
                       </a>
                     </div>
@@ -67,7 +67,7 @@
           <!-- /.home-owl-carousel -->
         </div>
         <!-- /.product-slider -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="load_more_recommend">
           <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(10)'>
             <i class="fa fa-spinner fa-spin" style="font-size:20px" v-bind:class="submit ? '' : 'hidden'"></i> {{buttonText}} &nbsp;<i class="fa fa-caret-down"></i>
           </a>
@@ -114,12 +114,11 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += rowperpage;
                         let len = this.products.length;
                         if (len > 0) {
-                            this.buttonText = "Loading ...";
+                            // this.buttonText = "Loading ...";
                             let that = this;
                             setTimeout(function () {
                                 that.buttonText = 'Xem thêm';
@@ -127,6 +126,7 @@
                                     that.products.push(response.data[i]);
                                 }
                                 that.submit = false;
+                                that.scrollToTop();
                             }, 500);
                         } else {
                             this.products = response.data;
@@ -137,6 +137,15 @@
                         this.isFinished = true;
                         this.submit = false;
                     }
+                });
+            },
+            scrollToTop: function() {
+                let top = $('#load_more_recommend').offset().top;
+                top = top - 100;
+                window.scrollTo({
+                    top: top,
+                    left: 0,
+                    behavior: 'smooth'
                 });
             }
         },

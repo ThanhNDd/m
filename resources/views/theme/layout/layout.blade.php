@@ -24,19 +24,22 @@
     <link rel="icon" href="{{ url('public/mobile/images/icon.png') }}">
     <title>@yield('title') | Shop Mẹ Ỉn - Thời trang trẻ em cao cấp</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{!! url('resources/views/web/assets/css/bootstrap.min.css') !!}">
     <link rel="stylesheet" href="{!! url('public/mobile/css/all.css') !!}">
 </head>
 <body>
 	@include('theme.layout.fbsdk')
 	<div class="framework7-root">
 {{--			<div class="panel-backdrop"></div>--}}
-			@include('theme.layout.sidebar')
+{{--			@include('theme.layout.sidebar')--}}
+{{--        <sidebar-component></sidebar-component>--}}
 			@yield('content')
 	</div>
     <script>
         const url = "{{url('')}}";
     </script>
     <script src="{!! url('public/mobile/js/jquery-3.4.1.min.js') !!}"></script>
+    <script src="{!! url('public/mobile/js/bootstrap.min.js') !!}"></script>
     <script src="{!! url('public/mobile/js/swiper.min.js') !!}"></script>
     <script src="{!! url('public/mobile/js/apps.js') !!}"></script>
 	  @yield('script')

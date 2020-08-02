@@ -133,7 +133,6 @@
                     });
             },
             getProducts: function (pageNum, scroll = true) {
-                // console.log(pageNum);
                 let pathname = window.location.pathname;
                 pathname = pathname.split('/');
                 pathname = pathname[pathname.length-1];

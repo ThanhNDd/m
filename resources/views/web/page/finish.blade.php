@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="container" style="padding-bottom: 20px;background: #fff;">
+      <div class="container" style="padding: 20px;background: #fff;">
           @if(session()->has('finish'))
             <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
               <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>

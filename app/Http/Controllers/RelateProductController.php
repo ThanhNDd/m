@@ -61,6 +61,7 @@ class RelateProductController extends Controller
         $products = DB::select(DB::raw("SELECT a.id,
                                                        a.name,
                                                        a.image,
+                                                       b.image as variant_image,
                                                        a.rating,
                                                        a.reviews,
                                                        a.type,
@@ -73,10 +74,8 @@ class RelateProductController extends Controller
                                                 FROM smi_products a
                                                 LEFT JOIN smi_variations b ON a.id = b.product_id
                                                 WHERE a.id <> $id
-                                                  AND category_id = $cat_id
-                                                  AND TYPE = $type
                                                   AND a.status = 0
-                                                  AND a.social_publish->'$.website' = 1
+                                                  AND JSON_CONTAINS(a.social_publish, 1, '$.website')
                                                 GROUP BY a.id,
                                                          a.name,
                                                          a.image,
@@ -85,7 +84,7 @@ class RelateProductController extends Controller
                                                          a.type,
                                                          a.category_id,
                                                          a.description
-                                                order by a.id
+                                                order by a.category_id = $cat_id desc, TYPE = $type desc, a.updated_at desc, a.created_at desc
                                                 limit $row, $rowperpage"));
         return response($products, Response::HTTP_OK);
     }

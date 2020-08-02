@@ -8,8 +8,11 @@
           <div class="col-50" v-for="product in products">
             <div class="content content-shadow-product">
               <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
+<!--                <div class="image" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">-->
+<!--                  <img v-bind:data-src="product.image | format_image('200x200')" v-bind:alt="product.name">-->
+<!--                </div>-->
                 <div class="image" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
-                  <img v-bind:data-src="product.image | format_image('200x200')" v-bind:alt="product.name">
+                  <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('200x200')" v-bind:alt="product.name">
                 </div>
                 <div class="text">
                   <p class="title-product title-product-center" v-text="product.name"></p>
@@ -29,7 +32,7 @@
         </div>
         <div class="row justify-content-center">
           <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
-            <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Xem thêm<i class="fas fa-caret-down"></i>
+            <span class="spinner-border spinner-border-sm" v-if="submit"></span> Xem thêm<i class="fas fa-caret-down"></i>
           </a>
         </div>
       </div>
@@ -60,12 +63,11 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;
                         if (len > 0) {
-                            this.buttonText = "Loading ...";
+                            // this.buttonText = "Loading ...";
                             let that = this;
                             setTimeout(function () {
                                 that.buttonText = 'Xem thêm';

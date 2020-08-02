@@ -31,6 +31,6 @@ class SendEmail extends Mailable
     public function build()
     {
         $orderId = $this->mailContent['order_id'];
-        return $this->view('theme.mail.ordermail')->subject('Đơn hàng mới #'.$orderId);
+        return $this->view('template.mail.ordermail')->subject('Đơn hàng mới #'.$orderId);
     }
 }

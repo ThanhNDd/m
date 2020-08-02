@@ -43,9 +43,7 @@
             getProducts: function () {
                 axios.post(url + '/api/blog', {
                   rowperpage: this.rowperpage,
-                })
-                    .then(response => {
-                    console.log(response.data);
+                }).then(response => {
                     this.posts = response.data;
                 });
             }

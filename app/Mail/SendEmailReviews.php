@@ -30,6 +30,6 @@ class SendEmailReviews extends Mailable
     public function build()
     {
         $product_name = $this->mailContent['product_name'];
-        return $this->view('theme.reviewsmail')->subject('Nhận xét mới sản phẩm "'.$product_name.'"');
+        return $this->view('template.mail.reviewsmail')->subject('Nhận xét mới sản phẩm "'.$product_name.'"');
     }
 }

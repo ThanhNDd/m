@@ -53,7 +53,6 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;

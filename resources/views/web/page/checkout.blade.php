@@ -15,7 +15,7 @@
     </div><!-- /.breadcrumb -->
     <div class="body-content outer-top-xs">
       <div class="container">
-          <checkout-component/>
+        <checkout-component ref="checkout"></checkout-component>
       </div>
     </div>
   </div>

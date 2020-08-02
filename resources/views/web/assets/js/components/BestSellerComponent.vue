@@ -13,7 +13,7 @@
                   <div class="product-image">
                     <div class="image">
                       <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-                        <img v-bind:src="product.image | format_image('400x400')" v-bind:alt="product.name">
+                        <img v-bind:src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('400x400')" v-bind:alt="product.name">
 <!--                        <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading1.svg' }">-->
 <!--                          <img v-bind:data-src="product.image | format_image" v-bind:alt="product.name">-->
 <!--                        </div>-->
@@ -77,17 +77,18 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
+                  console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;
                         if (len > 0) {
                             this.buttonText = "Loading ...";
+                            let that = this;
                             setTimeout(function () {
-                                this.buttonText = "Xem thêm";
+                                that.buttonText = "Xem thêm";
                                 // Loop on data and push in posts
                                 for (let i = 0; i < response.data.length; i++) {
-                                    this.products.push(response.data[i]);
+                                    that.products.push(response.data[i]);
                                 }
                             }, 500);
                         } else {

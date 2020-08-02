@@ -6,6 +6,7 @@
         @include('theme.layout.breadcrum')
         <div class="page">
             @include('theme.layout.tabbar')
+            <sidebar-component></sidebar-component>
             <div class="tabs">
             <div class="page-content">
                 <div class="official-brand">

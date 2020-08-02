@@ -62,7 +62,6 @@
             getProducts: function () {
                 axios.get(url + '/api/hot-boy-product')
                     .then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.products = response.data;
                     }

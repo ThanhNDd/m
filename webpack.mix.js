@@ -13,7 +13,7 @@ let mix = require('laravel-mix');
 
 // mix.js('src/app.js', 'dist/').sass('src/app.scss', 'dist/');
   mix.styles([
-    'public/mobile/css/bootstrap.min.css',
+    // 'resources/views/web/assets/css/bootstrap.min.css',
     'public/mobile/css/vue-select.css',
     'public/mobile/css/framework7.bundle.min.css',
     'public/mobile/css/font-awesome.min.css',

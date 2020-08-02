@@ -1,6 +1,5 @@
 <template>
   <div id="owl-single-product">
-<!--      <lingallery :width="600" :height="400" :items="images"></lingallery>-->
       <div class="product-image-gallery">
          <img v-bind:src="img" width="600px" alt="" title="">
       </div>

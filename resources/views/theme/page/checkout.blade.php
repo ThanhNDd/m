@@ -2,7 +2,8 @@
 @section("title", "Thanh toán")
 @section('content')
     <div id="app" class="view view-reviews ios-edges">
-        @include('theme.layout.tabbar')
+        <sidebar-component></sidebar-component>
+{{--        @include('theme.layout.tabbar')--}}
         <div class="page">
             <div class="navbar navbar-page">
                 <div class="navbar-inner">

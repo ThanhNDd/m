@@ -7653,9 +7653,9 @@ header {
     display: none;
   }
 
-  .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li a:hover:after {
-    display: none !important;
-  }
+  /*.cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li a:hover:after {*/
+  /*  display: none !important;*/
+  /*}*/
 
   .cnt-home .product-micro .product-info .product-price .price {
     font-size: 16px;
@@ -7751,9 +7751,9 @@ header {
 .top-cart-row .dropdown-cart .lnk-cart .items-cart-inner .total-price-basket .value {
     display: none;
 }*/
-  .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li.active a:after {
-    display: none !important;
-  }
+  /*.cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li.active a:after {*/
+  /*  display: none !important;*/
+  /*}*/
 
   .main-header {
     padding: 10px 0px 10px 0px;

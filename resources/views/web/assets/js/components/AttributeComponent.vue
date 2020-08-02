@@ -118,22 +118,19 @@
                 .then(response => {
                     this.attributes = response.data;
                     this.products = response.data.products;
-                    console.log(response.data.products);
                     this.short_description = response.data.products[0].short_description;
                     let color = '';
                     let size = '';
                     let arr_colors = [];
                     let arr_sizes = [];
-                    let arr_images = [];
+                    // let arr_images = [];
+                    let that = this;
                     response.data.products.forEach(function (item) {
                         if (color != item.color) {
                             arr_colors.push(item.color);
                             color = item.color;
                             if (item.image) {
-                                let ext = item.image.substr(item.image.lastIndexOf('.') + 1);
-                                let src = item.image.replace('.' + ext, '');
-                                src = src + '.32x32.' + ext;
-                                arr_images.push(src);
+                                that.images.push(item.image);
                             }
                         }
                         if (size != item.size) {
@@ -143,7 +140,7 @@
                     });
                     this.colors = Array.from(new Set(arr_colors));
                     this.sizes = Array.from(new Set(arr_sizes));
-                    this.images = Array.from(new Set(arr_images));
+                    // this.images = Array.from(new Set(arr_images));
                     let total_image = this.all_images.length;
                     let total_color = this.colors.length;
                     this.index_image = total_image - total_color;
@@ -232,21 +229,6 @@
                     }
                 })
             },
-            // viewMore: function () {
-            //     if (this.isMore) {
-            //         this.isMore = false;
-            //         this.height = 'auto';
-            //         this.position = 'inherit';
-            //         this.icon = 'fa-chevron-circle-up';
-            //         this.text = 'Thu gọn';
-            //     } else {
-            //         this.isMore = true;
-            //         this.height = '130px';
-            //         this.position = 'absolute';
-            //         this.icon = 'fa-chevron-circle-down';
-            //         this.text = 'Xem thêm';
-            //     }
-            // },
             selectSize: function (size) {
                 let _self = this;
                 this.products.forEach(function (item) {
@@ -282,7 +264,7 @@
 
                 let img = this.all_images[idx];
                 if (img) {
-                    img = img.replace(".32x32", "");
+                    // img = img.replace(".32x32", "");
                     $(".product-image-gallery img").prop("src", img);
                 }
                 this.setTitleImage();

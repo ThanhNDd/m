@@ -1,5 +1,5 @@
 <template>
-    <div class="product-review segments">
+    <div class="product-review segments" id="reviews_component">
         <div class="row col-sm-12" style="margin: 0;display: inline-block;width: 100%;padding:0px 0px 20px 0px;">
             <div class="rating-block float-left" style="padding: 20px 5px;width: 49%;text-align: center;">
                 <h2 class="bold padding-bottom-7" style="padding-bottom: 5px;font-size: 40px;">{{ratingAvg}}</h2>
@@ -92,7 +92,9 @@
                 <div class="content">
 <!--                    <img v-bind:src="url + '/public/mobile/images/user-buyer2.png'" alt="">-->
                     <div class="text">
-                        <h6>{{ review.name }}</h6>
+                        <h6 style="margin: 0;font-size: 12px;">{{ review.name }}
+                            <small style="color: green;font-style: italic;" v-if="review.purchased"><i class="fas fa-check-circle"></i> Đã mua hàng</small>
+                        </h6>
                         <ul class="rate-product">
                             <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
                             <li><i v-bind:class="review.rating >= '2' ? 'fas' : 'far'" class="fa-star" ></i></li>
@@ -204,7 +206,6 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += rowperpage;
                         let len = this.reviews.length;
@@ -229,6 +230,18 @@
                         this.buttonText = "Không có thêm đánh giá.";
                         this.isFinished = true;
                         this.hidden = false;
+                    }
+                });
+            },
+            reloadReviews: function (rowperpage) {
+                this.hidden = true;
+                axios.post(url + '/api/reviews', {
+                    product_id: this.product_id,
+                    row: this.row,
+                    rowperpage: rowperpage
+                }).then(response => {
+                    if (response.data !== '' && response.data.length > 0) {
+                        this.reviews = response.data;
                     }
                 });
             },

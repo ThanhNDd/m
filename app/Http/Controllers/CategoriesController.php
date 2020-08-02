@@ -83,25 +83,85 @@ class CategoriesController extends Controller
     } else {
       $cat = [Constant::CAT_SUIT, Constant::CAT_SHIRT, Constant::CAT_TROUSER, Constant::CAT_DRESS];
     }
-    $products = DB::table('smi_products')
-      ->where([['status', '=', Constant::STATUS_STOCK], ["social_publish->website", "=", Constant::ACTIVE], ['type', '=', $type]])
-      ->whereIn('category_id', $cat)
-      ->orderBy('created_at', 'desc')
-      ->offset($row)
-      ->limit($rowperpage)
-      ->get()->jsonSerialize();
+//    $products = DB::table('smi_products')
+//      ->where([['status', '=', Constant::STATUS_STOCK], ["social_publish->website", "=", Constant::ACTIVE], ['type', '=', $type]])
+//      ->whereIn('category_id', $cat)
+//      ->orderBy('created_at', 'desc')
+//      ->offset($row)
+//      ->limit($rowperpage)
+//      ->get()->jsonSerialize();
+        $listCatId = implode(",", $cat);
+      $products = DB::select(DB::raw("SELECT a.id,
+                                                       a.name,
+                                                       a.image,
+                                                       b.image as variant_image,
+                                                       a.rating,
+                                                       a.reviews,
+                                                       a.type,
+                                                       a.category_id,
+                                                       a.description,
+                                                       CASE
+                                                           WHEN MIN(b.retail) = MAX(b.retail) THEN MIN(b.retail)
+                                                           ELSE CONCAT(MIN(b.retail), \" - \", MAX(b.retail))
+                                                       END AS retail
+                                                FROM smi_products a
+                                                LEFT JOIN smi_variations b ON a.id = b.product_id
+                                                WHERE a.status = 0
+                                                    and category_id in ($listCatId)
+                                                    and type = $type
+                                                    AND JSON_CONTAINS(a.social_publish, 1, '$.website')
+                                                GROUP BY a.id,
+                                                         a.name,
+                                                         a.image,
+                                                         a.rating,
+                                                         a.reviews,
+                                                         a.type,
+                                                         a.category_id,
+                                                         a.description
+                                                order by a.updated_at desc, a.created_at desc
+                                                limit $row, $rowperpage"));
+
     return $products;
   }
 
   private function getProductsByCategory($row, $rowperpage, $catId)
   {
-    $products = DB::table('smi_products')
-      ->where([['status', '=', Constant::STATUS_STOCK], ["social_publish->website", "=", Constant::ACTIVE]])
-      ->whereIn('category_id', $catId)
-      ->orderBy('created_at', 'desc')
-      ->offset($row)
-      ->limit($rowperpage)
-      ->get()->jsonSerialize();
+//    $products = DB::table('smi_products')
+//      ->where([['status', '=', Constant::STATUS_STOCK], ["social_publish->website", "=", Constant::ACTIVE]])
+//      ->whereIn('category_id', $catId)
+//      ->orderBy('created_at', 'desc')
+//      ->offset($row)
+//      ->limit($rowperpage)
+//      ->get()->jsonSerialize();
+      $listCatId = implode(",", $catId);
+      $products = DB::select(DB::raw("SELECT a.id,
+                                                       a.name,
+                                                       a.image,
+                                                       b.image as variant_image,
+                                                       a.rating,
+                                                       a.reviews,
+                                                       a.type,
+                                                       a.category_id,
+                                                       a.description,
+                                                       CASE
+                                                           WHEN MIN(b.retail) = MAX(b.retail) THEN MIN(b.retail)
+                                                           ELSE CONCAT(MIN(b.retail), \" - \", MAX(b.retail))
+                                                       END AS retail
+                                                FROM smi_products a
+                                                LEFT JOIN smi_variations b ON a.id = b.product_id
+                                                WHERE a.status = 0
+                                                    and category_id in ($listCatId)
+                                                    AND JSON_CONTAINS(a.social_publish, 1, '$.website')
+                                                GROUP BY a.id,
+                                                         a.name,
+                                                         a.image,
+                                                         a.rating,
+                                                         a.reviews,
+                                                         a.type,
+                                                         a.category_id,
+                                                         a.description
+                                                order by a.updated_at desc, a.created_at desc
+                                                limit $row, $rowperpage"));
     return $products;
   }
 

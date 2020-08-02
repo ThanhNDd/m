@@ -57,7 +57,7 @@ $(document).ready(function () {
             $("html").removeClass("with-panel-left-cover");
         });
     });
-    $(".detail").click(function () {
+    $("#detail").click(function () {
         $(".detail-sheet").addClass("modal-in");
         $("html").addClass("with-modal-sheet");
         $(".sheet-close").click(function() {

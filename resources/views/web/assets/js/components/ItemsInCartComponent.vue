@@ -12,21 +12,21 @@
       <div class="steps-form">
         <div class="steps-row setup-panel">
           <div class="steps-step">
-            <a href="#step-1" type="button" class="btn btn-circle waves-effect waves-light btn-indigo">
+            <a href="javascript:void(0)" type="button" class="btn btn-circle waves-effect waves-light btn-indigo">
               <i class="fas fa-shopping-cart"></i>
             </a>
             <p>Giỏ hàng</p>
           </div>
           <div class="steps-step">
-            <a href="#step-2" type="button" class="btn btn-default btn-circle waves-effect waves-light" disabled="disabled">
+            <a v-bind:href="url + '/thanh-toan.html'" type="button" class="btn btn-default btn-circle waves-effect waves-light" disabled="disabled">
               <i class="fas fa-shopping-basket"></i>
             </a>
             <p>Thanh toán</p>
           </div>
           <div class="steps-step">
-            <a href="#step-3" type="button" class="btn btn-default btn-circle waves-effect waves-light" disabled="disabled">
+            <button type="button" class="btn btn-default btn-circle waves-effect waves-light" disabled="disabled">
               <i class="far fa-check-circle"></i>
-            </a>
+            </button>
             <p>Hoàn thành</p>
           </div>
         </div>
@@ -103,7 +103,7 @@
           </div>
 
         </div>
-        <div class="col-md-3 cart-shopping-total" style="margin: 0px 20px 20px 10px;">
+        <div class="col-md-3 cart-shopping-total" style="margin: 0px 20px 20px 10px;min-height: 300px;">
           <table class="table">
             <thead>
             <tr>
@@ -141,8 +141,8 @@
               <i class="fas fa-arrow-circle-left"></i>&nbsp;Tiếp tục mua hàng
             </a>
           </div>
-        </div><!-- /.cart-shopping-total -->
-      </div><!-- /.shopping-cart -->
+        </div>
+      </div>
     </div>
 </template>
 

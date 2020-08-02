@@ -27,7 +27,7 @@
         </div>
         <div class="row justify-content-center">
           <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts()'>
-            <span class="spinner-border spinner-border-sm" v-bind:class="submit ? '' : 'hidden'"></span> Xem thêm<i class="fas fa-caret-down"></i>
+            <span class="spinner-border spinner-border-sm" v-if="submit"></span> Xem thêm<i class="fas fa-caret-down"></i>
           </a>
         </div>
     </div>
@@ -60,7 +60,6 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;

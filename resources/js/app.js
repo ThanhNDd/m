@@ -7,17 +7,39 @@
  */
 require('./bootstrap');
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import Toast from "vue2-toast";
 import 'vue2-toast/lib/toast.css';
 import {StarRating} from 'vue-rate-it';
 import vSelect from "../../node_modules/vue-select";
-import 'sweetalert2/dist/sweetalert2.min.css';
 import VueLazyload from "vue-lazyload";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+import firebase from 'firebase';
+let firebaseConfig = {
+    apiKey: "AIzaSyDQRx7vqJSf9pi67MhBJhMAOAU2-ayll90",
+    authDomain: "authen-smi-sms.firebaseapp.com",
+    databaseURL: "https://authen-smi-sms.firebaseio.com",
+    projectId: "authen-smi-sms",
+    storageBucket: "authen-smi-sms.appspot.com",
+    messagingSenderId: "236690079442"
+};
+firebase.initializeApp(firebaseConfig);
 
 window.Vue = require('vue');
 // window.VueRoute = require('vue-router');
 // window.Swal = require('sweetalert2');
 
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+
+Vue.use(VueSweetalert2);
 Vue.use(VueLazyload, {
   lazyComponent: true,
   preLoad: 1.3,
@@ -62,34 +84,68 @@ Vue.component('all-reviews-component', require('./components/AllReviewsComponent
 // Vue.component('viewed-product-component', require('./components/ViewedProductComponent.vue').default);
 // Vue.component('rating-component', require('./components/RatingComponent.vue').default);
 // Vue.component('blog-component', require('./components/BlogComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('status-component', require('../views/web/assets/js/components/StatusComponent.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent').default);
 
 Vue.filter('formatPrice', function (value) {
+    if(!value) {
+        return value;
+    }
+    if(value.toString().indexOf(" - ") > -1) {
+        let arr = value.split(" - ");
+        let min_price = arr[0];
+        let max_price = arr[1];
+        min_price = (min_price/1).toFixed(0).replace('.', ',');
+        max_price = (max_price/1).toFixed(0).replace('.', ',');
+        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+        return min_price + " - " +max_price;
+    }
     let val = (value/1).toFixed(0).replace('.', ',');
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' đ';
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
 });
 Vue.filter('formatSalePrice', function (discount, retail) {
-    let sale_price = retail - (discount * retail) / 100;
-    let val = (sale_price).toFixed(0).replace('.', ',');
-    val = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' đ';
-    if(discount > 0) {
-        val += ' (-' + discount + '%)';
+    if(!discount || isNaN(discount) || !retail || isNaN(retail)) {
+        return;
     }
-    return val;
+    discount = Number(discount);
+    retail = Number(retail);
+    let sale_price = 0;
+    if(discount > 0 && discount < 101) {
+        sale_price = retail * (100 - discount) / 100;
+    } else {
+        sale_price = retail - discount;
+    }
+    if(sale_price != retail) {
+        let val = (sale_price).toFixed(0).replace('.', ',');
+        val = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+        if (discount > 0) {
+            // val += ' (-' + discount + '%)';
+        }
+        return val;
+    } else {
+        return retail.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+    }
 });
 Vue.filter('format_image', function (value, thumb) {
-  let image = JSON.parse(value);
-  let src = image[0].src;
-  let type = image[0].type;
-  if(type === 'upload') {
-    src = 'https://img.shopmein.vn/' + src;
-  } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
-    if(typeof thumb !== 'undefined' && thumb !== '') {
-      let ext = src.substr(src.lastIndexOf('.') + 1);
-      src = src.replace('.'+ext,'');
-      src = src+'.'+thumb+'.'+ext;
+    try {
+        let image = JSON.parse(value);
+        let src = image[0].src;
+        let type = image[0].type;
+        if(type === 'upload') {
+            src = 'https://img.shopmein.vn/' + src;
+        } else if(src.indexOf('cbu01.alicdn.com') > -1 && src.indexOf(thumb) === -1){
+            if(typeof thumb !== 'undefined' && thumb !== '') {
+                let ext = src.substr(src.lastIndexOf('.') + 1);
+                src = src.replace('.'+ext,'');
+                src = src+'.'+thumb+'.'+ext;
+            }
+        }
+        return src;
+    } catch (e) {
+        return value;
     }
-  }
-  return src;
 });
 Vue.filter('validateEmail', function (email) {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -147,6 +203,9 @@ Vue.filter('format_color', function (value) {
 });
 
 Vue.filter('change_to_slug', function (title) {
+    if(!title) {
+        return title;
+    }
     let slug = title.toLowerCase();
     slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
     slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -180,4 +239,35 @@ Vue.filter('url_reviews', function (slug, id) {
  */
 new Vue({
     el: '#app',
+    data() {
+        return {
+            isLogged: false,
+            customer_id: '',
+            customer_name: '',
+            customer_phone: '',
+            customer_address: '',
+            customer_email: '',
+            customer_city: ''
+        }
+    },
+    methods: {
+        checkLogged: function() {
+            axios.post(url + '/api/check-logged')
+                .then(response => {
+                    if(response.data !== 'not_exist_user') {
+                        this.isLogged = true;
+                        this.customer_id = response.data.id;
+                        this.customer_name = response.data.name;
+                        this.customer_phone = response.data.phone;
+                        this.customer_address = response.data.address;
+                        this.customer_email = response.data.email;
+                        this.customer_city = response.data.city_id;
+                    } else {
+                        this.isLogged = false;
+                    }
+                }).catch(e =>{
+                this.isLogged = false;
+            });
+        },
+    }
 });

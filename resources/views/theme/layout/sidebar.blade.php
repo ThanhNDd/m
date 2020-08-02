@@ -2,8 +2,8 @@
     <div class="user-view">
         <img src="{{ url('public/mobile/images/icon.png') }}" alt="">
         <div class="title-name">
-            <h2>Shop Mẹ Ỉn</h2>
-            <p class="center">Thời trang trẻ em</p>
+            <h2 style="font-size: 24px;line-height: 1.5;margin: 0;font-family: Pony;color: white;">Shop Mẹ Ỉn</h2>
+            <p class="center" style="color: white;">Thời trang trẻ em</p>
         </div>
     </div>
     <div class="list media-list">
@@ -81,14 +81,20 @@
                 </a>
             </li>
             <li>
-                <a href="{{url('/login/')}}" class="item-link panel-close item-content">
-                    <div class="item-media">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </div>
-                    <div class="item-inner">
-                        <div class="item-title">Đăng nhập</div>
-                    </div>
-                </a>
+{{--                <a href="{{url('/login/')}}" class="item-link panel-close item-content">--}}
+{{--                    <div class="item-media">--}}
+{{--                        <i class="fas fa-sign-out-alt"></i>--}}
+{{--                    </div>--}}
+{{--                    <div class="item-inner">--}}
+{{--                        <div class="item-title">Đăng nhập</div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--                <div v-if="!isLogged">--}}
+{{--                    <login-component></login-component>--}}
+{{--                </div>--}}
+{{--                <div v-else>--}}
+
+{{--                </div>--}}
             </li>
         </ul>
     </div>

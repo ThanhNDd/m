@@ -17,8 +17,11 @@
     <div class="container">
         <p>Chào bạn <strong>{{$mailContent['fullname']}}</strong>,</p>
         <p>Chúng tôi vừa nhận được yêu cầu đổi mật khẩu của bạn. Bạn vui lòng sử dụng mã xác nhận dưới đây để hoàn tất quá trình đổi mật khẩu</p>
-        <p><strong>Mã xác nhận:</strong>{{$mailContent['verify_code']}}</p>
-        <p style="color:red;font-style: italic;">Mã xác nhận có hiệu lực trong vòng 15 phút.</p>
+        <p>Mã xác nhận: </p>
+        <p style="display: inline-block;padding: 15px;border: 1px solid gray;background: #dadada;margin: 0;">
+            {{$mailContent['verify_code']}}
+        </p>
+        <p style="color:red;font-style: italic;">Mã xác nhận có hiệu lực đến {{$mailContent['valid_password_time']}} (trong vòng 15 phút).</p>
         <p>Trân trọng,</p>
         <hr style="border-top: 1px dashed gray;">
         <small style="display: inline-block;width: 100%;"><strong>Shop Mẹ Ỉn</strong> - Thời trang trẻ em</small>

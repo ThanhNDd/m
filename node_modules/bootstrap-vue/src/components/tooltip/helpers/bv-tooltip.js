@@ -10,6 +10,7 @@ import { mathMax } from '../../../utils/math'
 import noop from '../../../utils/noop'
 import { arrayIncludes, concat, from as arrayFrom } from '../../../utils/array'
 import {
+  attemptFocus,
   closest,
   contains,
   getAttr,
@@ -342,7 +343,7 @@ export const BVTooltip = /*#__PURE__*/ Vue.extend({
       this.clearActiveTriggers()
       this.localPlacementTarget = null
       try {
-        this.$_tip && this.$_tip.$destroy()
+        this.$_tip.$destroy()
       } catch {}
       this.$_tip = null
       this.removeAriaDescribedby()
@@ -551,16 +552,12 @@ export const BVTooltip = /*#__PURE__*/ Vue.extend({
       return this.isDropdown() && target && select(DROPDOWN_OPEN_SELECTOR, target)
     },
     clearHoverTimeout() {
-      if (this.$_hoverTimeout) {
-        clearTimeout(this.$_hoverTimeout)
-        this.$_hoverTimeout = null
-      }
+      clearTimeout(this.$_hoverTimeout)
+      this.$_hoverTimeout = null
     },
     clearVisibilityInterval() {
-      if (this.$_visibleInterval) {
-        clearInterval(this.$_visibleInterval)
-        this.$_visibleInterval = null
-      }
+      clearInterval(this.$_visibleInterval)
+      this.$_visibleInterval = null
     },
     clearActiveTriggers() {
       for (const trigger in this.activeTrigger) {
@@ -839,15 +836,13 @@ export const BVTooltip = /*#__PURE__*/ Vue.extend({
         /* istanbul ignore next */
         return
       }
-      try {
-        // Get around a WebKit bug where `click` does not trigger focus events
-        // On most browsers, `click` triggers a `focusin`/`focus` event first
-        // Needed so that trigger 'click blur' works on iOS
-        // https://github.com/bootstrap-vue/bootstrap-vue/issues/5099
-        // We use `currentTarget` rather than `target` to trigger on the
-        // element, not the inner content
-        evt.currentTarget.focus()
-      } catch {}
+      // Get around a WebKit bug where `click` does not trigger focus events
+      // On most browsers, `click` triggers a `focusin`/`focus` event first
+      // Needed so that trigger 'click blur' works on iOS
+      // https://github.com/bootstrap-vue/bootstrap-vue/issues/5099
+      // We use `currentTarget` rather than `target` to trigger on the
+      // element, not the inner content
+      attemptFocus(evt.currentTarget)
       this.activeTrigger.click = !this.activeTrigger.click
       if (this.isWithActiveTrigger) {
         this.enter(null)

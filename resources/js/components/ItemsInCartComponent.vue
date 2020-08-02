@@ -20,12 +20,16 @@
                 </div>
                 <div class="col-20">
                     <div class="content-image">
-                        <img v-bind:src="cart['image']" alt="">
+<!--                        <img v-bind:src="cart['image']" alt="">-->
+                        <a class="entry-thumbnail" v-bind:href="cart['name'] | change_to_slug | url_product(cart['id'])">
+                            <img v-if="cart['image']" v-bind:src="cart['image']" alt="">
+                            <img v-else="" v-bind:src="url + '/public/web/images/img_err.jpg'" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-40">
                     <div class="content-text">
-                        <p class="title-product" v-text="cart['name'] +' - '+ cart['color'] +' - '+ cart['size']"></p>
+                        <p class="title-product">{{cart['name']}}</p>
                         <p class="price" v-html="$options.filters.formatPrice(cart['price'])"></p>
                     </div>
                 </div>
@@ -100,23 +104,27 @@
                 let products = [];
                 products.push({
                     "id": cart['id'],
+                    "sku": cart['sku'],
                     "color": cart['color'],
                     "size": cart['size'],
                     "qty" : cart['qty'],
                     "type" : "plus"
                 });
                 this.process(products);
+                // this.subtotal(cart['price'], cart['qty']);
             },
             minus: function (cart) {
                 let products = [];
                 products.push({
                     "id": cart['id'],
+                    "sku": cart['sku'],
                     "color": cart['color'],
                     "size": cart['size'],
                     "qty" : cart['qty'],
                     "type" : "minus"
                 });
                 this.process(products);
+                // this.subtotal(cart['price'], cart['qty']);
             },
             process: function(products){
                 axios.post(url + "/api/cart/change", {
@@ -126,7 +134,7 @@
                 })
             },
             removeItem(cart, index) {
-                swal({
+                this.$swal({
                     title: "Bạn chắc chắn muốn xoá sản phẩm này?",
                     text: "",
                     icon: "warning",
@@ -137,6 +145,7 @@
                         let products = [];
                         products.push({
                             "id": cart['id'],
+                            "sku": cart['sku'],
                             "color": cart['color'],
                             "size": cart['size']
                         });

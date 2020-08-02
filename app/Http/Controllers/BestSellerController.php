@@ -13,13 +13,31 @@ class BestSellerController extends Controller
         $row = $request->row;
         $rowperpage = $request->rowperpage;
 
-        $products = DB::select(DB::raw("select distinct b.id, b.name, b.image, b.rating, b.retail, b.reviews, MIN(c.retail)  from (
-            select distinct b.product_id from smi_orders a 
-            left join smi_order_detail b on a.id = b.order_id
-            where deleted = 0 order by a.created_date desc limit 50) as a inner join smi_products b on a.product_id = b.id
-            left join smi_variations c on b.id = c.product_id 
-            where b.status = 0 and b.social_publish->'$.website' = 1
-            group by b.id, b.name, b.image, b.rating, b.retail, b.reviews limit $row, $rowperpage"));
+        $products = DB::select(DB::raw("SELECT DISTINCT b.id,
+                                                                b.name,
+                                                                b.image,
+                                                                c.image as variant_image,
+                                                                b.rating,
+                                                                b.reviews,
+                                                                MIN(c.retail) as retail
+                                                FROM
+                                                  (SELECT DISTINCT b.product_id
+                                                   FROM smi_orders a
+                                                   LEFT JOIN smi_order_detail b ON a.id = b.order_id
+                                                   WHERE deleted = 0
+                                                   ORDER BY a.created_date DESC
+                                                   LIMIT 50) AS a
+                                                INNER JOIN smi_products b ON a.product_id = b.id
+                                                LEFT JOIN smi_variations c ON b.id = c.product_id
+                                                WHERE b.status = 0
+                                                  AND JSON_CONTAINS(b.social_publish, 1, '$.website')
+                                                GROUP BY b.id,
+                                                         b.name,
+                                                         b.image,
+                                                         b.rating,
+                                                         b.retail,
+                                                         b.reviews
+                                                LIMIT $row, $rowperpage"));
 
         // on server with mariadb
 //        $products = DB::select(DB::raw("select p.id, p.name, p.image, p.retail, p.rating, p.reviews from smi_products p inner join

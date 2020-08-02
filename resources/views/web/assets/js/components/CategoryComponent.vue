@@ -12,7 +12,7 @@
                       <div class="image">
                         <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
                           <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
-                            <img v-bind:data-src="product.image | format_image('400x400')" v-bind:alt="product.name">
+                            <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('400x400')" v-bind:alt="product.name">
                           </div>
                         </a>
                       </div>
@@ -53,7 +53,7 @@
                   <div class="col col-sm-3 col-lg-3">
                     <div class="product-image">
                       <div class="image">
-                        <img v-bind:src="product.image | format_image" v-bind:alt="product.name">
+                        <img v-bind:src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image" v-bind:alt="product.name">
                       </div>
                     </div>
                     <!-- /.product-image -->
@@ -138,7 +138,6 @@
                 });
             },
             getProducts: function (pageNum, scroll = true) {
-                // console.log(pageNum);
                 let pathname = window.location.pathname;
                 pathname = pathname.split('/');
                 pathname = pathname[pathname.length-1];
@@ -147,7 +146,7 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                    // console.log(response.data);
+                  console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.products = response.data;
                         if(scroll) {
@@ -157,7 +156,6 @@
                 });
             },
             scrollToTop() {
-                // window.scrollTo(0,600);
                 window.scrollTo({
                     top: 300,
                     left: 0,

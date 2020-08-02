@@ -14,14 +14,10 @@ class ProductController extends Controller
     {
         $row = $request->row;
         $rowperpage = $request->rowperpage;
-//    $products = DB::table('smi_products')->where([['status', '=', 0], ["social_publish->website", "=", 1]])
-//      ->orderBy('id', 'desc')
-//      ->offset($row)
-//      ->limit($rowperpage)
-//      ->get()->jsonSerialize();
         $products = DB::select(DB::raw("SELECT a.id,
                                                    a.name,
                                                    a.image,
+                                                   b.image as variant_image,
                                                    a.rating,
                                                    a.reviews,
                                                    CASE
@@ -31,7 +27,7 @@ class ProductController extends Controller
                                             FROM smi_products a
                                             LEFT JOIN smi_variations b ON a.id = b.product_id
                                             WHERE a.status = 0
-                                              AND a.social_publish->'$.website' = 1
+                                              AND JSON_CONTAINS(a.social_publish, 1, '$.website')
                                             GROUP BY a.id,
                                                      a.name,
                                                      a.image,
@@ -54,16 +50,17 @@ class ProductController extends Controller
 
     public function getProduct(Request $request, $slug, $id)
     {
-//    $product = DB::table('smi_products')->where([['id', "=", $id], ["social_publish->website", "=", 1]])->first();
         $products = DB::select(DB::raw("SELECT a.id,
                                                     b.sku,
                                                    a.name,
                                                    a.image,
+                                                   b.image as variant_image,
                                                    a.rating,
                                                    a.reviews,
                                                    a.type,
                                                    a.category_id,
                                                    a.description,
+                                                   a.short_description,
                                                    CASE
                                                        WHEN MIN(b.retail) = MAX(b.retail) THEN MIN(b.retail)
                                                        ELSE CONCAT(MIN(b.retail), \" - \", MAX(b.retail))
@@ -72,10 +69,10 @@ class ProductController extends Controller
                                             LEFT JOIN smi_variations b ON a.id = b.product_id
                                             WHERE a.id = $id
                                               AND a.status = 0
-                                              AND a.social_publish->'$.website' = 1"));
+                                              AND JSON_CONTAINS(a.social_publish, 1, '$.website')"));
         $product = $products[0];
         $prod_title = '';
-        if (!empty($product)) {
+        if (!empty($product->id)) {
             $isDetail = "isDetail";
             $prod_title = $product->name;
             $type = $product->type;
@@ -89,33 +86,39 @@ class ProductController extends Controller
                 $cat_uri = url('') . '/danh-muc/be-gai.html';
             }
             $images = "[";
-            foreach (json_decode($product->image) as $key => $image) {
-                $path_parts = pathinfo($image->src);
-                $dirname = $path_parts['dirname'];
-                $extension = $path_parts['extension'];
-                $filename = $path_parts['filename'];
-                $thumb = $dirname . '/' . $filename . '.100x100xz.' . $extension;
-
-                $myObj['id'] = "image$key";
-                $myObj['src'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $image->src);
-                $myObj['thumbnail'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $thumb);
-                $images .= json_encode($myObj) . ",";
+            if(!empty(json_decode($product->image))) {
+                foreach (json_decode($product->image) as $key => $image) {
+                    $path_parts = pathinfo($image->src);
+                    $dirname = $path_parts['dirname'];
+                    $filename = $path_parts['filename'];
+                    if (isset($path_parts['extension'])) {
+                        $extension = $path_parts['extension'];
+                        $thumb = $dirname . '/' . $filename . '.100x100xz.' . $extension;
+                    } else {
+                        $thumb = $filename;
+                    }
+                    $myObj['id'] = "image$key";
+                    $myObj['src'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $image->src);
+                    $myObj['thumbnail'] = url($image->type == 'upload' ? env('IMAGE_URL') . $image->src : $thumb);
+                    $images .= json_encode($myObj) . ",";
+                }
             }
             $images .= "]";
-        }
-        $hasCookie = $request->hasCookie('recently_viewed');
-        // store in cookie
-        $recentlyViewed = $this->storeInCookie($request, $product);
+            $hasCookie = $request->hasCookie('recently_viewed');
 
-        $retail = $product->retail;
-        if (!empty($retail) && strrpos($retail, " - ")) {
-            $arr = explode(" - ", $retail);
-            $min_price = number_format((float)$arr[0]);
-            $max_price = number_format((float)$arr[1]);
-            $retail = $min_price . " - " . $max_price;
+            $retail = $product->retail;
+            if (!empty($retail) && strrpos($retail, " - ")) {
+                $arr = explode(" - ", $retail);
+                $min_price = number_format((float)$arr[0], 0, '', ".");
+                $max_price = number_format((float)$arr[1], 0, '', ".");
+                $retail = $min_price . " - " . $max_price;
+            } else {
+                $retail = number_format($retail,0,'', ".");
+            }
         } else {
-            $retail = number_format($retail);
+            $product = null;
         }
+        $recentlyViewed = $this->storeInCookie($request, $product);
         if ($this->is_mobile()) {
             return response(view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie', 'retail')))
                 ->withCookie($recentlyViewed);
@@ -133,20 +136,19 @@ class ProductController extends Controller
         $is_exists = false;
         if ($request->hasCookie('recently_viewed')) {
             $products = json_decode($request->cookie('recently_viewed'));
-            foreach ($products as $key => $v) {
-                if ($v->id == $product->id) {
-                    $is_exists = true;
+            if(!empty($product)) {
+                foreach ($products as $key => $v) {
+                    if ($v->id == $product->id) {
+                        $is_exists = true;
+                    }
                 }
+            } else {
+                $is_exists = true;
             }
         }
         if (!$is_exists) {
             $viewed = array();
             $viewed["id"] = $product->id;
-            $viewed["name"] = $product->name;
-            $viewed["retail"] = $product->retail;
-            $viewed["image"] = $product->image;
-            $viewed["rating"] = $product->rating;
-            $viewed["reviews"] = $product->reviews;
             array_push($products, $viewed);
             $reversed = array_reverse($products);
             return cookie("recently_viewed", json_encode($reversed), $minutes);
@@ -156,17 +158,48 @@ class ProductController extends Controller
 
     public function getProductInCookie(Request $request)
     {
+        $row = $request->row;
+        $rowperpage = $request->rowperpage;
         $products = array();
         if ($request->hasCookie('recently_viewed')) {
-            $products = Crypt::decrypt(Cookie::get('recently_viewed'), false);
-            $listId = array();
-            $products = json_decode($products);
-            foreach ($products as $key => $value) {
-                array_push($listId, $value->id);
+            try {
+                $products = Crypt::decrypt(Cookie::get('recently_viewed'), false);
+
+                $products = json_decode($products);
+                $listId = array();
+                foreach ($products as $key => $value) {
+                    array_push($listId, $value->id);
+                }
+                $ids = implode(',',$listId);
+                $ids = substr($ids, 1);
+                $products = DB::select(
+                    DB::raw("SELECT a.id,
+                                                   a.name,
+                                                   a.image,
+                                                   b.image as variant_image,
+                                                   a.rating,
+                                                   a.reviews,
+                                                   CASE
+                                                       WHEN MIN(b.retail) = MAX(b.retail) THEN MIN(b.retail)
+                                                       ELSE CONCAT(MIN(b.retail),' - ', MAX(b.retail))
+                                                   END AS retail
+                                            FROM smi_products a
+                                            LEFT JOIN smi_variations b ON a.id = b.product_id
+                                            WHERE a.id in ($ids) 
+                                              AND a.status = 0
+                                              AND JSON_CONTAINS(a.social_publish, 1, '$.website')
+                                            GROUP BY a.id,
+                                                     a.name,
+                                                     a.image,
+                                                     a.rating,
+                                                     a.reviews
+                                            ORDER BY a.updated_at DESC, a.created_at DESC
+                                            LIMIT $row,$rowperpage"
+                    )
+                );
+            } catch (\Exception $ex) {
+                echo $ex->getMessage();
             }
-            $products = DB::table('smi_products')
-                ->whereIn('id', $listId)
-                ->get()->jsonSerialize();
         }
         return $products;
     }

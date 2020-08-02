@@ -10,10 +10,10 @@
           <div class="page-content">
             <div class="product-details segments">
               <div class="container">
-                <div class="content">
+                <div class="content mt-5 mb-5">
                   <h5 class="center">Không tồn tại sản phẩm</h5>
                   <div class="divider-space-content"></div>
-                  <a href="{{url('')}}" class="button primary-button">
+                  <a href="{{url('')}}" class="btn btn-primary">
                     <i class="fas fa-arrow-alt-circle-left"></i> Quay về trang chủ
                   </a>
                 </div>
@@ -21,6 +21,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <footer-component></footer-component>
       </div>
     </div>
   @else
@@ -146,17 +149,15 @@
                   </div><!-- /.col-sm-7 -->
                 </div><!-- /.row -->
               </div>
-              @include('web.page.policy.policy')
               @if($product->description)
               <div class="product-tabs inner-bottom-xs">
                 <div class="row">
                   <div class="col-sm-12 col-md-3 col-lg-3">
-                    <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
-                      <li class="active"><a data-toggle="tab" href="#description">Mô tả sản phẩm</a></li>
-                    </ul>
+                    @include('web.page.policy.policy')
                   </div>
                   <div class="col-sm-12 col-md-9 col-lg-9">
-                    <div class="tab-content">
+                    <div id="" class="scroll-tabs outer-top-vs d-inline-block col-md-12 no-padding"><div class="more-info-tab clearfix "><h3 class="new-product-title pull-left">Mô tả sản phẩm</h3></div></div>
+                    <div class="tab-content no-margin d-inline-block col-md-12 no-padding" style="max-height: 500px;overflow-y: auto;overflow-x: hidden;">
                       <div id="description" class="tab-pane in active">
                         <div class="product-tab">
                           <p class="text">{!! $product->description !!}</p>
@@ -178,9 +179,9 @@
               </div>
               @if(isset($hasCookie) && $hasCookie)
                 <div>
-                  <lazy-component>
+{{--                  <lazy-component>--}}
                     <recently-product-component></recently-product-component>
-                  </lazy-component>
+{{--                  </lazy-component>--}}
                 </div>
               @endif
             </div>

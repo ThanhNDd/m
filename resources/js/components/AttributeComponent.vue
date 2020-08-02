@@ -5,14 +5,16 @@
                 <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
-                            <div class="item-cell ">Màu sắc</div>
+                            <div class="item-cell" style="width: 30%;">Màu sắc</div>
                             <div class="item-cell">
                                 <div class="color-choose">
-                                    <div v-for="attr in attributes.colors">
-                                        <input type="radio" v-bind:id="attr.color" name="color" v-bind:value="attr.color"
-                                               v-model="color">
-                                        <label v-bind:for="attr.color"><span
-                                            v-bind:style="attr.color | format_color"></span></label>
+                                    <div v-for="(c, idx) in colors" :key="idx">
+                                        <input type="radio" v-bind:id="c" name="color" v-bind:value="c" v-model="color">
+                                        <label v-bind:for="c">
+                                            <img v-if="images[idx]" width="32px" v-bind:src="images[idx]"
+                                                 v-bind:id="idx+index_image" v-bind:title="c" @click="selectColor(idx, c)">
+                                            <span class="btn" v-else v-text="c" @click="selectColor(idx, c)"></span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -24,12 +26,16 @@
                 <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
-                            <div class="item-cell ">Size</div>
+                            <div class="item-cell" style="width: 30%;">Size</div>
                             <div class="item-cell">
                                 <div class="size-choose">
-                                    <div v-for="attr in attributes.size">
-                                        <input type="radio" v-bind:id="attr.size" name="size" v-bind:value="attr.size">
-                                        <label v-bind:for="attr.size"><span v-text="attr.size" @click="selectSize(attr.size)"></span></label>
+                                    <div v-for="(s, idx) in sizes">
+                                        <input type="radio" v-bind:id="s" name="size" v-bind:value="s" v-model="size"
+                                               v-bind:disabled="quantities[idx] === 0">
+                                        <label v-bind:for="s">
+                                    <span v-bind:class="quantities[idx] === 0 ? 'btn disabled' : 'btn'" v-text="s"
+                                          @click="quantities[idx] !== 0 ? selectSize(s) : '' "></span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -41,76 +47,23 @@
                 <a href="javascript:void(0);" class="item-link item-content">
                     <div class="item-inner item-cell">
                         <div class="item-row">
-                            <div class="item-cell ">Cân nặng</div>
-                            <div class="item-cell">{{weight}}</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0);" class="item-link item-content">
-                    <div class="item-inner item-cell">
-                        <div class="item-row">
-                            <div class="item-cell ">Chiều cao</div>
-                            <div class="item-cell">{{height}}</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0);" class="item-link item-content">
-                    <div class="item-inner item-cell">
-                        <div class="item-row">
-                            <div class="item-cell ">Số lượng</div>
+                            <div class="item-cell" style="width: 30%;">Số lượng</div>
                             <div class="item-cell">
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-9">
-                                    <div class="custom-qty">
-                                        <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 ) &amp;&amp; qty1 > 1 ) result.value--;return false;" class="reduced items" type="button"> <i class="fa fa-minus"></i>
-                                        </button>
-                                        <input type="text" class="input-text qty" title="Qty" value="1" maxlength="8" id="qty1" name="qty">
-                                        <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 )) result.value++;return false;" class="increase items" type="button"> <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
+                                <div class="custom-qty">
+                                    <button @click="minusQty" class="reduced items" type="button"> <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" class="input-text qty" title="Qty" value="1" id="qty1" name="qty" v-model="qty">
+                                    <button @click="plusQty" class="increase items" type="button"> <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="qty mt-2">
+                                    <span class="label" id="remain_qty" style="font-size: 14px;color: gray;"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="javascript:void(0);" class="item-link item-content">
-                    <div class="item-inner item-cell">
-                        <div class="item-row">
-                            <div class="item-cell ">Chất liệu</div>
-                            <div class="item-cell">
-                                <span>{{attributes.material | format_material}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0);" class="item-link item-content">
-                    <div class="item-inner item-cell">
-                        <div class="item-row">
-                            <div class="item-cell ">Xuất xứ</div>
-                            <div class="item-cell">
-                                <span>{{attributes.origin | format_origin}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-<!--            <li>-->
-<!--                <a href="#" class="item-link item-content sheet-open">-->
-<!--                    <div class="item-inner item-cell">-->
-<!--                        <div class="item-row">-->
-<!--                            <div class="item-cell ">Cách chọn size</div>-->
-<!--                            <div class="item-cell detail">Chi tiết</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </li>-->
             <li v-if="description.length > 0">
                 <div style="position: relative;margin-bottom: 40px;overflow: hidden;" v-bind:style="{'height':height}">
                     <p style="font-size: 13px;color: #333;margin-top: 10px;margin-bottom: 10px;">Mô tả</p>
@@ -124,44 +77,106 @@
                 </div>
             </li>
         </ul>
+        <div class="wrap-action-product-d">
+            <div class="container">
+                <div class="row">
+                    <div style="margin-left: 5px;">
+                        <div class="content-message">
+                            <a v-bind:href="url"><i class="fas fa-home"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="content-message">
+                            <a href="https://m.me/shopmein.vn" target="_blank"><i class="fas fa-comment"></i></a>
+                        </div>
+                    </div>
+                    <div class="content-button">
+                        <a href="javascript:void(0);" class="button secondary-button"
+                           v-on:click="addToCart()">
+                            <i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ
+                        </a>
+                    </div>
+                    <div class="content-button">
+                        <a href="javascript:void(0);" class="button secondary-button" style="color: white"
+                           v-on:click="buyNow()">
+                            <i class="fas fa-cart-plus"></i> Mua ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import slider from './SliderComponent';
 
     export default {
         data() {
             return {
+                url: '',
                 attributes: [],
                 color: "",
+                size: '',
                 height: '130px',
                 position: 'absolute',
                 icon: 'fa-chevron-circle-down',
                 isMore: true,
                 text: 'Xem thêm',
                 weight: '',
-                qty: 0
+                colors: [],
+                sizes: [],
+                images: [],
+                short_description: '',
+                products: [],
+                quantities: [],
+                checked: false,
+                index_image: 0,
+                id: '',
+                name:'',
+                price: '',
+                image:'',
+                sku:'',
+                qty: 1,
+                type: '',
+                data: []
             }
         },
+        mixins: [
+            slider
+        ],
         props: ['description'],
         created() {
+            this.url = url;
             let id = document.querySelector('#product_id').getAttribute('value');
             axios.get(url + '/api/attributes/' + id)
                 .then(response => {
                     this.attributes = response.data;
-                    if(this.attributes.size.length > 0) {
-                        let first = this.attributes.size[0].size;
-                        let last = this.attributes.size[this.attributes.size.length - 1].size;
-                        select_weight.forEach(function(item) {
-                            if(first == item.id) {
-                                first = item.text.split('-')[0];
+                    this.products = response.data.products;
+                    this.short_description = response.data.products[0].short_description;
+                    let color = '';
+                    let size = '';
+                    let arr_colors = [];
+                    let arr_sizes = [];
+                    let that = this;
+                    response.data.products.forEach(function (item) {
+                        if (color != item.color) {
+                            arr_colors.push(item.color);
+                            color = item.color;
+                            if (item.image) {
+                                that.images.push(item.image);
                             }
-                            if(last == item.id) {
-                                last = item.text.split('-')[1];
-                            }
-                        });
-                        this.weight = first + " - " + last;
-                    }
+                        }
+                        if (size != item.size) {
+                            arr_sizes.push(item.size);
+                            size = item.size;
+                        }
+                    });
+                    this.colors = Array.from(new Set(arr_colors));
+                    this.sizes = Array.from(new Set(arr_sizes));
+                    let total_image = this.all_images.length;
+                    let total_color = this.colors.length;
+                    this.index_image = total_image - total_color;
                 });
         },
         filters: {
@@ -191,6 +206,28 @@
             }
         },
         methods: {
+            minusQty: function() {
+                let qty1 = $('#qty1').val();
+                if(qty1) {
+                    qty1 = Number(qty1);
+                }
+                if (!isNaN(qty1) && Number(qty1) > 1) {
+                    qty1--;
+                    $('#qty1').val(qty1);
+                    this.qty = qty1;
+                }
+            },
+            plusQty: function() {
+                let qty1 = $('#qty1').val();
+                if(qty1) {
+                    qty1 = Number(qty1);
+                }
+                if (!isNaN(qty1) && Number(qty1) > 0) {
+                    qty1++;
+                    $('#qty1').val(qty1);
+                    this.qty = qty1;
+                }
+            },
             viewMore: function () {
                 if(this.isMore) {
                     this.isMore = false;
@@ -206,15 +243,130 @@
                     this.text = 'Xem thêm';
                 }
             },
-            selectSize: function (value) {
-                let w = this.weight;
-                select_weight.forEach(function(item) {
-                    if(value == item.id) {
-                        w = item.text;
-                        return false;
+            // selectSize: function (value) {
+            //     let w = this.weight;
+            //     select_weight.forEach(function(item) {
+            //         if(value == item.id) {
+            //             w = item.text;
+            //             return false;
+            //         }
+            //     });
+            //     this.weight = w;
+            // }
+            addToCart: function () {
+                // let color = document.querySelector('input[name=color]:checked');
+                if (!this.color) {
+                    // this.$toast.error({
+                    //     title:'Lỗi',
+                    //     message:'Bạn chưa chọn màu'
+                    // });
+                    this.$toast.top('Bạn chưa chọn màu');
+                    return;
+                }
+                // let size = document.querySelector('input[name=size]:checked');
+                if (!this.size) {
+                    // this.$toast.error({
+                    //     title:'Lỗi',
+                    //     message:'Bạn chưa chọn size'
+                    // });
+                    this.$toast.top('Bạn chưa chọn size');
+                    return;
+                }
+                // let qty = document.querySelector("#qty").value;
+                if (!this.qty || this.qty < 0) {
+                    this.qty = 1;
+                }
+                // let price = document.querySelector("#retail").value;
+                // let sku = document.querySelector("#sku_selected").value;
+                // let image = document.querySelector("#image_selected").value;
+                this.data = [];
+                this.data.push({
+                    "id": this.id,
+                    "sku": this.sku,
+                    "name": this.name,
+                    "price": this.price,
+                    "image": this.image,
+                    "color": this.color,
+                    "size": this.size,
+                    "qty": this.qty
+                });
+                this.storeInCart();
+            },
+            buyNow: function () {
+                this.type = "buyNow";
+                this.addToCart();
+            },
+            storeInCart: function () {
+                axios.post(url + "/api/cart", {
+                    body: this.data
+                }).then(response => {
+                    document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger">' + response.data.length + '</span>';
+                    if (this.type === "buyNow") {
+                        window.location.href = url + "/thanh-toan.html";
+                    } else {
+                        this.$toast.top('Sản phẩm đã được thêm vào giỏ hàng');
+                    }
+                })
+            },
+            selectSize: function (size) {
+                let _self = this;
+                this.products.forEach(function (item) {
+                    if (_self.color == item.color && item.size == size) {
+                        document.querySelector('#price').innerHTML = item.retail.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup style="top: -10px; font-size: 16px;">đ</sup>';
+                        _self.id = item.id;
+                        _self.price = item.retail;
+                        _self.sku = item.sku;
+                        _self.name = item.name;
+                        if(item.image) {
+                            _self.image = item.image;
+                        } else {
+                            let image = item.product_image;
+                            if(image) {
+                                image = JSON.parse(image);
+                                _self.image = image[0].src;
+                            }
+                        }
                     }
                 });
-                this.weight = w;
+            },
+            selectColor: function (index, color) {
+                let all_images = this.all_images.length;
+                let image = this.images.length;
+                let idx = all_images - image;
+                idx = idx + index;
+
+                $(".thumbnail img").removeClass("active");
+                $(".thumbnail img#" + idx).addClass("active");
+
+                let img = this.all_images[idx];
+                if (img) {
+                    $(".product-image-gallery img").prop("src", img);
+                }
+                this.setTitleImage();
+                this.chooseImage(idx);
+                this.checked = false;
+                this.sizes = [];
+                this.quantities = [];
+                let _self = this;
+                this.size = null;
+                this.price = null;
+                this.image = null;
+                this.sku = null;
+                this.name = null;
+                this.id = null;
+                this.products.forEach(function (item) {
+                    if (item.color == color) {
+                        _self.sizes.push(item.size);
+                        _self.quantities.push(item.quantity);
+                    }
+                });
+            },
+            setTitleImage: function () {
+                let product_name = $(".product-info-block .product-info .name").text();
+                if (!product_name) {
+                    product_name = '';
+                }
+                $(".product-image-gallery img").prop("alt", product_name).prop("title", product_name);
             }
         }
     };

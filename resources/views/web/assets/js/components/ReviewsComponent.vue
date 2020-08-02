@@ -1,5 +1,5 @@
 <template>
-  <section class="section related-product" style="background: rgb(255, 255, 255);border-radius: 0 6px 6px 0;">
+  <section class="section related-product" id="reviews_component" style="background: rgb(255, 255, 255);border-radius: 0 6px 6px 0;">
     <div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
       <div class="more-info-tab clearfix ">
         <h3 class="new-product-title pull-left">Nhận xét và đánh giá</h3>
@@ -94,105 +94,55 @@
                     </div>
                 </div>
             </div>
-            <div id="rating" class="col-md-12">
+            <div v-if="isReviewed">
+                <p>Bạn đã thực hiện đánh giá sản phẩm này</p>
+            </div>
+            <div id="rating" class="col-md-12" v-if="!reviews_success && !isReviewed">
                 <div class="sheet-modal rating-sheet">
-                    <div class="sheet-modal-inner segments login-form" v-if="!isRegister">
-                        <div class="toolbar">
-                            <div class="toolbar-inner">
-                                <div class="left" style="font-size: 18px;margin: 5px;">Đăng nhập</div>
-                            </div>
-                        </div>
-                        <div class="page-content" style="background: #fff;padding-bottom: 20px;">
-                            <div class="container" style="padding: 0px;width: 100%;">
-                                <form style="padding-top: 10px;">
-                                    <div class="form-group">
-                                        <label for="username">Tên đăng nhập / Email</label>
-                                        <input type="text" class="form-control" placeholder="Tên đăng nhập" id="username" v-model="username" ref="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Mật khẩu</label>
-                                        <input type="password" class="form-control" placeholder="Mật khẩu" id="password" v-model="password" ref="password">
-                                    </div>
-                                    <div class="form-group"><p>Bạn chưa có tài khoản? <a href="javascript:void(0)" @click="isRegister = true">Đăng ký ngay</a></p></div>
-                                    <div style="text-align: center;">
-                                        <button type="button" class="btn btn-info btn-flat" v-on:click="login()">
-                                            <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="hidden"></i>&nbsp;Đăng nhập
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div v-if="!isLogged" style="display:inline-block;text-align: center;width:100%" class="mt-4 mb-4">
+                        <p style="display:inline-block;">Hãy </p>
+                        <p style="display:inline-block;"><login-component></login-component></p>
+                        <p style="display:inline-block;margin-right: 5px;">để thực hiện đánh giá sản phẩm</p>
                     </div>
-                    <div class="sheet-modal-inner segments" v-if="isRegister">
-                        <div class="toolbar">
-                            <div class="toolbar-inner">
-                                <div class="left" style="font-size: 18px;margin: 5px;">Đăng ký</div>
-                            </div>
-                        </div>
-                        <div class="page-content" style="background: #fff;padding-bottom: 20px;">
-                            <div class="container" style="padding: 0px;width: 100%;">
-                                <form style="padding-top: 10px;">
-                                    <div class="form-group">
-                                        <label for="reg_username">Tên đăng nhập</label>
-                                        <input type="text" class="form-control" placeholder="Tên đăng nhập" id="reg_username" v-model="username" ref="username">
-                                    </div>
-                                    <div :class="['form-group', isPasswordValid()]">
-                                        <label for="reg_password">Mật khẩu</label>
-                                        <input type="password" class="form-control" placeholder="Email" id="reg_password" v-model="password" ref="password">
-                                    </div>
-                                    <div :class="['form-group', isPasswordValid()]">
-                                        <label for="reg_password2">Nhập lại mật khẩu</label>
-                                        <input type="password" class="form-control" placeholder="Email" id="reg_password2" v-model="password2" ref="password2">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="reg_fullname">Họ Tên</label>
-                                        <input type="text" class="form-control" placeholder="Họ tên" id="reg_fullname" v-model="fullname" ref="fullname">
-                                    </div>
-                                    <div :class="['form-group', isPhoneValid()]">
-                                        <label for="reg_fullname">Số điện thoại</label>
-                                        <input type="text" class="form-control" placeholder="Số điện thoại" id="reg_phone" v-model="phone" ref="phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="reg_fullname">Giới tính</label>
-                                        <input type="radio" class="form-control" name="gender" v-model="male" ref="male">
-                                        <input type="radio" class="form-control" name="female" v-model="female" ref="female">
-                                    </div>
-                                    <div :class="['form-group', isEmailValid()]">
-                                        <label for="reg_fullname">Email</label>
-                                        <input type="email" class="form-control" placeholder="Email" id="reg_email" v-model="email" ref="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <p>Bạn đã có tài khoản? <a href="javascript:void(0)" @click="isRegister = false">Đăng nhập ngay</a></p>
-                                    </div>
-                                    <div style="text-align: center;">
-                                        <button type="button" class="btn btn-primary btn-flat" v-on:click="register()">
-                                            <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="hidden"></i>&nbsp;Đăng ký
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sheet-modal-inner segments" v-if="hasLogin">
-                        <div class="toolbar">
-                            <div class="toolbar-inner">
-                                <div class="left" style="font-size: 18px;margin: 5px;">Viết nhận xét</div>
-                            </div>
-                        </div>
+                    <div v-else class="sheet-modal-inner segments">
+<!--                        <div class="toolbar">-->
+<!--                            <div class="toolbar-inner">-->
+<!--                                <div class="left" style="font-size: 18px;margin: 5px;">Viết nhận xét</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="page-content" style="background: #fff;padding-bottom: 20px;">
                             <div class="container" id="form-review" style="padding: 0px;width: 100%;">
                                 <form style="padding-top: 10px;">
                                     <input id="ratings-hidden" name="rating" type="hidden">
                                     <div class="form-group">
-                                        <textarea rows="3" class="form-control" placeholder="Nội dung nhận xét" id="content" v-model="content" ref="content"></textarea>
+                                        <label for="content">Viết nhận xét</label>
+                                        <textarea rows="3"
+                                          :class="['form-control', !is_valid_content || !is_valid_content_length ? 'form-control--error' : '']"
+                                          placeholder="Nội dung nhận xét" id="content" v-model="content" ref="content"></textarea>
+                                        <p class="mt-2 text--error d-inline-block col-md-12 no-padding mb-0" v-if="!is_valid_content">
+                                            Trường này là bắt buộc
+                                        </p>
+                                        <p class="mt-2 text--error d-inline-block col-md-12 no-padding mb-0" v-if="is_valid_content && !is_valid_content_length">
+                                            Nội dung nhận xét tối thiểu phải gồm 20 ký tự
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" v-model="purchased" id="purchased"> Đã mua sản phẩm này
+                                        </label>
                                     </div>
                                     <div class="float-left">
-                                        <star-rating :item-size="30"
-                                                     border-color="#ffffff"
-                                                     inactive-color="#D8D8D8"
-                                                     active-color="#ffc107"
-                                                     v-model="rating"
+                                        <star-rating
+                                            :class="[!is_valid_rating ? 'form-control form-control--error' : '']"
+                                            :item-size="30"
+                                             border-color="#ffffff"
+                                             inactive-color="#D8D8D8"
+                                             active-color="#ffc107"
+                                             v-model="rating"
                                         ></star-rating>
+                                        <p class="mt-2 text--error d-inline-block col-md-12 no-padding mb-0" v-if="!is_valid_rating">
+                                            Trường này là bắt buộc
+                                        </p>
                                     </div>
                                     <div style="text-align: right;">
                                         <button type="button" class="btn btn-primary btn-flat" v-on:click="submitReviews()">
@@ -205,7 +155,7 @@
                     </div>
                 </div>
             </div>
-            <div id="form-review-success" class="hidden">
+            <div id="form-review-success" v-if="reviews_success">
                 <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
                     <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
                     <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
@@ -220,8 +170,8 @@
                 <h2 style="margin-top:10px;font-size: 18px;text-align: center;">Tất cả nhận xét <small style="color: gray;">({{reviews.length}} nhận xét)</small></h2>
                 <div v-if="ratingAvg > 0" style="display: inline-block;width: 100%;max-height: 564px;margin: 10px 0px;overflow-y: auto;word-break: break-word;">
                     <div class="text" v-for="review in reviews" style="margin-bottom: 20px">
-                        <h5 style="font-size: 13px;margin: 0px;font-weight: bold;">{{ review.name }}
-                            <small style="color: green;font-style: italic;"><i class="fas fa-check-circle"></i> Đã mua hàng</small>
+                        <h5 style="font-size: 14px;margin: 0px;font-weight: bold;">{{ review.name }}
+                            <small style="color: green;font-style: italic;" v-if="review.purchased"><i class="fas fa-check-circle"></i> Đã mua hàng</small>
                         </h5>
                         <ul class="rate-product" style="display: inline-flex;">
                             <li><i v-bind:class="review.rating >= '1' ? 'fas' : 'far'" class="fa-star" ></i></li>
@@ -230,11 +180,11 @@
                             <li><i v-bind:class="review.rating >= '4' ? 'fas' : 'far'" class="fa-star" ></i></li>
                             <li><i v-bind:class="review.rating >= '5' ? 'fas' : 'far'" class="fa-star" ></i></li>
                         </ul>
-                        <p class="date" style="display: inline-flex;font-style: italic;color: gray;margin: 0;font-size: 10px;">
+                        <p class="date" style="display: inline-flex;font-style: italic;color: gray;margin: 0;font-size: 11px;">
                             {{ review.created_date | moment("from", "now") }}
                         </p>
                         <!--                    <i class="fas fa-thumbs-up like-button"></i>-->
-                        <p v-text="review.content" style="font-size: 12px;    margin: 0;"></p>
+                        <p v-text="review.content" style="font-size: 13px;margin: 0;line-height: 2;"></p>
                     </div>
                 </div>
                 <div v-else style="display: inline-block;width: 100%;text-align: center;">
@@ -253,8 +203,7 @@
 </template>
 
 <script>
-    // import {StarRating} from 'vue-rate-it';
-    // Vue.component('star-rating', StarRating);
+    import login from './LoginComponent.vue';
     export default {
         data() {
             return {
@@ -275,10 +224,6 @@
                 total_rating: 0,
                 product_name: '',
                 rating: 0,
-                username: '',
-                fullname: '',
-                phone: '',
-                email: '',
                 content: '',
                 email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                 phone_reg : /^((09|03|07|08|05)+([0-9]{8})\b)$/,
@@ -288,22 +233,68 @@
                 buttonText: 'Xem thêm',
                 submit: false,
                 hidden: false,
-                hasLogin: false,
-                isRegister: false,
-                password:''
+                isLogged: true,
+                customer_name: '',
+                reviews_success: false,
+                isReviewed: false,
+                is_valid_content: true,
+                is_valid_rating: true,
+                is_valid_content_length: true,
+                customer_id: '',
+                purchased: false
             }
         },
+        mixins: [
+            login
+        ],
         props: ['product_id'],
         components: {
             // StarRating
         },
         created() {
             this.url = url;
+            this.checkLogged();
             this.getAllReviews(3);
             this.getRatingAvg();
             this.getRatingNumberDetail();
         },
+        watch: {
+            content: function () {
+                this.is_valid_content = this.content;
+                this.is_valid_content_length = this.is_valid_content && this.is_valid_content.length > 20;
+            },
+            rating: function() {
+                this.is_valid_rating = this.rating;
+            }
+        },
         methods: {
+            checkLogged: function() {
+                axios.post(url + '/api/check-logged')
+                    .then(response => {
+                        if(response.data !== 'not_exist_user') {
+                            this.isLogged = true;
+                            this.customer_name = response.data.name;
+                            this.customer_id = response.data.id;
+                            this.checkReviewed();
+                        } else {
+                            this.isLogged = false;
+                        }
+                    }).catch(e =>{
+                        this.isLogged = false;
+                    });
+            },
+            checkReviewed: function() {
+                axios.post(url + '/api/check-reviewed',{
+                    customer_id: this.customer_id,
+                    product_id: this.product_id
+                }).then(response => {
+                        if(response.data > 0) {
+                            this.isReviewed = true;
+                        }
+                    }).catch(e =>{
+                    this.isLogged = false;
+                });
+            },
             getRatingNumberDetail: function() {
                 axios.get(url + '/api/rating-number-detail/'+this.product_id)
                     .then(response => {
@@ -350,7 +341,6 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += rowperpage;
                         let len = this.reviews.length;
@@ -385,7 +375,6 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.reviews = response.data;
                     }
@@ -398,23 +387,18 @@
                 this.submit = true;
                 let review = [];
                 review.push({
-                    "name": this.fullname,
-                    "phone": this.phone,
-                    "email": this.email,
+                    "customer_id": this.customer_id,
                     "content" : this.content,
                     "rating" : this.rating,
                     "product_id": this.product_id,
-                    "product_name": this.product_name
+                    "product_name": this.product_name,
+                    "purchased": this.purchased
                 });
-                console.log(JSON.stringify(review));
                 axios.post(url + "/api/submit-reviews", {
                     body: review
                 }).then(response => {
-                    console.log(response.data);
-                    if(response.data === 201) {
-                        $("#rating").addClass('hidden');
-                        $("#form-review-success").removeClass('hidden');
-                        // this.reload++;
+                    if(response.status === 200) {
+                        this.reviews_success = true;
                         this.row = 0;
                         this.reviews = [];
                         this.reloadReviews(3);
@@ -430,66 +414,23 @@
                 })
             },
             validate: function () {
-                if(this.fullname && this.phone && this.content && this.rating) {
-                    return true;
-                }
-                if(!this.fullname) {
-                    this.$refs.fullname.focus();
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Bạn chưa nhập tên'
-                    });
-                    return false;
-                }
-                if(this.phone === '') {
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Bạn chưa nhập số điện thoại'
-                    });
-                    this.$refs.phone.focus();
-                    return false;
-                }  else if(!this.phone_reg.test(this.phone)) {
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Số điện thoại chưa đúng'
-                    });
-                    this.$refs.phone.focus();
-                    return false;
-                }
-                if(this.email !== '' && !this.email_reg.test(this.email)) {
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Email chưa đúng'
-                    });
-                    this.$refs.email.focus();
-                    return false;
-                }
+                let is_valid_form = true;
                 if(!this.content) {
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Bạn chưa nhập nội dung nhận xét'
-                    });
-                    this.$refs.content.focus();
-                    return false;
+                    this.is_valid_content = false;
+                    is_valid_form = false;
                 }
                 if(!this.rating) {
-                    this.$toast.error({
-                        title:'Lỗi',
-                        message:'Bạn chưa chọn số sao'
-                    });
-                    return false;
+                    this.is_valid_rating = false;
+                    is_valid_form = false;
                 }
+                return is_valid_form;
             },
-            isPhoneValid: function() {
-                return (this.phone === "")? "" : (this.phone_reg.test(this.phone)) ? 'has-success' : 'has-error';
-            },
-            isEmailValid: function() {
-                return (this.email === "")? "" : (this.email_reg.test(this.email)) ? 'has-success' : 'has-error';
-            },
-            isPasswordValid: function() {
-                return this.password.length >= 6 ? 'has-success' : 'has-error';
-            }
         },
     }
 
 </script>
+<style>
+    .rating-block i.fa-star.far {
+        color: rgb(255, 255, 255) !important;
+    }
+</style>

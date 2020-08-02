@@ -3,6 +3,7 @@
 @section('content')
     <div id="app" class="view view-reviews ios-edges">
         @include('theme.layout.tabbar')
+        <sidebar-component></sidebar-component>
         <div class="page">
             <div class="navbar navbar-page">
                 <div class="navbar-inner sliding">

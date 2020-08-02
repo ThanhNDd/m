@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendEmail;
 use App\Mail\SendEmailReviews;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,6 +41,15 @@ class ReviewsController extends Controller
         return response($rating_avg, Response::HTTP_OK);
     }
 
+    public function checkReviewed(Request $request) {
+        $customer_id = $request->customer_id;
+        $product_id = $request->product_id;
+        $reviews = DB::table('smi_reviews')
+            ->where([['product_id','=', $product_id],['customer_id','=',$customer_id]])
+            ->count();
+        return response($reviews, Response::HTTP_OK);
+    }
+
     public function ratingNumberDetail($product_id) {
         $ratings = DB::table("smi_reviews")
             ->selectRaw('rating, count(rating) as number, cast(count(rating) * 100 / (select count(rating) from smi_reviews where product_id = ?) as decimal(10,0)) as percent', [$product_id])
@@ -65,7 +73,8 @@ class ReviewsController extends Controller
         $product_id = $request->product_id;
         $reviews = DB::table('smi_reviews')
             ->join('smi_products', 'smi_reviews.product_id', '=', 'smi_products.id')
-            ->select('smi_reviews.*', 'smi_products.name as product_name')
+            ->join('smi_customers', 'smi_reviews.customer_id', '=', 'smi_customers.id')
+            ->select('smi_reviews.*', 'smi_products.name as product_name','smi_customers.name')
             ->where([['product_id', $product_id]])
             ->orderBy('created_date', 'desc')
             ->offset($row)
@@ -80,54 +89,72 @@ class ReviewsController extends Controller
         $data = $body[0];
         DB::beginTransaction();
         try {
-            if (!empty($data['name']) &&
-                !empty($data['phone']) &&
-                !empty($data['content']) &&
-                !empty($data['rating']) &&
-                !empty($data['product_id'])) {
-
-                $id = DB::table('smi_reviews')->insertGetId(
-                    [
-                        'name' => $data['name'],
-                        'phone' => $data['phone'],
-                        'email' => $data['email'],
-                        'content' => $data['content'],
-                        'rating' => (integer)$data['rating'],
-                        'product_id' => (integer)$data['product_id']
-                    ]
-                );
-                if(empty($id)) {
-                  Log::error('[Reviews][Store] Cannot insert reviews');
-                  throw new Exception('Cannot insert reviews');
-                }
-                DB::commit();
-                try {
-                    $rating_avg = $this->getRatingAvg($data['product_id']);
-                    $product = new ProductController();
-                    $product->updateRatingAndReviews($data['product_id'],$rating_avg);
-
-                    $mailContent = [];
-                    $mailContent['customer_name'] = $data['name'];
-                    $mailContent['customer_phone'] = $data['phone'];
-                    $mailContent['customer_email'] = $data['email'];
-                    $mailContent['product_name'] = $data['product_name'];
-                    $mailContent['rating'] = $data['rating'];
-                    $mailContent["content"] = $data['content'];
-                    $mailContent["review_date"] = date("d/m/Y H:i:s");
-                    Mail::send(new SendEmailReviews($mailContent));
-                } catch (\Exception $ex) {
-                    Log::error('[Reviews][Store] Error Exception >>>>>> '.$ex->getMessage());
-                    echo $ex->getMessage();
-                }
-                return response()->json(201);
-            } else {
-                Log::error("[Reviews][Store] Invalid input data");
-                throw new Exception ("Invalid input data");
+            if(!$this->validate_form($data)) {
+                return response("invalid_input", Response::HTTP_INTERNAL_SERVER_ERROR);
             }
+            $customer_id = $data['customer_id'];
+            $id = DB::table('smi_reviews')->insertGetId(
+                [
+                    'customer_id' => $data['customer_id'],
+                    'content' => $data['content'],
+                    'rating' => (integer)$data['rating'],
+                    'product_id' => (integer)$data['product_id'],
+                    "purchased" => $data["purchased"]
+                ]
+            );
+            if(empty($id)) {
+              throw new Exception('Cannot insert reviews');
+            }
+            DB::commit();
+            try {
+                $rating_avg = $this->getRatingAvg($data['product_id']);
+                $product = new ProductController();
+                $product->updateRatingAndReviews($data['product_id'],$rating_avg);
+
+                $customerController = new CustomerController();
+                $customer = $customerController->findById($customer_id);
+
+                $mailContent = [];
+                if(!empty($customer)) {
+                    $mailContent['customer_name'] = $customer[0]->name;
+                    $mailContent['customer_phone'] = $customer[0]->phone;
+                    $mailContent['customer_email'] = $customer[0]->email;
+                }
+                $mailContent['product_name'] = $data['product_name'];
+                $mailContent['rating'] = $data['rating'];
+                $mailContent["content"] = $data['content'];
+                $mailContent["review_date"] = date("d/m/Y H:i:s");
+                Mail::to(env("MAIL_TO_ADDRESS"))->send(new SendEmailReviews($mailContent));
+            } catch (\Exception $ex) {
+                Log::error('[Reviews][Store] Error Exception >>>>>> '.$ex->getMessage());
+            }
+            return response('success', Response::HTTP_OK);
         } catch (Exception $e) {
             DB::rollback();
-            Log::error('[Reviews][Store] Error Exception >>>>>> '.$e->getMessage());
-            return response()->json(500);
+            return response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function validate_form($data) {
+        if(empty($data)) {
+            return false;
+        }
+        $customer_id = $data['customer_id'];
+        if(empty($customer_id)) {
+            return false;
+        }
+        $content = $data['content'];
+        if(empty($content)) {
+            return false;
+        }
+        $rating = $data['rating'];
+        if(empty($rating)) {
+            return false;
+        }
+        $product_id = $data['product_id'];
+        if(empty($product_id)) {
+            return false;
+        }
+        return true;
     }
 }

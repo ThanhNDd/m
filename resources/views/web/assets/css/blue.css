@@ -64,7 +64,7 @@ a {
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li.active a:after {
     content: "";
     position: absolute;
-    top: 92%;
+    top: 83%;
     left: 42%;
     border-width: 0px 6px 6px 6px;
     border-style: solid;
@@ -78,7 +78,7 @@ a {
 .cnt-home .header-style-1 .header-nav .navbar .navbar-nav > li a:hover:after {
     content: "";
     position: absolute;
-    top: 92%;
+    top: 83%;
     left: 42%;
     border-width: 0px 6px 6px 6px;
     border-style: solid;
