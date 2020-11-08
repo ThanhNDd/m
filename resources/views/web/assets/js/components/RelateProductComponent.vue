@@ -126,7 +126,7 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += rowperpage;
                         let len = this.products.length;

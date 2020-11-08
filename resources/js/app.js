@@ -41,11 +41,8 @@ Vue.use(IconsPlugin);
 
 Vue.use(VueSweetalert2);
 Vue.use(VueLazyload, {
-  lazyComponent: true,
   preLoad: 1.3,
-  attempt: 1,
   listenEvents: ['scroll'],
-  throttleWait: 200
 });
 Vue.use(Toast, {
     type: 'center',

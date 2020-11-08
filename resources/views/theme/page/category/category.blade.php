@@ -11,37 +11,36 @@
             <div class="page-content">
                 <div class="official-brand">
                     <!-- slider brand -->
-                    <div class="slider-brand segments-bottom">
-                        <div class="container">
-                            <div class="swiper-container swiper-category">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="content">
-                                            <div class="mask"></div>
-                                            <img src="{{ url('public/mobile/images/brand1.png') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="content">
-                                            <div class="mask"></div>
-                                            <img src="{{ url('public/mobile/images/brand2.png') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="content">
-                                            <div class="mask"></div>
-                                            <img src="{{ url('public/mobile/images/brand3.png') }}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-{{--                                <div class="swiper-pagination"></div>--}}
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="slider-brand segments-bottom">--}}
+{{--                        <div class="container">--}}
+{{--                            <div class="swiper-container swiper-category">--}}
+{{--                                <div class="swiper-wrapper">--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="content">--}}
+{{--                                            <div class="mask"></div>--}}
+{{--                                            <img src="{{ url('public/mobile/images/brand1.png') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="content">--}}
+{{--                                            <div class="mask"></div>--}}
+{{--                                            <img src="{{ url('public/mobile/images/brand2.png') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="content">--}}
+{{--                                            <div class="mask"></div>--}}
+{{--                                            <img src="{{ url('public/mobile/images/brand3.png') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <!-- end slider brand -->
                     <div class="product-brand segments-bottom product">
                         <div class="container">
-                            <category-component/>
+                            <category-component></category-component>
                         </div>
                     </div>
                 </div>

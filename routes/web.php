@@ -29,6 +29,7 @@ Route::group(['prefix' => '/danh-muc'], function () {
     Route::get('/be-gai.html', 'CategoriesController@getGirls');
     Route::get('/giay-dep.html', 'CategoriesController@getShoes');
     Route::get('/phu-kien.html', 'CategoriesController@getAccessories');
+    Route::get('/balo.html', 'CategoriesController@getBalo');
 });
 
 Route::group(['prefix' => '/bo-suu-tap'], function () {

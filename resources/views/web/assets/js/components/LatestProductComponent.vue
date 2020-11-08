@@ -72,7 +72,7 @@
         },
         created() {
             this.url = url;
-            this.getProducts(10);
+            this.getProducts(5);
         },
         methods: {
             getProducts: function (rowperpage) {

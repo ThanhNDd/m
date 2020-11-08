@@ -39,7 +39,6 @@
             return {
                 products: [],
                 url: '',
-                swiper: null,
                 isFinished: false,
                 row: 0,
             }
@@ -87,11 +86,11 @@
             }
         },
         mounted:function () {
-            this.swiper = new window.Swiper('.swiper-container', {
-                cssMode: true,
-                mousewheel: true,
-                keyboard: true,
-            })
+            // this.swiper = new window.Swiper('.swiper-container', {
+            //     cssMode: true,
+            //     mousewheel: true,
+            //     keyboard: true,
+            // })
         }
     }
 </script>

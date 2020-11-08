@@ -6,7 +6,7 @@
                     <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
                         <div class="image">
                           <div class="image" v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
-                            <img v-bind:data-src="product.image | format_image('200x200')" v-bind:alt="product.name">
+                              <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('200x200')" v-bind:alt="product.name">
                           </div>
                         </div>
                       <div class="text">

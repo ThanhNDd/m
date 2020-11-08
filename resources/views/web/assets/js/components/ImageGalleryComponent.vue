@@ -1,7 +1,7 @@
 <template>
   <div id="owl-single-product">
       <div class="product-image-gallery">
-         <img v-bind:src="img" width="600px" alt="" title="">
+          <img v-bind:src="img" width="600px" alt="" title="">
       </div>
       <div class="thumbnail">
         <img v-for="(img, idx) in all_images" v-bind:src="img | format_image('64x64')" v-bind:id="idx" width="64px" @click="chooseImage(idx)" v-bind:class="activeIndex === idx ? 'active' : '' " alt="" title="">
@@ -32,6 +32,15 @@
             chooseImage: function (index) {
                 // $(".thumbnail img").removeClass("active");
                 document.querySelector('.thumbnail').scrollLeft = Number(68)*(index-4);
+                // if(index != this.activeIndex) {
+                    $(".thumbnail").children("img").removeClass("active");
+                    setTimeout(function () {
+                        $(".thumbnail").children("[id="+index+"]").addClass("active");
+                    },200);
+
+                // } else {
+                //     $(".thumbnail").children("[id="+index+"]").addClass("active");
+                // }
                 this.activeIndex = index;
                 this.img = this.all_images[index];
                 this.setTitleImage();

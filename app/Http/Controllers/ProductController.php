@@ -33,7 +33,7 @@ class ProductController extends Controller
                                                      a.image,
                                                      a.rating,
                                                      a.reviews
-                                            ORDER BY a.updated_at DESC, a.created_at DESC
+                                            ORDER BY a.created_at DESC
                                             LIMIT $row,
                                                   $rowperpage"));
         return response($products, Response::HTTP_OK);
@@ -166,14 +166,16 @@ class ProductController extends Controller
                 $products = Crypt::decrypt(Cookie::get('recently_viewed'), false);
 
                 $products = json_decode($products);
-                $listId = array();
+                $ids = '';
                 foreach ($products as $key => $value) {
-                    array_push($listId, $value->id);
+                    if(!empty($value->id)) {
+                        $ids .= ",".$value->id;
+                    }
                 }
-                $ids = implode(',',$listId);
-                $ids = substr($ids, 1);
-                $products = DB::select(
-                    DB::raw("SELECT a.id,
+                if(!empty($ids)) {
+                    $ids = substr($ids, 1);
+                    $products = DB::select(
+                        DB::raw("SELECT a.id,
                                                    a.name,
                                                    a.image,
                                                    b.image as variant_image,
@@ -195,8 +197,9 @@ class ProductController extends Controller
                                                      a.reviews
                                             ORDER BY a.updated_at DESC, a.created_at DESC
                                             LIMIT $row,$rowperpage"
-                    )
-                );
+                        )
+                    );
+                }
             } catch (\Exception $ex) {
                 echo $ex->getMessage();
             }

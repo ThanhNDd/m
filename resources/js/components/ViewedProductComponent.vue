@@ -51,7 +51,7 @@
                     row: 0,
                     rowperpage: rowperpage
                 }).then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.products = response.data;
                     // if (response.data !== '' && response.data.length > 0) {
                     //     let len = this.products.length;
@@ -70,11 +70,11 @@
             },
         },
         mounted:function () {
-            this.swiper = new window.Swiper('.swiper-container', {
-                cssMode: true,
-                mousewheel: true,
-                keyboard: true,
-            })
+            // this.swiper = new window.Swiper('.swiper-container', {
+            //     cssMode: true,
+            //     mousewheel: true,
+            //     keyboard: true,
+            // })
         }
     }
 </script>

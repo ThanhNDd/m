@@ -16,90 +16,9 @@ const detail = new Vue({
   el: '#detail',
   data() {
     return {
-      // products: [],
-      // type: '',
-      // description: '',
-      // rating: 0,
-      // fullname: '',
-      // phone: '',
-      // email: '',
-      // content: '',
-      // email_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-      // phone_reg: /^((09|03|07|08|05)+([0-9]{8})\b)$/,
       reload: 0,
-      // items: [],
     }
   },
   methods: {
-    // checkLogged: function() {
-    //   axios.post(url + '/api/check-logged')
-    //       .then(response => {
-    //         if(response.data !== 'not_exist_user') {
-    //           this.isLogged = true;
-    //           this.customer_name = response.data.name;
-    //           this.customer_id = response.data.id;
-    //           this.checkReviewed();
-    //         } else {
-    //           this.isLogged = false;
-    //         }
-    //       }).catch(e =>{
-    //     this.isLogged = false;
-    //   });
-    // },
-    // addToCart: function (id, name) {
-    //   let color = document.querySelector('input[name=color]:checked');
-    //   if (color == null) {
-    //     this.$toast.error({
-    //       title:'Lỗi',
-    //       message:'Bạn chưa chọn màu'
-    //     });
-    //     return;
-    //   }
-    //   let size = document.querySelector('input[name=size]:checked');
-    //   if (size == null) {
-    //     this.$toast.error({
-    //       title:'Lỗi',
-    //       message:'Bạn chưa chọn size'
-    //     });
-    //     return;
-    //   }
-    //   let qty = document.querySelector("#qty").value;
-    //   if (!qty || qty < 0) {
-    //     qty = 1;
-    //   }
-    //   let price = document.querySelector("#retail").value;
-    //   let sku = document.querySelector("#sku_selected").value;
-    //   let image = document.querySelector("#image_selected").value;
-    //   this.products = [];
-    //   this.products.push({
-    //     "id": id,
-    //     "sku": sku,
-    //     "name": name,
-    //     "price": price,
-    //     "image": image,
-    //     "color": color.value,
-    //     "size": size.value,
-    //     "qty": qty
-    //   });
-    //   this.storeInCart();
-    // },
-    // buyNow: function (id, name, price) {
-    //   this.type = "buyNow";
-    //   this.addToCart(id, name, price);
-    // },
-    // storeInCart: function () {
-    //   axios.post(url + "/api/cart", {
-    //     body: this.products
-    //   }).then(response => {
-    //     this.$toast.success({
-    //       title:'Thông báo',
-    //       message:'Sản phẩm đã được thêm vào giỏ hàng'
-    //     });
-    //     document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
-    //     if (this.type === "buyNow") {
-    //       window.location.href = url + "/thanh-toan.html";
-    //     }
-    //   })
-    // },
   }
 });

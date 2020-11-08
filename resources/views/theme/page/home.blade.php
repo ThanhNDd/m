@@ -1,5 +1,5 @@
 @extends('theme.layout.layout')
-@section('title', 'Trang chủ')
+@section('title', 'Thời trang trẻ em thu đông 2020 | Quần áo trẻ em thu đông 2020 | Quần áo bé trai, váy bé gái')
 @section('content')
   <div id="app"></div>
   <div id="home" class="view view-main view-init ios-edges">
@@ -23,14 +23,14 @@
 {{--                                      </div>--}}
                               </div>
                           </div>
-                          <div class="swiper-slide">
-                              <div class="content">
-                                  <div class="mask"></div>
+{{--                          <div class="swiper-slide">--}}
+{{--                              <div class="content">--}}
+{{--                                  <div class="mask"></div>--}}
 {{--                                      <div class="item" v-lazy-container="{ selector: 'img', error: '{{url('')}}/public/web/images/404.jpg', loading: '{{url('')}}/public/web/images/loading.gif' }">--}}
-                                          <img src="{{ url('public/mobile/images/banner-m1.png') }}" alt="">
+{{--                                          <img src="{{ url('public/mobile/images/banner-m1.png') }}" alt="">--}}
 {{--                                      </div>--}}
-                              </div>
-                          </div>
+{{--                              </div>--}}
+{{--                          </div>--}}
 {{--                          <div class="swiper-slide">--}}
 {{--                              <div class="content">--}}
 {{--                                  <div class="mask"></div>--}}

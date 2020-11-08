@@ -11,7 +11,8 @@
                             <div class="image">
 <!--                                <img v-bind:src="product.image | format_image('150x150')" v-bind:alt="product.name">-->
                                 <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">
-                                    <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('150x150')" v-bind:alt="product.name">
+                                    <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('150x150')"
+                                         v-bind:alt="product.name">
                                 </div>
                             </div>
                             <div class="text">
@@ -44,7 +45,7 @@
                 row: 0,
                 rowperpage: 10,
                 url: '',
-                submit: false,
+                submit: false
             }
         },
         created() {
@@ -90,11 +91,7 @@
             }
         },
         mounted:function () {
-            this.swiper = new window.Swiper('.swiper-container', {
-                cssMode: true,
-                mousewheel: true,
-                keyboard: true,
-            })
+            // this.swiper = new Swiper('.swiper-container');
         }
     }
 </script>

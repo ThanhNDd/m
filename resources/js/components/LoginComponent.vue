@@ -579,7 +579,6 @@
                 isVerifySMSCodeSuccess: false,
                 isNewPassword: false,
                 hasVerifySMSCode: false,
-
                 birthday: '',
                 options: {
                     format: 'DD/MM/YYYY',

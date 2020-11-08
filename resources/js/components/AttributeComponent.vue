@@ -67,7 +67,7 @@
             <li v-if="description.length > 0">
                 <div style="position: relative;margin-bottom: 40px;overflow: hidden;" v-bind:style="{'height':height}">
                     <p style="font-size: 13px;color: #333;margin-top: 10px;margin-bottom: 10px;">Mô tả</p>
-                    <div class="description" style="font-size: 13px;color: #333;" v-html="description">
+                    <div class="description" style="font-size: 13px;color: #333;"  v-html="description">
                     </div>
                     <div style="font-size: 13px;text-align: center;height: 50px;display: table;width: 100%;bottom: 0;" v-bind:style="{'position':position}">
                         <div style="display: table-cell;background: linear-gradient(rgba(255, 255, 255, 0.7) 10%, rgb(255, 255, 255));vertical-align: middle;">
@@ -128,6 +128,7 @@
                 sizes: [],
                 images: [],
                 short_description: '',
+                description: '',
                 products: [],
                 quantities: [],
                 checked: false,
@@ -145,7 +146,6 @@
         mixins: [
             slider
         ],
-        props: ['description'],
         created() {
             this.url = url;
             let id = document.querySelector('#product_id').getAttribute('value');
@@ -154,6 +154,7 @@
                     this.attributes = response.data;
                     this.products = response.data.products;
                     this.short_description = response.data.products[0].short_description;
+                    this.description = response.data.products[0].description;
                     let color = '';
                     let size = '';
                     let arr_colors = [];
@@ -357,7 +358,7 @@
                 this.products.forEach(function (item) {
                     if (item.color == color) {
                         _self.sizes.push(item.size);
-                        _self.quantities.push(item.quantity);
+                        _self.quantities.push(Number(item.quantity));
                     }
                 });
             },

@@ -78,7 +78,7 @@ order history
 body {
     font-family: 'Roboto', sans-serif;
     color: #888;
-    font-size: 12px !important;
+    font-size: 14px !important;
     font-weight: 400;
     background: #fff;
 }
@@ -3222,4 +3222,17 @@ p.text--error {
 }
 .list .item-link .item-inner {
     padding-right: 5px !important;
+}
+.swiper-container {
+    overflow: auto hidden !important;
+}
+img[lazy=loading] {
+    height: 32px !important;
+    width: 100% !important;
+    text-align: center;
+    display: inline-block;
+}
+#description div p {
+    line-height: 1.5;
+    margin: 5px;
 }

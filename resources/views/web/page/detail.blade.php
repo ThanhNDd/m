@@ -34,9 +34,6 @@
       <input type="hidden" id="cat_id" ref="categoryId" value="{{$product->category_id}}">
       <input type="hidden" id="product_id" ref="productId" value="{{$product->id}}">
       <input type="hidden" id="type_id" ref="typeId" value="{{$product->type}}">
-{{--      <input type="hidden" id="retail" ref="retail" value="">--}}
-{{--      <input type="hidden" id="sku_selected" ref="sku_selected" value="">--}}
-{{--      <input type="hidden" id="image_selected" ref="image_selected" value="">--}}
       <div class="body-content outer-top-xs">
         <div class='container'>
           <div class='row single-product'>
@@ -59,10 +56,10 @@
                     <div class="product-info">
                       <h1 class="name">{{$product->name}}</h1>
                       <div>
-                        <lazy-component>
+{{--                        <lazy-component>--}}
                           <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'"
                                           :key="reload"></rating-component>
-                        </lazy-component>
+{{--                        </lazy-component>--}}
                       </div>
                       <div class="stock-container info-container m-t-10">
                         <div class="row">
@@ -95,7 +92,7 @@
                       </div><!-- /.row -->
                       <div class="description-container m-t-20">
 {{--                        <lazy-component>--}}
-                          <attributes-component/>
+                        <attributes-component></attributes-component>
 {{--                        </lazy-component>--}}
                       </div>
 {{--                      <div class="quantity-container info-container">--}}
@@ -149,7 +146,6 @@
                   </div><!-- /.col-sm-7 -->
                 </div><!-- /.row -->
               </div>
-              @if($product->description)
               <div class="product-tabs inner-bottom-xs">
                 <div class="row">
                   <div class="col-sm-12 col-md-3 col-lg-3">
@@ -160,14 +156,17 @@
                     <div class="tab-content no-margin d-inline-block col-md-12 no-padding" style="max-height: 500px;overflow-y: auto;overflow-x: hidden;">
                       <div id="description" class="tab-pane in active">
                         <div class="product-tab">
-                          <p class="text">{!! $product->description !!}</p>
+                          @if($product->description != '' && $product->description != '<p><br></p>')
+                            {!! $product->description !!}
+                          @else
+                            Mô tả đang được cập nhật ... !!!
+                          @endif
                         </div>
                       </div><!-- /.tab-pane -->
                     </div><!-- /.tab-content -->
                   </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.product-tabs -->
-              @endif
               <div>
                   <relate-product-component/>
               </div>
@@ -179,9 +178,7 @@
               </div>
               @if(isset($hasCookie) && $hasCookie)
                 <div>
-{{--                  <lazy-component>--}}
                     <recently-product-component></recently-product-component>
-{{--                  </lazy-component>--}}
                 </div>
               @endif
             </div>

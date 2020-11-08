@@ -23,6 +23,8 @@
                 <meta property="og:image" content="{{$image->src}}"/>
             @endif
         @endforeach
+    @elseif (!empty($product) && !empty($product->variant_image))
+        <meta property="og:image" content="{{$product->variant_image}}"/>
     @else
         <meta property="og:image" content="{{url('public/web/images/icon.png') }}"/>
     @endif
@@ -34,7 +36,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="cnt-home">
-    @include('web.layout.fbsdk')
+    @include('theme.layout.fbsdk')
+    @include('theme.layout.gg')
 {{--    @include('web.layout.header')--}}
     @yield('content')
 {{--    @include('web.layout.footer')--}}

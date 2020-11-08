@@ -1,6 +1,6 @@
 <template>
   <div class="search-result-container ">
-    <div id="myTabContent" class="tab-content category-list">
+    <div id="myTabContent" class="tab-content category-list ml-0 mr-0">
       <div class="tab-pane active " id="grid-container">
         <div class="category-product" v-if="products.length > 0">
           <div class="row">
@@ -133,7 +133,7 @@
                 axios.get(url + '/api/danh-muc/'+pathname)
                     .then(response => {
                     if(response.data > 0) {
-                        this.total = Math.round(response.data / this.rowperpage);
+                        this.total = Math.ceil(response.data / this.rowperpage);
                     }
                 });
             },
@@ -146,7 +146,7 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                  console.log(response.data);
+                  // console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.products = response.data;
                         if(scroll) {

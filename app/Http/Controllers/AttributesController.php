@@ -13,9 +13,22 @@ class AttributesController extends Controller
 {
 
     public function show($id) {
-        $products = DB::select(DB::raw("select a.id, a.name, a.image as product_image, a.origin, a.material, a.short_description, b.sku, b.color, b.size, b.retail, b.quantity, b.image
-            from smi_products a left join smi_variations b on a.id = b.product_id 
-            where a.id = $id"));
+        $products = DB::select(DB::raw("SELECT a.id,
+                                                   a.name,
+                                                   a.image AS product_image,
+                                                   a.origin,
+                                                   a.material,
+                                                   a.short_description,
+                                                   a.description,
+                                                   b.sku,
+                                                   b.color,
+                                                   b.size,
+                                                   b.retail,
+                                                   b.quantity,
+                                                   b.image
+                                            FROM smi_products a
+                                            LEFT JOIN smi_variations b ON a.id = b.product_id
+                                            WHERE a.id = $id"));
 //        $colors = DB::table('smi_variations')
 //            ->select('color')
 //            ->distinct()
@@ -56,16 +69,21 @@ class AttributesController extends Controller
         if(!empty($data)) {
             $image_product = $data[0]->product_image;
             foreach (json_decode($image_product) as $k => $v) {
-                $img = $v->src;
-//                $img = str_replace(".jpg","64x64.jpg",$img);
-                array_push($images, $img);
+                if(!empty($v->src)) {
+                    $img = $v->src;
+                    if ($v->type == 'upload') {
+                        $img = env('IMAGE_URL') . $img;
+                    }
+                    array_push($images, $img);
+                }
             }
             $color = '';
             foreach ($data as $key => $value) {
                 if($color != $value->color) {
                     $color = $value->color;
-//                    $image = str_replace(".jpg","64x64.jpg",$value->image);
-                    array_push($images, $value->image);
+                    if(!empty($value->image)) {
+                        array_push($images, $value->image);
+                    }
                 }
             }
         }

@@ -569,3 +569,23 @@ li.media {
   margin-left: 5px;
   margin-top: 6px;
 }
+.policy-info div, .policy-info div p, #description div, #description div p {
+  line-height: 1.5;
+  margin: 5px;
+  font-family: Roboto;
+}
+img[lazy=loading] {
+  height: 32px !important;
+  width: 100% !important;
+  text-align: center;
+  display: inline-block;
+}
+
+pre {
+  display: block;
+  color: #212529;
+  white-space: pre-wrap;
+  font-family: Roboto;
+  font-size: 13px;
+  overflow: hidden;
+}

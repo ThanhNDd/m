@@ -62,7 +62,7 @@
                 products: '',
                 isFinished: false,
                 row: 0, // Record selction position
-                rowperpage: 10, // Number of records fetch at a time
+                rowperpage: 5, // Number of records fetch at a time
                 buttonText: 'Xem thêm',
                 url: ''
             }
@@ -77,7 +77,7 @@
                     row: this.row,
                     rowperpage: this.rowperpage
                 }).then(response => {
-                  console.log(response.data);
+                  // console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                         this.row += this.rowperpage;
                         let len = this.products.length;

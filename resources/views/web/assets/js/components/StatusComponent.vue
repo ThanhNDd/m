@@ -19,7 +19,11 @@
                 axios.get(url + '/api/status/'+this.product_id)
                     .then(response => {
                         this.status = response.data > 0;
-                        document.querySelector("#remain_qty").textContent = response.data+" sản phẩm có sẵn";
+                        setTimeout(function () {
+                            if(document.querySelector("#remain_qty")) {
+                                document.querySelector("#remain_qty").textContent = response.data+" sản phẩm có sẵn";
+                            }
+                        }, 500);
                     });
             },
         },

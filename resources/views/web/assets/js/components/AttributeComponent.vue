@@ -3,7 +3,7 @@
         <ul>
             <li>
                 <div class="row">
-                    <div class="col-md-12 col-lg-12" v-html="short_description"></div>
+                    <div class="col-md-12 col-lg-12" v-html="'<pre>'+short_description+'</pre>'"></div>
                 </div>
             </li>
             <li>
@@ -282,7 +282,7 @@
                 this.products.forEach(function (item) {
                     if (item.color == color) {
                         _self.sizes.push(item.size);
-                        _self.quantities.push(item.quantity);
+                        _self.quantities.push(Number(item.quantity));
                     }
                 });
             },

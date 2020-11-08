@@ -13,12 +13,14 @@
     export default {
         data() {
             return {
+                url: '',
                 img: '',
                 all_images: [],
                 activeIndex: 0
             }
         },
         created() {
+            this.url = url;
             let id = document.querySelector('#product_id').getAttribute('value');
             axios.get(url + '/api/images/'+id)
                 .then(response => {
@@ -30,8 +32,11 @@
         methods: {
             chooseImage: function (index) {
                 // $(".thumbnail img").removeClass("active");
-                document.querySelector('.thumbnail').scrollLeft = Number(68)*(index-4);
-                this.activeIndex = index;
+                document.querySelector('.thumbnail').scrollLeft = Number(68)*(index-6);
+                if(index != this.activeIndex) {
+                    $(".thumbnail").children("img").removeClass("active");
+                    $(".thumbnail").children("[id="+index+"]").addClass("active");
+                }
                 this.img = this.all_images[index];
                 this.setTitleImage();
             },

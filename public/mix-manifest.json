@@ -10,8 +10,6 @@
     "/mobile/js/detail.min.js": "/mobile/js/detail.min.js",
     "/mobile/js/home.min.js": "/mobile/js/home.min.js",
     "/web/css/webapp.css": "/web/css/webapp.css",
-    "/resources/views/web/assets/js/app.min.js": "/resources/views/web/assets/js/app.min.js",
-    "/resources/views/web/assets/js/detail.min.js": "/resources/views/web/assets/js/detail.min.js",
     "/web/js/webapp.min.js": "/web/js/webapp.min.js",
     "/web/js/detail.min.js": "/web/js/detail.min.js",
     "/web/css/webapp.min.css": "/web/css/webapp.min.css"

@@ -119,11 +119,16 @@
                                   </a>
                                 </li>
                                 <li class="dropdown hidden-sm">
-                                  <a href="{{ url("/khuyen-mai.html") }}">
-                                    Khuyến mãi
-                                    <span class="menu-label hot-menu hidden-xs">hot</span>
-                                  </a>
+                                    <a href="{{ url("/danh-muc/balo.html") }}">
+                                        Balo
+                                    </a>
                                 </li>
+{{--                                <li class="dropdown hidden-sm">--}}
+{{--                                  <a href="{{ url("/khuyen-mai.html") }}">--}}
+{{--                                    Khuyến mãi--}}
+{{--                                    <span class="menu-label hot-menu hidden-xs">hot</span>--}}
+{{--                                  </a>--}}
+{{--                                </li>--}}
                                 <li class="d-inline-block float-right col-md-4 no-padding">
                                     <slider-text-component></slider-text-component>
                                 </li>

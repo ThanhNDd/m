@@ -64,8 +64,8 @@ let mix = require('laravel-mix');
       'resources/views/web/assets/css/vue-select.css',
     ], 'public/web/css/webapp.css');
 
-  mix.minify('resources/views/web/assets/js/app.js');
-  mix.minify('resources/views/web/assets/js/detail.js');
+  // mix.minify('resources/views/web/assets/js/app.js');
+  // mix.minify('resources/views/web/assets/js/detail.js');
   mix.minify('public/web/js/webapp.js');
   mix.minify('public/web/js/detail.js');
   // mix.minify('resources/views/web/assets/css/main.css');

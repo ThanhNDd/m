@@ -48,7 +48,7 @@
                 rowperpage: 10, // Number of records fetch at a time
                 buttonText: 'Xem thêm',
                 url: '',
-                swiper: null
+                // swiper: null
             }
         },
         created() {

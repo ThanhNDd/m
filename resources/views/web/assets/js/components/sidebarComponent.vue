@@ -27,7 +27,7 @@
             return {
                 products: '',
                 url: '',
-                swiper: null,
+                // swiper: null,
                 recently: false
             }
         },

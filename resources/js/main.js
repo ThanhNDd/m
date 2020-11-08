@@ -1,34 +1,34 @@
-new Swiper('.swiper-flash-sale',{
-    cssMode: true,
-    mousewheel: true,
-    keyboard: true,
-});
-new Swiper('.swiper1', {
-    cssMode: true,
-    mousewheel: true,
-    keyboard: true,
-    pagination: {
-        el: '.swiper-pagination1',
-        dynamicBullets: true,
-        paginationClickable: true
-    },
-    // autoplay: {
-    //     delay: 5000,
-    // },
-});
-new Swiper('.swiper-category', {
-    cssMode: true,
-    mousewheel: true,
-    keyboard: true,
-    pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true,
-        paginationClickable: true
-    },
-    autoplay: {
-        delay: 5000,
-    },
-});
+// new Swiper('.swiper-flash-sale',{
+//     cssMode: true,
+//     mousewheel: true,
+//     keyboard: true,
+// });
+// new Swiper('.swiper1', {
+//     cssMode: true,
+//     mousewheel: true,
+//     keyboard: true,
+//     pagination: {
+//         el: '.swiper-pagination1',
+//         dynamicBullets: true,
+//         paginationClickable: true
+//     },
+//     // autoplay: {
+//     //     delay: 5000,
+//     // },
+// });
+// new Swiper('.swiper-category', {
+//     cssMode: true,
+//     mousewheel: true,
+//     keyboard: true,
+//     pagination: {
+//         el: '.swiper-pagination',
+//         dynamicBullets: true,
+//         paginationClickable: true
+//     },
+//     autoplay: {
+//         delay: 5000,
+//     },
+// });
 
 $(document).ready(function () {
     $('a[href="#tab-home"]').click(function(){

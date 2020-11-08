@@ -1,5 +1,5 @@
 @extends('web.layout.layout')
-@section('title', "Quần áo thời trang trẻ em 2020")
+@section('title', 'Thời trang trẻ em thu đông 2020 | Quần áo trẻ em thu đông 2020 | Quần áo bé trai, váy bé gái')
 @section('content')
 <!-- ============================================== HEADER : END ============================================== -->
 <div id="app">
