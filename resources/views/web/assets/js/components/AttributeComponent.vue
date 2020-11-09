@@ -1,20 +1,20 @@
 <template>
     <div class="list">
         <ul>
-            <li>
+            <li v-if="short_description">
                 <div class="row">
                     <div class="col-md-12 col-lg-12" v-html="'<pre>'+short_description+'</pre>'"></div>
                 </div>
             </li>
             <li>
                 <div class="row">
-                    <div class="col-md-3 col-lg-3">Màu sắc</div>
-                    <div class="col-md-9 col-lg-9">
+                    <div class="col-md-2 col-lg-2">Màu sắc</div>
+                    <div class="col-md-10 col-lg-10">
                         <div class="color-choose">
                             <div v-for="(c, idx) in colors" :key="idx">
                                 <input type="radio" v-bind:id="c" name="color" v-bind:value="c" v-model="color">
                                 <label v-bind:for="c">
-                                    <img v-if="images[idx]" width="32px" v-bind:src="images[idx]"
+                                    <img v-if="images[idx]" width="35px" v-bind:src="images[idx]"
                                          v-bind:id="idx+index_image" v-bind:title="c" @click="selectColor(idx, c)">
                                     <span class="btn" v-else v-text="c" @click="selectColor(idx, c)"></span>
                                 </label>
@@ -25,8 +25,8 @@
             </li>
             <li>
                 <div class="row">
-                    <div class="col-md-3 col-lg-3">Size</div>
-                    <div class="col-md-9 col-lg-9">
+                    <div class="col-md-2 col-lg-2">Size</div>
+                    <div class="col-md-10 col-lg-10">
                         <div class="size-choose">
                             <div v-for="(s, idx) in sizes">
                                 <input type="radio" v-bind:id="s" name="size" v-bind:value="s" v-model="size"
@@ -43,7 +43,7 @@
         </ul>
         <div class="quantity-container info-container">
             <div class="row mb-2">
-                <div class="qty">
+                <div class="qty col-md-2 col-lg-2">
                     <span class="label">Số lượng :</span>
                 </div>
                 <div class="qty-count">
@@ -56,6 +56,10 @@
                 <div class="qty">
                     <span class="label" id="remain_qty" style="font-size: 14px;"></span>
                 </div>
+            </div>
+            <div class="alert alert-warning" style="font-style: italic;font-size: 12px;">
+                Miễn phí vận chuyển khu vực Hà Nội với đơn hàng từ 250k.<br>
+                Miễn phí vận chuyển Toàn Quốc với đơn hàng từ 500k.
             </div>
             <div class="row">
                 <div class="add-btn">

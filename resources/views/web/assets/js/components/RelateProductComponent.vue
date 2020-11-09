@@ -81,7 +81,7 @@
                 <!-- /.product-slider -->
                 <div class="row justify-content-center" id="load_more_relate">
                     <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']"
-                       @click='getProducts(10)'>
+                       @click='getProducts(rowperpage)'>
                         <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="submit"></i> {{buttonText}} &nbsp;<i
                             class="fa fa-caret-down"></i>
                     </a>
@@ -103,11 +103,12 @@
                 buttonText: 'Xem thêm',
                 url: '',
                 submit: false,
+                rowperpage: 5
             }
         },
         created() {
             this.url = url;
-            this.getProducts(5);
+            this.getProducts(this.rowperpage);
         },
         methods: {
             getProducts: function (rowperpage) {

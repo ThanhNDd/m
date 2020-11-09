@@ -37,6 +37,9 @@ Text Domain:  Marazzo
 /*===================================================================================*/
 /*  Body
 /*===================================================================================*/
+body {
+  font-family: Roboto !important;
+}
 .inline {
   display: inline-block;
   vertical-align: top;
@@ -429,7 +432,8 @@ img[src="assets/images/blank.gif"] {
 
 .section-title {
   font-size: 20px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   border-bottom: 1px solid #eaeaea;
   padding-bottom: 15px;
   font-weight: 500;
@@ -441,10 +445,10 @@ img[src="assets/images/blank.gif"] {
   margin-bottom: 0px;
   margin-top: 0px;
   font-size: 24px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: 600;
   border-bottom: 1px solid #eaeaea;
-  padding-bottom: 10px;
   padding: 18px 20px;
   background: #ff7878;
   color: #fff;
@@ -461,7 +465,7 @@ img[src="assets/images/blank.gif"] {
 
 .featured-product .sub-cat {
   overflow: hidden;
-  padding: 0px;
+  /*padding: 0px;*/
   margin: 0px;
   text-align: left;
   padding-top: 8px;
@@ -515,17 +519,16 @@ img[src="assets/images/blank.gif"] {
   margin-bottom: 0px;
   margin-top: 5px;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   text-transform: uppercase;
   font-weight: bold;
   border-bottom: 1px solid #e3e3e3;
-  padding-bottom: 10px;
   padding: 18px 20px;
 }
 
 .best-deal .best-seller {
-  padding: 21px;
-  padding-top: 0px;
+  padding: 0 21px;
 }
 
 .best-deal .best-seller .col2 {
@@ -621,10 +624,10 @@ img[src="assets/images/blank.gif"] {
 }
 
 .featured-product {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   background-color: #fff;
-  border-radius: 5px
-
+  border-radius: 5px;
+  margin-top:10px;
 }
 
 .featured-product .cart-btn {
@@ -662,10 +665,10 @@ img[src="assets/images/blank.gif"] {
   margin-bottom: 0px;
   margin-top: 5px;
   font-size: 24px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: 600;
   border-bottom: 1px solid #eaeaea;
-  padding-bottom: 10px;
   padding: 18px 20px;
 }
 
@@ -689,11 +692,11 @@ img[src="assets/images/blank.gif"] {
   margin-bottom: 0px;
   margin-top: 5px;
   font-size: 24px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
   font-weight: 600;
   border-bottom: 1px solid #eaeaea;
-  padding-bottom: 10px;
   padding: 18px 20px;
+  font-family: Roboto;
 }
 
 .latest-blog .blog-slider {
@@ -1675,7 +1678,8 @@ header {
 
 .top-cart-row .dropdown-cart .lnk-cart .items-cart-inner .total-price-basket {
   padding: 0px 0px 13px 5px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   letter-spacing: 0.2px;
   display: inline-block;
   font-size: 15px;
@@ -1694,7 +1698,6 @@ header {
 
 .top-cart-row .dropdown-cart .lnk-cart .items-cart-inner .basket {
   padding: 12px;
-  padding: 0px;
   overflow: hidden
 }
 
@@ -1826,7 +1829,8 @@ header {
 .header-style-1 .header-nav .navbar-default .navbar-collapse .navbar-nav > li > a {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #FFFFFF;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-size: 14px;
   line-height: normal;
   padding: 18px 18px;
@@ -1848,7 +1852,8 @@ header {
   padding: 4px 8px;
   color: #fff;
   font-size: 10px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   right: 23px;
   line-height: normal;
   letter-spacing: 1px;
@@ -2149,7 +2154,8 @@ header {
 .sidebar .side-menu nav .nav > li > a {
   padding: 15px 20px;
   color: #666666;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   letter-spacing: 0.2px;
   font-size: 14px;
   display: inline-block;
@@ -2405,7 +2411,8 @@ header {
   font-size: 60px;
   line-height: 125px;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   color: #fff;
   text-shadow: 1px 1px 3px #cfcfcf;
 }
@@ -2927,7 +2934,8 @@ header {
 }
 
 #owl-main .item .caption .slider-header {
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-size: 26px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2937,7 +2945,8 @@ header {
 #owl-main .item .caption .big-text {
   font-size: 62px;
   line-height: 50px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   padding: 0px 25px;
   background: #bbbbbb;
   color: #fff;
@@ -2954,7 +2963,8 @@ header {
   font-size: 18px;
   /*line-height: 50px;*/
   margin-top: 10px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: 200;
   padding-left: 23px;
   background: rgba(0, 0, 0, 0);
@@ -3031,7 +3041,8 @@ header {
 #owl-main .full-width-slider .item .caption .big-text {
   font-size: 119px;
   line-height: 80px;
-  font-family: 'PacificoRegular';
+  /*font-family: 'PacificoRegular';*/
+  font-family: Roboto;
   color: #fff;
   background: rgba(0, 0, 0, 0);
   padding: 0px;
@@ -3042,7 +3053,8 @@ header {
   font-size: 60px;
   line-height: 80px;
   margin-top: 15px;
-  font-family: 'LatoBold';
+  /*font-family: 'LatoBold';*/
+  font-family: Roboto;
   text-transform: uppercase;
   color: #fff;
   background: rgba(0, 0, 0, 0);
@@ -3105,7 +3117,8 @@ header {
   font-size: 15px;
   line-height: 50px;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   text-shadow: 2px 2px #c3c3c3;
   color: #fff;
   padding-left: 0px;
@@ -3115,7 +3128,8 @@ header {
   font-size: 45px;
   line-height: 50px;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   text-shadow: 2px 2px #c3c3c3;
   color: #000;
 }
@@ -3315,7 +3329,8 @@ header {
   color: #121212;
   line-height: 1.4em;
   font-weight: 500;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   letter-spacing: normal;
   border-radius: 3px;
   padding: 0px;
@@ -3355,9 +3370,6 @@ header {
   color: #121212;
   width: 65px !important;
   text-align: center;
-  margin-bottom: 15px
-
-
 }
 
 .icon-money:before {
@@ -3394,9 +3406,12 @@ header {
 .scroll-tabs .more-info-tab .new-product-title {
   margin-bottom: 0px;
   margin-top: 0px;
-  font-size: 18px;
-  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-family: Roboto;
   font-weight: normal;
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .scroll-tabs .nav-tab-line {
@@ -3419,7 +3434,8 @@ header {
   box-shadow: none;
   padding: 0 10px !important;
   position: relative;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   text-transform: uppercase;
   letter-spacing: 0.5px
 }
@@ -3430,7 +3446,7 @@ header {
 }
 
 .tab-content {
-  margin: 20px 10px;
+  /*margin: 20px 10px;*/
 }
 
 .product {
@@ -3447,7 +3463,8 @@ header {
 
 .product .product-info .name {
   font-size: 14px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   margin: 10px 0;
 }
 
@@ -3729,7 +3746,8 @@ header {
   color: #ff4c4c;
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: bold
 }
 
@@ -3738,12 +3756,14 @@ header {
   color: #fff;
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: 600
 }
 
 .cnt-strip .strip h2 .shopping-needs {
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   color: #fff;
   font-weight: 400;
   font-size: 22px;
@@ -3755,14 +3775,16 @@ header {
   color: #434343;
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat', sans-serif;*/
+  font-family: Roboto;
 }
 
 .cnt-strip .strip h4 {
   font-size: 20px;
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat', sans-serif;*/
+  font-family: Roboto;
 }
 
 .cnt-strip .strip.strip-text {
@@ -3787,7 +3809,8 @@ header {
 
 .cnt-strip .strip .normal-shopping-needs {
   font-size: 35px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .cnt-strip .new-label {
@@ -3802,7 +3825,8 @@ header {
 
 .cnt-strip .new-label .text {
   color: #fff;
-  font-family: 'Open Sans', sans-serif, sans-serif;
+  /*font-family: 'Open Sans', sans-serif, sans-serif;*/
+  font-family: Roboto;
   font-size: 14px;
   font-weight: bold;
   line-height: 22px;
@@ -3830,12 +3854,14 @@ header {
 
 .wide-banners.homepage-banner h4 {
   font-size: 30px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .wide-banners.homepage-banner h3 {
   font-size: 35px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .new-banner {
@@ -3853,7 +3879,8 @@ header {
   padding: 13px 23px 13px 16px;
   line-height: 24px;
   font-size: 30px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .new-banner .cnt-strip .strip h5 {
@@ -3882,44 +3909,52 @@ header {
 
 .megamenu-banner h3 {
   font-size: 30px;
-  font-family: 'BebasNeueRegular';
+  /*font-family: 'BebasNeueRegular';*/
+  font-family: Roboto;
 }
 
 .megamenu-banner h2 {
   font-size: 40px;
-  font-family: 'BebasNeueBold';
+  /*font-family: 'BebasNeueBold';*/
+  font-family: Roboto;
 }
 
 .wide-banner-4 .cnt-strip .strip h1 {
   font-size: 50px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .wide-banner-4 .cnt-strip .strip h2 {
   font-size: 40px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .wide-banner-4 .cnt-strip .strip h3 {
   font-size: 30px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .wide-banner-4 .cnt-strip .strip h4 {
   font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .wide-banner-4 .cnt-strip .strip p {
   font-size: 23px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   margin-bottom: 0px;
 }
 
 .blog-slider-container .blog-slider .blog-post-info .name {
   font-size: 16px;
   font-weight: normal;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   margin: 10px 0;
   color: #333;
 }
@@ -3939,7 +3974,8 @@ header {
 .blog-slider-container .blog-slider .blog-post-info .text {
   color: #848282;
   font-size: 12px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .footer .links-social {
@@ -4205,7 +4241,7 @@ header {
 }
 
 .footer .footer-bottom .module-body ul li a {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 30px;
   color: #abafb1;
   position: relative;
@@ -4373,7 +4409,8 @@ header {
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif
+  /*font-family: 'Open Sans', sans-serif*/
+  font-family: Roboto;
 }
 
 .hot-deals .hot-deal-wrapper .timing-wrapper .box-wrapper .box .value {
@@ -4389,7 +4426,8 @@ header {
 
 .hot-deals .product-info .name {
   font-size: 16px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   font-weight: 400
 }
 
@@ -4478,7 +4516,8 @@ header {
 .breadcrumb ul li:after {
   color: #666666;
   content: "/";
-  font-family: 'Open Sans', sans-serif, sans-serif;
+  /*font-family: 'Open Sans', sans-serif, sans-serif;*/
+  font-family: Roboto;
   font-size: 12px;
   line-height: 24px;
   margin-left: 9px;
@@ -4492,7 +4531,8 @@ header {
 
 .breadcrumb ul li a {
   color: #666666;
-  font-family: 'Open Sans', sans-serif, sans-serif;
+  /*font-family: 'Open Sans', sans-serif, sans-serif;*/
+  font-family: Roboto;
   font-size: 12px;
   line-height: 24px;
   font-weight: 500;
@@ -4523,7 +4563,8 @@ header {
   font-size: 100px;
   line-height: 135px;
   text-transform: uppercase;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
   color: #333;
 }
 
@@ -4537,7 +4578,6 @@ header {
   font-size: 14px;
   letter-spacing: normal;
   color: #333;
-  letter-spacing: normal
 }
 
 .category-carousel .item img {
@@ -4789,8 +4829,8 @@ header {
 
 .product-list.product .product-info .description {
   line-height: 20px;
-  font-family: 'Open Sans', sans-serif;
-
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 /*===================================================================================*/
@@ -4799,23 +4839,28 @@ header {
 
 .detail-block {
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
   overflow: hidden;
-  border-radius: 5px
-
+  border-radius: 5px;
+  display: inline-block;
+  width: 100%;
 }
 
 .single-product .product-info-block .name {
-  margin-top: 0px;
+  margin-top: 0;
   font-weight: 400;
   letter-spacing: normal;
-  font-size: 30px
+  font-size: 25px;
+  margin-bottom: 1px;
 }
 
 .single-product .single-product-gallery {
-  padding-bottom: 30px
+  padding-bottom: 10px;
+  float: left;
 }
-
+.product-info-block {
+  /*margin-left: 20px;*/
+}
 .single-product .favorite-button .btn-primary {
   background: #ddd;
   border-radius: 999px;
@@ -4843,7 +4888,7 @@ header {
 }
 
 .single-product .product-info .stock-container .stock-box .label {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 18px;
   color: #666666;
   padding: 0px;
@@ -4859,8 +4904,9 @@ header {
 .single-product .product-info .description-container {
   line-height: 20px;
   color: #666666;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
+  font-size: 13px
 }
 
 .single-product .product-info .price-container {
@@ -4871,7 +4917,7 @@ header {
 }
 
 .single-product .product-info .price-container .price-box .price {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 50px;
 }
@@ -4890,7 +4936,7 @@ header {
 
 .single-product .product-info .quantity-container {
   margin-bottom: 0;
-  padding: 30px 0;
+  padding: 10px 0;
 }
 
 .single-product .qty {
@@ -4899,8 +4945,8 @@ header {
 }
 
 .single-product .qty-count {
-  float: left;
-  padding-left: 15px
+  display: inline-block;
+  padding-left: 15px;
 }
 
 .single-product .add-btn {
@@ -4909,40 +4955,36 @@ header {
 }
 
 .single-product .add-btn .btn-primary {
-  padding: 12px 10px;
-  font-size: 15px;
+  padding: 8px 7px;
+  font-size: 14px;
   background-color: #fdd922;
   color: #333;
   font-weight: 500;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
 }
 
 .single-product .add-btn .btn-danger {
-  padding: 12px 10px;
-  font-size: 15px;
+  padding: 8px 7px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 19px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
+  text-transform: uppercase;
 }
 
 .single-product .product-info .quantity-container .label {
-  font-size: 16px;
+  font-size: 13px;
   line-height: 35px;
   color: #666666;
   padding: 0px;
   font-weight: normal;
 }
-
+.cart-quantity {
+  display: inline-block;
+}
 .single-product .product-info .quantity-container .cart-quantity .quant-input {
   display: inline-block;
   height: 45px;
-  position: relative;
-  width: 80px;
-
 }
 
 .single-product .product-info .quantity-container .cart-quantity .quant-input .arrows {
@@ -4975,22 +5017,22 @@ header {
 
 .single-product .product-info .quantity-container .cart-quantity .quant-input input {
   background: none repeat scroll 0 0 #fff;
-  border: 1px solid #e5e5e5;
+  border: 2px solid #dee2e6;
   box-sizing: border-box;
   font-size: 15px;
-  height: 45px;
+  height: 40px;
   left: 0;
-  padding: 0 20px 0 18px;
-  position: absolute;
+  padding: 0 5px 0 10px;
   top: 0;
-  width: 80px;
+  width: 60px;
   z-index: 1;
-  border-radius: 5px
+  border-radius: 4px;
 }
 
 .single-product .product-info .product-social-link .social-label {
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   line-height: 20px;
   text-transform: uppercase;
 }
@@ -5018,12 +5060,12 @@ header {
 }
 
 .single-product .product-tabs {
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: #fff;
-  padding: 0px;
+  padding: 0;
   overflow: hidden;
-  margin-bottom: 30px;
-  border-radius: 5px
+  margin-bottom: 10px;
+  border-radius: 4px
 }
 
 .single-product .product-tabs .nav.nav-tabs.nav-tab-cell > li {
@@ -5097,16 +5139,17 @@ header {
 }
 
 .single-product .product-tabs .tab-content {
-  padding-left: 0px
+  padding-left: 0;
 }
 
 .single-product .product-tabs .tab-content .tab-pane {
-  padding: 24px;
+  padding: 5px;
 }
 
 .single-product .product-tabs .tab-content .tab-pane .text {
   line-height: 22px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   font-size: 14px;
 }
 
@@ -5288,7 +5331,8 @@ header {
 
 .cnt-homepage .single-product .product-info-block .stock-container .stock-box .label {
   color: #434343;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   font-size: 13px;
   font-weight: normal;
   line-height: 20px;
@@ -5311,7 +5355,8 @@ header {
   -moz-border-radius: 0px;
   border-radius: 0px;
   color: #666666;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   font-size: 20px;
   line-height: 30px;
   padding-bottom: 4px;
@@ -5361,7 +5406,8 @@ header {
 
 .product-tabs .tab-content .tab-pane .product-reviews .reviews .review {
   margin-bottom: 20px;
-  font-family: 'Open Sans', sans-serif, sans-serif;
+  /*font-family: 'Open Sans', sans-serif, sans-serif;*/
+  font-family: Roboto;
   text-transform: none;
   background: #f8f8f8;
   padding: 20px
@@ -5482,7 +5528,8 @@ header {
 .furniture-container .product .btn-primary {
   font-size: 15px;
   line-height: 30px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   background: #cbc9c9;
   text-transform: uppercase;
   border: none;
@@ -5573,7 +5620,8 @@ header {
 
 .homepage-container .product .product-info .name {
   font-size: 18px !important;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
 }
 
 .homepage-container .product .product-info .name a {
@@ -5645,7 +5693,8 @@ header {
 .homepage-container .btn-primary {
   font-size: 15px;
   line-height: 30px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   background: rgba(0, 0, 0, 0);
   text-transform: uppercase;
   border: 2px solid #f2f2f2;
@@ -5789,7 +5838,8 @@ header {
   font-size: 14px;
   color: #666666;
   margin-bottom: 0px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Roboto;
   line-height: 21px
 }
 
@@ -5900,7 +5950,8 @@ header {
   width: 100%;
   position: relative;
   border-radius: 5px;
-  font-family: 'Barlow', sans-serif;
+  /*font-family: 'Barlow', sans-serif;*/
+  font-family: Roboto;
 }
 
 .blog-page .blog-pagination {
@@ -7014,9 +7065,9 @@ header {
     margin-bottom: 20px;
   }
 
-  .scroll-tabs .more-info-tab .new-product-title {
-    font-size: 22px
-  }
+  /*.scroll-tabs .more-info-tab .new-product-title {*/
+  /*  font-size: 22px*/
+  /*}*/
 
 
   .footer .footer-bottom .module-body {
@@ -8008,9 +8059,9 @@ header {
   }
 
   /* Detail Page */
-  .single-product .product-info-block .name {
-    font-size: 35px;
-  }
+  /*.single-product .product-info-block .name {*/
+  /*  font-size: 35px;*/
+  /*}*/
 
   .single-product .product-info-block .m-t-20 {
     text-align: left;
@@ -8200,9 +8251,9 @@ header {
     margin-bottom: 10px;
   }
 
-  .single-product .product-info-block .name {
-    font-size: 35px;
-  }
+  /*.single-product .product-info-block .name {*/
+  /*  font-size: 35px;*/
+  /*}*/
 
   .category-carousel .item .caption .big-text {
     font-size: 40px;
@@ -9022,11 +9073,11 @@ header {
 @media (min-width: 1300px) {
   .container {
     padding: 0;
-    width: 1300px;
-    max-width: 1300px;
+    width: 1200px;
+    max-width: 1200px;
   }
   .item.item-carousel {
-    width: 200px;
+    width: 236px;
   }
   .our-features-box .container {
     width: 100%;
@@ -9036,17 +9087,17 @@ header {
 
 @media (min-width: 1600px) {
   .container {
-    padding: 0 120px;
-    width: 1600px;
-    max-width: 1600px;
+    /*padding: 0 120px;*/
+    width: 1200px;
+    max-width: 1200px;
   }
   .item.item-carousel {
-    width: 268px;
+    width: 236px;
   }
   .row.our-features-box .container {
-    width: 1600px;
+    width: 1200px;
     margin: auto;
-    padding: 0 120px;
+    /*padding: 0 120px;*/
   }
 }
 
@@ -9634,12 +9685,11 @@ left:0px
 .item.item-carousel {
   /*width: 200px;*/
   display: inline-block;
-  vertical-align: top;
   margin-bottom: 20px;
 }
 
 .price-box .price {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -9679,7 +9729,7 @@ left:0px
 
 .latest-blog .item {
   display: inline-block;
-  width: 330px;
+  width: 294px;
   vertical-align: top;
 }
 
@@ -9708,19 +9758,26 @@ left:0px
   padding: 2px 5px;
   margin: 5px 10px 0 0;
   font-size: 13px;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
   font-weight: normal !important;
-  border-radius: 0;
+  border-radius: 4px;
+  border: 2px solid #dee2e6;
+  font-size: 13px;
 }
 
 .color-choose input[type="radio"]:checked + label img, .color-choose input[type="radio"]:checked + label span {
-  border: 1px solid #005bbdbf;
-  box-shadow: 0 1px 5px 0 #005bbdbf;
+  border: 2px solid #005bbdbf;
+  /*box-shadow: 0 1px 5px 0 #005bbdbf;*/
+  border-radius: 4px;
 }
-
+.color-choose img:hover {
+  border: 2px solid #005bbdbf;
+  border-radius: 4px;
+}
 .color-choose img {
-  cursor: pointer;margin-right: 10px;box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  cursor: pointer;
+  margin-right: 10px;
+  /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
+  border-radius: 4px;
 }
 
 .size-choose div {
@@ -9737,27 +9794,30 @@ left:0px
   margin: 5px 5px 0 0;
   vertical-align: middle;
   cursor: pointer;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
   padding: 7px 10px;
   text-align: center;
   font-weight: normal;
-  border-radius: 0;
+  border-radius: 4px;
+  border: 2px solid #dee2e6;
+  font-size: 13px;
 }
 .size-choose input[type="radio"] + label span:not(.disabled):hover,
 .color-choose input[type="radio"] + label span:not(.disabled):hover {
-  border: 1px solid #005bbdbf;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  border: 2px solid #005bbdbf;
+  border-radius: 4px;
+  /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
 }
 
 .size-choose input[type="radio"]:checked + label span  {
-  border: 1px solid #005bbdbf;
+  border: 2px solid #005bbdbf;
   outline: none;
-  box-shadow: 0 1px 5px 0 #43484d85;
-  border-radius: 0;
+  /*box-shadow: 0 1px 5px 0 #43484d85;*/
+  border-radius: 4px;
 }
 
 .list ul li {
-  margin: 14px 0;
+  margin: 5px 0;
 }
 
 .list a {
@@ -9794,7 +9854,7 @@ i.fa-star.far {
 section.section.related-product {
   background: #fff;
   border-radius: 0 6px 6px 0;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .no-padding {
@@ -9970,7 +10030,7 @@ i.far.fa-check-circle {
 .policy h3 {
   margin: 0;
   line-height: 2;
-  font-size: 22px;
+  font-size: 13px;
 }
 ul.keyword-search {
   text-align: center;
@@ -10056,7 +10116,7 @@ ul.nav.navbar-nav {
 
 .footer .logo .logo-text {
   color: #fff;
-  font-size: 35px;
+  font-size: 30px;
   vertical-align: middle;
   margin-left: 10px;
   font-family: Pony;
@@ -10069,7 +10129,7 @@ ul.nav.navbar-nav {
   display: inline-block;
   width: 100%;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   color: white;
 }
 
@@ -10118,7 +10178,7 @@ li.media {
 
 /* Let's get this party started */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
   height: 5px;
 }
 
@@ -10187,10 +10247,11 @@ li.media {
   margin-left: 5px;
   margin-top: 6px;
 }
-.policy-info div, .policy-info div p, #description div, #description div p {
+.policy-info div, .policy-info div p, #description div, #description div p, #description div p span {
   line-height: 1.5;
   margin: 5px;
   font-family: Roboto;
+  font-size: 13px !important;
 }
 img[lazy=loading] {
   height: 32px !important;

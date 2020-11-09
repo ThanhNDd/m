@@ -1,5 +1,5 @@
 <template>
-  <div class="rating-reviews m-t-10">
+  <div class="rating-reviews">
     <div class="row">
       <div class="col-lg-12">
         <div class="pull-left">

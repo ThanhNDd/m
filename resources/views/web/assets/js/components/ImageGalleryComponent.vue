@@ -1,10 +1,10 @@
 <template>
   <div id="owl-single-product">
-      <div class="product-image-gallery">
-          <img v-bind:src="img" width="600px" alt="" title="">
-      </div>
       <div class="thumbnail">
         <img v-for="(img, idx) in all_images" v-bind:src="img | format_image('64x64')" v-bind:id="idx" width="64px" @click="chooseImage(idx)" v-bind:class="activeIndex === idx ? 'active' : '' " alt="" title="">
+      </div>
+      <div class="product-image-gallery">
+          <img v-bind:src="img" width="400px" alt="" title="">
       </div>
   </div>
 </template>
@@ -76,7 +76,11 @@
     img.active {
         border: 2px solid #509dde;
     }
-    #owl-single-product .thumbnail img {
+    div#owl-single-product {
+        display: inline-block;
+        min-height: 400px;
+    }
+    #owl-single-product .thumbnail img{
         width: 64px;
     }
     #owl-single-product .thumbnail img:hover {
@@ -85,15 +89,22 @@
     .thumbnail {
         scroll-behavior: smooth;
         display: inline-block;
-        overflow: auto;
+        overflow-x: auto;
         border: none;
-        white-space: nowrap;
-        margin-top: 10px;
-        width: 600px;
+        float: left;
+        width: 87px;
+        height: 400px;
+        margin-right: 5px;
     }
     .thumbnail img {
         display: inline-block;
-        margin-right: 5px;
+        margin: 5px;
+
+    }
+    .product-image-gallery {
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
 
 </style>

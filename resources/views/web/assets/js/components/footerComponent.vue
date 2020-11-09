@@ -10,7 +10,7 @@
                 <div class="logo col-md-12 no-padding">
                   <div class="image col-md-3 no-padding">
                     <a v-bind:href="url">
-                      <img v-bind:src="url + '/public/web/images/icon.png'" alt="logo" style="width: 100px;">
+                      <img v-bind:src="url + '/public/web/images/icon.png'" alt="logo" style="width: 80px;">
                     </a>
                   </div>
                   <div class="title col-md-9 no-padding">
@@ -24,13 +24,13 @@
                   <li class="media">
                     <div class="pull-left mr-2"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                     <div class="media-body">
-                      <a href="javascript:void(0)">Số 227 - Phố Huyện - TT.Quốc Oai - Hà Nội</a>
+                      <a href="javascript:void(0)">Số 227, Đ.Phố Huyện, TT.Quốc Oai, Hà Nội</a>
                     </div>
                   </li>
                   <li class="media">
                     <div class="pull-left mr-2"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                     <div class="media-body">
-                      <a href="javascript:void(0)">Hotline / Zalo: 0962.926.302</a>
+                      <a href="javascript:void(0)">Hotline/Zalo: 0962.926.302</a>
                     </div>
                   </li>
                   <li class="media">
