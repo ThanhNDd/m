@@ -43,7 +43,7 @@
               </div>
             </div>
             <div class="row justify-content-center" id="load_more_latest">
-              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(10)'>
+              <a href="javascript:void(0);" class="view-more" v-bind:class="[isFinished ? 'finish' : 'load-more']" @click='getProducts(rowperpage)'>
                 <i class="fa fa-spinner fa-spin" style="font-size:20px" v-if="submit"></i> Xem thêm &nbsp;<i class="fa fa-caret-down"></i>
               </a>
             </div>
@@ -68,11 +68,12 @@
                 buttonText: 'Xem thêm',
                 url: '',
                 submit: false,
+                rowperpage: 10
             }
         },
         created() {
             this.url = url;
-            this.getProducts(5);
+            this.getProducts(this.rowperpage);
         },
         methods: {
             getProducts: function (rowperpage) {

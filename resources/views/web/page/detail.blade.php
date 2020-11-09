@@ -44,26 +44,22 @@
 {{--            </div>--}}
             <div class='col-xs-12 col-sm-12 col-md-12 rht-col'>
               <div class="detail-block">
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 gallery-holder">
+                <div class="row col-md-12">
+                  <div class="gallery-holder">
                     <div class="product-item-holder size-big single-product-gallery small-gallery">
-{{--                      <div id="owl-single-product">--}}
                         <slider-component></slider-component>
-{{--                      </div>--}}
                     </div>
                   </div>
                   <div class='col-sm-12 col-md-6 col-lg-6 product-info-block'>
                     <div class="product-info">
                       <h1 class="name">{{$product->name}}</h1>
                       <div>
-{{--                        <lazy-component>--}}
                           <rating-component :product_id="{{ $product->id }}" :product_name="'{{ $product->name }}'"
                                           :key="reload"></rating-component>
-{{--                        </lazy-component>--}}
                       </div>
-                      <div class="stock-container info-container m-t-10">
-                        <div class="row">
-                          <div class="col-lg-12">
+                      <div class="stock-container info-container">
+                        <div class="row col-lg-12">
+                          <div>
                             <div class="float-left">
                               <div class="stock-box">
                                 <span class="label">Tình trạng :&nbsp;</span>
@@ -71,9 +67,19 @@
                             </div>
                             <div class="float-left">
                               <div class="stock-box">
-{{--                                <lazy-component>--}}
                                   <status-component :product_id="{{$product->id}}"></status-component>
-{{--                                </lazy-component>--}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="pl-3">
+                            <div class="float-left">
+                              <div class="stock-box">
+                                <span class="label">Mã sản phẩm :&nbsp;</span>
+                              </div>
+                            </div>
+                            <div class="float-left">
+                              <div class="stock-box">
+                                {{$product->id}}
                               </div>
                             </div>
                           </div>
@@ -90,7 +96,7 @@
 {{--                            đ</p>--}}
                         </div>
                       </div><!-- /.row -->
-                      <div class="description-container m-t-20">
+                      <div class="description-container">
 {{--                        <lazy-component>--}}
                         <attributes-component></attributes-component>
 {{--                        </lazy-component>--}}
@@ -153,7 +159,7 @@
                   </div>
                   <div class="col-sm-12 col-md-9 col-lg-9">
                     <div id="" class="scroll-tabs outer-top-vs d-inline-block col-md-12 no-padding"><div class="more-info-tab clearfix "><h3 class="new-product-title pull-left">Mô tả sản phẩm</h3></div></div>
-                    <div class="tab-content no-margin d-inline-block col-md-12 no-padding" style="max-height: 500px;overflow-y: auto;overflow-x: hidden;">
+                    <div class="tab-content no-margin d-inline-block col-md-12 no-padding">
                       <div id="description" class="tab-pane in active">
                         <div class="product-tab">
                           @if($product->description != '' && $product->description != '<p><br></p>')

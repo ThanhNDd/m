@@ -30,10 +30,6 @@
 <style scoped>
     /* Slider */
     #textSlider.row {
-        /*position: absolute;*/
-        /*top: 0%;*/
-        /*left: 1%;*/
-        /*transform: translate(-50%, -50%);*/
         width: 100% !important;
     }
 
@@ -47,9 +43,7 @@
 
     .slideCol {
         text-align: right;
-        /*overflow: hidden;*/
         display: block;
-        /*white-space: nowrap;*/
     }
 
     .slideCol p {
@@ -99,7 +93,6 @@
             margin-top: 0px;
         }
     }
-
 
     /*==========  Mobile First Method  ==========*/
 

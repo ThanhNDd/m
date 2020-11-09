@@ -1,6 +1,6 @@
 <template>
-    <span v-if="status == true" class="badge badge-success status-text">Còn hàng</span>
-    <span v-else class="badge badge-danger status-text">Hết hàng</span>
+    <span v-if="status" class="text-success"><i class="fas fa-check-circle"></i> Còn hàng</span>
+    <span v-else class="text-danger"><i class="fas fa-ban"></i> Hết hàng</span>
 </template>
 
 <script>
@@ -29,3 +29,8 @@
         },
     }
 </script>
+<style scoped>
+    span {
+        font-weight: 500;
+    }
+</style>
