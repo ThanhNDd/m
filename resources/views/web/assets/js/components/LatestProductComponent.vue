@@ -13,7 +13,6 @@
                   <div class="product-image">
                     <div class="image">
                       <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-<!--                        <img v-bind:src="product.image | format_image('400x400')" v-bind:alt="product.name">-->
                         <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: '' }">
                           <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('400x400')" v-bind:alt="product.name">
                         </div>
@@ -64,7 +63,7 @@
             return {
                 products: '',
                 isFinished: false,
-                row: 0, // Record selction position
+                row: 0,
                 buttonText: 'Xem thêm',
                 url: '',
                 submit: false,
@@ -86,10 +85,8 @@
                         this.row += rowperpage;
                         let len = this.products.length;
                         if (len > 0) {
-                            // this.buttonText = "Loading ...";
                             let that = this;
                             setTimeout(function () {
-                                // Loop on data and push in posts
                                 for (let i = 0; i < response.data.length; i++) {
                                     that.products.push(response.data[i]);
                                 }
@@ -118,8 +115,5 @@
                 });
             }
         },
-        mounted: function(){
-            // jQuery(this.$refs.product_carousel).owlCarousel();
-        }
     }
 </script>

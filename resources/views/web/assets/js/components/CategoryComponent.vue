@@ -89,12 +89,12 @@
         <p style="text-align: center" v-else>Không có sản phẩm nào</p>
       </div>
     </div>
-    <paginate  v-if="products.length>0"
+    <paginate v-if="products.length>0"
       :page-count="total"
       :page-range="pageRange"
       :margin-pages="2"
-      :prev-text="'Prev'"
-      :next-text="'Next'"
+      :prev-text="prev"
+      :next-text="next"
       :click-handler="getProducts"
       :container-class="'pagination'"
       :page-class="'page-item'"
@@ -117,7 +117,9 @@
                 rowperpage: 16,
                 url: '',
                 total: 0,
-                pageRange: 3
+                pageRange: 3,
+                prev: '<i class="fa fa-angle-left"></i>',
+                next: '<i class="fa fa-angle-right"></i>'
             }
         },
         created() {
@@ -157,7 +159,7 @@
             },
             scrollToTop() {
                 window.scrollTo({
-                    top: 300,
+                    top: 170,
                     left: 0,
                     behavior: 'smooth'
                 });

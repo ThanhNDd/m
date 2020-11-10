@@ -15,7 +15,6 @@
                   <div class="product-image">
                     <div class="image">
                       <a v-bind:href="product.name | change_to_slug | url_product(product.id)">
-<!--                        <img v-bind:src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image('400x400')" v-bind:alt="product.name">-->
                         <div v-lazy-container="{ selector: 'img', error: url + '/public/web/images/404.jpg', loading: url + '/public/web/images/loading.svg' }">
                           <img v-bind:data-src="!product.image || product.image === '[]' ? product.variant_image : product.image | format_image" v-bind:alt="product.name">
                         </div>
@@ -65,7 +64,6 @@
         data() {
             return {
                 products: '',
-                // swiper: null,
                 isFinished: false,
                 row: 0,
                 buttonText: 'Xem thêm',
@@ -84,12 +82,10 @@
                     row: this.row,
                     rowperpage: rowperpage
                 }).then(response => {
-                    // console.log(response.data);
                     if (response.data !== '' && response.data.length > 0) {
                       this.row += rowperpage;
                       let len = this.products.length;
                       if (len > 0) {
-                        // this.buttonText = "Loading ...";
                         let that = this;
                         setTimeout(function () {
                           that.buttonText = 'Xem thêm';
