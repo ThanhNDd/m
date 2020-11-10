@@ -30,7 +30,6 @@
           return {
               products: '',
               url: '',
-              // swiper: null,
               recently: false
           }
       },

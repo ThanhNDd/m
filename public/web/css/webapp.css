@@ -4531,12 +4531,14 @@ header {
 
 .breadcrumb ul li a {
   color: #666666;
-  /*font-family: 'Open Sans', sans-serif, sans-serif;*/
   font-family: Roboto;
   font-size: 12px;
   line-height: 24px;
-  font-weight: 500;
   display: inline-block;
+}
+
+.stock-box {
+  color: #666666;
 }
 
 .category-carousel {
@@ -10044,6 +10046,7 @@ i.far.fa-check-circle {
   margin: 0;
   line-height: 2;
   font-size: 13px;
+  text-transform: uppercase;
 }
 ul.keyword-search {
   text-align: center;

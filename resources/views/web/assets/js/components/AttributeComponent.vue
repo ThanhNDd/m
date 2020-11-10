@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div class="alert alert-warning" style="font-style: italic;font-size: 12px;">
-                Miễn phí vận chuyển khu vực Hà Nội với đơn hàng từ 250k.<br>
-                Miễn phí vận chuyển Toàn Quốc với đơn hàng từ 500k.
+                <i class="fas fa-truck"></i> Miễn phí vận chuyển khu vực Hà Nội với đơn hàng từ 250k.<br>
+                <i class="fas fa-truck"></i> Miễn phí vận chuyển Toàn Quốc với đơn hàng từ 500k.
             </div>
             <div class="row">
                 <div class="add-btn">

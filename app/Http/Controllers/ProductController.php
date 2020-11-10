@@ -47,7 +47,15 @@ class ProductController extends Controller
             ->get();
         return view('theme.page.product.home', compact('products'));
     }
-
+    function remote_file_exists($url)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if( $httpCode == 200 ){return true;}
+    }
     public function getProduct(Request $request, $slug, $id)
     {
         $products = DB::select(DB::raw("SELECT a.id,

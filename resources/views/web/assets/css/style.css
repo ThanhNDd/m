@@ -362,6 +362,7 @@ i.far.fa-check-circle {
   margin: 0;
   line-height: 2;
   font-size: 13px;
+  text-transform: uppercase;
 }
 ul.keyword-search {
   text-align: center;
