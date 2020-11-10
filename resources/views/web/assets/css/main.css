@@ -5058,7 +5058,7 @@ header {
   padding: 0;
   overflow: hidden;
   margin-bottom: 10px;
-  border-radius: 4px
+  border-radius: 0 0 4px 4px;
 }
 
 .single-product .product-tabs .nav.nav-tabs.nav-tab-cell > li {
@@ -9166,4 +9166,17 @@ header {
 
 .home-banner img {
   border-radius: 5px
+}
+
+.page-item:last-child .page-link, .page-item:first-child .page-link {
+  border-radius: 3rem !important;
+}
+.page-item.active .page-link, .page-link {
+  border-radius: 50%;
+}
+li.page-item {
+  margin: 0 3px;
+}
+.pagination {
+  margin-top: 10px;
 }

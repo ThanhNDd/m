@@ -1,5 +1,5 @@
 <template>
-  <section class="section related-product" id="reviews_component" style="background: rgb(255, 255, 255);border-radius: 0 6px 6px 0;">
+  <section class="section related-product" id="reviews_component" style="background: rgb(255, 255, 255);border-radius: 0 0 4px 4px;">
     <div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
       <div class="more-info-tab clearfix ">
         <h3 class="new-product-title pull-left">Nhận xét và đánh giá</h3>

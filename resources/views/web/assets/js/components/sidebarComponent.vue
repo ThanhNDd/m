@@ -12,7 +12,7 @@
     </div>
     <div>
 <!--      <lazy-component>-->
-        <hotboy-component></hotboy-component>
+<!--        <hotboy-component></hotboy-component>-->
 <!--      </lazy-component>-->
     </div>
   </div>
