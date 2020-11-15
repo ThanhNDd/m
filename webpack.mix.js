@@ -77,6 +77,8 @@ let mix = require('laravel-mix');
   mix.copyDirectory('resources/views/web/assets/images', 'public/web/images');
   mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
 
+  mix.copyDirectory('resources/views/webv2/assets', 'public/webv2/assets');
+
 
 
 // mix.autoload({ jQuery: 'jquery', $: 'jquery', jquery: 'jquery' });

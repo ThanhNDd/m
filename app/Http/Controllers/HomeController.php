@@ -20,7 +20,8 @@ class HomeController extends Controller
         if($this->is_mobile()) {
             return view('theme.page.home', compact('is_active', 'products'));
         } else {
-            return view('web.page.home', compact('is_active', 'products'));
+//            return view('web.page.home', compact('is_active', 'products'));
+          return view('webv2.pages.home', compact('is_active', 'products'));
         }
     }
     public function transport() {
