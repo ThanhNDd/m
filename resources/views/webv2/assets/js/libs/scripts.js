@@ -221,7 +221,7 @@ jQuery(".brand-slider").owlCarousel({
     pagination: false,
     paginationSpeed : 400,
     navigationText: ["", ""]
-});    
+});
 jQuery("#advertisement").owlCarousel({
     items : 1,
     itemsDesktopSmall :[979,2],
@@ -231,7 +231,7 @@ jQuery("#advertisement").owlCarousel({
     pagination: true,
     paginationSpeed : 400,
     navigationText: ["", ""]
-});    
+});
 
 
 
@@ -262,17 +262,24 @@ jQuery(function(){
 jQuery(function () {
 
 // Price Slider
-if (jQuery('.price-slider').length > 0) {
+  if (jQuery('.price-slider').length > 0) {
     jQuery('.price-slider').slider({
-        min: 100,
-        max: 700,
-        step: 10,
-        value: [200, 500],
-        handle: "square"
-
+      min: 100,
+      max: 800,
+      step: 10,
+      value: [200, 400],
+      handle: "square"
     });
-
-}
+  }
+  // if (jQuery('.age-slider').length > 0) {
+  //   jQuery('.age-slider').slider({
+  //     min: 1,
+  //     max: 16,
+  //     step: 1,
+  //     value: [1, 16],
+  //     handle: "square"
+  //   });
+  // }
 
 });
 
@@ -311,7 +318,7 @@ jQuery(function(){
         pagination: true
     });
 
-  
+
 });
 
 
@@ -319,7 +326,7 @@ jQuery(function(){
 
 
 /*===================================================================================*/
-/*  WOW 
+/*  WOW
 /*===================================================================================*/
 
 jQuery(function () {
@@ -328,9 +335,9 @@ jQuery(function () {
 
 
 /*===================================================================================*/
-/*  TOOLTIP 
+/*  TOOLTIP
 /*===================================================================================*/
-jQuery("[data-toggle='tooltip']").tooltip(); 
+jQuery("[data-toggle='tooltip']").tooltip();
 
 
 

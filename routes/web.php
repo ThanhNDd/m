@@ -40,7 +40,7 @@ Route::group(['prefix' => '/bo-suu-tap'], function () {
   Route::get('/giay-dep.html', 'CategoriesController@getShoes');
   Route::get('/phu-kien.html', 'CategoriesController@getAccessories');
 });
-
+Route::get('/dang-nhap.html', 'LoginController@index');
 Route::get('/khuyen-mai.html', 'SaleController@get_all_products');
 Route::get('/gio-hang.html', 'CartController@show');
 Route::get('/thanh-toan.html', 'CartController@checkout');

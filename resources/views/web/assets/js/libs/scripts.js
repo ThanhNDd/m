@@ -265,14 +265,21 @@ jQuery(function () {
 if (jQuery('.price-slider').length > 0) {
     jQuery('.price-slider').slider({
         min: 100,
-        max: 700,
+        max: 800,
         step: 10,
-        value: [200, 500],
+        value: [200, 400],
         handle: "square"
-
     });
-
 }
+  // if (jQuery('.age-slider').length > 0) {
+  //   jQuery('.age-slider').slider({
+  //     min: 1,
+  //     max: 16,
+  //     step: 1,
+  //     value: [1, 16],
+  //     handle: "square"
+  //   });
+  // }
 
 });
 

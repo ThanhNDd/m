@@ -50,7 +50,7 @@
 
 <!-- ============================================================= FOOTER : END============================================================= -->
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-    <script src="{{url('public/web/js/webapp.min.js') }}"></script>
+    <script src="{!! asset('webv2/js/app.js') !!}"></script>
     @yield('script')
 </body>
 

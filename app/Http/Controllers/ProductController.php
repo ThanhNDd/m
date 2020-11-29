@@ -131,8 +131,9 @@ class ProductController extends Controller
             return response(view('theme.page.product.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie', 'retail')))
                 ->withCookie($recentlyViewed);
         } else {
-            return response(view('web.page.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie', 'retail')))
-                ->withCookie($recentlyViewed);
+//            return response(view('web.page.detail', compact('isDetail', 'cat_title', 'prod_title', 'cat_uri', 'product', 'images', 'hasCookie', 'retail')))
+//                ->withCookie($recentlyViewed);
+          return response(view('webv2.pages.detail'));
         }
 
     }

@@ -18,6 +18,16 @@ use App\Http\Controllers\cities\Zone;
 
 class LoginController extends Controller
 {
+    public function index()
+    {
+      if ($this->is_mobile()) {
+          return view('webv2.pages.login');
+      } else {
+          return view('webv2.pages.login');
+      }
+
+    }
+
     public function checkExistPhone($phone) {
         $customer = DB::table('smi_customers')
             ->where('phone', '=', $phone)

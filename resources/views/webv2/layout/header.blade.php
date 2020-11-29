@@ -5,11 +5,11 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-            <li><a href="#"><i class="icon fa fa-user"></i>Tài khoản</a></li>
-            <li class="hidden-xs"><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-            <li class="hidden-xs"><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ hàng</a></li>
-            <li class="hidden-xs"><a href="#"><i class="icon fa fa-check"></i>Thanh toán</a></li>
-            <li><a href="#"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
+            <li><a href="{!! url('/tai-khoan.html') !!}"><i class="icon fa fa-user"></i>Tài khoản</a></li>
+            <li class="hidden-xs"><a href="{!! url('/wishlist.html') !!}"><i class="icon fa fa-heart"></i>Yêu thích</a></li>
+            <li class="hidden-xs"><a href="{!! url('/gio-hang.html') !!}"><i class="icon fa fa-shopping-cart"></i>Giỏ hàng</a></li>
+            <li class="hidden-xs"><a href="{!! url('/thanh-toan.html') !!}"><i class="icon fa fa-check"></i>Thanh toán</a></li>
+            <li><a href="{!! url('/dang-nhap.html') !!}"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
           </ul>
         </div>
         <!-- /.cnt-account -->
@@ -50,7 +50,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="{!! url('public/webv2/pages/home.html') !!}"> <img src="{!! url('public/webv2/assets/images/logo.png') !!}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{!! url('') !!}"> <img src="{!! url('public/webv2/assets/images/logo.png') !!}" alt="logo"> </a> </div>
           <!-- /.logo -->
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->
@@ -116,7 +116,11 @@
                 <div class="clearfix cart-total">
                   <div class="pull-right"> <span class="text">Tạm tính :</span><span class='price'>$600.00</span> </div>
                   <div class="clearfix"></div>
-                  <a href="{!! url('public/webv2/pages/checkout.html') !!}" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a> </div>
+                  <a href="{!! url('public/webv2/pages/checkout.html') !!}" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a>
+                  <div class="text-center">
+                    <a href="{!! url('/gio-hang.html') !!}" class="mt-4">xem giỏ hàng</a>
+                  </div>
+                </div>
                 <!-- /.cart-total-->
 
               </li>
@@ -149,7 +153,8 @@
             <div class="nav-outer">
               <ul class="nav navbar-nav">
                 <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Trang chủ</a> </li>
-                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Bé gái</a>
+                <li class="dropdown yamm mega-menu">
+                  <a href="{{ url("/danh-muc/be-gai.html") }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Bé trai</a>
                   <ul class="dropdown-menu container">
                     <li>
                       <div class="yamm-content ">
@@ -218,7 +223,7 @@
                   </ul>
                 </li>
                 <li class="dropdown mega-menu">
-                  <a href="category.html"  data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Bé trai <span class="menu-label hot-menu hidden-xs">hot</span> </a>
+                  <a href="{{ url("/danh-muc/be-trai.html") }}"  data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Bé gái </a>
                   <ul class="dropdown-menu container">
                     <li>
                       <div class="yamm-content">
@@ -295,41 +300,10 @@
                       <!-- /.yamm-content --> </li>
                   </ul>
                 </li>
-                <li class="dropdown hidden-sm"> <a href="category.html">Giày dép <span class="menu-label new-menu hidden-xs">new</span> </a> </li>
-                <li class="dropdown hidden-sm"> <a href="category.html">Gấu bông</a> </li>
-                <li class="dropdown"> <a href="contact.html">Balo</a> </li>
-                <li class="dropdown"> <a href="contact.html">Phụ kiện</a> </li>
-                <li class="dropdown"> <a href="contact.html">Blog</a> </li>
-                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Về chúng tôi</a>
-                  <ul class="dropdown-menu pages">
-                    <li>
-                      <div class="yamm-content">
-                        <div class="row">
-                          <div class="col-xs-12 col-menu">
-                            <ul class="links">
-                              <li><a href="home.html">Home</a></li>
-                              <li><a href="category.html">Category</a></li>
-                              <li><a href="detail.html">Detail</a></li>
-                              <li><a href="shopping-cart.html">Shopping Cart Summary</a></li>
-                              <li><a href="checkout.html">Checkout</a></li>
-                              <li><a href="blog.html">Blog</a></li>
-                              <li><a href="blog-details.html">Blog Detail</a></li>
-                              <li><a href="contact.html">Contact</a></li>
-                              <li><a href="sign-in.html">Sign In</a></li>
-                              <li><a href="my-wishlist.html">Wishlist</a></li>
-                              <li><a href="terms-conditions.html">Terms and Condition</a></li>
-                              <li><a href="track-orders.html">Track Orders</a></li>
-                              <li><a href="product-comparison.html">Product-Comparison</a></li>
-                              <li><a href="faq.html">FAQ</a></li>
-                              <li><a href="404.html">404</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-
+                <li class="dropdown hidden-sm"> <a href="{{ url("/danh-muc/giay-dep.html") }}">Sơ sinh</a> </li>
+                <li class="dropdown hidden-sm"> <a href="{{ url("/danh-muc/balo.html") }}">Phụ kiện</a> </li>
+                <li class="dropdown"> <a href="{{ url("/danh-muc/balo.html") }}">Khuyến mãi <span class="menu-label hot-menu hidden-xs">hot</span> </a> </li>
+                <li class="dropdown"> <a href="{{ url("/danh-muc/balo.html") }}">Bộ sưu tập  <span class="menu-label new-menu hidden-xs">new</span> </a> </li>
               </ul>
               <!-- /.navbar-nav -->
               <div class="clearfix"></div>

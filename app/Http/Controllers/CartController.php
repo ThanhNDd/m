@@ -17,7 +17,7 @@ class CartController extends Controller
             $is_active = 'cart';
             return view('theme.page.cart', compact('is_active'));
         } else {
-            return view('web.page.cart');
+            return view('webv2.pages.cart');
         }
     }
 
@@ -128,7 +128,7 @@ class CartController extends Controller
             $is_active = 'checkout';
             return view('theme.page.checkout', compact('is_active'));
         } else {
-            return view('web.page.checkout');
+            return view('webv2.pages.checkout');
         }
 
     }

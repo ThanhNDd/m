@@ -311,7 +311,8 @@ class CategoriesController extends Controller
         if ($this->is_mobile()) {
             return view('theme.page.category.category', compact('cat_title'));
         } else {
-            return view('web.page.category', compact('cat_title'));
+//            return view('web.page.category', compact('cat_title'));
+          return view('webv2.pages.category', compact('cat_title'));
         }
 
     }
