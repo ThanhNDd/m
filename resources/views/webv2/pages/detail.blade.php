@@ -62,9 +62,9 @@
                   </div><!-- /.row -->
                 </div>
 
-                <div class="description-container m-t-20">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div><!-- /.description-container -->
+{{--                <div class="description-container m-t-20">--}}
+{{--                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.--}}
+{{--                </div><!-- /.description-container -->--}}
 
                 <div class="price-container info-container m-t-20">
                   <div class="row">
@@ -93,29 +93,27 @@
 
                   </div><!-- /.row -->
                 </div><!-- /.price-container -->
+                <attributes-component></attributes-component>
+{{--                <div class="quantity-container info-container">--}}
+{{--                  <div class="row">--}}
+{{--                    <div class="col-xs-4 col-sm-4">--}}
+{{--                      <div class="cart-quantity">--}}
+{{--                        <div class="quant-input">--}}
+{{--                          <div class="arrows">--}}
+{{--                            <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>--}}
+{{--                            <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>--}}
+{{--                          </div>--}}
+{{--                          <input type="text" value="1">--}}
+{{--                        </div>--}}
+{{--                      </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-xs-8 col-sm-8">--}}
+{{--                      <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ</a>--}}
+{{--                      <a href="#" class="btn btn-danger"><i class="fa fa-shopping-cart inner-right-vs"></i> MUA NGAY</a>--}}
+{{--                    </div>--}}
 
-                <div class="quantity-container info-container">
-                  <div class="row">
-
-                    <div class="col-xs-4 col-sm-4">
-                      <div class="cart-quantity">
-                        <div class="quant-input">
-                          <div class="arrows">
-                            <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                            <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                          </div>
-                          <input type="text" value="1">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-8 col-sm-8">
-                      <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ</a>
-                      <a href="#" class="btn btn-danger"><i class="fa fa-shopping-cart inner-right-vs"></i> MUA NGAY</a>
-                    </div>
-
-                  </div><!-- /.row -->
-                </div><!-- /.quantity-container -->
+{{--                  </div><!-- /.row -->--}}
+{{--                </div><!-- /.quantity-container -->--}}
 
               </div><!-- /.product-info -->
             </div><!-- /.col-sm-7 -->

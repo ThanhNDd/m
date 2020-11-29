@@ -68,6 +68,7 @@ Vue.component('featured-product-component', require('./components/FeaturedProduc
 Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 Vue.component('slider-gallery-component', require('./components/SliderGalleryComponent.vue').default);
 Vue.component('status-component', require('./components/StatusComponent.vue').default);
+Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {
@@ -125,7 +126,6 @@ Vue.filter('format_image', function (value, thumb) {
         }
         return src;
     } catch (e) {
-
         return value;
     }
 });

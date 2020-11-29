@@ -11,7 +11,7 @@
             <div id="owl-single-product-thumbnails1">
                 <div class="item" v-for="(img, idx) in all_images">
                     <a class="horizontal-thumb active" data-target="#owl-single-product1" data-slide="1" v-bind:href="'#slide'+(idx+1)">
-                        <img class="img-responsive" width="85" alt="" v-bind:src="img" v-bind:data-echo="img" />
+                        <img class="img-responsive" width="85" alt="" v-bind:src="img | format_image('150x150')" v-bind:data-echo="img | format_image('150x150')" />
                     </a>
                 </div>
             </div><!-- /#owl-single-product-thumbnails -->

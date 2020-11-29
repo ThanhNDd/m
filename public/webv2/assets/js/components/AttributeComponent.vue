@@ -1,13 +1,13 @@
 <template>
-    <div class="list">
+    <div class="list attributs-container info-container m-t-20">
         <ul>
             <li v-if="short_description">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12" v-html="'<pre>'+short_description+'</pre>'"></div>
+                <div class="row m-t-20">
+                    <div class="col-md-12 col-lg-12" v-html="short_description"></div>
                 </div>
             </li>
             <li>
-                <div class="row">
+                <div class="row m-t-20">
                     <div class="col-md-2 col-lg-2">Màu sắc</div>
                     <div class="col-md-10 col-lg-10">
                         <div class="color-choose">
@@ -24,7 +24,7 @@
                 </div>
             </li>
             <li>
-                <div class="row">
+                <div class="row m-t-20">
                     <div class="col-md-2 col-lg-2">Size</div>
                     <div class="col-md-10 col-lg-10">
                         <div class="size-choose">
@@ -41,46 +41,37 @@
                 </div>
             </li>
         </ul>
-        <div class="quantity-container info-container">
-            <div class="row mb-2">
-                <div class="qty col-md-2 col-lg-2">
-                    <span class="label">Số lượng :</span>
-                </div>
-                <div class="qty-count">
-                    <div class="cart-quantity">
-                        <div class="quant-input">
-                            <input type="number" value="1" id="qty" min="1" v-model="qty">
-                        </div>
-                    </div>
-                </div>
-                <div class="qty">
-                    <span class="label" id="remain_qty" style="font-size: 14px;"></span>
-                </div>
-            </div>
-            <div class="alert alert-warning" style="font-style: italic;font-size: 12px;">
-                <i class="fas fa-truck"></i> Miễn phí vận chuyển khu vực Hà Nội với đơn hàng từ 250k.<br>
-                <i class="fas fa-truck"></i> Miễn phí vận chuyển Toàn Quốc với đơn hàng từ 500k.
-            </div>
+          <div class="quantity-container info-container">
             <div class="row">
-                <div class="add-btn">
-                    <a href="javascript:void(0);" class="btn btn-primary"
-                       v-on:click="addToCart()">
-                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ
-                    </a>
+              <div class="col-xs-4 col-sm-4">
+                <div class="cart-quantity">
+                  <div class="quant-input">
+                    <div class="arrows">
+                      <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+                      <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                    </div>
+                    <input type="text" value="1" id="qty" min="1" v-model="qty">
+                  </div>
                 </div>
-                <div class="add-btn">
-                    <a href="javascript:void(0);" class="btn btn-danger" style="color: white"
-                       v-on:click="buyNow()">
-                        <i class="fa fa-shopping-cart"></i> Mua ngay
-                    </a>
-                </div>
-            </div>
-        </div>
+              </div>
+              <div class="col-xs-8 col-sm-8">
+                <a href="javascript:void(0);" class="btn btn-primary" v-on:click="addToCart()"><i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ</a>
+                <a href="javascript:void(0);" class="btn btn-danger" v-on:click="buyNow()"><i class="fa fa-shopping-cart inner-right-vs"></i> MUA NGAY</a>
+              </div>
+            </div><!-- /.row -->
+          </div><!-- /.quantity-container -->
+
+          <div class="alert alert-warning" style="font-style: italic;font-size: 12px;">
+              <i class="fa fa-truck"></i> Miễn phí vận chuyển khu vực Hà Nội với đơn hàng từ 250k.<br>
+              <i class="fa fa-truck"></i> Miễn phí vận chuyển Toàn Quốc với đơn hàng từ 500k.
+          </div>
+
+
     </div>
 </template>
 
 <script>
-    import slider from './ImageGalleryComponent';
+    import slider from './SliderGalleryComponent';
 
     export default {
         data() {
@@ -237,7 +228,7 @@
                 let _self = this;
                 this.products.forEach(function (item) {
                     if (_self.color == item.color && item.size == size) {
-                        document.querySelector('#price').innerHTML = item.retail.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <sup style="top: -10px; font-size: 16px;">đ</sup>';
+                        document.querySelector('#price').innerHTML = item.retail.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup style="top: -10px; font-size: 16px;left: -4px;">đ</sup>';
                         // document.querySelector('#retail').value = item.retail;
                         // document.querySelector('#sku_selected').value = item.sku;
                         // document.querySelector('#image_selected').value = item.image;
@@ -271,8 +262,17 @@
                     // img = img.replace(".32x32", "");
                     $(".product-image-gallery img").prop("src", img);
                 }
+
+                let color_image = $('#owl-single-product1').find('.color-image');
+                if(color_image) {
+                    $(color_image).remove();
+                }
+                let item = $('#owl-single-product1 .owl-wrapper-outer .owl-wrapper .owl-item:last').html();
+                console.log(item);
+
+
                 this.setTitleImage();
-                this.chooseImage(idx);
+                // this.chooseImage(idx);
                 this.checked = false;
                 this.sizes = [];
                 this.quantities = [];
@@ -416,3 +416,78 @@
         }
     ];
 </script>
+<style scoped>
+  .color-choose div {
+    display: inline-block;
+  }
+
+  .color-choose input[type="radio"] {
+    display: none;
+  }
+
+  .color-choose input[type="radio"] + label span {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 2px 5px;
+    margin: 5px 10px 0 0;
+    font-size: 13px;
+    font-weight: normal !important;
+    border-radius: 4px;
+    border: 2px solid #dee2e6;
+    font-size: 13px;
+    /*#56c5ce*/
+  }
+
+  .color-choose input[type="radio"]:checked + label img, .color-choose input[type="radio"]:checked + label span {
+    border: 2px solid #56c5ce;
+    /*box-shadow: 0 1px 5px 0 #005bbdbf;*/
+    border-radius: 4px;
+  }
+  .color-choose img:hover {
+    border: 2px solid #56c5ce;
+    border-radius: 4px;
+  }
+  .color-choose img {
+    cursor: pointer;
+    margin-right: 10px;
+    /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
+    border-radius: 4px;
+  }
+
+  .size-choose div {
+    display: inline-block;
+    margin: 0 5px 2px 0;
+  }
+
+  .size-choose input[type="radio"] {
+    display: none;
+  }
+
+  .size-choose input[type="radio"] + label span {
+    display: inline-block;
+    margin: 5px 5px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
+    padding: 7px 10px;
+    text-align: center;
+    font-weight: normal;
+    border-radius: 4px;
+    border: 2px solid #dee2e6;
+    font-size: 13px;
+  }
+  .size-choose input[type="radio"] + label span:not(.disabled):hover,
+  .color-choose input[type="radio"] + label span:not(.disabled):hover {
+    border: 2px solid #56c5ce;
+    border-radius: 4px;
+    /*box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);*/
+  }
+
+  .size-choose input[type="radio"]:checked + label span  {
+    border: 2px solid #56c5ce;
+    outline: none;
+    /*box-shadow: 0 1px 5px 0 #43484d85;*/
+    border-radius: 4px;
+  }
+</style>
