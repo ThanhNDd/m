@@ -65,9 +65,11 @@
 <!-- ============================================================= FOOTER ============================================================= -->
 @include('webv2.layout.footer')
 <!-- ============================================================= FOOTER : END============================================================= -->
-
+<script>
+  const url = "{{url('')}}";
+</script>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="{!! url('public/webv2/assets/js/app.js') !!}"></script>
+<script src="{!! url('public/webv2/js/app.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/jquery-1.11.1.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/bootstrap.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/bootstrap-select.min.js') !!}"></script>
@@ -79,7 +81,7 @@
 <script src="{!! url('public/webv2/assets/js/libs/jquery.rateit.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/lightbox.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/wow.min.js') !!}"></script>
-<script src="{!! url('public/webv2/assets/js/libs/scripts.js') !!}"></script>
+{{--<script src="{!! url('public/webv2/assets/js/libs/scripts.js') !!}"></script>--}}
 
 @yield('script')
 </body>

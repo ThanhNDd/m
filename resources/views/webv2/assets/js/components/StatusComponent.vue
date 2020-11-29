@@ -1,6 +1,6 @@
 <template>
-    <span v-if="status" class="text-success"><i class="fas fa-check-circle"></i> Còn hàng</span>
-    <span v-else class="text-danger"><i class="fas fa-ban"></i> Hết hàng</span>
+    <span v-if="status" class="text-success"><i class="fa fa-check-circle"></i> Còn hàng</span>
+    <span v-else class="text-danger"><i class="fa fa-ban"></i> Hết hàng</span>
 </template>
 
 <script>

@@ -61,7 +61,13 @@ Vue.component('best-view-product-component', require('./components/BestViewProdu
 Vue.component('hotboy-component', require('./components/HotboyComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('slider-text-component', require('./components/SliderTextComponent.vue').default);
+
+
 Vue.component('latest-product-component', require('./components/LatestProductComponent.vue').default);
+Vue.component('featured-product-component', require('./components/FeaturedProductComponent.vue').default);
+Vue.component('blog-component', require('./components/BlogComponent.vue').default);
+Vue.component('slider-gallery-component', require('./components/SliderGalleryComponent.vue').default);
+Vue.component('status-component', require('./components/StatusComponent.vue').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {

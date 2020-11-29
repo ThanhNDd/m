@@ -77,12 +77,14 @@ class AttributesController extends Controller
                     array_push($images, $img);
                 }
             }
-            $color = '';
-            foreach ($data as $key => $value) {
-                if($color != $value->color) {
-                    $color = $value->color;
-                    if(!empty($value->image)) {
-                        array_push($images, $value->image);
+            if(empty($images)) {
+                $color = '';
+                foreach ($data as $key => $value) {
+                    if ($color != $value->color) {
+                        $color = $value->color;
+                        if (!empty($value->image)) {
+                            array_push($images, $value->image);
+                        }
                     }
                 }
             }

@@ -78,6 +78,8 @@ let mix = require('laravel-mix');
   mix.copyDirectory('resources/views/web/assets/fonts', 'public/web/fonts');
 
   mix.copyDirectory('resources/views/webv2/assets', 'public/webv2/assets');
+  mix.js(['resources/views/webv2/assets/js/app.js','resources/views/webv2/assets/js/libs/scripts.js',
+  ], 'public/webv2/js/app.js');
 
 
 

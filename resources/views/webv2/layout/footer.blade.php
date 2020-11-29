@@ -5,12 +5,12 @@
         <!-- Footer Newsletter -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col1">
           <div class="newsletter-wrap">
-            <h5>Newsletter</h5>
-            <h4>Nhận ngay mã giảm giá 30%</h4>
+{{--            <h5>Newsletter</h5>--}}
+{{--            <h4>Nhận ngay mã giảm giá 30%</h4>--}}
             <form action="#" method="post" id="newsletter-validate-detail1">
               <div id="container_form_news">
                 <div id="container_form_news2">
-                  <input type="text" name="email" id="newsletter1" title="Nhập email để nhận mã giảm giá" class="input-text required-entry validate-email" placeholder="Nhập email để nhận mã giảm giá">
+                  <input type="text" name="email" id="newsletter1" title="Nhập email để nhận ngay mã giảm giá 30%" class="input-text required-entry validate-email" placeholder="Nhập email để nhận mã giảm giá">
                   <button type="submit" title="Subscribe" class="button subscribe"><span>Đăng ký</span></button>
                 </div>
                 <!--container_form_news2-->

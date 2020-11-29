@@ -138,7 +138,7 @@ img[src="assets/images/blank.gif"] {
   -o-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
 }
-.btn-primary {
+.btn-primary, .btn-danger {
   -webkit-transition: all linear 0.2s;
   -moz-transition: all linear 0.2s;
   -ms-transition: all linear 0.2s;
@@ -4198,6 +4198,11 @@ footer {    background-image: url(../images/footer.jpg);
 
 .single-product .product-info-block .name {margin-top:0px; font-weight:bold; letter-spacing:normal; font-family:'Quicksand', sans-serif; font-size:40px}
 .single-product .product-info-block .btn-primary {background:#57c5ce; padding:12px 30px}
+.single-product .product-info-block .btn-danger {
+  background: #d9534f;
+  padding: 12px 30px;
+  border-radius: 999px;
+}
 
 .single-product .single-product-gallery {padding-bottom:35px}
 
