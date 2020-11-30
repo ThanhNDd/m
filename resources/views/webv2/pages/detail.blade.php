@@ -14,7 +14,7 @@
           <div class="row  wow fadeInUp">
 
             <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
-              <slider-gallery-component></slider-gallery-component>
+              <slider-gallery-component :product_name="'{{$product->name}}'"></slider-gallery-component>
             </div><!-- /.gallery-holder -->
             <div class='col-sm-6 col-md-7 product-info-block'>
               <div class="product-info">

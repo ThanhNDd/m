@@ -2,8 +2,8 @@
     <div class="product-item-holder size-big single-product-gallery small-gallery">
         <div id="owl-single-product1">
             <div class="single-product-gallery-item" v-bind:id="'slide'+(idx+1)" v-for="(img, idx) in all_images">
-                <a v-bind:data-lightbox="'image-'+(idx+1)" data-title="Gallery" v-bind:href="img">
-                    <img class="img-responsive" alt="" v-bind:src="img" v-bind:data-echo="img" />
+                <a data-lightbox="image-1" v-bind:data-title="product_name" v-bind:href="img">
+                    <img class="img-responsive" v-bind:alt="product_name" v-bind:src="img" v-bind:data-echo="img" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
         </div><!-- /.single-product-slider -->
@@ -11,7 +11,7 @@
             <div id="owl-single-product-thumbnails1">
                 <div class="item" v-for="(img, idx) in all_images">
                     <a class="horizontal-thumb active" data-target="#owl-single-product1" data-slide="1" v-bind:href="'#slide'+(idx+1)">
-                        <img class="img-responsive" width="85" alt="" v-bind:src="img | format_image('150x150')" v-bind:data-echo="img | format_image('150x150')" />
+                        <img class="img-responsive" width="85" v-bind:alt="product_name" v-bind:src="img | format_image('150x150')" v-bind:data-echo="img | format_image('150x150')" />
                     </a>
                 </div>
             </div><!-- /#owl-single-product-thumbnails -->
@@ -30,6 +30,7 @@
                 url: '',
             }
         },
+        props: ['product_name'],
         created() {
             this.url = url;
             this.getImages();
@@ -41,7 +42,7 @@
                     // this.submit = true;
                     axios.get(url + '/api/images/'+id, {
                         row: this.row,
-                        rowperpage: 10
+                        // rowperpage: 10
                     }).then(response => {
                         this.all_images = response.data;
                         resolve();

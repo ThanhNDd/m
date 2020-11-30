@@ -15,8 +15,8 @@
                                 <input type="radio" v-bind:id="c" name="color" v-bind:value="c" v-model="color">
                                 <label v-bind:for="c">
                                     <img v-if="images[idx]" width="35px" v-bind:src="images[idx]"
-                                         v-bind:id="idx+index_image" v-bind:title="c" @click="selectColor(idx, c)">
-                                    <span class="btn" v-else v-text="c" @click="selectColor(idx, c)"></span>
+                                         v-bind:id="idx+index_image" v-bind:title="c" @click="selectColor(idx, c, images[idx])">
+                                    <span class="btn" v-else v-text="c" @click="selectColor(idx, c, images[idx])"></span>
                                 </label>
                             </div>
                         </div>
@@ -100,7 +100,8 @@
                 sku:'',
                 qty: 1,
                 type: '',
-                data: []
+                data: [],
+                item_slider_size: 0
             }
         },
         mixins: [
@@ -108,38 +109,7 @@
         ],
         props: ['description'],
         created() {
-            let id = document.querySelector('#product_id').getAttribute('value');
-            axios.get(url + '/api/attributes/' + id)
-                .then(response => {
-                    this.attributes = response.data;
-                    this.products = response.data.products;
-                    this.short_description = response.data.products[0].short_description;
-                    let color = '';
-                    let size = '';
-                    let arr_colors = [];
-                    let arr_sizes = [];
-                    // let arr_images = [];
-                    let that = this;
-                    response.data.products.forEach(function (item) {
-                        if (color != item.color) {
-                            arr_colors.push(item.color);
-                            color = item.color;
-                            if (item.image) {
-                                that.images.push(item.image);
-                            }
-                        }
-                        if (size != item.size) {
-                            arr_sizes.push(item.size);
-                            size = item.size;
-                        }
-                    });
-                    this.colors = Array.from(new Set(arr_colors));
-                    this.sizes = Array.from(new Set(arr_sizes));
-                    // this.images = Array.from(new Set(arr_images));
-                    let total_image = this.all_images.length;
-                    let total_color = this.colors.length;
-                    this.index_image = total_image - total_color;
-                });
+            this.getAttributes();
         },
         filters: {
             format_material: function (value) {
@@ -168,6 +138,44 @@
             }
         },
         methods: {
+            getAttributes: function() {
+                let id = document.querySelector('#product_id').getAttribute('value');
+                axios.get(url + '/api/attributes/' + id)
+                    .then(response => {
+                        this.attributes = response.data;
+                        this.products = response.data.products;
+                        this.short_description = response.data.products[0].short_description;
+                        let color = '';
+                        let size = '';
+                        let arr_colors = [];
+                        let arr_sizes = [];
+                        // let arr_images = [];
+                        let that = this;
+                        response.data.products.forEach(function (item) {
+                            if (color != item.color) {
+                                arr_colors.push(item.color);
+                                color = item.color;
+                                if (item.image) {
+                                    that.images.push(item.image);
+                                }
+                            }
+                            if (size != item.size) {
+                                arr_sizes.push(item.size);
+                                size = item.size;
+                            }
+                        });
+                        this.colors = Array.from(new Set(arr_colors));
+                        this.sizes = Array.from(new Set(arr_sizes));
+                        // this.images = Array.from(new Set(arr_images));
+                        let total_image = this.all_images.length;
+                        let total_color = this.colors.length;
+                        this.index_image = total_image - total_color;
+
+
+                        this.item_slider_size = $('#owl-single-product1 .owl-wrapper-outer .owl-wrapper').find(".owl-item").length;
+                        console.log("item_slider_size: "+this.item_slider_size);
+                    });
+            },
             addToCart: function () {
                 // let color = document.querySelector('input[name=color]:checked');
                 if (!this.color) {
@@ -248,30 +256,31 @@
                     }
                 });
             },
-            selectColor: function (index, color) {
-                let all_images = this.all_images.length;
-                let image = this.images.length;
-                let idx = all_images - image;
-                idx = idx + index;
+            selectColor: function (index, color, img) {
+                // let all_images = this.all_images.length;
+                // let image = this.images.length;
+                // let idx = all_images - image;
+                // idx = idx + index;
+                index++;
+                console.log(index);
+                // let item_size = $('#owl-single-product1 .owl-wrapper-outer .owl-wrapper').find(".owl-item").length;
+                console.log(this.item_slider_size);
+                let next_item_index = this.item_slider_size+index;
+                console.log(next_item_index);
+                let html = '<div id="#slide'+(next_item_index)+'" class="single-product-gallery-item">' +
+                            '<a data-lightbox="image-1" data-title="'+color+'" href="'+img+'">' +
+                            '<img alt="'+color+'" src="'+img+'" data-echo="'+img+'" class="img-responsive"/>' +
+                            '</a>' +
+                            '</div>';
+                let owl = $('#owl-single-product1').data('owlCarousel');
+                owl.removeItem(next_item_index);
+                setTimeout(function () {
+                    owl.addItem(html);
+                    owl.jumpTo(next_item_index);
+                },100);
 
-                $(".thumbnail img").removeClass("active");
-                $(".thumbnail img#" + idx).addClass("active");
 
-                let img = this.all_images[idx];
-                if (img) {
-                    // img = img.replace(".32x32", "");
-                    $(".product-image-gallery img").prop("src", img);
-                }
-
-                let color_image = $('#owl-single-product1').find('.color-image');
-                if(color_image) {
-                    $(color_image).remove();
-                }
-                let item = $('#owl-single-product1 .owl-wrapper-outer .owl-wrapper .owl-item:last').html();
-                console.log(item);
-
-
-                this.setTitleImage();
+                // this.setTitleImage();
                 // this.chooseImage(idx);
                 this.checked = false;
                 this.sizes = [];
@@ -298,6 +307,9 @@
                 $(".product-image-gallery img").prop("alt", product_name).prop("title", product_name);
             }
         },
+        mounted() {
+
+        }
     };
     let select_origin = [
         {

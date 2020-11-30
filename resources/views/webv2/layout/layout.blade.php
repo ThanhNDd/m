@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="{!! url('public/webv2/assets/css/owl.transitions.css') !!}">
   <link rel="stylesheet" href="{!! url('public/webv2/assets/css/animate.min.css') !!}">
   <link rel="stylesheet" href="{!! url('public/webv2/assets/css/rateit.css') !!}">
+  <link rel="stylesheet" href="{!! url('public/webv2/assets/css/lightbox.css') !!}">
 
 
   <!-- Icons/Glyphs -->
@@ -79,7 +80,7 @@
 <script src="{!! url('public/webv2/assets/js/libs/jquery.easing-1.3.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/bootstrap-slider.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/jquery.rateit.min.js') !!}"></script>
-<script src="{!! url('public/webv2/assets/js/libs/lightbox.min.js') !!}"></script>
+<script type="text/javascript" src="{!! url('public/webv2/assets/js/libs/lightbox.min.js') !!}"></script>
 <script src="{!! url('public/webv2/assets/js/libs/wow.min.js') !!}"></script>
 {{--<script src="{!! url('public/webv2/assets/js/libs/scripts.js') !!}"></script>--}}
 
