@@ -4524,6 +4524,7 @@ header {
   margin-left: 9px;
   margin-right: 0;
   padding: 0px;
+  display: inline-block;
 }
 
 .breadcrumb ul li:last-child:after {

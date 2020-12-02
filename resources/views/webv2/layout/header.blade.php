@@ -152,7 +152,7 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Trang chủ</a> </li>
+                <li class="active"> <a href="{{ url("") }}">Trang chủ</a> </li>
                 <li class="dropdown yamm mega-menu">
                   <a href="{{ url("/danh-muc/be-gai.html") }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Bé trai</a>
                   <ul class="dropdown-menu container">

@@ -68,7 +68,8 @@ Vue.component('featured-product-component', require('./components/FeaturedProduc
 Vue.component('blog-component', require('./components/BlogComponent.vue').default);
 Vue.component('slider-gallery-component', require('./components/SliderGalleryComponent.vue').default);
 Vue.component('status-component', require('./components/StatusComponent.vue').default);
-Vue.component('attributes-component', require('./components/AttributeComponent.vue').default);
+Vue.component('attributes-component', require('./components/AttributeComponent2.vue').default);
+Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {
@@ -94,12 +95,12 @@ Vue.filter('formatPrice', function (value) {
         let max_price = arr[1];
         min_price = (min_price/1).toFixed(0).replace('.', ',');
         max_price = (max_price/1).toFixed(0).replace('.', ',');
-        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
-        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+        min_price = min_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<sup>đ</sup>';
+        max_price = max_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<sup>đ</sup>';
         return min_price + " - " +max_price;
     }
     let val = (value/1).toFixed(0).replace('.', ',');
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' <sup>đ</sup>';
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<sup>đ</sup>';
 });
 Vue.filter('formatSalePrice', function (discount, retail) {
     let sale_price = retail - (discount * retail) / 100;

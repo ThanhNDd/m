@@ -3925,6 +3925,7 @@ footer {    background-image: url(../images/footer.jpg);
   margin-left: 9px;
   margin-right: -4px;
   padding: 0px;
+  display: inline-block;
 }
 .breadcrumb ul li:last-child:after {
   content: "";
@@ -3934,6 +3935,7 @@ footer {    background-image: url(../images/footer.jpg);
   font-family:'Quicksand', sans-serif;
   line-height: 24px;
   font-weight: 400;
+  display: inline-block;
 }
 .category-carousel {
   text-align: center;
