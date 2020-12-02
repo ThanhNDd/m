@@ -70,6 +70,8 @@ Vue.component('slider-gallery-component', require('./components/SliderGalleryCom
 Vue.component('status-component', require('./components/StatusComponent.vue').default);
 Vue.component('attributes-component', require('./components/AttributeComponent2.vue').default);
 Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
+Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
+Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {

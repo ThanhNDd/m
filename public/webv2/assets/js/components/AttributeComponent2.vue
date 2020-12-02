@@ -1,11 +1,11 @@
 <template>
     <div class="list attributes-container info-container m-t-10">
         <ul>
-            <li v-if="short_description">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12" v-html="'<pre>'+short_description+'</pre>'"></div>
-                </div>
-            </li>
+<!--            <li v-if="short_description">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12 col-lg-12" v-html="'<pre>'+short_description+'</pre>'"></div>-->
+<!--                </div>-->
+<!--            </li>-->
             <li class="m-t-10">
                 <div class="row">
                     <div class="col-md-2 col-lg-2">Màu sắc</div>

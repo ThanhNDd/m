@@ -39,7 +39,7 @@
         methods: {
             chooseImage: function (index) {
                 // $(".thumbnail img").removeClass("active");
-                document.querySelector('.thumbnail').scrollLeft = Number(68)*(index-4);
+                document.querySelector('.thumbnail').scrollLeft = Number(60)*(index-1);
                 // if(index != this.activeIndex) {
                 $(".thumbnail").children("img").removeClass("active");
                 // setTimeout(function () {
@@ -84,7 +84,7 @@
         cursor: pointer;
     }
     img.active {
-        border: 2px solid #509dde;
+        border: 2px solid #56c5ce;
     }
     /*div#owl-single-product {*/
     /*    display: inline-block;*/

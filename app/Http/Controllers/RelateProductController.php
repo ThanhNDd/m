@@ -60,7 +60,10 @@ class RelateProductController extends Controller
 //            ->get()->jsonSerialize();
         $products = DB::select(DB::raw("SELECT a.id,
                                                        a.name,
-                                                       a.image,
+                                                       CASE
+                                                           WHEN a.image is not null THEN json_value(JSON_EXTRACT(a.image, '$[0][0]'), '$.src')
+                                                           ELSE b.image
+                                                       END AS image,
                                                        b.image as variant_image,
                                                        a.rating,
                                                        a.reviews,
@@ -84,7 +87,7 @@ class RelateProductController extends Controller
                                                          a.type,
                                                          a.category_id,
                                                          a.description
-                                                order by a.category_id = $cat_id desc, TYPE = $type desc, a.created_at desc
+                                                order by a.category_id = $cat_id desc, TYPE = $type desc, rand(), a.created_at desc, a.updated_at desc
                                                 limit $row, $rowperpage"));
         return response($products, Response::HTTP_OK);
     }
