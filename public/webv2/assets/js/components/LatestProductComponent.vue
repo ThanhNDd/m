@@ -4,9 +4,10 @@
             <h3 class="new-product-title pull-left">New products</h3>
             <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
                 <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
-                <li><a data-transition-type="backSlide" href="#smartphone" data-toggle="tab">Clothing</a></li>
-                <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
-                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li>
+                <li><a data-transition-type="backSlide" href="#smartphone" data-toggle="tab">Bé trai</a></li>
+                <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Bé gái</a></li>
+                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Sơ sinh</a></li>
+                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Phụ kiện</a></li>
             </ul>
             <!-- /.nav-tabs -->
         </div>

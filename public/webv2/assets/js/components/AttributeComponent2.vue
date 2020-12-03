@@ -274,6 +274,9 @@
                     // $(".product-image-gallery a:first div").css("background-image", 'url('+image_by_color+')');
                     // $(".product-image-gallery a:first div").prop("data-echo", image_by_color);
                     this.$root.$children[0].img = image_by_color;
+                    $.each(this.$root.$children, function(k, v){
+                        let id = this.$refs;
+                    });
                 }
                 // this.setTitleImage();
 

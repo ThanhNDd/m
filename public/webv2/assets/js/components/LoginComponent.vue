@@ -1392,7 +1392,7 @@
 </script>
 <style>
     ul.dropdown-menu.show {
-        margin-top: 10px;
+        /*margin-top: 10px;*/
         padding: 0px;
     }
     ul.dropdown-menu.show li a {
@@ -1402,12 +1402,12 @@
         color: white;
     }
     ul.dropdown-menu.show li:hover {
-        background: #0f6cb2;
+        /*background: #0f6cb2;*/
     }
     ul.dropdown-menu.show li {
         display: inline-block;
         width: 100%;
-        padding: 10px;
+        /*padding: 10px;*/
     }
 
 

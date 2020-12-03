@@ -85,47 +85,6 @@
 
           <div class="dropdown dropdown-cart">
             <cart-component></cart-component>
-{{--            <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">--}}
-{{--              <div class="items-cart-inner">--}}
-{{--                <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>--}}
-{{--                <div class="basket-item-count">--}}
-{{--                  <span class="count">2</span>--}}
-{{--                </div>--}}
-{{--                <div class="total-price-basket">--}}
-{{--                  <span class="lbl">Giỏ hàng </span>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--            </a>--}}
-{{--            <ul class="dropdown-menu">--}}
-{{--              <li>--}}
-{{--                <div class="cart-item product-summary">--}}
-{{--                  <div class="row">--}}
-{{--                    <div class="col-xs-4">--}}
-{{--                      <div class="image"> <a href="{!! url('public/webv2/pages/detail.html') !!}"><img src="{!! url('public/webv2/assets/images/cart.jpg') !!}" alt=""></a> </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xs-7">--}}
-{{--                      <h3 class="name"><a href="{!! url('public/webv2/pages/index.php?page-detail') !!}">Simple Product</a></h3>--}}
-{{--                      <div class="price">$600.00</div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>--}}
-{{--                  </div>--}}
-{{--                </div>--}}
-{{--                <!-- /.cart-item -->--}}
-{{--                <div class="clearfix"></div>--}}
-{{--                <hr>--}}
-{{--                <div class="clearfix cart-total">--}}
-{{--                  <div class="pull-right"> <span class="text">Tạm tính :</span><span class='price'>$600.00</span> </div>--}}
-{{--                  <div class="clearfix"></div>--}}
-{{--                  <a href="{!! url('public/webv2/pages/checkout.html') !!}" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a>--}}
-{{--                  <div class="text-center">--}}
-{{--                    <a href="{!! url('/gio-hang.html') !!}" class="mt-4">xem giỏ hàng</a>--}}
-{{--                  </div>--}}
-{{--                </div>--}}
-{{--                <!-- /.cart-total-->--}}
-
-{{--              </li>--}}
-{{--            </ul>--}}
-            <!-- /.dropdown-menu-->
           </div>
           <!-- /.dropdown-cart -->
 
@@ -195,6 +154,7 @@
                               <li><a href="#">Bộ thể thao</a></li>
                               <li><a href="#">Bộ thu đông</a></li>
                               <li><a href="#">Bộ mùa hè</a></li>
+                              <li><a href="#">Bộ đồ bơi</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
@@ -311,69 +271,52 @@
                               <div class="yamm-content">
                                   <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Áo</h2>
+                                          <h2 class="title">Hàng Quảng Châu</h2>
                                           <ul class="links">
-                                              <li><a href="#">Routers & Modems</a></li>
-                                              <li><a href="#">CPUs, Processors</a></li>
-                                              <li><a href="#">PC Gaming Store</a></li>
-                                              <li><a href="#">Graphics Cards</a></li>
-                                              <li><a href="#">Components</a></li>
-                                              <li><a href="#">Webcam</a></li>
-                                              <li><a href="#">Memory (RAM)</a></li>
-                                              <li><a href="#">Motherboards</a></li>
-                                              <li><a href="#">Keyboards</a></li>
-                                              <li><a href="#">Headphones</a></li>
+                                              <li><a href="#">Bộ body</a></li>
+                                              <li><a href="#">Set trang phục</a></li>
+                                              <li><a href="#">Váy công chúa</a></li>
+                                              <li><a href="#">Áo</a></li>
+                                              <li><a href="#">Quần</a></li>
+                                              <li><a href="#">Váy</a></li>
                                           </ul>
                                       </div>
                                       <!-- /.col -->
 
                                       <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Quần</h2>
+                                          <h2 class="title">Hàng Hãng</h2>
                                           <ul class="links">
-                                              <li><a href="#">Accessories</a></li>
-                                              <li><a href="#">Binoculars</a></li>
-                                              <li><a href="#">Telescopes</a></li>
-                                              <li><a href="#">Camcorders</a></li>
-                                              <li><a href="#">Digital</a></li>
-                                              <li><a href="#">Film Cameras</a></li>
-                                              <li><a href="#">Flashes</a></li>
-                                              <li><a href="#">Lenses</a></li>
-                                              <li><a href="#">Surveillance</a></li>
-                                              <li><a href="#">Tripods</a></li>
+                                              <li><a href="#">Moon</a></li>
+                                              <li><a href="#">Avaler</a></li>
+                                              <li><a href="#">Bons99</a></li>
+                                              <li><a href="#">Dokma</a></li>
                                           </ul>
                                       </div>
                                       <!-- /.col -->
                                       <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Set trang phục</h2>
+                                          <h2 class="title">Phụ kiện</h2>
                                           <ul class="links">
-                                              <li><a href="#">Apple</a></li>
-                                              <li><a href="#">Samsung</a></li>
-                                              <li><a href="#">Lenovo</a></li>
-                                              <li><a href="#">Motorola</a></li>
-                                              <li><a href="#">LeEco</a></li>
-                                              <li><a href="#">Asus</a></li>
-                                              <li><a href="#">Acer</a></li>
-                                              <li><a href="#">Accessories</a></li>
-                                              <li><a href="#">Headphones</a></li>
-                                              <li><a href="#">Memory Cards</a></li>
+                                              <li><a href="#">Turban</a></li>
+                                              <li><a href="#">Dép tập đi</a></li>
+                                              <li><a href="#">Giày</a></li>
+                                              <li><a href="#">Mũ</a></li>
+                                              <li><a href="#">Tất</a></li>
+                                              <li><a href="#">Găng tay</a></li>
+                                              <li><a href="#">Bộ quà tặng</a></li>
                                           </ul>
                                       </div>
-                                      <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Váy</h2>
-                                          <ul class="links">
-                                              <li><a href="#">Apple</a></li>
-                                              <li><a href="#">Samsung</a></li>
-                                              <li><a href="#">Lenovo</a></li>
-                                              <li><a href="#">Motorola</a></li>
-                                              <li><a href="#">LeEco</a></li>
-                                              <li><a href="#">Asus</a></li>
-                                              <li><a href="#">Acer</a></li>
-                                              <li><a href="#">Accessories</a></li>
-                                              <li><a href="#">Headphones</a></li>
-                                              <li><a href="#">Memory Cards</a></li>
-                                          </ul>
+                                      <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner" style="float:right">
+                                        <div style="
+                                            background: url('https://cbu01.alicdn.com/img/ibank/2020/836/952/21497259638_981030018.jpg');
+                                            background-position: right;
+                                            background-size: contain;
+                                            width: 330px;
+                                            height: 330px;
+                                            background-repeat: no-repeat;
+                                            float: right;
+                                            margin-bottom: 20px;
+                                        "></div>
                                       </div>
-                                      <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner"> <a href="#"><img alt="" src="{!! url('public/webv2/assets/images/banners/banner-side.png') !!}"></a> </div>
                                   </div>
                                   <!-- /.row -->
                               </div>
@@ -387,54 +330,47 @@
                               <div class="yamm-content">
                                   <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Bé trai</h2>
+                                          <h2 class="title"></h2>
                                           <ul class="links">
-                                              <li><a href="#">Routers & Modems</a></li>
-                                              <li><a href="#">CPUs, Processors</a></li>
-                                              <li><a href="#">PC Gaming Store</a></li>
-                                              <li><a href="#">Graphics Cards</a></li>
-                                              <li><a href="#">Components</a></li>
-                                              <li><a href="#">Webcam</a></li>
-                                              <li><a href="#">Memory (RAM)</a></li>
-                                              <li><a href="#">Motherboards</a></li>
-                                              <li><a href="#">Keyboards</a></li>
-                                              <li><a href="#">Headphones</a></li>
+                                              <li><a href="#">Giày sneaker</a></li>
+                                              <li><a href="#">Giày vải</a></li>
+                                              <li><a href="#">Tất</a></li>
+                                              <li><a href="#">Dép</a></li>
+                                              <li><a href="#">Hài</a></li>
+                                              <li><a href="#">Guốc</a></li>
+                                              <li><a href="#">Túi xách</a></li>
+                                              <li><a href="#">Balo</a></li>
+                                              <li><a href="#">Cặp sách</a></li>
                                           </ul>
                                       </div>
                                       <!-- /.col -->
 
                                       <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Bé gái</h2>
+                                          <h2 class="title"></h2>
                                           <ul class="links">
-                                              <li><a href="#">Accessories</a></li>
-                                              <li><a href="#">Binoculars</a></li>
-                                              <li><a href="#">Telescopes</a></li>
-                                              <li><a href="#">Camcorders</a></li>
-                                              <li><a href="#">Digital</a></li>
-                                              <li><a href="#">Film Cameras</a></li>
-                                              <li><a href="#">Flashes</a></li>
-                                              <li><a href="#">Lenses</a></li>
-                                              <li><a href="#">Surveillance</a></li>
-                                              <li><a href="#">Tripods</a></li>
+                                              <li><a href="#">Gấu bông</a></li>
+                                              <li><a href="#">Mũ lưỡi chai</a></li>
+                                              <li><a href="#">Mũ tròn vành</a></li>
+                                              <li><a href="#">Kính bơi</a></li>
+                                              <li><a href="#">Đồ bơi</a></li>
+                                              <li><a href="#">Khẩu trang</a></li>
+                                              <li><a href="#">Găng tay</a></li>
+                                              <li><a href="#">Tóc giả</a></li>
                                           </ul>
                                       </div>
                                       <!-- /.col -->
-                                      <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                          <h2 class="title">Sơ sinh</h2>
-                                          <ul class="links">
-                                              <li><a href="#">Apple</a></li>
-                                              <li><a href="#">Samsung</a></li>
-                                              <li><a href="#">Lenovo</a></li>
-                                              <li><a href="#">Motorola</a></li>
-                                              <li><a href="#">LeEco</a></li>
-                                              <li><a href="#">Asus</a></li>
-                                              <li><a href="#">Acer</a></li>
-                                              <li><a href="#">Accessories</a></li>
-                                              <li><a href="#">Headphones</a></li>
-                                              <li><a href="#">Memory Cards</a></li>
-                                          </ul>
-                                      </div>
-                                      <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner"> <a href="#"><img alt="" src="{!! url('public/webv2/assets/images/banners/banner-side.png') !!}"></a> </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner" style="float:right">
+                                      <div style="
+                                            background: url('https://cbu01.alicdn.com/img/ibank/2020/691/598/17765895196_1511504708.jpg');
+                                            background-position: right;
+                                            background-size: contain;
+                                            width: 330px;
+                                            height: 330px;
+                                            background-repeat: no-repeat;
+                                            float: right;
+                                            margin-bottom: 20px;
+                                        "></div>
+                                    </div>
                                   </div>
                                   <!-- /.row -->
                               </div>
@@ -448,22 +384,32 @@
                           <li>
                               <div class="yamm-content">
                                   <div class="row">
-                                      <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                                      <div class="col-xs-12 col-sm-12 col-md-3 col-menu">
                                           <h2 class="title">Khuyến mãi</h2>
                                           <ul class="links">
-                                              <li><a href="#">Routers & Modems</a></li>
-                                              <li><a href="#">CPUs, Processors</a></li>
-                                              <li><a href="#">PC Gaming Store</a></li>
-                                              <li><a href="#">Graphics Cards</a></li>
-                                              <li><a href="#">Components</a></li>
-                                              <li><a href="#">Webcam</a></li>
-                                              <li><a href="#">Memory (RAM)</a></li>
-                                              <li><a href="#">Motherboards</a></li>
-                                              <li><a href="#">Keyboards</a></li>
-                                              <li><a href="#">Headphones</a></li>
+                                              <li><a href="#">Giảm giá hàng lẻ size</a></li>
+                                              <li><a href="#">Giảm giá hàng hè</a></li>
+                                              <li><a href="#">Giảm giá đặc biệt</a></li>
+                                              <li><a href="#">Giảm giá siêu tốc</a></li>
+                                              <li><a href="#">Giảm giá 50%</a></li>
+                                              <li><a href="#">Đồng giá 99k</a></li>
+                                              <li><a href="#">Đồng giá 129k</a></li>
+                                              <li><a href="#">Đồng giá 299k</a></li>
                                           </ul>
                                       </div>
-                                      <div class="col-xs-12 col-sm-12 col-md-6 col-menu custom-banner"> <a href="#"><img alt="" src="{!! url('public/webv2/assets/images/banners/banner-side.png') !!}"></a> </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner" style="float:right">
+                                      <div style="
+                                            background: url('https://getflycrm.com/wp-content/uploads/2016/07/chot-sale-khong-don-gian.jpg');
+                                            background-position: right;
+                                            background-size: contain;
+                                            width: 300px;
+                                            height: 250px;
+                                            background-repeat: no-repeat;
+                                            float: right;
+                                            /*margin-bottom: 20px;*/
+                                        "></div>
+                                    </div>
                                   </div>
                                   <!-- /.row -->
                               </div>
