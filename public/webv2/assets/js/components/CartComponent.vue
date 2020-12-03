@@ -4,7 +4,7 @@
         <div class="items-cart-inner">
           <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
           <div class="basket-item-count">
-            <span class="count" v-if="cart_number">{{cart_number}}</span>
+            <span class="count cart_number">{{cart_number}}</span>
           </div>
           <div class="total-price-basket">
             <span class="lbl">Giỏ hàng </span>
@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-                cart_number: '',
+                cart_number: 0,
                 url: ''
             }
         },
@@ -36,7 +36,9 @@
             this.url = url;
             axios.get(url + '/api/cart')
                 .then(response => {
-                    this.cart_number = response.data
+                    if(response.data) {
+                      this.cart_number = response.data
+                    }
                 });
         },
     }

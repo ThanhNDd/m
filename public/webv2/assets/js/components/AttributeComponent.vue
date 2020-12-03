@@ -235,7 +235,7 @@
                 axios.post(url + "/api/cart", {
                     body: this.data
                 }).then(response => {
-                    document.querySelector('.cart_number').innerHTML = '<span class="badge badge-danger" style="background: #fdd922;color: #666;">' + response.data.length + '</span>';
+                    document.querySelector('.cart_number').innerHTML = response.data.length;
                     if (this.type === "buyNow") {
                         window.location.href = url + "/thanh-toan.html";
                     } else {

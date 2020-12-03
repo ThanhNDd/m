@@ -87,7 +87,7 @@ class RelateProductController extends Controller
                                                          a.type,
                                                          a.category_id,
                                                          a.description
-                                                order by a.category_id = $cat_id desc, TYPE = $type desc, rand(), a.created_at desc, a.updated_at desc
+                                                order by a.category_id = $cat_id desc, TYPE = $type desc, a.created_at desc, rand(), a.updated_at desc
                                                 limit $row, $rowperpage"));
         return response($products, Response::HTTP_OK);
     }

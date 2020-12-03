@@ -52,8 +52,8 @@ Vue.component('star-rating', StarRating);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 Vue.component('sidebar-component', require('./components/sidebarComponent.vue').default);
 Vue.component('footer-component', require('./components/footerComponent.vue').default);
-Vue.component('cart-number-component', require('./components/CartComponent').default);
-Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
+
+// Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('category-component', require('./components/CategoryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
@@ -72,6 +72,7 @@ Vue.component('attributes-component', require('./components/AttributeComponent2.
 Vue.component('slider-component', require('./components/ImageGalleryComponent.vue').default);
 Vue.component('relate-product-component', require('./components/RelateProductComponent.vue').default);
 Vue.component('items-cart-component', require('./components/ItemsInCartComponent.vue').default);
+Vue.component('cart-component', require('./components/CartComponent').default);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {
