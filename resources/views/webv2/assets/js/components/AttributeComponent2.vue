@@ -239,9 +239,6 @@
                 this.products.forEach(function (item) {
                     if (_self.color == item.color && item.size == size) {
                         document.querySelector('#price').innerHTML = item.retail.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '<sup style="top: -10px; font-size: 16px;"> đ</sup>';
-                        // document.querySelector('#retail').value = item.retail;
-                        // document.querySelector('#sku_selected').value = item.sku;
-                        // document.querySelector('#image_selected').value = item.image;
                         _self.id = item.id;
                         _self.price = item.retail;
                         _self.sku = item.sku;
@@ -259,28 +256,13 @@
                 });
             },
             selectColor: function (index, color, image_by_color) {
-                // let all_images = this.all_images.length;
-                // let image = this.images.length;
-                // let idx = all_images - image;
-                // idx = idx + index;
-                //
-                // $(".thumbnail img").removeClass("active");
-                // $(".thumbnail img#" + idx).addClass("active");
-
-                // let img = this.all_images[idx];
                 if (image_by_color) {
-                    // $(".product-image-gallery img").prop("src", img);
-                    $(".product-image-gallery a:first").prop("data-title", color);
-                    // $(".product-image-gallery a:first div").css("background-image", 'url('+image_by_color+')');
-                    // $(".product-image-gallery a:first div").prop("data-echo", image_by_color);
-                    this.$root.$children[0].img = image_by_color;
                     $.each(this.$root.$children, function(k, v){
-                        let id = this.$refs;
+                        if(v.$vnode.componentOptions.tag === 'slider-component') {
+                            v.img = image_by_color;
+                        }
                     });
                 }
-                // this.setTitleImage();
-
-                // this.$root.$children[0].activeIndex = -1;
                 this.chooseImage(-1);
                 this.checked = false;
                 this.sizes = [];
@@ -299,13 +281,6 @@
                     }
                 });
             },
-            // setTitleImage: function () {
-            //     let product_name = $(".product-info-block .product-info .name").text();
-            //     if (!product_name) {
-            //         product_name = '';
-            //     }
-            //     $(".product-image-gallery img").prop("alt", product_name).prop("title", product_name);
-            // }
         },
     };
     let select_origin = [

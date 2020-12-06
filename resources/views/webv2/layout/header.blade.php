@@ -385,12 +385,17 @@
                               <div class="yamm-content">
                                   <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-3 col-menu">
-                                          <h2 class="title">Khuyến mãi</h2>
+                                          <h2 class="title"></h2>
                                           <ul class="links">
                                               <li><a href="#">Giảm giá hàng lẻ size</a></li>
                                               <li><a href="#">Giảm giá hàng hè</a></li>
                                               <li><a href="#">Giảm giá đặc biệt</a></li>
-                                              <li><a href="#">Giảm giá siêu tốc</a></li>
+                                              <li><a href="#">Flash sale</a></li>
+                                          </ul>
+                                      </div>
+                                      <div class="col-xs-12 col-sm-12 col-md-3 col-menu">
+                                          <h2 class="title"></h2>
+                                          <ul class="links">
                                               <li><a href="#">Giảm giá 50%</a></li>
                                               <li><a href="#">Đồng giá 99k</a></li>
                                               <li><a href="#">Đồng giá 129k</a></li>
@@ -404,7 +409,7 @@
                                             background-position: right;
                                             background-size: contain;
                                             width: 300px;
-                                            height: 250px;
+                                            height: 150px;
                                             background-repeat: no-repeat;
                                             float: right;
                                             /*margin-bottom: 20px;*/
