@@ -91,7 +91,7 @@ class CheckoutController extends Controller
                                 'quantity' => $qty
                             ]
                         );
-                        print_r($detailId);
+                        // print_r($detailId);
                         if (empty($detailId)) {
                             throw new Exception ('Cannot insert Order Detail !!!');
                         }
@@ -109,7 +109,6 @@ class CheckoutController extends Controller
                 throw new Exception ("Not exist item in cart !!!");
             }
             DB::commit();
-//             clear session
             $request->session()->forget("cart");
             $request->session()->put("finish", true);
             try {
@@ -150,7 +149,6 @@ class CheckoutController extends Controller
             return response("success", Response::HTTP_OK);
         } catch (\Exception $e) {
             DB::rollback();
-//            return response()->json("".$e->getMessage());
             return response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -204,6 +202,150 @@ class CheckoutController extends Controller
             return false;
         }
         return true;
+    }
+
+    public function storeFromLanding(Request $request)
+    {
+        $mailContent = [];
+        $body = $request->body;
+        $data = $body[0];
+        DB::beginTransaction();
+        try {
+            if(empty($data["phone"])) {
+                return response("invalid_input", Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+            $zone = new Zone();
+            $customer_id = $data["customer_id"];
+            $city = $zone->get_name_city($data["city_id"]);
+            $district = $zone->get_name_district($data["district_id"]);
+            $village = $zone->get_name_village($data["village_id"]);
+            $address = $data["address"].' - '. $village. ' - '.$district. ' - '.$city;
+            $source_website = 2;
+            if(empty($customer_id)) {
+                // create new user
+                $customer = [];
+                $customer["password"] = "";
+                $customer["fullname"] = $data["name"];
+                $customer["phone"] = $data["phone"];
+                $customer["email"] = $data["email"];
+                $customer["city"] = $data["city_id"];
+                $customer["district"] = $data["district_id"];
+                $customer["village"] = $data["village_id"];
+                $customer["address"] = $data["address"];
+                $customer["full_address"] = $address;
+                $customer["source_register"] = $source_website;
+                $customer["birthday"] = null;
+                $customer["gender"] = "";
+                $customerController = new CustomerController();
+                $customer_id = $customerController->saveCustomer($customer);
+                $data["customer_id"] = $customer_id;
+            } else {
+                //update
+                $customer = [];
+                $customer["customer_id"] = $data["customer_id"];
+                $customer["fullname"] = $data["name"];
+                $customer["phone"] = $data["phone"];
+                $customer["email"] = $data["email"];
+                $customer["city"] = $data["city_id"];
+                $customer["district"] = $data["district_id"];
+                $customer["village"] = $data["village_id"];
+                $customer["address"] = $data["address"];
+                $customer["source_register"] = $source_website;
+                $customer["full_address"] = $address;
+                $customerController = new CustomerController();
+                $customerController->updateCustomer($customer);
+            }
+            if(!$this->validate_form($data)) {
+                return response("invalid_input", Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+            $otherReceiverId = null;
+            $shipping = $data["shipping"];
+            $payment_method = $data["payment_method"];
+            $total_amount = $data["total_amount"];
+            $total_checkout = $data["total_checkout"];
+            // create order
+            $orderId = DB::table('smi_orders')->insertGetId(
+                [
+                    'total_amount' => $total_amount,
+                    'total_checkout' => $total_checkout,
+                    'type' => '1', // online
+                    'status' => '0', // pending
+                    'shipping' => $shipping,
+                    'payment_type' => $payment_method,
+                    'customer_id' => $customer_id,
+                    'source' => '1', // website
+                    'other_receiver' => $otherReceiverId
+                ]
+            );
+            if (empty($orderId)) {
+                throw new Exception ('error_created_order!!!');
+            }
+            // create order detail
+            $products = [];
+            $data_orders = $data["data_orders"];
+            foreach ($data_orders as $key => $value) {
+                $product_id = $value["product_id"];
+                $product_name = $value["name"];
+                $details = $value["detail"];
+                foreach ($details as $key1 => $value1) {
+                    foreach ($value1 as $key2 => $value2) {
+                        foreach ($value2 as $key3 => $value3) {
+                            $detailId = DB::table('smi_order_detail')->insertGetId(
+                                        [
+                                            'order_id' => $orderId,
+                                            'product_id' => $value["product_id"],
+                                            'variant_id' => $value3["variant_id"],
+                                            'sku' => $value3['sku'],
+                                            'price' => $value3['retail'],
+                                            'quantity' => $value3['quantity'],
+                                            'profit' => $value3['p']
+                                        ]
+                                    );
+                            if (empty($detailId)) {
+                                throw new Exception ('Cannot insert Order Detail !!!');
+                            }
+                            $product = [];
+                            $product["product_id"] = $product_id;
+                            $product["product_name"] = $product_name;
+                            $product["qty"] = $value3['quantity'];
+                            $product["price"] = $value3['retail'];
+                            $product["sku"] = $value3['sku'];
+                            array_push($products, $product);
+                        }
+                    }
+                }
+            }
+            // save to order logs
+            $message_log = 'Đơn hàng mới';
+            DB::table('smi_order_logs')->insert(
+                [
+                    'order_id' => $orderId,
+                    'action' => $message_log
+                ]);
+            DB::commit();
+            try {
+                
+                $mailContent['order_id'] = $orderId;
+                $mailContent['customer_name'] = $data["name"];
+                $mailContent['customer_phone'] = $data["phone"];
+                $mailContent['customer_email'] = $data["email"];
+                $mailContent['customer_address'] = $address;
+                $mailContent['difference_address'] = $data["difference_address"];
+                $mailContent['products'] = $products;
+                $mailContent["total_amount"] = $data['total_amount'];
+                $mailContent["total_checkout"] = $data['total_checkout'];
+                $mailContent["shipping"] = $data['shipping'];
+                $mailContent["order_date"] = date("d/m/Y H:i:s");
+                $mailContent["note"] = $data['note'];
+                Mail::to("shopmein.vn@gmail.com")->send(new SendEmail($mailContent));
+            } catch (\Exception $ex) {
+                return response($ex->getMessage(), Response::HTTP_OK);
+            }
+            return response("success", Response::HTTP_OK);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     public function finish() {

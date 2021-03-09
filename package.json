@@ -49,6 +49,7 @@
     "vue-toast-mobile": "^2.0.0",
     "vue-toast-notification": "^0.4.1",
     "vue-toasted": "^1.1.28",
+    "vue-toastr": "^2.1.2",
     "vue2-timeago": "^1.2.6",
     "vue2-toast": "^2.1.0",
     "vuejs-paginate": "^2.1.0",

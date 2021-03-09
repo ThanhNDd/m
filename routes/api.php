@@ -43,6 +43,7 @@ Route::group(['prefix' => 'zone'], function(){
     Route::get('/village/{id}', 'ZoneController@village');
 });
 Route::post('/thuc-hien-thanh-toan', 'CheckoutController@store');
+Route::post('/landing/thanh-toan', 'CheckoutController@storeFromLanding');
 Route::group(['prefix' => 'danh-muc'], function(){
     Route::post('/be-gai.html', 'CategoriesController@girls');
     Route::post('/be-trai.html', 'CategoriesController@boys');
@@ -76,8 +77,18 @@ Route::post('/dang-ky', 'LoginController@register');
 Route::post('/dang-nhap', 'LoginController@login');
 Route::post('/send-email-change-password', 'LoginController@sendEmailChangePassword');
 Route::get('/check-exist-phone/{phone}', 'LoginController@checkExistPhone');
+Route::get('/find-by-phone/{phone}', 'LoginController@getCustomerByPhone');
 Route::get('/check-exist-email/{email}', 'LoginController@checkExistEmail');
 Route::post('/verify-code', 'LoginController@verifyCode');
 Route::post('/change-password', 'LoginController@changePassword');
 Route::post('/check-logged', 'LoginController@checkLogged');
 Route::post('/logout', 'LoginController@logout');
+
+
+//for chat bot
+Route::get('/products/{slug}', 'ProductController@getProductBySlug');
+Route::get('/chat-bot/{id}', 'ProductController@getDataProductById');
+Route::get('/chat-bot/relate-product/{id}', 'ProductController@getRelateProducts');
+
+Route::get('/landing/{id}', 'ProductController@getDataProductById');
+Route::get('/landing/relate-product/{id}', 'ProductController@getRelateProducts');

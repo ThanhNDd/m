@@ -1,4 +1,5 @@
 {
+    "/landing/app.js": "/landing/app.js",
     "/mobile/js/apps.js": "/mobile/js/apps.js",
     "/mobile/js/detail.js": "/mobile/js/detail.js",
     "/mobile/js/home.js": "/mobile/js/home.js",

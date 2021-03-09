@@ -85,6 +85,15 @@ class LoginController extends Controller
         }
     }
 
+    function getCustomerByPhone($phone) {
+        $customer = DB::table('smi_customers')
+                ->select('id', 'phone', 'name', 'email', 'city_id', 'district_id', 'village_id', 'address')
+                ->where('phone', '=', $phone)
+                ->get()
+                ->jsonSerialize();
+        return response($customer, Response::HTTP_OK);
+    }
+
     function storeInCookie(Request $request, $cus)
     {
         $minutes = 60 * 24 * 30;// 1 month
