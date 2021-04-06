@@ -50,11 +50,11 @@
 <body>
 
 <div class="container">
-  <h2 align="center">Thông tin đơn hàng #{{$mailContent['order_id']}}</h2>
+  <!-- <h2 align="center">Thông tin đơn hàng #{{$mailContent['order_id']}}</h2> -->
   <div>
-    <p><strong>Thông tin đơn hàng</strong></p>
-    <p style="text-indent: 30px;">Mã đơn hàng: {{$mailContent['order_id']}}</p>
-    <p style="text-indent: 30px;">Ngày đặt hàng: {{$mailContent['order_date']}}</p>
+    <!-- <p><strong>Thông tin đơn hàng</strong></p> -->
+    <p>Mã đơn hàng: {{$mailContent['order_id']}}</p>
+    <p>Ngày đặt hàng: {{$mailContent['order_date']}}</p>
   </div>
   <div>
     <p><strong>Thông tin khách mua hàng</strong></p>

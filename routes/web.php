@@ -52,8 +52,8 @@ Route::get('/hoan-thanh.html', 'CheckoutController@finish');
 Route::get('/chinh-sach-van-chuyen.html', 'HomeController@transport');
 Route::get('/chinh-sach-doi-hang.html', 'HomeController@return');
 
-Route::get('/chat-bot/{id}.html', 'ProductController@getProductById')
+Route::get('/{slug}/{id}.html', 'ProductController@getProductById')
     ->where('id', '[0-9]+');
 
-Route::get('/landing/{id}.html', 'ProductController@getProductById')
-    ->where('id', '[0-9]+');
+// Route::get('/landing/{id}.html', 'ProductController@getProductById')
+//     ->where('id', '[0-9]+');

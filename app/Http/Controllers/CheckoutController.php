@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Exception;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EmailOrdersController;
 
 class CheckoutController extends Controller
 {
@@ -48,6 +51,7 @@ class CheckoutController extends Controller
             $payment_method = $data["payment_method"];
             $total_amount = $data["total_amount"];
             $total_checkout = $data["total_checkout"];
+            
             // create order
             $orderId = DB::table('smi_orders')->insertGetId(
                 [
@@ -59,7 +63,7 @@ class CheckoutController extends Controller
                     'payment_type' => $payment_method,
                     'customer_id' => $customer_id,
                     'source' => '1', // website
-                    'other_receiver' => $otherReceiverId
+                    'other_receiver' => $otherReceiverId,
                 ]
             );
             if (empty($orderId)) {
@@ -209,6 +213,9 @@ class CheckoutController extends Controller
         $mailContent = [];
         $body = $request->body;
         $data = $body[0];
+        $productController = new ProductController();
+        $customerController = new CustomerController();
+        $emailOrdersController = new EmailOrdersController();
         DB::beginTransaction();
         try {
             if(empty($data["phone"])) {
@@ -236,7 +243,6 @@ class CheckoutController extends Controller
                 $customer["source_register"] = $source_website;
                 $customer["birthday"] = null;
                 $customer["gender"] = "";
-                $customerController = new CustomerController();
                 $customer_id = $customerController->saveCustomer($customer);
                 $data["customer_id"] = $customer_id;
             } else {
@@ -252,7 +258,6 @@ class CheckoutController extends Controller
                 $customer["address"] = $data["address"];
                 $customer["source_register"] = $source_website;
                 $customer["full_address"] = $address;
-                $customerController = new CustomerController();
                 $customerController->updateCustomer($customer);
             }
             if(!$this->validate_form($data)) {
@@ -263,6 +268,7 @@ class CheckoutController extends Controller
             $payment_method = $data["payment_method"];
             $total_amount = $data["total_amount"];
             $total_checkout = $data["total_checkout"];
+            $utm_source = $data["utm_source"];
             // create order
             $orderId = DB::table('smi_orders')->insertGetId(
                 [
@@ -274,7 +280,8 @@ class CheckoutController extends Controller
                     'payment_type' => $payment_method,
                     'customer_id' => $customer_id,
                     'source' => '1', // website
-                    'other_receiver' => $otherReceiverId
+                    'other_receiver' => $otherReceiverId,
+                    'utm_source' =>$utm_source
                 ]
             );
             if (empty($orderId)) {
@@ -304,6 +311,11 @@ class CheckoutController extends Controller
                             if (empty($detailId)) {
                                 throw new Exception ('Cannot insert Order Detail !!!');
                             }
+                            // update quantity 
+                            $affected = $productController->updateQuantityBySku($value3['sku'], $value3['quantity']);
+                            if (empty($affected)) {
+                                Log::error("Cannot update quantity for variation");
+                            }
                             $product = [];
                             $product["product_id"] = $product_id;
                             $product["product_name"] = $product_name;
@@ -322,25 +334,24 @@ class CheckoutController extends Controller
                     'order_id' => $orderId,
                     'action' => $message_log
                 ]);
-            DB::commit();
-            try {
-                
-                $mailContent['order_id'] = $orderId;
-                $mailContent['customer_name'] = $data["name"];
-                $mailContent['customer_phone'] = $data["phone"];
-                $mailContent['customer_email'] = $data["email"];
-                $mailContent['customer_address'] = $address;
-                $mailContent['difference_address'] = $data["difference_address"];
-                $mailContent['products'] = $products;
-                $mailContent["total_amount"] = $data['total_amount'];
-                $mailContent["total_checkout"] = $data['total_checkout'];
-                $mailContent["shipping"] = $data['shipping'];
-                $mailContent["order_date"] = date("d/m/Y H:i:s");
-                $mailContent["note"] = $data['note'];
-                Mail::to("shopmein.vn@gmail.com")->send(new SendEmail($mailContent));
-            } catch (\Exception $ex) {
-                return response($ex->getMessage(), Response::HTTP_OK);
-            }
+            $mailContent['order_id'] = $orderId;
+            $mailContent['utm_source'] = $utm_source;
+            $mailContent['customer_name'] = $data["name"];
+            $mailContent['customer_phone'] = $data["phone"];
+            $mailContent['customer_email'] = $data["email"];
+            $mailContent['customer_address'] = $address;
+            $mailContent['difference_address'] = $data["difference_address"];
+            $mailContent['products'] = $products;
+            $mailContent["total_amount"] = $data['total_amount'];
+            $mailContent["total_checkout"] = $data['total_checkout'];
+            $mailContent["shipping"] = $data['shipping'];
+            $mailContent["order_date"] = date("d/m/Y H:i:s");
+            $mailContent["note"] = $data['note'];
+            $mailContent = json_encode($mailContent);
+             // save to mail order table
+             $emailOrdersController->insertOrderMail($mailContent);
+
+             DB::commit();
             return response("success", Response::HTTP_OK);
         } catch (\Exception $e) {
             DB::rollback();

@@ -43,7 +43,7 @@ Route::group(['prefix' => 'zone'], function(){
     Route::get('/village/{id}', 'ZoneController@village');
 });
 Route::post('/thuc-hien-thanh-toan', 'CheckoutController@store');
-Route::post('/landing/thanh-toan', 'CheckoutController@storeFromLanding');
+
 Route::group(['prefix' => 'danh-muc'], function(){
     Route::post('/be-gai.html', 'CategoriesController@girls');
     Route::post('/be-trai.html', 'CategoriesController@boys');
@@ -92,3 +92,7 @@ Route::get('/chat-bot/relate-product/{id}', 'ProductController@getRelateProducts
 
 Route::get('/landing/{id}', 'ProductController@getDataProductById');
 Route::get('/landing/relate-product/{id}', 'ProductController@getRelateProducts');
+
+Route::post('/landing/thanh-toan', 'CheckoutController@storeFromLanding');
+
+Route::get('/send-emails', 'EmailOrdersController@sendAllEmails');

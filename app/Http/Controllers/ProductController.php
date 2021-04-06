@@ -378,94 +378,96 @@ class ProductController extends Controller
             WHERE a.id = $id and a.id in (1322, 1321, 1320, 1319, 1318, 1317, 1316, 1315)"));
             
             $data = array();
-            $product_id = 0;
-            $i = 0;
-            $c = "";
-            $retails = array();
-            $first_size = "";
-            $last_size = "";
-            $colors = array();
-            $sizes = array();
-            foreach ($products as $k => $row) {
-                if ($product_id != $row->id) {
-                    $product = array(
-                        'product_id' => $row->id,
-                        'name' => $row->name,
-                        'description' => $row->description,
-                        "retail" => $row->retail,
-                        "color" => $row->color,
-                        "size" => "first_size - last_size",
-                        "slider" => $row->product_image,
-                        'image' => $row->variation_image,
-                        "detail" => array()
-                    );
-                    $color = array(
-                        'sku' => $row->sku,
-                        'size' => $row->size,
-                        'image' => $row->variation_image,
-                        'retail' => number_format($row->retail),
-                        'variant_id' => $row->variant_id,
-                        'p' => $row->p,
-                        'quantity' => $row->quantity
-                    );
-                    $product['detail'][$row->color] = array();
-                    array_push($product['detail'][$row->color], $color);
-                    array_push($data, $product);
-                    $product_id = $row->id;
-                    $c = $row->color;
-                    $first_size = $row->size;
-                    $retails = array();
-                    array_push($retails, $row->retail);
-                    array_push($colors, $row->color);
-                    array_push($sizes, $row->size);
-                    $i++;
-                } else {
-                    // print_r($data);
-                    $color = array(
-                        'sku' => $row->sku,
-                        'size' => $row->size,
-                        'image' => $row->variation_image,
-                        'retail' => number_format($row->retail),
-                        'variant_id' => $row->variant_id,
-                        'p' => $row->p,
-                        'quantity' => $row->quantity
-                    );
-                    if($c != $row->color) {
-                        // $$data[$i - 1]['detail'][$row["color"]] = $color;
-                        $data[$i - 1]['detail'][$row->color] = array();
-                        array_push($data[$i - 1]['detail'][$row->color], $color);
-
-                        $color_product = $data[$i - 1]["color"];
-                        $color_product .= ", ".$row->color;
-                        $data[$i - 1]["color"] = $color_product;
+            if($products) {
+                $product_id = 0;
+                $i = 0;
+                $c = "";
+                $retails = array();
+                $first_size = "";
+                $last_size = "";
+                $colors = array();
+                $sizes = array();
+                foreach ($products as $k => $row) {
+                    if ($product_id != $row->id) {
+                        $product = array(
+                            'product_id' => $row->id,
+                            'name' => $row->name,
+                            'description' => $row->description,
+                            "retail" => $row->retail,
+                            "color" => $row->color,
+                            "size" => "first_size - last_size",
+                            "slider" => $row->product_image,
+                            'image' => $row->variation_image,
+                            "detail" => array()
+                        );
+                        $color = array(
+                            'sku' => $row->sku,
+                            'size' => $row->size,
+                            'image' => $row->variation_image,
+                            'retail' => number_format($row->retail),
+                            'variant_id' => $row->variant_id,
+                            'p' => $row->p,
+                            'quantity' => $row->quantity
+                        );
+                        $product['detail'][$row->color] = array();
+                        array_push($product['detail'][$row->color], $color);
+                        array_push($data, $product);
+                        $product_id = $row->id;
+                        $c = $row->color;
+                        $first_size = $row->size;
+                        $retails = array();
+                        array_push($retails, $row->retail);
+                        array_push($colors, $row->color);
+                        array_push($sizes, $row->size);
+                        $i++;
                     } else {
-                        array_push($data[$i - 1]['detail'][$row->color], $color);
-                    }
+                        // print_r($data);
+                        $color = array(
+                            'sku' => $row->sku,
+                            'size' => $row->size,
+                            'image' => $row->variation_image,
+                            'retail' => number_format($row->retail),
+                            'variant_id' => $row->variant_id,
+                            'p' => $row->p,
+                            'quantity' => $row->quantity
+                        );
+                        if($c != $row->color) {
+                            // $$data[$i - 1]['detail'][$row["color"]] = $color;
+                            $data[$i - 1]['detail'][$row->color] = array();
+                            array_push($data[$i - 1]['detail'][$row->color], $color);
 
-                    $last_size = $row->size;
-                    $data[$i - 1]["size"] = $first_size." - ".$last_size;
+                            $color_product = $data[$i - 1]["color"];
+                            $color_product .= ", ".$row->color;
+                            $data[$i - 1]["color"] = $color_product;
+                        } else {
+                            array_push($data[$i - 1]['detail'][$row->color], $color);
+                        }
 
-                    array_push($retails, $row->retail);
-                    sort($retails);
-                    $retailLength = count($retails);
-                    if($retailLength > 1 && $retails[0] != $retails[$retailLength-1]) {
-                        $data[$i - 1]["retail"] = number_format($retails[0])." - ".number_format($retails[$retailLength-1]);
-                    } else {
-                        $data[$i - 1]["retail"] = number_format($retails[0]);
+                        $last_size = $row->size;
+                        $data[$i - 1]["size"] = $first_size." - ".$last_size;
+
+                        array_push($retails, $row->retail);
+                        sort($retails);
+                        $retailLength = count($retails);
+                        if($retailLength > 1 && $retails[0] != $retails[$retailLength-1]) {
+                            $data[$i - 1]["retail"] = number_format($retails[0])." - ".number_format($retails[$retailLength-1]);
+                        } else {
+                            $data[$i - 1]["retail"] = number_format($retails[0]);
+                        }
+                        $c = $row->color;
+                        array_push($colors, $row->color);
+                        array_push($sizes, $row->size);
                     }
-                    $c = $row->color;
-                    array_push($colors, $row->color);
-                    array_push($sizes, $row->size);
                 }
+                $data[0]["sizes"] = array_values(array_unique($sizes));
+                $data[0]["colors"] = array_values(array_unique($colors));
             }
-            $data[0]["sizes"] = array_values(array_unique($sizes));
-            $data[0]["colors"] = array_values(array_unique($colors));
             $arr["data"] = $data;
-            return response($arr, Response::HTTP_OK);
+        return response($arr, Response::HTTP_OK);
     }
 
-    function getProductById($id) {
-        return view('landing.detail',["product_id" => $id]); 
+    function getProductById($slug, $id) {
+        return view('landing.detail',["product_id" => $id, "source" => $slug]); 
     }
 
     public function getRelateProducts($id)
@@ -492,6 +494,22 @@ class ProductController extends Controller
         }
         $arr["data"] = $data;
         return response($arr, Response::HTTP_OK);
+    }
+
+    function updateQuantityBySku($sku, $qty) {
+        $affected = DB::update(
+            'UPDATE smi_variations a,
+                (SELECT CASE
+                            WHEN a.quantity > 0 THEN a.quantity - ?
+                            ELSE 0
+                        END AS qty
+                FROM smi_variations a
+                WHERE a.sku = ?) b
+            SET a.quantity = b.qty
+            WHERE sku = ?',
+            [$qty, $sku, $sku]
+        );
+        return $affected;
     }
 }
 

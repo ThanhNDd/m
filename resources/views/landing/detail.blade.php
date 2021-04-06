@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="{!! url('public/landing/vue-select.css') !!}">
     <link rel="stylesheet" href="{!! url('public/landing/font-awesome.min.css') !!}">
     
-    
     <title>Thời trang trẻ em</title>
-    <script>let url = `{{env("APP_URL")}}`;</script>
+    <script>
+        let url = `{{env("APP_URL")}}`;
+        let source = `{{$source}}`;
+    </script>
 </head>
 <body>
-    <div class="container col-md-8" id="landing">
+    <div class="container" id="landing">
         <product-info-component :product_id="{{$product_id}}"></product-info-component>
     </div>
     <script src="{!! asset('landing/app.js') !!}"></script>
